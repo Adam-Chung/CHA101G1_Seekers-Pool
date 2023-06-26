@@ -1,0 +1,208 @@
+/* ============================最新消息====================================== */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway+Dots&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&display=swap");
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+/* TYPOGRAPHY */
+/* Article title */
+h3 {
+    font-family: "Nanum Myeongjo", serif;
+    font-size: 1.65rem;
+    font-weight: 400;
+    text-decoration: none;
+    margin: 1rem 0;
+    transition: 0.5s ease;
+}
+
+h3:hover {
+    font-weight: 900;
+    text-decoration: underline;
+}
+
+/* Article content */
+p.article-content {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+}
+
+i+p,
+i+p+p,
+.card-footer p+p,
+h3,
+path {
+    cursor: pointer;
+}
+
+/* Wrap page to give white background so it covers the footer */
+.wrap {
+    width: 100%;
+    padding: 1rem 1rem 0 1rem;
+    background: white;
+    margin-bottom: 12rem;
+    /* Allow room to reveal page footer */
+}
+
+/* Responsive grid for the cards */
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 1.5rem;
+    align-items: start;
+    max-width: 1200px;
+    padding: 1rem;
+    padding-bottom: 2rem;
+    margin: auto;
+}
+
+/* The cards */
+.card {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-bottom: 1px solid rgba(0 0 0 / 0.1);
+    overflow: hidden;
+    transition: border-radius 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Image container */
+figure {
+    position: relative;
+    border-radius: 0.35rem;
+    overflow: hidden;
+}
+
+/* Play button placed on image */
+svg {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    width: 60px;
+    color: #ffffcc;
+    z-index: 1;
+}
+
+path {
+    stroke: #fff;
+    stroke-width: 0.75;
+    fill: rgba(0 0 224 / 0.4);
+    transition: all 0.5s ease;
+}
+
+figure:hover path {
+    transform: scale(1.1);
+}
+
+path:hover {
+    stroke: #0000e0;
+    stroke-width: 1;
+    fill: #fff;
+}
+
+img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 3 / 2;
+    border-radius: 0.35rem;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.card:hover img {
+    transform: scale(1.1);
+}
+
+/* Contain all the text in the card */
+.text {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0.5rem;
+    background: white;
+    color: rgba(0 0 0 / 0.6);
+}
+
+/* Media version + Category */
+.tags {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 1rem;
+}
+
+/* The little icon */
+.tags i {
+    width: 20px;
+    transition: transform 0.3s ease;
+}
+
+/* Zoom the icon */
+.card:hover .tags i {
+    transform: scale(1.3);
+}
+
+.tags p {
+    text-transform: capitalize;
+    background: white;
+    transition: transform 0.3s ease;
+}
+
+.tags p:first-of-type {
+    width: 45px;
+}
+
+.tags p:last-of-type {
+    transform: translateX(-70px);
+    z-index: 1;
+}
+
+/* Move category title on hover */
+.card:hover .tags p:last-of-type {
+    transform: translateX(0);
+}
+
+
+
+
+/* transition timing */
+.tags,
+h3,
+.article-content {
+    transition: color 0.3s ease;
+}
+
+/* transition to: */
+.card:hover .video .tags p,
+.card:hover .video .tags i,
+.card:hover .video .card-footer p {
+    color: rebeccapurple;
+}
+
+.card:hover .video h3,
+.card:hover .video .article-content {
+    color: black;
+}
+
+.card:hover .read .tags p,
+.card:hover .read .tags i,
+.card:hover .read .card-footer p {
+    color: green;
+}
+
+.card:hover .read h3,
+.card:hover .read .article-content {
+    color: black;
+}

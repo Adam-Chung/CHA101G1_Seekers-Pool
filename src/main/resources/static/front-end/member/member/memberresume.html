@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的履歷頁</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- jQuery -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <!-- 引入header、footer的JS -->
+    <script type="text/javascript" src="js/include.js"></script>
+
+    <!-- 此頁面用 -->
+    <link rel="stylesheet" href="./css/MemberResume.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <script>
+        let projectName = window.location.pathname.split('/')[1]; // SeekerPool
+
+        $(function () {
+            //進入頁面直接秀出該位會員資料
+            $.ajax({
+                url: "/" + projectName + "/MemberShowInfoServlet",//接受請求的Servlet地址
+                type: 'POST',
+                data: {},
+                async: false,//同步請求
+                cache: false,//不快取頁面
+                success: function (data) {
+                    var data = JSON.parse(data);
+
+                    $("#memPic").prop("src", data.memPic);
+                    $("#topmemName").html(data.memName);
+                    $("#topmemCollege").html(data.memCollege);
+                    $("#topmemDepartment").html(data.memDepartment);
+                    $("#topmemAddress").html(data.memAddress);
+                    $("#memEmail").html(data.memEmail);
+                    $("#memBio").html(data.memBio);
+                    $("#skill-name").html(data.skNo);
+                    $("#memLang").html(data.memLang);
+                },
+                error: function () {
+                    // location.href = "membererror.html";
+                }
+            });
+        })
+    </script>
+</head>
+
+<body>
+    <!--引入heaer頁面-->
+    <div id="header"></div>
+
+
+    <!--引入heaer頁面-->
+    <div class="list"></div>
+
+    <main>
+        <!--引入QandTop按鈕-->
+        <div id="QandTop"></div>
+        <div class="main-content">
+            <!-------------------- 網站主內容 -------------------->
+            <div class="content-cotainer">
+                <section class="personal-info">
+
+                    <div style="width:900px;text-align:right; ">
+                        <button class="info-confirm" style="float:right;"
+                            onclick="location.href='memberinfo.html'">返回資訊頁</button>
+                    </div>
+
+                    <div class="avatar">
+                        <img class="avatar-img" id="memPic" alt="我的頭像">
+                    </div>
+                    <h1 class="name" id="topmemName">
+                        Kristina Adams
+                    </h1>
+
+                    <div class="title">
+                        <span class="college" id="topmemCollege">台灣大學</span>
+                        <span class="department" id="topmemDepartment">資訊工程學系</span><span> | </span>
+                        <span id="topmemAddress" class="section">地區</span><span> | </span>
+                        <span class="e-mail" id="memEmail">Kristina111@gmail.com</span>
+                    </div>
+                    <p class="autobiography" id="memBio">
+                        我是自傳區
+                    </p>
+                </section>
+                <section class="skill-section">
+                    <h2>專業技能</h2>
+                    <div class="skills">
+                        <div class="skill">
+                            <h3 class="skill-name" id="skill-name">Java, Python</h3>
+                        </div>
+                        <!-- <div class="skill">
+                            <h3 class="skill-name">專業技能</h3>
+                        </div>
+                        <div class="skill">
+                            <h3 class="skill-name">專業技能</h3>
+                        </div> -->
+                    </div>
+                </section>
+                <section class="language-section">
+                    <h2>語文能力</h2>
+                    <div class="language">
+                        <h3 class="language-name" id="memLang">英文, 中文, 台語</h3>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+
+    <!--引入footer頁面-->
+    <div id="footer"></div>
+
+</body>
+
+</html>

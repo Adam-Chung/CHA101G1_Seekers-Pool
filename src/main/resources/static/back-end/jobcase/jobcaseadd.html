@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+<title>Seeker's Pool</title>
+<meta content="" name="description">
+<meta content="" name="keywords">
+
+<!-- Favicons -->
+<link href="../../common/img/handshake-regular.svg" rel="icon">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Google Fonts -->
+<link href="https://fonts.gstatic.com" rel="preconnect">
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+	rel="stylesheet">
+
+<!-- Vendor CSS Files -->
+<link href="../../common/css/packageCSS/bootstrap.min.css"
+	rel="stylesheet">
+<link href="../../common/css/packageCSS/bootstrap-icons.css"
+	rel="stylesheet">
+<link href="../../common/css/packageCSS/boxicons.min.css"
+	rel="stylesheet">
+<link href="../../common/css/packageCSS/quill.snow.css"
+	rel="stylesheet">
+<link href="../../common/css/packageCSS/quill.bubble.css"
+	rel="stylesheet">
+<link href="../../common/css/packageCSS/remixicon.css"
+	rel="stylesheet">
+<link href="../../common/css/packageCSS/style.css" rel="stylesheet">
+
+<!-- Template Main CSS File -->
+<link href="../../common/css/Employee.css" rel="stylesheet">
+
+<!-- Font Awesome-->
+<script src="https://kit.fontawesome.com/244879c400.js"
+	crossorigin="anonymous"></script>
+
+<style>
+body {
+	font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+		Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica,
+		Arial, sans-serif;
+}
+</style>
+<!-- jQuery -->
+<script src="../../common/js/jquery-3.6.4.min.js"></script>
+
+</head>
+<body>
+	<!-- ========================== Header ================================ -->
+	<div id="header1"></div>
+
+	<!-- ========================== Sidebar =============================== -->
+	<div id="sidebar1"></div>
+
+	<!-- =========================== main ================================= -->
+	<main id="main" class="main">
+
+		<!--職缺刊登方案新增頁面-->
+		<div class="pagetitle">
+			<h1>新增刊登方案</h1>
+			<nav>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="Employee.html">Home</a></li>
+					<li class="breadcrumb-item active"><a href="JobCase.html">職缺刊登方案管理</a></li>
+					<li class="breadcrumb-item active"><a href="JobCase.html">職缺刊登方案</a></li>
+					<li class="breadcrumb-item active">新增刊登方案</li>
+				</ol>
+			</nav>
+		</div>
+		<hr>
+		<form id="addJobCaseForm" method="post" enctype="multipart/form-data"> <!-- enctype="text/plain" -->
+			<div class="row">
+				<div class="col-lg-2 mb-3">
+					<label for="jcName" class="form-label">方案名稱</label>
+				</div>
+				<div class="col-lg-4">
+					<input type="text" class="form-control" id="jcName" name="jcName">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-2 mb-3">
+					<label for="jcExpTime" class="form-label">刊登日期(天數)</label>
+				</div>
+				<div class="col-lg-4">
+					<input type="text" class="form-control" id="jcExpTime"
+						name="jcExpTime">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-2 mb-3">
+					<label for="jcAvailableNum" class="form-label">可上架數量</label>
+				</div>
+				<div class="col-lg-4">
+					<input type="text" class="form-control" id="jcAvailableNum"
+						name="jcAvailableNum">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-2 mb-3">
+					<label for="jcTop" class="form-label">置頂數量</label>
+				</div>
+				<div class="col-lg-4">
+					<input type="text" class="form-control" id="jcTop" name="jcTop">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-2 mb-3">
+					<label for="jcPrice" class="form-label">方案金額</label>
+				</div>
+				<div class="col-lg-4">
+					<input type="text" class="form-control" id="jcPrice" name="jcPrice">
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-lg-2 mb-3">
+					<label for="jcStatus" class="form-label">方案狀態</label>
+				</div>
+				<div class="col-lg-4">
+<!-- 					<input type="text" class="form-control" id="jcStatus" name="jcStatus"> -->
+					<div class="btn-group btn-group-sm inputRadio" role="group"
+                                aria-label="Basic radio toggle button group">
+                                <input type="radio" class="btn-check" name="jcStatus" id="Status0" autocomplete="off" value="1">
+                                <label class="btn btn-outline-success" for="Status0">上架</label>
+                                <input type="radio" class="btn-check" name="jcStatus" id="Status1" autocomplete="off" value="0"
+                                    checked>
+                                <label class="btn btn-outline-secondary" for="Status1">下架</label>
+                    </div>
+					<div>
+						<button type="submit" class="btn btn-primary"
+							style="margin-top: 10px;" id="btnAddAdmbtn">新增方案</button>
+						<a href="jobcase.html" class="btn btn-secondary"
+							style="margin: 10px 0px 0px 20px;"> 回到上一頁 </a>
+					</div>
+				</div>
+			</div>
+		</form>
+	</main>
+	<!-- End #main -->
+
+	<!-- 首頁sidebar下拉 -->
+	<script src="../../common/js/packageJS/bootstrap.bundle.min.js"></script>
+
+	<script>
+		$(function() {
+			// ======== 引入header ===========
+			$.get("../../common/buildPage/Employee_Header.html", function(data) {
+				$("#header1").html(data);
+
+				$.getScript("../../common/js/Employee.js", function() {
+				});
+			});
+
+			// ======== 引入sidebar ===========
+			$.get("../../common/buildPage/Employee_Sidebar.html", function(data) {
+				$("#sidebar1").html(data);
+			});
+
+			// ======== AJAX ===========
+			$("#addJobCaseForm").submit(function() {
+				console.log("AAA");
+
+				console.log("jcName : " + $("input#jcName").val());
+				console.log("jcExpTime : " + $("input#jcExpTime").val());
+				console.log("jcAvailableNum : " + $("input#jcAvailableNum").val());
+				console.log("jcTop : " + $("input#jcTop").val());
+				console.log("jcPrice : " + $("input#jcPrice").val());
+				console.log("inputRadio : " + $(".inputRadio").val());
+				console.log("btn-check : " + $(".btn-check").val());
+
+				var formData = new FormData($("#addJobCaseForm")[0]);
+				console.log(formData);
+				$.ajax({
+					url : "../../JobCaseInsertServlet",
+					method : 'POST',
+					datatype : "JSON",
+					data : formData,
+					async : false,
+					cache : false,
+					contentType : false,
+					processData : false,
+					success: function(res){
+						console.log(res);
+						var responseString = res.toString(); // 将res转换为字符串
+						console.log(responseString);
+						
+					    if(responseString.indexOf("success") === -1){
+							alert('成功新增: ' + $("input#jcName").val());
+						} else {
+							alert('失敗，請重新填寫');
+						};
+					}
+				});
+				return false; //返回true才會送出表單
+			});
+		});
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,297 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: auto 0;
+  background-color: #f6f7f8;
+}
+
+:root {
+  --personal-header-height: 200px;
+  --profile-avatar-width: 160px;
+}
+
+i {
+  color: #93bfcf;
+}
+
+/* ---------- 主內容 ---------- */
+.main-content {
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* ---------- 個人簡介 ---------- */
+.personal-header {
+  display: flex;
+  justify-content: center;
+  height: 250px;
+  width: 90%;
+  padding: 20px 80px 20px 50px;
+  margin: auto;
+  border-radius: 8px;
+  background-color: #f6f7f8;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08);
+}
+
+figure {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  /* 需要設定一個確定的高度才能將子元素置中 */
+  margin: 0;
+}
+
+.personal-header .profile-avatar {
+  border: 3px solid white;
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+}
+
+.personal-header .profile-box {
+  display: inline-block;
+  /* border: 1px solid #6096b4; */
+  padding: 10px;
+  margin-left: 20px;
+  height: 100%;
+  min-width: 500px;
+}
+
+.personal-header .profile-box h1 {
+  margin: 0 0 5px 5px;
+}
+
+.personal-header .profile-box .info {
+  display: flex;
+  flex-direction: column;
+}
+
+.personal-header .profile-box .info .info_list-item {
+  /*   display: flex; */
+  /*   flex-direction: column; */
+  margin-left: 10px;
+  margin-bottom: 3px;
+}
+
+.personal-header .profile-box .info .info_list-item span {
+  align-self: left;
+  color: #3f3f42;
+  font-size: 18px;
+}
+
+/* 不知道超出來的內容怎麼藏起來!!!!!!!!!! */
+.personal-header .profile-box .description {
+  margin-top: 10px;
+  margin-left: 10px;
+  /*   white-space: pre-wrap; */
+  overflow: hidden;
+  color: #3f3f42;
+
+  word-break: break-all;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+}
+
+/* ---------- header的icon ---------- */
+#icon-block-1 {
+  margin-left: 3px;
+  margin-right: 5px;
+}
+
+#icon-block-3 {
+  margin-left: 3px;
+  margin-right: 5px;
+}
+
+/* ---------- 頁面下半部 ---------- */
+.content-cotainer {
+  display: flex;
+  padding: 30px;
+  margin: auto;
+  width: 90%;
+}
+
+/* ---------- 側邊選單 ---------- */
+aside {
+  display: inline-block;
+  width: 25%;
+  background: white;
+  height: 100%;
+  box-shadow: 0.15rem 0 0.3rem rgba(35, 49, 56, 0.16);
+}
+
+aside .slide-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+aside .slide-list a {
+  display: block;
+  /* 讓連結佔滿父元素 */
+  text-decoration: none;
+  text-align: center;
+  padding: 12px 0;
+  color: #6096b4;
+}
+
+aside .slide-list a:hover {
+  background: #bdcdd6;
+  color: white;
+}
+
+/* ---------- 面板區 ---------- */
+.panel-container {
+  width: 75%;
+  margin-left: 30px;
+}
+
+/* ---------- 主資訊區 ---------- */
+.member-info-panel {
+  /* margin-left: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; */
+  /* 設定子元素的高度都相同 */
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: 0.15rem 0 0.3rem rgba(35, 49, 56, 0.16);
+  padding-bottom: 10px;
+}
+
+.member-info-panel .heading,
+.blocked-company-panel .heading {
+  display: flex;
+  padding: 5px;
+  border-bottom: 1px solid #dfe6e9;
+}
+
+.member-info-panel .heading .heading-icon-block,
+.blocked-company-panel .heading .heading-icon-block {
+  margin: 7px 10px 7px 8px;
+}
+
+.member-info-panel .heading h2,
+.blocked-company-panel .heading h2 {
+  margin: 0;
+  color: #233138;
+}
+
+.member-info-panel .member-info-row {
+  /* border: 1px solid red; */
+  margin: 20px;
+}
+
+.member-info-panel .member-info-row .info-title {
+  display: inline-block;
+  width: 150px;
+  text-align: right;
+  margin-right: 5px;
+  position: relative;
+  color: #3f3f42;
+}
+
+.member-info-panel .member-info-row input[type="text"],
+.member-info-panel .member-info-row input[type="password"],
+.member-info-panel .member-info-row input[type="email"],
+.member-info-panel .member-info-row input[type="tel"] {
+  width: 256px;
+  height: 22px;
+  margin: 3px;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #a6a6a6;
+}
+
+#autobiography {
+  width: 70%;
+  height: 300px;
+  padding: 5px;
+}
+
+/* ---------- 屏蔽公司 ---------- */
+.blocked-company-panel {
+  margin-top: 30px;
+  padding-bottom: 30px;
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: 0.15rem 0 0.3rem rgba(35, 49, 56, 0.16);
+}
+
+.blocked-company-panel .add-company {
+  text-align: center;
+  margin: 20px;
+}
+
+.blocked-company-panel .add-company input[type="text"] {
+  width: 256px;
+  height: 40px;
+  margin: 3px;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #a6a6a6;
+}
+
+.blocked-company-panel .blocked-company-list {
+  padding: 10px 30px 30px 30px;
+}
+
+.blocked-company-panel .blocked-company-list ul {
+  /* border: 1px solid red; */
+  list-style: none;
+}
+
+.blocked-company-panel .blocked-company-list ul>li {
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 8px 50px;
+}
+
+.blocked-company-panel .blocked-company-list span {
+  margin: 10px;
+}
+
+/* ---------- 按鈕 ---------- */
+.info-confirm {
+  display: block;
+  margin: auto;
+  margin-bottom: 30px;
+  border-radius: 4px;
+  height: 40px;
+  width: 90px;
+  border: 0px;
+  background-color: #59ace0;
+  color: white;
+}
+
+.add-blocked-company {
+  border-radius: 4px;
+  height: 40px;
+  width: 60px;
+  border: 0px;
+  background-color: #59ace0;
+  color: white;
+}
+
+button:hover {
+  background: #3F9DF4;
+  color: white;
+}
+
+/* ========================== main ============================= */
+main {
+  /* main內容會超過預設1500px的高度所以覆寫 */
+  height: 100%;
+}
+
+
+.-off {
+  display: none;
+}

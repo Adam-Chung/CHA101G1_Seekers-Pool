@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Seeker's Pool</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="../../common/img/handshake-regular.svg" rel="icon">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="../../common/css/packageCSS/bootstrap.min.css" rel="stylesheet">
+    <link href="../../common/css/packageCSS/bootstrap-icons.css" rel="stylesheet">
+    <link href="../../common/css/packageCSS/boxicons.min.css" rel="stylesheet">
+    <link href="../../common/css/packageCSS/quill.snow.css" rel="stylesheet">
+    <link href="../../common/css/packageCSS/quill.bubble.css" rel="stylesheet">
+    <link href="../../common/css/packageCSS/remixicon.css" rel="stylesheet">
+    <link href="../../common/css/packageCSS/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="../../common/css/Employee.css" rel="stylesheet">
+
+    <!-- Font Awesome-->
+    <script src="https://kit.fontawesome.com/244879c400.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+                Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica,
+                Arial, sans-serif;
+        }
+
+        tbody>tr>td,
+        thead>tr>th {
+            text-align: center;
+            vertical-align: middle;
+            max-width: 130px;
+            max-height: 40px;
+        }
+
+        td>input {
+            width: 60%;
+            border: 2px solid #a5c5fe;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+    </style>
+    <!-- jQuery -->
+    <script src="../../common/js/jquery-3.6.4.min.js"></script>
+
+</head>
+
+<body>
+    <!-- ========================== Header ================================ -->
+    <div id="header1"></div>
+
+    <!-- ========================== Sidebar =============================== -->
+    <div id="sidebar1"></div>
+
+    <!-- =========================== main ================================= -->
+    <main id="main" class="main">
+
+        <!--職缺刊登方案-->
+        <div class="pagetitle">
+            <h1>職缺刊登方案</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="Employee.html">Home</a></li>
+                    <li class="breadcrumb-item active"><a href="jobcase.html">職缺刊登方案管理</a></li>
+                    <li class="breadcrumb-item active">職缺刊登方案</li>
+                </ol>
+            </nav>
+            <hr>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <label for="inputQuery" class="form-label" style="font-size: large;"><strong>職缺刊登方案查詢</strong></label>
+                <div class="input-group">
+                    <span class="input-group-text">方案編號</span>
+                    <input type="text" aria-label="First name" class="form-control" id="inputQueryNo">
+                    <span class="input-group-text">方案名稱</span>
+                    <input type="text" aria-label="Last name" class="form-control" id="inputQueryName">
+                    <button type="button" class="btn btn-primary" id="searchJcNo"><strong>查詢</strong></button>
+                </div>
+            </div>
+
+            <div class="col-sm-2 d-flex align-items-end">
+                <button type="button" class="btn btn-primary" id="btnQuery"><strong>查詢全部</strong></button>
+            </div>
+            <div class="col-sm-4 d-flex align-items-end justify-content-end">
+                <a href="./jobcaseadd.html">
+                    <button type="button" class="btn btn-primary float-end"><strong>新增刊登方案</strong></button>
+                </a>
+            </div>
+        </div>
+
+        <span class="counter pull-right"></span>
+        <div class="table table-hover">
+            <table class="table table-hover">
+                <thead class="bill-header cs">
+                    <tr>
+                        <th id="JC_NO" class="JC_NO">編號</th>
+                        <th id="AUT_NAME" class="AUT_NAME">名稱</th>
+                        <th id="JC_EXP_TIME" class="JC_EXP_TIME">刊登日期</th>
+                        <th id="JOB_AVAILABLE_NUM" class="JOB_AVAILABLE_NUM">可上架數量</th>
+                        <th id="JC_TOP" class="JC_TOP">置頂數量</th>
+                        <th id="JC_PRICE" class="JC_PRICE">金額</th>
+                        <th id="JC_EDIT" class="JC_EDIT">修改</th>
+                        <th id="JC_SAVE" class="JC_SAVE">狀態</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 動態產生內容 -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 底部分頁 -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </main>
+    <!-- End #main -->
+
+    <!-- 首頁sidebar下拉 -->
+    <script src="../../common/js/packageJS/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(function () {
+            // ======== 引入header ===========
+            $.get("../../common/buildPage/Employee_Header.html", function (data) {
+                $("#header1").html(data);
+
+                $.getScript("../../common/js/Employee.js", function () {
+                });
+            });
+
+            // ======== 引入sidebar ===========
+            $.get("../../common/buildPage/Employee_Sidebar.html", function (data) {
+                $("#sidebar1").html(data);
+            });
+
+
+            // ======== AJAX ===========
+            /* ==== 登入即查詢全部 ==== */
+            queryAll("selectAll");
+
+            $("button#btnQuery").click(function () {
+                console.log("AAA");
+                $("tr#trContext").prevAll().remove();
+                queryAll("selectAll");
+            });
+
+            function queryAll(All) {
+                $.post({
+                    url: "/SeekerPool/JobCaseQueryServlet",
+                    dataType: "JSON",
+                    data: { action: "selectAll" },
+                    async: false,
+                    cache: false,
+                    success: function (res) {
+                        $("tbody").empty();
+                        for (let r of res) {
+                            if (r.jcStatus === 0) {
+                                var status = "未發布";
+                            } else if (r.jcStatus === 1) {
+                                var status = "已發布";
+                            }
+                            $("tbody").append(`<tr id="all">
+			                        <td name="jcNo" class="jcNo">${r.jcNo}</td>
+			                        <td name="jcName" class="jcName">${r.jcName}</td>
+			                        <td name="jcExpTime" class="jcExpTime">${r.jcExpTime}</td>
+			                        <td name="jcAvailableNum" class="jcAvailableNum">${r.jcAvailableNum}</td>
+			                        <td name="jcTop" class="jcTop">${r.jcTop}</td>
+			                        <td name="jcPrice" class="jcPrice">${r.jcPrice}</td>
+			                        <td class='no-border'>
+										<button class='btn btn-outline-secondary btn-sm btnEdit' type="submit">
+											<strong>編輯</strong>
+										</button>
+									<td class='no-border' >
+										<select>
+											<option name="jcStatus" class="jcStatus" value="0">${status}</option>
+											<option name="jcStatus" class="jcStatus" value="1">已發布</option>
+										</select>
+									</td>
+			                    </tr>`);
+                        }
+                    }
+                })
+            };
+
+
+            /* ==== 查單一 編號 ==== */
+            $("#searchJcNo").click(function () {
+                // Get the values from both input fields
+                var queryNo = $("#inputQueryNo").val().trim();
+                var queryName = $("#inputQueryName").val().trim();
+
+                if (queryNo !== "" && /^[0-9]$/.test(queryNo)) {
+                    $.post({
+                        url: "/SeekerPool/JobCaseQueryServlet",
+                        dataType: "JSON",
+                        data: {
+                            action: "selectByNo",
+                            jcNo: queryNo
+                        },
+                        success: function (res) {
+                            console.log("Response for jcNo query: " + JSON.stringify(res));
+                            if (res) {
+                                $("tr#trContext").remove();
+                                console.log("res : " + res);
+                                console.log("OO");
+                                $("tbody").append(`<tr id="trContext">
+										<td class="jcNo" name="jcNo">${res.jcNo}</td>
+										<td class="jcName" name="jcName">${res.jcName}</td>
+										<td class="jcExpTime" name="jcExpTime">${res.jcExpTime}</td>
+										<td class="jcAvailableNum" name="jcAvailableNum">${res.jcAvailableNum}</td>
+										<td class="jcTop" name="jcTop">${res.jcTop}</td>
+										<td class="jcPrice" name="jcPrice">${res.jcPrice}</td>
+										<td class='no-border'>
+											<button class='btn btn-outline-secondary btn-sm btnEdit' type="submit">
+												<strong>編輯</strong>
+											</button>
+										</td>
+										<td class='no-border'>
+											<select>
+												<option name="jcStatus" class="jcStatus" value="0">未發布</option>
+												<option name="jcStatus" class="jcStatus" value="1">已發布</option>
+											</select>
+										</td>
+									</tr>`);
+                                $("tr#trContext").prevAll().remove();
+                                $("#inputQueryNo").val("");
+                                console.log("AA");
+                            } else {
+                                $("tr#trNO").remove();
+                                console.log("else res : " + res);
+                                $("tbody").append(`<tr id="trNO">
+										<td style='color: red; font-weight: bold;'>查無此方案!!!</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>`);
+                                $("tr#trNO").prevAll().remove();
+                            }
+                        }
+                    });
+                } else {
+                    console.log("請輸入數字");
+                    alert("錯誤! 方案編號請輸入數字");
+                }
+            });
+
+
+            /* ==== 更新 編輯 ==== */
+
+            $(document).on("click", ".btnEdit", function () {
+                console.log("EDIT");
+                var $row = $(this).parents("tr");
+                var jcName = $row.find("td.jcName").text();
+                var jcExpTime = $row.find("td.jcExpTime").text();
+                var jcAvailableNum = $row.find("td.jcAvailableNum").text();
+                var jcTop = $row.find("td.jcTop").text();
+                var jcPrice = $row.find("td.jcPrice").text();
+                var jcStatus = $row.find("td.jcStatus").attr("data-value"); // 取得資料狀態的屬性值	
+
+                $row.find("td:eq(1)").html("<input name='edit_jcName' type='text' value='" + jcName + "'>");
+                $row.find("td:eq(2)").html("<input name='edit_jcExpTime' type='text' value='" + jcExpTime + "'>");
+                $row.find("td:eq(3)").html("<input name='edit_jcAvailableNum' type='text' value='" + jcAvailableNum + "'>");
+                $row.find("td:eq(4)").html("<input name='edit_jcTop' type='text' value='" + jcTop + "'>");
+                $row.find("td:eq(5)").html("<input name='edit_jcPrice' type='text' value='" + jcPrice + "'>");
+                $row.find("td:eq(6)").prepend("<button class='btn btn-outline-success btn-sm btnSave'type='submit'><strong>儲存</strong></button>");
+                $row.find("td:eq(7)").html(`
+		                <select name='edit_jcStatus'>
+		                    <option class='edit_jcStatus' value='0' ${jcStatus === "0" ? "selected" : ""}>未發布</option>
+		                    <option class='edit_jcStatus' value='1' ${jcStatus === "1" ? "selected" : ""}>已發布</option>
+		                </select>
+		            `); $(this).hide();
+            });
+
+            /* ==== 更新 儲存 ==== */
+            $(document).on("click", ".btnSave", function () {
+                console.log("SAVE");
+                var $row = $(this).parents("tr");
+                var jcNo = $row.find("td.jcNo").text();
+                var jcName = $row.find("input[name='edit_jcName']").val();
+                var jcExpTime = $row.find("input[name='edit_jcExpTime']").val();
+                var jcAvailableNum = $row.find("input[name='edit_jcAvailableNum']").val();
+                var jcTop = $row.find("input[name='edit_jcTop']").val();
+                var jcPrice = $row.find("input[name='edit_jcPrice']").val();
+                var jcStatus = $row.find("select[name='edit_jcStatus']").val(); // 取得選中的選項值
+
+                console.log("jcName" + jcName);
+                console.log("jcExpTime" + jcExpTime);
+                console.log("jcAvailableNum" + jcAvailableNum);
+                console.log("jcTop" + jcTop);
+                console.log("jcPrice" + jcPrice);
+                console.log("jcStatus" + jcStatus);
+
+
+                $.ajax({
+                    url: "/SeekerPool/JobCaseUpdateServlet",
+                    method: "POST",
+                    dataType: "json",
+                    data: {
+                        action: "update",
+                        jcNo: jcNo,
+                        jcName: jcName,
+                        jcExpTime: jcExpTime,
+                        jcAvailableNum: jcAvailableNum,
+                        jcTop: jcTop,
+                        jcPrice: jcPrice,
+                        jcStatus: jcStatus
+                    },
+                    success: function (res) {
+                        $row.find("td:eq(1)").text(jcName);
+                        $row.find("td:eq(2)").text(jcExpTime);
+                        $row.find("td:eq(3)").text(jcAvailableNum);
+                        $row.find("td:eq(4)").text(jcTop);
+                        $row.find("td:eq(5)").text(jcPrice);
+                        var selectElement = "<select name='edit_jcStatus'>" +
+                            "<option class='edit_jcStatus' value='0' " + (jcStatus === "0" ? "selected" : "") + ">未發布</option>" +
+                            "<option class='edit_jcStatus' value='1' " + (jcStatus === "1" ? "selected" : "") + ">已發布</option>" +
+                            "</select>";
+
+                        $row.find("td:eq(7)").html(selectElement);
+                        console.log("res :" + res);
+                        $(".btnSave").hide();
+                        $(".btnEdit").show();
+                    },
+                    error: function (xhr, status, error) {
+
+                    }
+                });
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>

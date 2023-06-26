@@ -1,0 +1,202 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: auto 0;
+  background-color: #f6f7f8;
+}
+
+:root {
+  --personal-header-height: 200px;
+  --profile-avatar-width: 160px;
+}
+
+i {
+  color: #93bfcf;
+}
+
+/* ---------- 主內容 ---------- */
+.main-content {
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* ---------- 個人簡介 ---------- */
+.personal-header {
+  display: flex;
+  justify-content: center;
+  height: 250px;
+  width: 90%;
+  padding: 20px 80px 20px 50px;
+  margin: auto;
+  border-radius: 8px;
+  background-color: #f6f7f8;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08);
+}
+
+figure {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  /* 需要設定一個確定的高度才能將子元素置中 */
+  margin: 0;
+}
+
+.personal-header .profile-avatar {
+  border: 3px solid white;
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+}
+
+.personal-header .profile-box {
+  display: inline-block;
+  /* border: 1px solid #6096b4; */
+  padding: 10px;
+  margin-left: 20px;
+  height: 100%;
+  min-width: 500px;
+}
+
+.personal-header .profile-box h1 {
+  margin: 0 0 5px 5px;
+}
+
+.personal-header .profile-box .info {
+  display: flex;
+  flex-direction: column;
+}
+
+.personal-header .profile-box .info .info_list-item {
+  /*   display: flex; */
+  /*   flex-direction: column; */
+  margin-left: 10px;
+  margin-bottom: 3px;
+}
+
+.personal-header .profile-box .info .info_list-item span {
+  align-self: left;
+  color: #3f3f42;
+  font-size: 18px;
+}
+
+/* 不知道超出來的內容怎麼藏起來!!!!!!!!!! */
+.personal-header .profile-box .description {
+  margin-top: 10px;
+  margin-left: 10px;
+  /*   white-space: pre-wrap; */
+  overflow: hidden;
+  color: #3f3f42;
+}
+
+/* ---------- 頁面下半部 ---------- */
+.content-cotainer {
+  display: flex;
+  padding: 30px;
+  margin: auto;
+  width: 90%;
+}
+
+/* ---------- 側邊選單 ---------- */
+aside {
+  display: inline-block;
+  width: 25%;
+  background: white;
+  height: 100%;
+  box-shadow: 0.15rem 0 0.3rem rgba(35, 49, 56, 0.16);
+}
+
+aside .slide-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+aside .slide-list a {
+  display: block;
+  /* 讓連結佔滿父元素 */
+  text-decoration: none;
+  text-align: center;
+  padding: 12px 0;
+  color: #6096b4;
+}
+
+aside .slide-list a:hover {
+  background: #bdcdd6;
+  color: white;
+}
+
+/* ---------- 面板區 ---------- */
+.panel-container {
+  width: 75%;
+  margin-left: 30px;
+}
+
+.panel-container .panel {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  /* 設定子元素的高度都相同 */
+  margin-bottom: 30px;
+  border-radius: 4px;
+  background-color: white;
+  min-height: 200px;
+  box-shadow: 0.15rem 0 0.3rem rgba(35, 49, 56, 0.16);
+}
+
+.panel-container .panel .heading {
+  display: flex;
+  padding: 5px;
+  border-bottom: 1px solid #dfe6e9;
+}
+
+.panel-container .panel .heading .heading-icon-block {
+  margin: 7px 10px 7px 8px;
+}
+
+.panel-container .panel .heading h2 {
+  margin: 0;
+  color: #233138;
+}
+
+.panel-container .panel .panel-body {
+  display: flex;
+  flex-direction: column;
+  /*   justify-content: space-between; */
+  overflow: hidden;
+  color: #3f3f42;
+  padding: 10px;
+}
+
+.panel-container .panel .panel-body ul {
+  /* 使 ul 也成為一個 flex container，並使其子元素（li）沿著垂直方向排列且高度相同 */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  /* 充滿整個父元素的高度 */
+}
+
+.panel-container .panel .panel-body ul>li {
+  list-style: none;
+  /* border: 1px solid red; */
+  color: #3f3f42;
+  margin: 5px;
+  padding: 5px;
+  /* height: 30%; */
+  flex: 1;
+  /* 使 li 元素成為 flex items，並允許它們彈性地充滿可用空間 */
+}
+
+/* ---------- header的icon ---------- */
+#icon-block-1 {
+  margin-left: 3px;
+  margin-right: 5px;
+}
+
+#icon-block-3 {
+  margin-left: 3px;
+  margin-right: 5px;
+}

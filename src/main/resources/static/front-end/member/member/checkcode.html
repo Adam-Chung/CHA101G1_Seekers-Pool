@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <!-- header footer用 -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>驗證碼確認</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- jQuery -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <!-- 引入header、footer的JS -->
+    <script type="text/javascript" src="js/include.js"></script>
+
+    <!-- 此頁面用 -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="fonts/simple-line-icons.min.css">
+    <link rel="stylesheet" href="css/login.css">
+
+
+    <script>
+
+        let projectName = window.location.pathname.split('/')[1]; // SeekerPool
+
+        //按鈕跑出來
+        function butshow() {
+            $("#resendButton").removeAttr("style");
+        }
+
+        //去servlet發送郵件
+        function sendCheckMail() {
+            $.post('/' + projectName + '/MemberCheckCodeServlet', {}, function () {
+                // alert("寄信成功")
+            });
+            // location.reload();  不能reloading，可能會導致瀏覽器(火狐)抓快取資料然後就不會去執行servlet裡面的事情，火狐會出現NS_BINDING_ABORTED 錯誤，所以要小心使用location.reload();
+
+            $("#resendButton").prop("style","display:none;");
+            //10秒後出現重新寄信按鈕
+            setTimeout(butshow, 10000);
+        }
+
+        $(function () {
+            //10秒後出現重新寄信按鈕
+            setTimeout(butshow, 10000);
+
+            //發送輸入的驗證碼到後端驗證
+            $("#chekcCodeForm").submit(function () {
+                //發送數據到服務器
+                $.post("/" + projectName + "/MemberCheckCodeServlet", $(this).serialize(), function (data) {
+                    var data = JSON.parse(data);
+                    if (data.flag) {
+                        //驗證成功，跳轉到成功頁面
+                        location.href = "memberinfo.html";
+                    } else {
+                        //驗證失敗
+                        alert(data.msg)
+                    }
+                });
+                return false; //返回true才會送出表單
+            });
+        })
+    </script>
+
+</head>
+
+<body>
+    <!--引入heaer頁面-->
+    <div id="header"></div>
+
+
+    <!--引入list頁面-->
+    <div class="list"></div>
+
+
+
+    <main>
+        <!--引入QandTop按鈕-->
+        <div id="QandTop"></div>
+
+        <div id="main-content">
+            <!-- 內容 -->
+            <section class="position-relative py-4 py-xl-5">
+                <div class="container">
+                    <div class="row mb-5">
+                        <div class="col-md-8 col-xl-6 text-center mx-auto">
+                            <h2>郵件已寄出，請輸入驗證碼...</h2>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card mb-5">
+                                <div class="card-body d-flex flex-column align-items-center">
+
+                                    <!-- 表單區 -->
+                                    <form class="text-center" id="chekcCodeForm">
+                                        <div class="mb-3"><input class="form-control" type="text" name="checkCode"
+                                                placeholder="驗證碼" required /></div>
+
+                                        <div class="mb-3"><button class="btn btn-primary d-block w-100"
+                                                type="submit">確認</button></div>
+
+                                    </form>
+
+                                    <div class="mb-3" style="
+                                        display:none;" id="resendButton"><button class="btn btn-primary d-block w-100"
+                                            onclick="sendCheckMail();">重新寄驗證碼</button></div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+
+    <!--引入footer頁面-->
+    <div id="footer"></div>
+
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

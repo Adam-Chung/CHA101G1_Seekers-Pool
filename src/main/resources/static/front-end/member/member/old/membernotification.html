@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通知總覽</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- jQuery -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <!-- 引入header、footer的JS -->
+    <script type="text/javascript" src="js/include.js"></script>
+
+    <!-- 此頁面用 -->
+    <link rel="stylesheet" href="./css/Member-notification.css">
+
+</head>
+
+<body>
+    <!--引入heaer頁面-->
+    <div id="header"></div>
+
+
+    <!--引入heaer頁面-->
+    <div class="list"></div>
+
+    <main>
+        <!--引入QandTop按鈕-->
+        <div id="QandTop"></div>
+        <div class="main-content">
+
+
+            <div class="content-cotainer">
+                <!-- 側邊選單 -->
+                <aside class="slidebar" style="float: left;">
+                    <ul class="slide-list">
+                        <li><a href="memberinfo.html">我的資訊</a>
+                        </li>
+                        <li style="background-color: #59ace0;"><a style="color:white;"
+                                href="membernotification.html">通知總覽</a></li>
+                        <li><a href="membercollectjob.html">已收藏職缺</a></li>
+                        <li><a href="membercollectarticle.html">已收藏文章</a></li>
+                        <li><a href="membercalendar.html">應徵紀錄</a></li>
+                    </ul>
+                </aside>
+
+                <!-- 主資訊區 -->
+                <div class="panel-container">
+                    <div class="notification-panel">
+                        <div class="heading">
+                            <span class="heading-icon-block">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </span>
+                            <h2>通知總覽</h2>
+                        </div>
+                        <div class="panel-body">
+                            <div class="notification-block">
+                                <img src="./images/apple.jpg" alt="蘋果公司" class="notification-icon">
+                                <div class="notification-content">
+                                    <div class="notification-title">
+                                        <span>蘋果公司</span>
+                                    </div>
+                                    <div class="notification-message">
+                                        <span class="message">於 5/28 看過您的履歷</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="notification-block">
+                                <img src="./images/apple.jpg" alt="蘋果公司" class="notification-icon">
+                                <div class="notification-content">
+                                    <div class="notification-title">
+                                        <span>香蕉公司</span>
+                                    </div>
+                                    <div class="notification-message">
+                                        <span class="message">您與 香蕉公司 於 5/30 有一場面試</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="notification-block">
+                                <img src="./images/apple.jpg" alt="蘋果公司" class="notification-icon">
+                                <div class="notification-content">
+                                    <div class="notification-title">
+                                        <span>緯育公司</span>
+                                    </div>
+                                    <div class="notification-message">
+                                        <span class="message">於 5/26 看過您的履歷</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </main>
+
+    <!--引入footer頁面-->
+    <div id="footer"></div>
+
+</body>
+
+</html>

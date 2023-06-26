@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEEKER'S POOL 招募管理</title>
+    <link rel="stylesheet" href="./css/vacancyjobcase.css">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+        crossorigin="anonymous"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <style>
+        .header-nav .nav-profile img {
+            max-height: 30px;
+            max-height: 36px;
+        }
+
+        nav.navbar img {
+            max-width: 60px;
+            max-height: 60px;
+            margin-right: 15px;
+        }
+
+        div.row {
+            margin: 0px 0px 8px;
+        }
+
+        div.col {
+            margin: 0px;
+            display: flex;
+            width: 18%;
+            align-items: center;
+        }
+
+        input.form-label {
+            margin-bottom: 0;
+        }
+
+        tr.trLightBox>td {
+            text-align: center;
+        }
+    </style>
+    <script src="./js/jquery-3.6.4.min.js"></script>
+</head>
+
+<body>
+    <main>
+
+        <div class="container">
+            <aside id="sidebar" class="sidebar">
+                <div class="logo">
+                    <div class="img">
+                        <img src="./img/TSMC_logo.svg.png" alt="this is a logo" id="logoImg">
+                    </div>
+                    <h3 id="brand-name">台雞電股份有限公司</h3>
+                </div>
+                <menu>
+                    <ul>
+                        <li class="main-list center">
+                            <a href="#" draggable="false"> <!--第一個-->
+                                <i class="fa-solid fa-address-card"></i>會員中心
+                                <div class="caret-icon">
+                                    <i class="fa-solid fa-sort-down"></i>
+                                    <i id="-none" class="fa-solid fa-caret-up"></i>
+                                </div>
+                            </a>
+
+                            <!-- ======================= sub-menu ====================== -->
+                            <ul class="sub-menu collapse -none">
+                                <li class="sub-list">
+                                    <a href="#" draggable="false">會員資料管理</a>
+                                </li class="sub-list">
+
+                                <li class="sub-list">
+                                    <a href="#" draggable="false">職缺管理</a>
+                                </li class="sub-list">
+
+                                <li class="sub-list">
+                                    <a href="#" draggable="false">刊登管理</a>
+                                </li class="sub-list">
+
+                                <li class="sub-list">
+                                    <a href="#" draggable="false">應徵者管理</a>
+                                </li>
+
+                                <li class="sub-list">
+                                    <a href="#" draggable="false">面試排程管理</a>
+                                </li>
+
+                                <li class="sub-list">
+                                    <a href="#" draggable="false">聯絡訊息</a>
+                                </li>
+
+                                <li class="sub-list">
+                                    <a href="#" draggable="false">徵才博覽會</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="main-list talent-search">
+                            <a href="../TalentSearch/TalentSearch.html" draggable="false"> <!--第二個-->
+                                <i class="fa-solid fa-user-tie"></i>人才查詢
+                            </a>
+
+                        </li>
+
+                        <li class="main-list purchase">
+                            <a href="#" draggable="false"> <!--第三個-->
+                                <i class="fa-solid fa-cart-shopping"></i>刊登方案
+                                <div class="caret-icon">
+                                    <i class="fa-solid fa-sort-down"></i>
+                                    <i id="-none" class="fa-solid fa-caret-up"></i>
+                                </div>
+                            </a>
+                            <ul class="sub-menu collapse -none">
+                                <li class="sub-list">
+                                    <a href="./EnterpriseJOBCaseConfirm.html" draggable="false">我要刊登</a>
+                                </li class="sub-list">
+
+                                <li class="sub-list">
+                                    <a href="#" draggable="false">刊登訂單查詢</a>
+                                </li class="sub-list">
+                            </ul>
+                        </li>
+
+
+                        <li class="main-list customer-service">
+                            <a href="#" draggable="false"> <!--第四個-->
+                                <i class="fa-solid fa-headset"></i>客服
+                                <div class="caret-icon">
+                                    <i class="fa-solid fa-sort-down"></i>
+                                    <i id="-none" class="fa-solid fa-caret-up"></i>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="logout">
+                            <a href="#" draggable="false"> <!--第五個-->
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>登出
+                            </a>
+                        </li>
+                    </ul>
+                </menu>
+            </aside>
+        </div>
+    </main>
+
+    <main>
+        <!-- ======================= main-content ====================== -->
+        <div class="main-content">
+
+            <!-- main -->
+
+            <section id="main" class="main" style="margin-top: 30px; margin-left: 20px;">
+                <div class="pagetitle">
+                    <h1>我要刊登</h1>
+                    <!-- <nav>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active"><a href="./EnterpriseJOBCase.html">刊登方案</a></li>
+                            <li class="breadcrumb-item active">我要刊登 </li>
+                        </ol>
+                    </nav> -->
+                </div>
+                <hr>
+                <form action="">
+
+                    <div class="row">
+                        <div class="col-lg-3 col">
+                            <label for="jcExpTime" class="form-label">方案刊登天數</label>
+                        </div>
+                        <div class="col-lg-3">
+                            <input type="text" class="form-control" id="jcExpTime" name="jcExpTime" Disabled>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-3 col">
+                            <label for="jcDeadline" class="form-label">截止日(今日起算)
+                            </label>
+                        </div>
+                        <div class="col-lg-3">
+                            <input type="text" class="form-control" id="jcDeadline" name="jcDeadline" Disabled>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-3 col">
+                            <label for="jcAvailableNum" class="form-label">職缺上架數量</label>
+                        </div>
+                        <div class="col-lg-3">
+                            <input type="text" class="form-control" id="jcAvailableNum" name="jcAvailableNum" Disabled>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-3 col">
+                            <label for="jcTop" class="form-label">職缺置頂數量</label>
+                        </div>
+                        <div class="col-lg-3">
+                            <input type="text" class="form-control" id="jcTop" name="jcTop" Disabled>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-3 col1" style="align-items: top; display: flex; width: 18%;">
+                            <label for="jcPrice" class="form-label" style="margin: 0px;">方案金額</label>
+                        </div>
+                        <div class="col-lg-3">
+                            <input type="number" class="form-control" id="jcPrice" name="jcPrice" Disabled>
+                            <button type="button" style="margin-top: 20px;" class="btn btn-primary" id="btnOrder"
+                                data-bs-toggle="modal" data-bs-target="#orderDetail">
+                                確定購買
+                            </button>
+                            <a href="companyjobcase.html" type="button" class="btn btn-secondary"
+                                style="margin: 20px 5px 0px;">上一頁</a>
+                            <!-- Modal -->
+                            <div class="modal fade" id="orderDetail" tabindex="-1" aria-labelledby="orderDetailLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">訂單明細</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover">
+                                                    <thead class="bill-header">
+                                                        <tr>
+                                                            <th>項目</th>
+                                                            <th>內容</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody style="border-bottom-width: 0px !important;">
+                                                        <!-- 燈箱內容動態產生 -->
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a href="companyjobordersearch.html" type="button"
+                                                    class="btn btn-secondary">明細查詢</a>
+                                                <a href="companyjobselect.html" type="button"
+                                                    class="btn btn-primary">立即刊登</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // ===================================================================================
+        // 左邊欄位打開闔起動畫 (ok)
+
+        $("ul").on("click", ".main-list", function () {
+            $(this).closest(".main-list").find(".sub-menu").slideToggle(400, function () {
+                $(this).closest(".main-list").find(".sub-menu").toggleClass("-none")
+            });
+        });
+
+        // name型態String
+        function getParameter(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = location.search.substr(1).match(reg);
+            if (r != null) return (r[2]); return null;
+        }
+
+        $.post({
+            url: "../../../JobCaseQueryServlet",
+            dataType: "JSON",
+            data: { action: "selectByOrder" },
+            async: false,
+            cache: false,
+            success: function (r) {
+                var jcExpTime = $("#jcExpTime");
+                var jcDeadline = $("#jcDeadline");
+                var jcAvailableNum = $("#jcAvailableNum");
+                var jcTop = $("#jcTop");
+                var jcPrice = $("#jcPrice");
+
+
+                for (let res of r) {
+                    console.log("res.jcNo :", res.jcNo);
+                    console.log("id : ", getParameter("id"));
+                    if (res.jcNo === parseInt(getParameter("id"))) {
+                        // 將 jcExpTime 轉換為整數
+                        var jcExpTimeInt = parseInt(res.jcExpTime);
+                        // 取得當前日期
+                        var currentDate = new Date();
+                        // 加上 jcExpTime 天數
+                        currentDate.setDate(currentDate.getDate() + jcExpTimeInt);
+                        // 取得相加後的年、月、日
+                        var year = currentDate.getFullYear();
+                        var month = currentDate.getMonth() + 1; // 月份從 0 開始，所以要加 1
+                        var day = currentDate.getDate();
+                        // 組合日期字串（例如：YYYY-MM-DD）
+                        var resultDate = year + "-" + month + "-" + day;
+                        jcExpTime.attr("value", res.jcExpTime);
+                        $("#jcDeadline").val(resultDate);
+                        //                         jcDeadline.attr("value", resultDate);
+                        jcDeadline = resultDate; // resultDate 赋值给 jcDeadline
+                        jcAvailableNum.attr("value", res.jcAvailableNum);
+                        jcTop.attr("value", res.jcTop);
+                        jcPrice.attr("value", res.jcPrice);
+                    } else {
+                        console.log(res.jcNo + "false");
+                    }
+                }
+
+
+                $("#btnOrder").on('click', function () {
+                    var jcNo = parseInt(getParameter("id"));
+                    console.log("jcNo : " + jcNo);
+                    console.log(typeof jcNo);
+                    console.log("jcDeadline : " + jcDeadline);
+                    console.log("type : " + typeof jcDeadline);
+                    $.post({
+                        url: "../../../JobOrderInsertServlet",
+                        dataType: "JSON",
+                        data: { jcNo: jcNo, jcDeadline: jcDeadline },
+                        async: false,
+                        cache: false,
+                        success: function (r) {
+                            console.log("JobOrderInsertServlet r: " + r);
+                        }
+                    })
+
+                    $.post({
+                        url: "../../../JobCaseQueryServlet",
+                        dataType: "JSON",
+                        data: { action: "selectByOrder" },
+                        async: false,
+                        cache: false,
+                        success: function (r) {
+                            $("tbody").empty();
+                            console.log("sucess............");
+
+                            for (let res of r) {
+                                // 假設r.jcDeadline為「Oct 10, 2023, 12:00:00 AM」格式的日期字串
+                                var dateTimeString = jcDeadline;
+                                var dateString = dateTimeString.substring(0, 10);
+                                if (res.jcNo === parseInt(getParameter("id"))) {
+                                    $("tbody").empty();
+                                    $("tbody").append(`
+                                        <tr class="trLightBox">
+                                            <td>訂單編號 :</td>
+                                            <td name="joNo" id="joNo">${res.joNo}</td>
+                                        </tr>
+                                        <tr class="trLightBox">
+                                            <td>上架數量 :</td>
+                                            <td name="jcAvailableNum" id="jcAvailableNum">${res.jcAvailableNum}<span>個</span></td>
+                                        </tr>
+                                        <tr class="trLightBox">
+                                            <td>置頂數量 :</td>
+                                            <td name="jcTop" id="jcTop">${res.jcTop}<span>個</span></td>
+                                        </tr>
+                                        <tr class="trLightBox">
+                                            <td>刊登天數 :</td>
+                                            <td name="jcExpTime" id="jcExpTime">${res.jcExpTime}天(${(res.jcExpTime / 30).toFixed(1)}個月)</td>
+                                        </tr>
+                                        <tr class="trLightBox">
+                                            <td>截止日 :</td>
+                                            <td name="jcDeadline" id="jcDeadline">${dateString}</td>
+                                        </tr>
+                                        <tr class="trLightBox">
+                                            <td>付款方式 :</td>
+                                            <td name="jcCard" id="jcCard">信用卡(4682********4329)
+                                            </td>
+                                        </tr class="trLightBox">
+                                        <tr class="trLightBox"
+                                            style="border-top:1.5px solid; border-bottom:1.5px solid;">
+                                            <td>金額總計(NT$) :</td>
+                                            <td name="jcPrice" id="jcPrice"><span>NT$ </span>${res.jcPrice}
+                                            </td>
+                                        </tr>
+                                    `);
+                                }
+                            }
+
+                        }
+                    })
+
+                })
+            }
+        })
+
+    </script>
+</body>
+
+</html>

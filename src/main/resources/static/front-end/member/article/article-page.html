@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>article-page</title>
+
+<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+	integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+<link rel="stylesheet" href="assets/css/Community-ChatComments.css">
+<link rel="stylesheet" href="assets/css/dh-card-image-left-dark.css">
+<link rel="stylesheet" href="assets/css/Features-Image-icons.css">
+<link rel="stylesheet" href="assets/css/Features-Image-images.css">
+<link rel="stylesheet"
+	href="assets/css/Like-Button-for-PanelBear-Analytics.css">
+<link rel="stylesheet"
+	href="assets/css/Modal-commerce-popup-button-bs4_modal.min.css">
+<link rel="stylesheet"
+	href="assets/css/Modal-commerce-popup-button-styles.css">
+
+<!-- jQuery -->
+<script src="js/jquery-3.4.1.min.js"></script>
+<!-- 引入header、footer的JS -->
+<script type="text/javascript" src="js/include.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css"
+	rel="stylesheet">
+	<script>
+		let projectName = window.location.pathname.split('/')[1]; 
+	</script>
+</head>
+
+<body>
+	<!--引入heaer頁面-->
+	<div id="header"></div>
+
+	<!--引入heaer頁面-->
+	<div class="list"></div>
+
+	<main>
+		<!--引入QandTop按鈕-->
+		<div id="QandTop"></div>
+		<div class="main-content">
+			<div id="pg" class="container py-4 py-xl-5"></div>
+		</div>
+
+		<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+		<script src="assets/js/Modal-commerce-popup-button.js"></script>
+	</main>
+
+	<!--引入footer頁面-->
+	<div id="footer"></div>
+
+	<script>
+        let articleContainer = document.getElementById("pg");
+
+        //获取url中的参数
+        function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r = window.location.search.substr(1).match(reg); //匹配目标参数
+            if (r != null) return unescape(r[2]);
+            return null; //返回参数值
+        }
+        console.log(getUrlParam("arNo"));
+        $.ajax({
+            url: "../../../ArticlePageServlet",
+            method: "POST",
+            dataType: "json",
+            data: {
+                arNo: getUrlParam("arNo")
+            },
+            success: function (response) {
+                let article = response;
+                let html = '';
+//                 console.log(response);
+
+                let articleHTML = `
+                <div class="row row-cols-1 row-cols-md-2">
+                    <div class="col"><img class="rounded fit-cover" style="width: 100%; height: 300px; object-fit: cover;" 
+                            src="data:image/png;base64,${article.arImgBase64}"></div>
+                    <div class="col d-flex flex-column justify-content-center p-4">
+                        <div class="text-center text-md-start d-flex flex-column align-items-center align-items-md-start mb-5">
+                            <div>
+                                <h4>${article.arTitle}</h4>
+                                <p>${article.arContent}</p>
+                            </div>
+                        </div>
+                        <div class="text-center" style="display: flex; flex-direction: column; align-items: center;">
+                            <div>
+                                <div class="text-center">
+                                    <button onclick="toggleCollect()" id="collectButton" style="background-color: none; border-radius: 10px; width: 100px; height: 40px; border: 1px solid black;">
+                                        <i class="fas fa-heart" style="color: red;"></i> 收藏
+                                    </button>
+
+                                </div>
+                                <div>
+                                    <a href="./article-index.html" style="height: 47px; color: #42424c; font-size: 20px; font-family: poppins;">
+                                        <i class="fa fa-long-arrow-left text-secondary"></i> 返回文章專區
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+                html += articleHTML;
+
+//                 console.log(response);
+
+                articleContainer.innerHTML = html;
+            },
+            error: function (xhr, status, error) {
+
+            }
+        });
+
+       
+
+        function toggleCollect() {
+            let arNo = getUrlParam("arNo");
+            $.ajax({
+                url: "../../../CollectServlet",
+                method: "POST",
+                dataType: "json",
+                data: {
+                    arNo: arNo
+                },
+                success: function (response) {
+                	console.log(response);
+
+                    if (response !== null) {
+                        showSuccessAlert(); // 第一次點擊，顯示成功提示
+                        document.getElementById("collectButton").style.backgroundColor = "gray";
+                    } else if (response === null) {
+                    	showCancelAlert(); // 第二次點擊，顯示取消收藏
+                    	document.getElementById("collectButton").style.backgroundColor = "white";
+                    }
+
+//                      console.log(response);
+                },
+                error: function (xhr, status, error) {
+                	location.href = "../member/memberlogin.html";
+//                 	console.log("我是error")
+//                 	console.log(xhr )
+//                 	console.log(status)
+//                 	console.log(error)
+                }
+            });
+        }
+
+
+        const showSuccessAlert = () => {
+            Swal.fire({
+                icon: 'success',
+                title: '文章收藏成功!',
+                text: '我們將持續為您更新最新職場資訊!',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.close();
+                }
+            });
+        }
+
+        const showCancelAlert = () => {
+            Swal.fire({
+                icon: 'success',
+                title: '取消文章收藏成功!',
+                text: '已從收藏清單中移除該文章。',
+                
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.close();
+                }
+            });
+        
+        }
+
+       
+    </script>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
+</body>
+
+</html>

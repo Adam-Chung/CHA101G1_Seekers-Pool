@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>會員首頁</title>
+
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- jQuery -->
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <!-- 引入header、footer的JS -->
+  <script type="text/javascript" src="js/include.js"></script>
+  <!-- 此頁面用 -->
+  <link rel="stylesheet" href="./css/Member-home.css">
+
+</head>
+
+<body>
+  <!--引入heaer頁面-->
+  <div id="header"></div>
+
+
+  <!--引入heaer頁面-->
+  <div class="list"></div>
+
+  <main>
+    <!--引入QandTop按鈕-->
+    <div id="QandTop"></div>
+    <div class="main-content">
+      <!-- 個人header -->
+      <header class="personal-header">
+        <figure class="profile-pic">
+          <img
+            src="https://tw.portal-pokemon.com/play/resources/pokedex/img/pm/5794f0251b1180998d72d1f8568239620ff5279c.png"
+            alt="profile-picture" class="profile-avatar">
+          <!-- 點擊跳出小視窗可上傳並預覽照片 -->
+          <a href="javascript:;" onclick="UploadPhoto()"></a>
+        </figure>
+        <div class="profile-box">
+          <h1>傑尼龜</h1>
+          <div class="info">
+            <div class="info_list-item">
+              <span class="heading-icon-block" id="icon-block-1">
+                <i class="fa-solid fa-location-dot"></i>
+              </span>
+              <span class="location">關都地區</span>
+            </div>
+            <div class="info_list-item">
+              <span class="heading-icon-block" id="icon-block-2">
+                <i class="fa-solid fa-graduation-cap"></i>
+              </span>
+              <span class="education-level">寶可夢大學</span>
+            </div>
+            <div class="info_list-item">
+              <span class="heading-icon-block" id="icon-block-3">
+                <i class="fa-solid fa-building"></i>
+              </span>
+              <span class="job-title">傑尼龜消防隊</span>
+            </div>
+            <p class="description">
+              傑尼傑尼，傑尼傑尼傑尼傑尼傑尼傑尼傑尼傑尼傑尼傑尼傑尼傑尼傑尼傑尼傑尼傑尼傑尼傑尼傑尼傑尼傑尼！傑尼傑尼傑尼傑尼傑尼傑尼傑尼傑尼傑尼傑尼傑尼傑尼傑尼傑尼傑尼傑尼傑尼傑尼傑尼傑尼傑尼傑尼傑尼傑尼
+            </p>
+          </div>
+        </div>
+      </header>
+
+      <div class="content-cotainer">
+        <!-- 側邊選單 -->
+        <aside class="slidebar" style="float: left;">
+          <ul class="slide-list">
+            <li><a href="memberinfo.html">我的資訊</a></li>
+            <li><a href="membernotification.html">通知總覽</a></li>
+            <li><a href="membercollectjob.html">已收藏職缺</a></li>
+            <li><a href="membercollectarticle.html">已收藏文章</a></li>
+            <li><a href="membercalendar.html">應徵紀錄</a></li>
+          </ul>
+        </aside>
+
+        <!-- 面板區 -->
+        <div class="panel-container">
+          <div class="panel">
+            <div class="heading">
+              <span class="heading-icon-block">
+                <i class="fa-solid fa-envelope"></i>
+              </span>
+              <h2>最新通知</h2>
+            </div>
+            <div class="panel-body">
+              <ul>
+                <li>綺麗絲國際有限公司　　您好：本公司近期正在招募人才。看到您的學經歷很符合我們的需求，...</li>
+                <li>蘋果公司　　您好：本公司近日看見您的履歷，...</li>
+                <li></li>
+              </ul>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="heading">
+              <span class="heading-icon-block">
+                <i class="fa-solid fa-calendar-days"></i>
+              </span>
+              <h2>面試行程</h2>
+            </div>
+            <div class="panel-body">
+              <ul>
+                <li>您有一個面試行程即將於 7/17 進行。</li>
+                <li>您有一個面試行程即將於 8/3 進行。</li>
+                <li></li>
+              </ul>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="heading">
+              <span class="heading-icon-block">
+                <i class="fa-solid fa-message"></i>
+              </span>
+              <h2>訊息紀錄</h2>
+            </div>
+            <div class="panel-body">
+              <ul>
+                <li>
+                  <div class="company-name">綺麗絲國際有限公司</div>
+                  <span class="text">您好：本公司近期正在招募人才。看到您的學經歷很符合我們的需求，若對我們的工作機會有興趣，請參閱職務內容，希望您有機會抽空到公司進行面談。...</span>
+                </li>
+                <li>
+                  <div class="company-name">岱特行銷有限公司</div>
+                  <span class="text">本公司目前正在招募【廣告企劃/資深廣告企劃】人才，透過104人力銀行...</span>
+                </li>
+                <li></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+  <!--引入footer頁面-->
+  <div id="footer"></div>
+
+</body>
+
+</html>

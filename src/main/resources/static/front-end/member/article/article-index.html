@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>文章專區首頁</title>
+
+<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+	integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+<link rel="stylesheet"
+	href="assets/css/Articale-List-With-Image-Zoom.css">
+<link rel="stylesheet" href="dist/pagination.css">
+
+<script>
+	let projectName = window.location.pathname.split('/')[1]; 
+</script>
+
+<style>
+.name {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.description {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+</style>
+
+<!-- jQuery -->
+<script src="js/jquery-3.4.1.min.js"></script>
+<!-- 引入header、footer的JS -->
+<script type="text/javascript" src="js/include.js"></script>
+</head>
+
+<body>
+	<!--引入heaer頁面-->
+	<div id="header"></div>
+
+
+	<!--引入heaer頁面-->
+	<div class="list"></div>
+
+	<main>
+		<!--引入QandTop按鈕-->
+		<div id="QandTop"></div>
+		<div class="main-content">
+			<div class="article-list">
+				<div class="container"
+					style="padding-bottom: 0px; margin-bottom: -1px;">
+					<div class="intro">
+						<h2 class="text-center text-bg-info"
+							style="padding-top: 49px; padding-bottom: 30px; padding-left: 0px; margin-left: -627px; padding-right: 0px; margin-right: -613px; margin-bottom: 0px;">
+							文章專區</h2>
+						<p class="text-center"></p>
+					</div>
+					<div id="ar" class="row articles"
+						style="margin-bottom: -55px; padding-bottom: 0px;"></div>
+				</div>
+			</div>
+		</div>
+		<div class="text-center"
+			style="margin-bottom: 106px; padding-top: 119px; padding-bottom: 80px; margin-top: -91px;">
+			<button id="left" class="fa fa-arrow-left border rounded-circle"
+				style="color: rgb(0, 0, 0);"></button>
+			<button id="page1" class="btn btn-primary border rounded-circle" style="color: blue; background-color: white;" 
+				type="button">1</button>
+			<button id="page2" class="btn btn-primary border rounded-circle" style="color: blue; background-color: white;"
+				type="button">2</button>
+			<button id="right" class="fa fa-arrow-right border rounded-circle" style="color: rgb(0, 0, 0);"></button>
+		</div>
+		<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+		<script src="dist/pagination.js"></script>
+	</main>
+
+
+	<!--引入footer頁面-->
+	<div id="footer"></div>
+
+</body>
+<script>
+    let articleContainer = document.getElementById("ar");
+
+   
+    $.ajax({
+        url: "../../../ApplyArticleServlet",
+        method: "GET",
+        dataType: "json",
+        success: function (response) {
+            let articles = response;
+            let html = '';
+
+         // 每頁顯示的文章數量
+            const pageSize = 6;
+
+            // 切割文章陣列成多個分頁
+            const pages = [];
+            for (let i = 0; i < articles.length; i += pageSize) {
+              const pageArticles = articles.slice(i, i + pageSize);
+              pages.push(pageArticles);
+            }
+
+            // 當前顯示的分頁索引
+            let currentPageIndex = 0;
+
+            // 顯示指定分頁的文章
+            function showPage(pageIndex) {
+              const pageArticles = pages[pageIndex];
+              let pageHTML = '';
+              pageArticles.forEach(function (article) {
+                // 生成文章的HTML代碼
+                const articleHTML = `
+                  <div class="col-sm-6 col-md-4 text-bg-light item">
+                    <div class="zoomin frame" style="width:100%;height:px;">
+                      <img style="width:100%;height:100%;" src="data:image/png;base64,${article.arImgBase64}">
+                    </div>
+                    <h3 class="name">${article.arTitle}</h3>
+                    <p class="description">${article.arContent}</p>
+                    <form method="get" action="./article-page.html">
+                    <button type="submit" id="moreBtn" name="arNo" value="${article.arNo}" class="action"
+                        style="height: 40px; width: 160px; background-color: white; border: 2px solid; border-color:orange;">
+                        <i class="fa fa-arrow-circle-right" style="font-size: 20px;"></i>
+                        <span style="margin-right: 5px; font-size: 16px; color:#000;">閱讀更多</span>
+                    </button>
+                    </form>                                   
+                  </div>
+                `;
+                pageHTML += articleHTML;
+              });
+
+              articleContainer.innerHTML = pageHTML;
+            }
+
+            // 初始化顯示第一頁的內容
+            showPage(currentPageIndex);
+
+            // 切換到上一頁
+            function previousPage() {
+              if (currentPageIndex > 0) {
+                currentPageIndex--;
+                showPage(currentPageIndex);
+              }
+            }
+
+            // 切換到下一頁
+            function nextPage() {
+              if (currentPageIndex < pages.length - 1) {
+                currentPageIndex++;
+                showPage(currentPageIndex);
+              }
+            }
+
+            // 監聽左箭頭點擊事件
+            document.getElementById('page1').addEventListener('click', previousPage);
+            document.getElementById('left').addEventListener('click', previousPage);
+
+            // 監聽右箭頭點擊事件
+            document.getElementById('page2').addEventListener('click', nextPage);
+            document.getElementById('right').addEventListener('click', nextPage);
+
+        }
+     
+    });
+
+</script>
+
+</html>

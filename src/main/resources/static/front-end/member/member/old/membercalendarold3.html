@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>應徵紀錄</title>
+
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- jQuery -->
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <!-- 引入header、footer的JS -->
+  <script type="text/javascript" src="js/include.js"></script>
+
+  <!-- 此頁需要 -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="fonts/font-awesome.min.css">
+  <link rel="stylesheet" href="css/Calendar.css">
+  <link rel="stylesheet" href="./css/Member-collectJob.css">
+
+  <script>
+
+
+
+    $(function () {
+
+      //當頁面加載完成後，調用load方法發送ajax請求，加載數據
+      load(null, null, null); //因為一開始沒有currentPage 所以傳null後面servlet再給預設值就好
+
+      //目前狀態選擇器
+      $("#filter").change(function () {
+        console.log("from filter=>" + $("#filter").val());
+        let keyword = $('#keywordinput').val();
+        let filterNum = $("#filter").val();
+        load(null, keyword, filterNum);
+      });
+
+      //讓按鈕出現或取消
+      displaybutton();
+
+    });
+
+    //讓按鈕出現或取消
+    function displaybutton() {
+      let elements = $("tr #situation");
+
+      elements.each(function () {
+        if ($(this).html() === "已安排面試") {
+          $(this).next().children("#cancelInterview").removeClass("-off");
+        } else if ($(this).html() === "企業發面試，待回覆") {
+          $(this).next().find("#replytime").removeClass("-off");
+        } else {
+          $(this).next().children("#replytime").addClass("-off");
+          $(this).next().children("#cancelInterview").addClass("-off");
+        }
+      });
+    }
+
+
+    //搜尋關鍵字
+    function search() {
+      let keyword = $('#keywordinput').val();
+      let filterNum = $("#filter").val();
+      console.log("from search=>" + $("#filter").val());
+      load(null, keyword, filterNum);
+    }
+
+    //取消面試
+    function cancelInterview(thisIs) {
+      //往按鈕上面找到文章編號，用來刪除
+      let COM_NAME = $(thisIs).parent().prev().prev().prev().prev().prev().html();
+      // let COM_NAME = $(thisIs).parent().prevUntil("#COM_NAME").html(); //不知道為啥抓不到
+      let JOB_NAME = $(thisIs).parent().prev().prev().prev().prev().children("a").html();
+
+      // alert(COM_NAME);
+      // alert(JOB_NAME);
+
+      var flag = confirm("確定取消該面試嗎");
+
+      if (flag === true) {
+        //發送數據到服務器
+        $.post("../../../CancelInterviewServlet", { comName: COM_NAME, jobName: JOB_NAME }, function () {
+          alert("取消成功!");
+        });
+      }
+
+      load(null, null, null);
+      location.reload();
+    }
+
+
+    function load(currentPage, keyWord, filterNum) {
+      //發送ajax請求
+      $.get("../../../ApplyRecordServlet", { currentPage: currentPage, keyWord: keyWord, filterNum: filterNum }, function (pb) {
+
+        var pb = JSON.parse(pb);
+        //解析pagebean數據，將其展示於頁面上
+        console.log(pb)
+        //1.分頁工具調數據展示
+        //1.1展示總頁碼、總記錄數、搜尋內容
+        if (keyWord != null && keyWord != 'null') {
+          $("#keyWord").html("搜尋：" + keyWord + " ");
+        }
+
+        $("#totalPage").html(pb.totalPage);
+        $("#totalCount").html(pb.totalCount);
+
+        //1.2展示分頁頁碼
+        var lis = "";
+        var beforeNum = (pb.currentPage - 1) <= 0 ? 1 : (pb.currentPage - 1);
+
+        var beforePage = '<li class="page-item threeword" onclick="load(' + beforeNum + ',\'' + keyWord + '\',' + filterNum + ')" ><a class="page-link" aria-label="Previous"  href="javascript:"><span aria-hidden="true">«</span></a></li>';
+
+
+
+        lis += beforePage;
+
+        //頁碼條 展現出當前頁面 前五後四，不夠的湊滿10個
+        var begin; //頁碼條開始頁
+        var end; //頁碼條結束頁
+        if (pb.totalPage < 10) {
+          //不夠10頁
+          begin = 1;
+          end = pb.totalPage;
+        } else {
+          begin = pb.currentPage - 5;
+          end = pb.currentPage + 4;
+          //如果前面不足5個，後面補齊10個
+          if (begin < 1) {
+            begin = 1; end = begin + 9;
+          }
+          //如果後面不足4個，前面補足10個
+          if (end > pb.totalPage) {
+            end = pb.totalPage; begin = end - 9;
+          }
+        }
+
+        for (var i = begin; i <= end; i++) {
+          //判斷當前頁碼是否等於i
+          if (pb.currentPage == i) {
+
+            var li = '<li class="page-item curPage" onclick="load(' + i + ',\'' + keyWord + '\',' + filterNum + ')"><a class="page-link" href="#">' + i + '</a></li>';
+          } else {
+            //創建頁碼並拼接
+            var li = '<li class="page-item" onclick="load(' + i + ',\'' + keyWord + '\',' + filterNum + ')"><a class="page-link" href="#">' + i + '</a></li>';
+          }
+
+          lis += li;
+        }
+        //如果 href="#" 點連結後會到頁面最頂多，   href="javascript:void(0)"頁面維持在 點連結位置
+
+        var nextNum = (pb.currentPage + 1) > pb.totalPage ? pb.totalPage : (pb.currentPage + 1);
+        var nextPage = '<li class="page-item threeword" onclick="load(' + nextNum + ',\'' + keyWord + '\',' + filterNum + ')"><a class="page-link" aria-label="Next" href="javascript:"><span aria-hidden="true">»</span></a></li>';
+        lis += nextPage;
+
+        //將lis內容設置到ul中
+        $("#pageNum").html(lis);
+
+
+        //2.列表數據展示
+        var job_lis = "";
+
+        for (var i = 0; i < pb.list.length; i++) {
+          //獲取{rid:1,rname:"XXX".....}
+          var job = pb.list[i];
+
+          if (job.interDate === undefined) {  //沒有面試日期
+            var li = `<tr>
+                        <td class="text-truncate" style="max-width: 200px;">${job.comName}</td>
+                        <td class="text-truncate" style="max-width: 200px;"><a href="javascript:void(0)"
+                            style="color: blue;"> ${job.jobName} </a> </td>
+                        <td class="text-truncate" style="max-width: 200px;">${job.applyDate}</td>
+                        <td class="text-truncate" style="max-width: 200px;"></td>
+                        <td class="text-truncate" style="max-width: 200px;" id="situation" >${job.hireStatus}</td>
+                        <td class="text-center">
+                          <button class="btn btn-outline-primary btn-sm -off" type="button" id="cancelInterview"
+                                onclick="cancelInterview(this);">取消面試</button>
+
+                              <button class="btn btn-outline-primary btn-sm -off " type="button" id="replytime"
+                                onclick="location.href=''">回覆時間</button>
+                        </td>
+                      </tr>`;
+          } else {  //有面試日期
+            var li = `<tr>
+                        <td class="text-truncate" style="max-width: 200px;">${job.comName}</td>
+                        <td class="text-truncate" style="max-width: 200px;"><a href="javascript:void(0)"
+                            style="color: blue;"> ${job.jobName} </a> </td>
+                        <td class="text-truncate" style="max-width: 200px;">${job.applyDate}</td>
+                        <td class="text-truncate" style="max-width: 200px;">${job.interDate}</td>
+                        <td class="text-truncate" style="max-width: 200px;" id="situation" >${job.hireStatus}</td>
+                        <td class="text-center">
+                          <button class="btn btn-outline-primary btn-sm -off" type="button" id="cancelInterview"
+                                onclick="cancelInterview(this);">取消面試</button>
+
+                              <button class="btn btn-outline-primary btn-sm -off " type="button" id="replytime"
+                                onclick="location.href=''">回覆時間</button>
+                        </td>
+                      </tr>`;
+          }
+
+          job_lis += li;
+        }
+        $("tbody").html(job_lis);
+
+        //定位到頁面頂部
+        window.scrollTo(0, 0);
+        //讓按鈕出現或取消
+        displaybutton();
+      });
+
+    }
+  </script>
+
+
+</head>
+
+<body>
+  <!--引入heaer頁面-->
+  <div id="header"></div>
+
+
+  <!--引入list頁面-->
+  <div class="list"></div>
+
+  <main>
+    <!--引入QandTop按鈕-->
+    <div id="QandTop"></div>
+
+    <div id="main-content">
+      <div class="bootstrap_calendar">
+        <div class="container py-5">
+
+          <!-- 側邊選單 -->
+          <aside class="slidebar" style="float: left;">
+            <ul class="slide-list">
+              <li><a href="memberinfo.html">我的資訊</a></li>
+              <li><a href="membernotification.html">通知總覽</a></li>
+              <li><a href="membercollectjob.html">已收藏職缺</a></li>
+              <li><a href="membercollectarticle.html">已收藏文章</a></li>
+              <li style="background-color: #59ace0;"><a style="color:white;" href="membercalendar.html">應徵紀錄</a></li>
+            </ul>
+          </aside>
+
+          <!-- 上欄位表 -->
+          <div id="main-content">
+            <div class="row justify-content-center">
+              <div class="col-xl-11 col-xxl-8">
+                <div class="card shadow">
+                  <div
+                    class="card-header d-flex flex-wrap justify-content-center align-items-center justify-content-sm-between gap-3">
+                    <h5 class="display-6 text-nowrap text-capitalize mb-0">應徵記錄列表</h5>
+
+                    <!-- 篩選功能 -->
+                    <div class="input-group input-group-sm w-auto">
+                      <select name="filter" id="filter" class="form-control form-control-sm">
+                        <option value=100 selected>----請選擇目前狀態----</option>
+                        <option value=0>已投履歷，未有面試</option>
+                        <option value=1>已安排面試</option>
+                        <option value=2>面試已完成，等待通知</option>
+                        <option value=3>企業發面試，待回覆</option>
+                        <option value=4>取消面試</option>
+                        <option value=8>未錄取</option>
+                        <option value=9>錄取成功</option>
+                      </select>
+                    </div>
+                    <!-- 搜尋功能 -->
+                    <div class="input-group input-group-sm w-auto">
+                      <input id="keywordinput" class="form-control form-control-sm" type="text">
+                      <button class="btn btn-outline-primary btn-sm" type="button" onclick="search();">搜尋</button>
+                    </div>
+
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-striped table-hover">
+                        <thead>
+                          <tr>
+                            <th>企業名稱</th>
+                            <th>職缺</th>
+                            <th>應徵日期</th>
+                            <th>面試時間</th>
+                            <th>目前狀態</th>
+                            <th class="text-center">Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="text-truncate" style="max-width: 200px;" id="COM_NAME">Google</td>
+                            <td class="text-truncate" style="max-width: 200px;"><a href="javascript:void(0)"
+                                style="color: blue;" id="JOB_NAME"> java工程師 </a> </td>
+                            <td class="text-truncate" style="max-width: 200px;">2023-05-23</td>
+                            <td class="text-truncate" style="max-width: 200px;">6月11日 10:00 - 11:00</td>
+
+                            <td class="text-truncate" id="situation" style="max-width: 200px;">已安排面試</td>
+                            <td class="text-center">
+
+                              <button class="btn btn-outline-primary btn-sm -off" type="button" id="cancelInterview"
+                                onclick="cancelInterview(this);">取消面試</button>
+
+                              <button class="btn btn-outline-primary btn-sm -off " type="button" id="replytime"
+                                onclick="location.href=''">回覆時間</button>
+                            </td>
+                          </tr>
+
+                          <!-- <tr>
+                            <td class="text-truncate" style="max-width: 200px;">Google</td>
+                            <td class="text-truncate" style="max-width: 200px;"><a href="javascript:void(0)"
+                                style="color: blue;"> java工程師 </a> </td>
+                            <td class="text-truncate" style="max-width: 200px;">2023-05-23</td>
+                            <td class="text-truncate" style="max-width: 200px;">2023-05-23</td>
+
+                            <td class="text-truncate" id="situation" style="max-width: 200px;">已投履歷，未有面試</td>
+                            <td class="text-center">
+
+                              <button class="btn btn-outline-primary btn-sm -off" type="button" id="cancelInterview"
+                                onclick="cancelInterview(this);">取消面試</button>
+
+                              <button class="btn btn-outline-primary btn-sm -off " type="button" id="replytime"
+                                onclick="location.href=''">回覆時間</button>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="text-truncate" style="max-width: 200px;">Google</td>
+                            <td class="text-truncate" style="max-width: 200px;"><a href="javascript:void(0)"
+                                style="color: blue;"> java工程師 </a> </td>
+                            <td class="text-truncate" style="max-width: 200px;">2023-05-23</td>
+                            <td class="text-truncate" style="max-width: 200px;">2023-05-23</td>
+
+                            <td class="text-truncate" id="situation" style="max-width: 200px;">企業發面試，待回覆</td>
+
+                            <td class="text-center">
+
+                              <button class="btn btn-outline-primary btn-sm -off" type="button" id="cancelInterview"
+                                onclick="cancelInterview(this);">取消面試</button>
+
+                              <button class="btn btn-outline-primary btn-sm -off " type="button" id="replytime"
+                                onclick="location.href=''">回覆時間</button>
+                            </td>
+                          </tr> -->
+
+
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="card-footer">
+
+                    <!-- 總頁數說明 -->
+                    <div class="page_num_inf">
+                      <span id="keyWord"></span> 共 <span id="totalPage">0</span>頁<span id="totalCount">0</span>條
+                    </div>
+
+                    <!-- 分頁 -->
+                    <div class="card-footer pageNum">
+                      <span>
+                        <ul class="pagination pagination-sm mb-0 justify-content-center" id="pageNum">
+                          <li class="page-item threeword"><a class="page-link" aria-label="Previous"
+                              href="javascript:"><span aria-hidden="true">«</span></a></li>
+
+                          <li class="page-item curPage"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item"><a class="page-link" href="#">2</a></li>
+
+                          <li class="page-item threeword"><a class="page-link" aria-label="Next"
+                              href="javascript:"><span aria-hidden="true">»</span></a></li>
+                        </ul>
+                      </span>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+      </div>
+
+  </main>
+
+
+  <!--引入footer頁面-->
+  <div id="footer"></div>
+
+</body>
+
+</html>

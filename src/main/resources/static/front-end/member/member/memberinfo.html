@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的資訊</title>
+
+
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+
+  <!-- jQuery -->
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <!-- 引入header、footer的JS -->
+  <script type="text/javascript" src="./js/include.js"></script>
+
+  <!-- 此頁面用 -->
+  <link rel="stylesheet" href="./css/Member-info.css">
+  <script src="js/getParameter.js"></script> <!--獲取網址中id參數值的方法 -->
+
+  <script>
+
+    let projectName = window.location.pathname.split('/')[1]; // SeekerPool
+
+    //秀出該位會員資料
+    function showInfo() {
+      $.ajax({
+        url: '/' + projectName + '/MemberShowInfoServlet',//接受請求的Servlet地址
+        type: 'POST',
+        data: {},
+        async: false,//同步請求
+        cache: false,//不快取頁面
+        success: function (data) {
+          var data = JSON.parse(data);
+          console.log(data);
+
+          //上面banner顯示
+          $("#memPic").prop("src", data.memPic);
+          $("#topmemName").html(data.memName);
+          $("#topmemAddress").html(data.memAddress);
+          $("#topmemCollege").html(data.memCollege);
+          $("#topmemDepartment").html(data.memDepartment);
+          $("#topdescription").html(data.memBio);
+          //下面表格資料顯示
+          $("#memName").val(data.memName);
+          $("#memAccount").val(data.memAccount);
+          $("#memPassword").val(data.memPassword);
+          $("#memPassword2").val(data.memPassword);
+          $("#" + data.memGender).prop("checked", true);
+          $("#memEmail").val(data.memEmail);
+          $("#memAddress").val(data.memAddress);
+          $("#memMobile").val(data.memMobile);
+          $("#memCollege").val(data.memCollege);
+          $("#memDepartment").val(data.memDepartment);
+          //專業技能 還須從代號變成文字
+          $("#skNo").val(data.skNo);
+          $("#memLang").val(data.memLang);
+          $("#memBio").val(data.memBio);
+          $("input[name='nlSub'][value=" + data.nlSub + "]").prop("checked", true);
+          $("input[name='memStatus'][value=" + data.memStatus + "]").prop("checked", true);
+          $("input[name='cvStatus'][value=" + data.cvStatus + "]").prop("checked", true);
+
+          displaybutton();
+        },
+        error: function () {
+          // location.href = "membererror.html";
+        }
+      });
+    }
+
+    //修改照片
+    function UploadPhoto() {
+      let memPic = document.querySelector('.memPic');
+      memPic.click();
+      memPic.addEventListener('change', function () {
+        var formData = new FormData($("#memPicForm")[0]);//構造FormData物件
+
+        $.ajax({
+          url: '/' + projectName + '/MemberUpdateInfoServlet',//接受請求的Servlet地址
+          type: 'POST',
+          data: formData,
+          async: false,//同步請求
+          cache: false,//不快取頁面
+          contentType: false,//當form以multipart/form-data方式上傳檔案時，需要設定為false
+          processData: false,//如果要傳送Dom樹資訊或其他不需要轉換的資訊，請設定為false
+
+          success: function () {
+            // var data = JSON.parse(data);
+            $("#memPic").prop("src", data.memPic);
+          },
+          error: function (data) {
+            location.href = "membererror.html";
+          }
+        });
+      });
+    }
+
+    //秀出已block的公司
+    function showBlockComs() {
+      $.post('/' + projectName + '/MemberBlockComServlet', {}, function (data) {
+        var data = JSON.parse(data);
+        data.forEach(element => {
+          $(".blocked-company-list ul").append(`<li>${element.comName}
+                  <span><a href="javascript:void(0)" onclick="deletBlockCom(this)"><i class="fa-solid fa-trash"></i></a></span>
+                </li>`);
+        });
+      });
+    }
+
+    //刪除已block的公司
+    function deletBlockCom(thisIs) {
+      var blockName = $(thisIs).closest("li").html();
+      blockName = blockName.substring(0, blockName.indexOf('<span>'));
+      var flag = confirm("確定移除 " + blockName);
+      if (flag === true) {
+        ($(thisIs).closest("li")).remove();
+        $.post('/' + projectName + '/MemberBlockComServlet', { deleteBlockCom: blockName }, function () {
+        });
+      }
+    }
+
+    //讓寄驗證信按鈕消失
+    function displaybutton() {
+      if ($("#memStatus2").prop("checked") === true) {
+        $("#memStatus2").next().next().addClass("-off");
+      } else {
+        $("#memStatus2").next().next().removeClass("-off");
+      }
+    }
+
+    //發送驗證碼郵件
+    function sendCheckMail() {
+      $.post('/' + projectName + '/MemberCheckCodeServlet', {}, function () {
+        location.href = 'checkcode.html'; //有開多執行續，邊跳轉頁面邊寄信
+      });
+    }
+
+    $(function () {
+
+      //確認上下密碼是否一致訊息
+      let flag = true;
+      $("#memPassword2").change(function () {
+        if ($("#memPassword2").val() != $("#memPassword").val()) {
+          $("#checkCode").removeAttr("hidden");
+          flag = false;
+        } else {
+          $("#checkCode").prop("hidden", true);
+          flag = true;
+        }
+      })
+      $("#memPassword").change(function () {
+        if ($("#memPassword2").val() != $("#memPassword").val()) {
+          $("#checkCode").removeAttr("hidden");
+          flag = false;
+        } else {
+          $("#checkCode").prop("hidden", true);
+          flag = true;
+        }
+      })
+
+      displaybutton();
+      showInfo();
+      showBlockComs();
+
+      //按下"確認送出"按鈕(修改個人檔案)
+      $("#infoForm").submit(function () {
+        if (flag) {
+          $.post('/' + projectName + '/MemberUpdateInfoServlet', $(this).serialize(), function () {
+            // var data = JSON.parse(data);
+            alert("更新成功");
+            location.reload();
+            //定位到頁面頂部
+            window.scrollTo(0, 0);
+          });
+        } else {
+          alert("請確認表格內容是否有誤");
+        }
+        return false; //返回true才會送出表單
+      });
+
+      //新增屏蔽公司
+      $(".add-blocked-company-button").click(function () {
+        $.post('/' + projectName + '/MemberBlockComServlet', { addCompanyName: $(".company-name").val() }, function (info) {
+          var info = JSON.parse(info);
+          if (info.flag) {
+            //新增成功，動態添加
+            $(".blocked-company-list ul").append(`<li>${info.data.comName}
+                  <span><a onclick="deletBlockCom(this)" href="javascript:void(0)"><i class="fa-solid fa-trash"></i></a></span>
+                </li>`);
+            $(".errorMsgCompany").html("");
+            $(".inputBlockCom").val("");
+
+          } else {
+            //新增失敗，給error_msg添加錯誤訊息
+            $(".errorMsgCompany").html(info.msg);
+          }
+        });
+      });
+    });
+
+  </script>
+
+</head>
+
+<body>
+  <!--引入heaer頁面-->
+  <div id="header"></div>
+
+
+  <!--引入heaer頁面-->
+  <div class="list"></div>
+
+  <main>
+    <!--引入QandTop按鈕-->
+    <div id="QandTop"></div>
+    <div class="main-content">
+
+      <!-- 個人header -->
+      <header class="personal-header">
+        <figure class="profile-pic">
+
+          <!-- 點擊跳出小視窗可上傳並預覽照片 -->
+          <form id="memPicForm" action="" method="post">
+            <img id="memPic" class="profile-avatar" onclick="UploadPhoto()">
+            <input type="file" accept="image/*" class="memPic" name="memPic" style="display: none;">
+          </form>
+        </figure>
+
+        <div class="profile-box">
+          <h1 id="topmemName">姓名</h1>
+          <div class="info">
+            <div class="info_list-item">
+              <span class="heading-icon-block" id="icon-block-1">
+                <i class="fa-solid fa-location-dot"></i>
+              </span>
+              <span id="topmemAddress" class="location">居住區域</span>
+            </div>
+            <div class="info_list-item">
+              <span class="heading-icon-block" id="icon-block-2">
+                <i class="fa-solid fa-graduation-cap"></i>
+              </span>
+              <span id="topmemCollege" class="education-level">就讀學校</span>
+            </div>
+            <div class="info_list-item">
+              <span class="heading-icon-block" id="icon-block-3">
+                <i class="fa-solid fa-building"></i>
+              </span>
+              <span id="topmemDepartment" class="job-title">就讀科系</span>
+            </div>
+            <p class="description" id="topdescription">
+              自傳...
+            </p>
+          </div>
+        </div>
+      </header>
+
+
+      <div class="content-cotainer">
+        <!-- 側邊選單 -->
+        <aside class="slidebar" style="float: left;">
+          <ul class="slide-list">
+            <li style="background-color: #59ace0;"><a style="color:white;" href="memberinfo.html">我的資訊</a></li>
+            <!-- <li><a href="membernotification.html">通知總覽</a></li> -->
+            <li><a href="membercollectjob.html">已收藏職缺</a></li>
+            <li><a href="membercollectarticle.html">已收藏文章</a></li>
+            <li><a href="membercalendar.html">應徵紀錄</a></li>
+          </ul>
+        </aside>
+
+
+        <div class="panel-container">
+          <!-- 主資訊區 -->
+          <div class="member-info-panel">
+            <div class="heading">
+              <span class="heading-icon-block">
+                <i class="fa-solid fa-circle-info"></i>
+              </span>
+              <h2 style="width:100%">我的資訊</h2>
+
+              <div style="width:600px;text-align:right;height: 38px; ">
+                <button class="info-confirm" style="float:right;"
+                  onclick="location.href='memberresume.html'">我的履歷頁</button>
+              </div>
+
+            </div>
+            <form id="infoForm" action="" method="post">
+              <div class="member-info-row">
+                <div class="info-title">
+                  <label for="memName">姓名</label>
+                </div>
+                <input type="text" id="memName" name="memName">
+              </div>
+              <div class="member-info-row">
+                <div class="info-title">
+                  <label for="memAccount">帳號</label>
+                </div>
+                <input type="text" id="memAccount" name="memAccount" readonly>
+              </div>
+              <div class="member-info-row">
+                <div class="info-title">
+                  <label for="memPassword">密碼</label>
+                </div>
+                <input type="password" id="memPassword" name="memPassword">
+              </div>
+              <div class="member-info-row">
+                <div class="info-title">
+                  <label for="memPassword2">密碼確認</label>
+                </div>
+                <input type="password" id="memPassword2" name="memPassword2"> <label id="checkCode" hidden
+                  style="color: red;">上下密碼不一致</label>
+              </div>
+
+              <div class="member-info-row">
+                <div class="info-title">
+                  <label for="memGender">性別</label>
+                </div>
+                <input type="radio" id="男" name="memGender" value="男">
+                男性
+                <input type="radio" id="女" name="memGender" value="女">
+                女性
+              </div>
+
+              <div class="member-info-row">
+                <div class="info-title">
+                  <label for="memEmail">電子郵件</label>
+                </div>
+                <input type="email" id="memEmail" name="memEmail">
+              </div>
+
+              <div class="member-info-row">
+                <div class="info-title">
+                  <label for="address">欲工作區域</label>
+                </div>
+                <input type="text" id="memAddress" name="memAddress">
+              </div>
+
+              <div class="member-info-row">
+                <div class="info-title">
+                  <label for="memMobile">手機號碼</label>
+                </div>
+                <input type="tel" id="memMobile" name="memMobile">
+              </div>
+              <div class="member-info-row">
+                <div class="info-title">
+                  <label for="memCollege">學校</label>
+                </div>
+                <input type="text" id="memCollege" name="memCollege"><br>
+              </div>
+              <div class="member-info-row">
+                <div class="info-title">
+                  <label for="memDepartment">系所</label>
+                </div>
+                <input type="text" id="memDepartment" name="memDepartment"><br>
+              </div>
+
+              <div class="member-info-row">
+                <div class="info-title">
+                  <label for="skNo">技能</label>
+                </div>
+                <input type="text" id="skNo" name="skNo" placeholder="e.g. java, python..."><br>
+              </div>
+
+              <div class="member-info-row">
+                <div class="info-title">
+                  <label for="memLang">語文能力</label>
+                </div>
+                <input type="text" id="memLang" name="memLang" placeholder="e.g. 英文, 中文..."><br>
+              </div>
+
+              <div class="member-info-row">
+                <div class="info-title">
+                  <label for="memBio">自傳</label>
+                </div>
+                <textarea id="memBio" name="memBio"></textarea><br>
+              </div>
+
+              <div class="member-info-row" style="display: none;">
+                <div class="info-title">
+                  <label>電子報訂閱</label>
+                </div>
+                <input type="radio" id="nlSub1" name="nlSub" value=1>
+                <label for="nlSub1">訂閱</label>
+                <input type="radio" id="nlSub2" name="nlSub" value=0>
+                <label for="nlSub2">不訂閱</label>
+              </div>
+
+              <div class="member-info-row">
+                <div class="info-title">
+                  <label>會員狀態</label>
+                </div>
+                <input type="radio" id="memStatus1" name="memStatus" value=0 disabled checked>
+                <label for="memStatus1">信箱未驗證</label>
+
+                <input type="radio" id="memStatus2" name="memStatus" value=1 disabled>
+                <label for="memStatus2">信箱已驗證</label>
+
+                <button id="checkbutton" onclick="sendCheckMail();" type="button">驗證您的信箱</button>
+              </div>
+
+              <div class="member-info-row">
+                <div class="info-title">
+                  <label>履歷狀態</label>
+                </div>
+                <input type="radio" id="cvStatus1" name="cvStatus" value=1>
+                <label for="cvStatus1">開放</label>
+                <input type="radio" id="cvStatus2" name=cvStatus value=0>
+                <label for="cvStatus2">不開放</label>
+              </div>
+
+
+
+              <button class="info-confirm" type="submit">確認更新</button>
+            </form>
+          </div>
+
+          <!-- 屏蔽公司區塊 -->
+          <div class="blocked-company-panel">
+            <div class="heading">
+              <span class="heading-icon-block">
+                <i class="fa-solid fa-circle-exclamation"></i>
+              </span>
+              <h2>屏蔽公司</h2>
+            </div>
+            <div class="add-company">
+              <input type="text" placeholder="輸入公司名稱連續字串" class="company-name inputBlockCom">
+
+              <button class="add-blocked-company add-blocked-company-button">新增</button>
+              <div class="errorMsgCompany" style="color: red;"></div>
+            </div>
+
+            <div class="blocked-company-list">
+              <ul>
+                <!-- <li>致勝文理
+                  <span><a onclick="deletBlockCom(this)" href="javascript:void(0)"><i
+                        class="fa-solid fa-trash"></i></a></span>
+                </li> -->
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+  </main>
+
+  <!--引入footer頁面-->
+  <div id="footer"></div>
+
+</body>
+
+</html>

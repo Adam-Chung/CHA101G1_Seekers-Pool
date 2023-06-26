@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>下拉式選單</title>
+</head>
+
+<body>
+    <h2>城市選擇</h2>
+    <label for="city">城市:</label>
+    <select id="city" onchange="updateDistricts()">
+        <option value="">請選擇城市</option>
+        <option value="1">臺北市</option>
+        <option value="2">桃園市</option>
+        <option value="3">新北市</option>
+    </select>
+
+    <br><br>
+
+    <label for="district">行政區:</label>
+    <select id="district">
+        <option value="">請先選擇城市</option>
+    </select>
+
+    <script>
+        //縣市行政區
+        function updateDistricts() {
+            var citySelect = document.getElementById("city");
+            var districtSelect = document.getElementById("district");
+            var cityValue = citySelect.value;
+            districtSelect.innerHTML = "";
+
+            // 將行政區的選項加入第二個下拉選單
+            switch (cityValue) {
+                case "1":
+                    addOptions(districtSelect, [
+                        '中正區', '大同區', '中山區', '松山區', '大安區',
+                        '萬華區', '信義區', '士林區', '北投區', '內湖區',
+                        '南港區', '文山區'
+                    ]);
+                    break;
+                case "2":
+                    addOptions(districtSelect, [
+                        '中壢區', '平鎮區', '龍潭區', '楊梅區', '新屋區',
+                        '觀音區', '桃園區', '龜山區', '八德區', '大溪區',
+                        '復興區', '大園區', '蘆竹區'
+                    ]);
+                    break;
+                case "3":
+                    addOptions(districtSelect, [
+                        '萬里區', '金山區', '板橋區', '汐止區', '深坑區',
+                        '石碇區', '瑞芳區', '平溪區', '雙溪區', '貢寮區',
+                        '新店區', '坪林區', '烏來區'
+                    ]);
+                    break;
+            }
+        }
+        function addOptions(selectElement, options) {
+            for (var i = 0; i < options.length; i++) {
+                var option = document.createElement("option");
+                option.text = options[i];
+                selectElement.add(option);
+            }
+        }
+    </script>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blank</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- jQuery -->
+    <script src="../js/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="./images/logo.png" alt="this is a logo" id="logoImg">
+                <!-- <h1>SEEKER'S POOL</h1> -->
+                <div class="logoName">
+                    <div class="seeker">SEEKER'S</div>
+                    <div class="pool">POOL</div>
+                </div>
+
+            </div>
+            <div class="menu">
+                <ul>
+                    <li class="menu-item"><a href="#">線上課程</a></li>
+                    <li class="menu-item"><a href="#">文章專區</a></li>
+                    <li class="menu-item"><a href="#">會員中心</a></li>
+                    <li class="menu-login">
+                        <a href="#" class="login">註冊 / 登入<i class="fa-solid fa-right-to-bracket"></i></a>
+                    </li>
+                    <li class="menu-company-hire ">
+                        <a href="#" class="company-hire">企業徵才<i class="fa fa-building"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- <script type="text/javascript" src="js/HandF.js"></script> -->
+
+    <script>
+        // 點擊logo後返回到主頁
+        const logoImg = document.getElementById("logoImg");
+        logoImg.addEventListener("click", () => window.location.href = "blankPage.html");
+    </script>
+</body>
+
+</html>
+
+<!-- ==================================== header ============================================= -->

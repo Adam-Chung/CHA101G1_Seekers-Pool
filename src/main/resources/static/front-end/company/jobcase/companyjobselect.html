@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEEKER'S POOL 招募管理</title>
+    <link rel="stylesheet" href="./css/vacancyjobcase.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- jQuery -->
+    <script src="./js/jquery-3.6.4.min.js"></script>
+</head>
+
+<body>
+
+    <!-- ======================= side-bar main ====================== -->
+    <main>
+
+        <div class="container">
+            <aside id="sidebar" class="sidebar">
+                <div class="logo">
+                    <div class="img">
+                        <img src="./img/TSMC_logo.svg.png" alt="this is a logo" id="logoImg">
+                    </div>
+                    <h3 id="brand-name">台雞電股份有限公司</h3>
+                </div>
+                <menu>
+                    <ul>
+                        <li class="main-list center">
+                            <a href="#" draggable="false"> <!--第一個-->
+                                <i class="fa-solid fa-address-card"></i>會員中心
+                                <div class="caret-icon">
+                                    <i class="fa-solid fa-sort-down"></i>
+                                    <i id="-none" class="fa-solid fa-caret-up"></i>
+                                </div>
+                            </a>
+
+                            <!-- ======================= sub-menu ====================== -->
+                            <ul class="sub-menu collapse -none">
+                                <li class="sub-list">
+                                    <a href="#" draggable="false">會員資料管理</a>
+                                </li class="sub-list">
+
+                                <li class="sub-list">
+                                    <a href="#" draggable="false">職缺管理</a>
+                                </li class="sub-list">
+
+                                <li class="sub-list">
+                                    <a href="#" draggable="false">刊登管理</a>
+                                </li class="sub-list">
+
+                                <li class="sub-list">
+                                    <a href="#" draggable="false">應徵者管理</a>
+                                </li>
+
+                                <li class="sub-list">
+                                    <a href="#" draggable="false">面試排程管理</a>
+                                </li>
+
+                                <li class="sub-list">
+                                    <a href="#" draggable="false">聯絡訊息</a>
+                                </li>
+
+                                <li class="sub-list">
+                                    <a href="#" draggable="false">徵才博覽會</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="main-list talent-search">
+                            <a href="../TalentSearch/TalentSearch.html" draggable="false"> <!--第二個-->
+                                <i class="fa-solid fa-user-tie"></i>人才查詢
+                            </a>
+
+                        </li>
+
+                        <li class="main-list purchase">
+                            <a href="#" draggable="false"> <!--第三個-->
+                                <i class="fa-solid fa-cart-shopping"></i>刊登方案
+                                <div class="caret-icon">
+                                    <i class="fa-solid fa-sort-down"></i>
+                                    <i id="-none" class="fa-solid fa-caret-up"></i>
+                                </div>
+                            </a>
+                            <ul class="sub-menu collapse -none">
+                                <li class="sub-list">
+                                    <a href="./EnterpriseJOBCaseConfirm.html" draggable="false">我要刊登</a>
+                                </li class="sub-list">
+
+                                <li class="sub-list">
+                                    <a href="#" draggable="false">刊登訂單查詢</a>
+                                </li class="sub-list">
+                            </ul>
+                        </li>
+
+                        <li class="main-list customer-service">
+                            <a href="#" draggable="false"> <!--第四個-->
+                                <i class="fa-solid fa-headset"></i>客服
+                                <div class="caret-icon">
+                                    <i class="fa-solid fa-sort-down"></i>
+                                    <i id="-none" class="fa-solid fa-caret-up"></i>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="logout">
+                            <a href="#" draggable="false"> <!--第五個-->
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>登出
+                            </a>
+                        </li>
+                    </ul>
+                </menu>
+            </aside>
+        </div>
+    </main>
+
+    <main>
+
+        <!-- ======================= main-content ====================== -->
+        <div class="main-content">
+
+            <table class="table table-hover" style="text-align: center; margin-top: 10px;">
+                <thead class="thead-Dark">
+                    <tr class="trHead">
+                        <th id="JOB_NO" class="JOB_NO">編號</th>
+                        <th id="JOB_NAME" class="JOB_NAME">職務名稱</th>
+                        <th id="JC_NUM" class="JC_NUM">刊登狀態</th>
+                        <th id="JC_TOP" class="JC_TOP">置頂狀態</th>
+                        <th id="JC_DEADLINE" class="JC_DEADLINE">截止日</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 動態產生 -->
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+
+    <script src="./js/jquery-3.6.4.min.js"></script>
+    <script>
+        // ===================================================================================
+
+        $(function () {
+            // 左邊欄位打開闔起動畫 (ok)
+            $("ul").on("click", ".main-list", function () {
+                $(this).closest(".main-list").find(".sub-menu").slideToggle(400, function () {
+                    $(this).closest(".main-list").find(".sub-menu").toggleClass("-none")
+                });
+            });
+
+            // 
+            $.post({
+                url: "../../../JobQueryStatusServlet",
+                dataType: "JSON",
+                data: { action: "selectJobStatus", comMenId: "2" },
+                async: false,
+                cache: false,
+                success: function (r) {
+                    $("tbody").empty();
+                    let upNum = 0;
+                    let topNum = 0;
+                    for (let res of r) {
+                        // console.log("res.jobUpload: " + res.jobUpload);
+                        // console.log("res.jobTop : " + res.jobTop);
+                        // 假設r.jcDeadline為「Oct 10, 2023, 12:00:00 AM」格式的日期字串
+                        let originalDate = new Date(res.jcDeadline);
+                        let year = originalDate.getFullYear();
+                        let month = ("0" + (originalDate.getMonth() + 1)).slice(-2); // 月份需加1，並在前面補0
+                        let day = ("0" + originalDate.getDate()).slice(-2); // 日需在前面補0
+                        let formattedDate = year + "-" + month + "-" + day;
+                        $("tbody").append(
+                            `<tr>
+                                <td class="jobNo" name="jobNo">${res.jobNo}</td>
+                                <td class="jobName" name="jobName">
+                                    <a href="#">${res.jobName}</a>
+                                </td>
+                                <td class="jcNum" name="jcNum">
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic radio toggle button group">
+                                        <input type="radio" class="btn-check onpost" name="onPost${res.jobNo}" id="onPost${res.jobNo}_1" value="1" autocomplete="off">
+                                        <label class="btn btn-outline-success" for="onPost${res.jobNo}_1">上架</label>
+                                        <input type="radio" class="btn-check onpost" name="onPost${res.jobNo}" id="onPost${res.jobNo}_0" value="0" autocomplete="off">
+                                        <label class="btn btn-outline-secondary" for="onPost${res.jobNo}_0">下架</label>
+                                    </div>
+                                </td>
+                                <td class="jcTop" name="jcTop">
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic radio toggle button group">
+                                        <input type="radio" class="btn-check ontop" name="onTop${res.jobNo}" id="onTop${res.jobNo}_1" value="1" autocomplete="off">
+                                        <label class="btn btn-outline-success" for="onTop${res.jobNo}_1">置頂</label>
+                                        <input type="radio" class="btn-check ontop" name="onTop${res.jobNo}" id="onTop${res.jobNo}_0" value="0" autocomplete="off">
+                                        <label class="btn btn-outline-secondary" for="onTop${res.jobNo}_0">未置頂</label>
+                                    </div>
+                                </td>
+                                <td class="jcDeadline" name="jcDeadline">${formattedDate}</td>
+                            </tr>`
+                        )
+
+                        // console.log("res.jobUpload type: " + typeof res.jobUpload); // type Number
+                        // console.log("res.jobTop type: " + typeof res.jobTop); // type Number
+                        if (res.jobUpload === 1) {
+                            if (upNum <= res.jcAvailableNum) {
+                                // console.log(upNum <= res.jcAvailableNum);
+                                upNum++;
+                                $(".JC_NUM").html(`刊登狀態 (<span style="color:red">${upNum}</span><span>/</span><span style="color:blue">${res.jcAvailableNum}</span>)`);
+                            }
+                        }
+
+                        if (res.jobTop === 1) {
+                            if (topNum <= res.jcTop) {
+                                topNum++;
+                                $(".JC_TOP").html(`置頂狀態 (<span style="color:red">${topNum}</span><span>/</span><span style="color:blue">${res.jcTop}</span>)`);
+                            }
+                        }
+                    }
+                }
+            })
+
+
+            $(".onpost").on("click", function () {
+                var jobUploadValue = $(this).val();
+                console.log(jobUploadValue);
+                var jobNo = $(this).attr("name").substring(6);
+                console.log(jobNo);
+                var onPost = $(this).attr("name").substring(0, 6);
+                console.log(onPost);
+                $.post({
+                    url: "../../../JobUpdateStatusServlet",
+                    dataType: "JSON",
+                    data: { action: "updateJobStatus", jobNo: jobNo, jobUploadValue: jobUploadValue, onPost: onPost ,comMemId:"2"},
+                    async: false,
+                    cache: false,
+                    success: function (response) {
+                        console.log("Job status updated successfully");
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Error updating job status: " + error);
+                    }
+                });
+            });
+
+            $(".ontop").on('click', function () {
+                var jobTopValue = $(this).val();
+                console.log(jobTopValue);
+                var jobNo = $(this).attr("name").substring(5);
+                console.log(jobNo);
+                var onTop = $(this).attr("name").substring(0, 5);
+                console.log(onTop);
+                $.post({
+                    url: "../../../JobUpdateStatusServlet",
+                    dataType: "JSON",
+                    data: { action: "updateJobStatus", jobNo: jobNo, jobTopValue: jobTopValue, onTop: onTop ,comMemId:"2"},
+                    async: false,
+                    cache: false,
+                    success: function (response) {
+                        console.log("Job status updated successfully");
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Error updating job status: " + error);
+                    }
+                });
+            })
+
+        })
+    </script>
+</body>
+
+</html>

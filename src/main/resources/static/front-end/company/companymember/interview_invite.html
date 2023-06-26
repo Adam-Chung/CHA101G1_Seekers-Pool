@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InterviewerManage</title>
+    <link rel="stylesheet" href="./css/Interviewer2Manage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- jQuery -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+
+    <!-- 此頁用 -->
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="./css/interview_invite.css">
+
+</head>
+
+<body>
+    <main>
+        <div class="container">
+
+            <!-- ======================= side-bar ====================== -->
+            <div class="side-bar">
+                <div class="logo">
+                    <div class="img">
+                        <img src="./images/TSMC.png" alt="this is a logo" id="logoImg">
+                    </div>
+                    <h3 id="brand-name" style="font-size: large;">台雞電股份有限公司</h3>
+                </div>
+                <menu>
+                    <ul>
+                        <li class="main-list center">
+                            <a href="#" draggable="false"> <!--第一個-->
+                                <i class="fa-solid fa-address-card"></i>會員中心
+                                <div class="caret-icon">
+                                    <i class="fa-solid fa-sort-down"></i>
+                                    <i id="-none" class="fa-solid fa-caret-up"></i>
+                                </div>
+                            </a>
+
+                            <!-- ======================= sub-menu ====================== -->
+                            <ul class="sub-menu collapse -none">
+                                <li class="sub-list">
+                                    <a href="#" draggable="false">會員資料管理</a>
+                                </li class="sub-list">
+
+                                <li class="sub-list">
+                                    <a href="#" draggable="false">職缺管理</a>
+                                </li class="sub-list">
+
+                                <li class="sub-list -on">
+                                    <a href="#" draggable="false">應徵者管理</a>
+                                </li>
+
+                                <li class="sub-list">
+                                    <a href="#" draggable="false">面試排程管理</a>
+                                </li>
+
+                                <li class="sub-list">
+                                    <a href="#" draggable="false">聯絡訊息</a>
+                                </li>
+
+                                <li class="sub-list">
+                                    <a href="#" draggable="false">徵才博覽會</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="main-list talent-search">
+                            <a href="/TalentSearch/TalentSearch.html" draggable="false" style="color: white;">
+                                <!--第二個-->
+                                <i class="fa-solid fa-user-tie" style="color: white;"></i>人才查詢
+                                <!-- <div class="caret-icon">
+                                    <i class="fa-solid fa-sort-down"></i>
+                                    <i id="-none" class="fa-solid fa-caret-up"></i>
+                                </div> -->
+                            </a>
+
+                        </li>
+
+                        <li class="main-list purchase">
+                            <a href="#" draggable="false"> <!--第三個-->
+                                <i class="fa-solid fa-cart-shopping"></i>購買
+                                <div class="caret-icon">
+                                    <i class="fa-solid fa-sort-down"></i>
+                                    <i id="-none" class="fa-solid fa-caret-up"></i>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="main-list customer-service">
+                            <a href="#" draggable="false"> <!--第四個-->
+                                <i class="fa-solid fa-headset"></i>客服
+                                <div class="caret-icon">
+                                    <i class="fa-solid fa-sort-down"></i>
+                                    <i id="-none" class="fa-solid fa-caret-up"></i>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="logout">
+                            <a href="#" draggable="false"> <!--第五個 -->
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>登出
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </menu>
+            </div>
+
+            <div id="main-content">
+                <div class="heading">
+                    <span class="heading-icon-block">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </span>
+                    <h2>選擇面試時間</h2>
+                </div>
+                <form>
+                    <div class="form-content">
+                        <div class="time-picker">
+                            <label for="datetime" class="datetime">面試日期</label>
+                            <input type="date" id="datetime" name="interDate">
+                            <label for="time">時間</label>
+                            <select id="time-zone">
+                                <option value="09:00 - 10:00">09:00 - 10:00</option>
+                                <option value="10:00 - 11:00">10:00 - 11:00</option>
+                                <option value="11:00 - 12:00">11:00 - 12:00</option>
+                                <option value="13:00 - 14:00">13:00 - 14:00</option>
+                                <option value="14:00 - 15:00">14:00 - 15:00</option>
+                                <option value="15:00 - 16:00">15:00 - 16:00</option>
+                                <option value="16:00 - 17:00">16:00 - 17:00</option>
+                            </select>
+                            <button type="button" id="add-time" class="create-time">新增時間</button>
+                            <p id="warning" class="warning" style="visibility: hidden;">此時段已加入</p>
+                        </div>
+                        <div id="chosenDateTime">
+                            <!-- <p class="">6月9日 10:00 - 11:00</p>
+                            <p class="">6月9日 13:00 - 14:00</p>
+                            <p class="">6月9日 14:00 - 15:00</p> -->
+                        </div>
+                    </div>
+                    <div id="loading_img"><button type="submit" id="interview-invite"
+                            onclick="interviewSubmit();">送出</button>
+                    </div>
+                </form>
+
+
+
+            </div>
+
+        </div>
+    </main>
+
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script>
+
+        let projectName = window.location.pathname.split('/')[1]; // SeekerPool
+
+        // ==================初始化日期為當天============================================
+        $(function () {
+            var date = new Date();
+            var day = date.getDate();
+            var month = date.getMonth() + 1;
+            var year = date.getFullYear();
+            if (month < 10) month = "0" + month;
+            if (day < 10) day = "0" + day;
+            var today = year + "-" + month + "-" + day;
+            $("#datetime").attr("value", today);
+        });
+
+        // ===================================================================================
+        // 左邊欄位打開闔起動畫 (ok)
+        $(function () {
+            $(".center").find(".sub-menu").slideToggle(400, function () {
+                $(this).closest(".main-list").find(".sub-menu").toggleClass("-none")
+            });
+        })
+
+        $("ul").on("click", ".main-list", function () {
+            $(this).closest(".main-list").find(".sub-menu").slideToggle(400, function () {
+                $(this).closest(".main-list").find(".sub-menu").toggleClass("-none")
+            });
+        });
+
+        // ================================= 新增面試時間 ====================================
+        let dateCounter = 0;
+        // 儲存已被選擇的時間段
+        let selectedDateTimes = [];
+
+        $("#add-time").click(function () {
+
+            if (dateCounter < 3) {
+
+                const dateInput = $("#datetime").val();
+                const timeZone = $("#time-zone").val();
+
+                // 轉換日期格式: "YYYY-MM-DD" - "MM月DD日"
+                const dateParts = dateInput.split("-");
+                let month = parseInt(dateParts[1], 10);  // Parse the month to integer to remove leading zero.
+                let day = parseInt(dateParts[2], 10);    // Parse the day to integer to remove leading zero.
+                const formattedDate = month + '月' + day + '日';
+
+                // 選擇的日期及時間轉換成新字串
+                const newDateTime = formattedDate + ' ' + timeZone;
+
+                // 時間段已被選擇則不加入
+                if (selectedDateTimes.includes(newDateTime)) {
+                    // 將警告訊息顯示出來
+                    $("#warning").css("visibility", "visible");
+                    return;
+                }
+
+                dateCounter += 1;
+                $("#warning").css("visibility", "hidden");
+
+                selectedDateTimes.push(newDateTime);
+                const newP = $('<p></p>').text(newDateTime);
+                newP.addClass('date-' + dateCounter);
+
+                $("#chosenDateTime").append(newP);
+            } else {
+                alert("最多選三個時段");
+            }
+        });
+
+
+        // =====================================================================
+        //按下按鈕後送出邀請
+        function interviewSubmit() {
+            if (dateCounter != 0) {
+                let date1 = $(".date-1").html();
+                let date2 = $(".date-2").html();
+                let date3 = $(".date-3").html();
+                //????????????? 人才的ID，先用假資料代替，後續要用動態拿取
+                let memId = 36;
+                //??????????????????還要選擇哪一職缺"id"，先用假資料代替，後續要用動態拿取
+                let jobNo = 21;
+
+
+
+                $.ajax({
+                    url: "/" + projectName + "/ComInterviewInviteServlet",
+                    type: 'POST',
+                    data: { memId: memId, date1: date1, date2: date2, date3: date3, jobNo: jobNo },
+                    async: false,//同步請求
+                    cache: false,//不快取頁面
+                    beforeSend: function () {  //都無法比success先執行?!??
+                        // $("#interview-invite").html("請稍後...");
+                        // $("#interview-invite").attr({ disabled: "disabled" });
+                        // $('#loading_img').html('<img style="max-width: 100px; display:block; margin:auto;" src="./images/loading.gif">');
+                    },
+                    success: function (data) {
+                        var data = JSON.parse(data);
+                        if (data.flag) {
+                            //郵件寄送成功
+                            alert("已郵件通知該位人才");
+                        } else {
+                            //郵件寄送失敗
+                            alert("郵件寄送失敗，請稍後再試");
+                        }
+                    },
+                    error: function () {
+                        location.href = "membererror.html";
+                    }
+                });
+
+
+
+            } else {
+                alert("請至少選擇一個時段");
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Seeker's Pool</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="../../common/img/handshake-regular.svg" rel="icon">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="../../common/css/packageCSS/bootstrap.min.css" rel="stylesheet">
+    <link href="../../common/css/packageCSS/bootstrap-icons.css" rel="stylesheet">
+    <link href="../../common/css/packageCSS/boxicons.min.css" rel="stylesheet">
+    <link href="../../common/css/packageCSS/quill.snow.css" rel="stylesheet">
+    <link href="../../common/css/packageCSS/quill.bubble.css" rel="stylesheet">
+    <link href="../../common/css/packageCSS/remixicon.css" rel="stylesheet">
+    <link href="../../common/css/packageCSS/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="../../common/css/Employee.css" rel="stylesheet">
+
+    <!-- Font Awesome-->
+    <script src="https://kit.fontawesome.com/244879c400.js" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+                Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica,
+                Arial, sans-serif;
+        }
+
+        thead>tr>th,
+        tbody>tr>td {
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+    <!-- jQuery -->
+    <script src="../../common/js/jquery-3.6.4.min.js"></script>
+
+</head>
+
+<body>
+    <!-- ========================== Header ================================ -->
+    <div id="header1"></div>
+
+    <!-- ========================== Sidebar =============================== -->
+    <div id="sidebar1"></div>
+
+    <!-- =========================== main ================================= -->
+    <main id="main" class="main">
+
+        <!--職缺刊登方案  刊登訂單管理-->
+        <div class="pagetitle">
+            <h1>刊登訂單管理</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="Employee.html">Home</a></li>
+                    <li class="breadcrumb-item active"><a href="JobCaseOrder.html">職缺刊登訂單管理</a></li>
+                    <li class="breadcrumb-item active">刊登訂單管理</li>
+                </ol>
+            </nav>
+            <hr>
+        </div>
+        <div class="row">
+            <div class="mb-3 col-lg-4">
+                <label for="formGroupExampleInput" class="form-label"><strong
+                        style="font-size:large;">刊登訂單查詢</strong></label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="formGroupExampleInput"
+                        placeholder="Search by typing here...">
+                    <button type="button" class="btn btn-primary"><strong>查詢</strong></button>
+                </div>
+            </div>
+
+        </div>
+        <span class="counter pull-right"></span>
+        <div class="table table-hover">
+            <table class="table table-hover">
+                <thead class="bill-header cs">
+                    <tr>
+                        <th id="JO_NO" class="JO_NO">訂單編號</th>
+                        <th id="COM_NAME" class="COM_NAME">企業名稱</th>
+                        <th id="JC_NO" class="JC_NO">方案編號</th>
+                        <th id="JOB_PUBLISHED_NUM" class="JOB_PUBLISHED_NUM">可上架數量</th>
+                        <th id="JOB_PUBLISHED_TOP_NUM" class="JOB_PUBLISHED_TOP_NUM">可置頂數量</th>
+                        <th id="JC_DEADLINE" class="JC_DEADLINE">刊登天數</th>
+                        <th id="JC_DEADLINE" class="JC_DEADLINE">截止日</th>
+                        <th id="JC_PRICE" class="JC_PRICE">方案金額</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--                     <tr> -->
+                    <!--                         <td class="joNo" name="joNo">1</td> -->
+                    <!--                         <td class="comName" name="comName">XXXXX</td> -->
+                    <!--                         <td class="jcNo" name="jcNo">1</td> -->
+                    <!--                         <td class="jcAvailableNum" name="jcAvailableNum">15</td> -->
+                    <!--                         <td class="jcTop" name="jcTop">3</td> -->
+                    <!--                         <td class="jcExpTime" name="jcExpTime">3</td> -->
+                    <!--                         <td class="jcDeadline" name="jcDeadline">2023/08/30</td> -->
+                    <!--                         <td class="jcPrice" name="jcPrice">5000</td> -->
+                    <!--                     </tr> -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 底部分頁 -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+
+    </main>
+
+    <!-- 首頁sidebar下拉 -->
+    <script src="../../common/js/packageJS/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(function () {
+            // ======== 引入header ===========
+            $.get("../../common/buildPage/Employee_Header.html", function (data) {
+                $("#header1").html(data);
+
+                $.getScript("../../common/js/Employee.js", function () {
+                });
+            });
+
+            // ======== 引入sidebar ===========
+            $.get("../../common/buildPage/Employee_Sidebar.html", function (data) {
+                $("#sidebar1").html(data);
+            });
+
+            // ======== AJAX ===========
+            $.post({
+                url: "../../JobCaseQueryServlet",
+                dataType: "JSON",
+                data: { action: "selectByOrder" },
+                async: false,
+                cache: false,
+                success: function (res) {
+                    $("tbody").empty();
+                    console.log("sucess............");
+                    console.log("res : " + res);
+
+                    for (let r of res) {
+                        // 假設r.jcDeadline為「Oct 10, 2023, 12:00:00 AM」格式的日期字串
+                        let originalDate = new Date(r.JcDeadline);
+                        let year = originalDate.getFullYear();
+                        let month = ("0" + (originalDate.getMonth() + 1)).slice(-2); // 月份需加1，並在前面補0
+                        let day = ("0" + originalDate.getDate()).slice(-2); // 日需在前面補0
+                        let formattedDate = year + "-" + month + "-" + day;
+                        $("tbody").append(`
+                            <tr id="all">
+                                <td class="joNo" name="joNo">${r.joNo}</td>
+                                <td class="comName" name="comName">${r.comName}</td>
+                                <td class="jcName" name="jcName">${r.jcName}</td>
+                                <td class="jcAvailableNum" name="jcAvailableNum">${r.jcAvailableNum}</td>
+                                <td class="jcTop" name="jcTop">${r.jcTop}</td>
+                                <td class="jcExpTime" name="jcExpTime">${r.jcExpTime}</td>
+                                <td class="jcDeadline" name="jcDeadline">${formattedDate}</td>
+                                <td class="jcPrice" name="jcPrice">${r.jcPrice}</td>
+                            </tr> `
+                        )
+                    }
+
+
+                }
+            })
+        });
+    </script>
+
+</body>
+
+</html>

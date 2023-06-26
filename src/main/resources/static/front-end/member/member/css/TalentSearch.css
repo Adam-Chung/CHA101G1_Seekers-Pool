@@ -1,0 +1,493 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+:root{ 
+    --navyblue: rgb(72, 76, 127);
+    --skyblue: #93BFCF;
+    --yellow:rgb(252, 146, 54);
+    --white:rgb(252, 245, 237);
+}
+/* ======================== body ============================ */
+body{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+main{
+    position: relative;
+    
+}
+/* ======================== container ======================= */
+.container{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    padding: 10px;
+    background-color: white;
+}
+
+/* ======================== side-bar ======================= */
+.side-bar{
+    position: sticky;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--navyblue);
+    width: 20%;
+    height:550px;
+    color: var(--white);
+    border-radius: 10px;
+}
+
+.side-bar .logo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px auto;
+    width: 100%;
+    padding: 5%;
+}
+
+.side-bar .img{
+    border-radius: 50%;
+    width: 55%;
+    aspect-ratio: 1;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+.side-bar img{
+    object-fit: contain;
+    max-width: 100%;  
+}
+
+/* ======================== menu(main-list) ======================= */
+menu{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+menu ul{
+    height: 100%;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+menu ul li{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    list-style: none;
+    padding: 2% 3%;
+}
+
+menu ul li i{
+    cursor: pointer;
+}
+
+menu ul li a{
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 5px 10px;
+}
+
+.caret-icon{
+margin-left: auto;
+align-self: first baseline;
+}
+
+menu ul li a:visited{
+    color: var(--white);
+}
+menu ul li a:hover{
+    color: var(--yellow);
+}
+
+.center, .talent-search{
+    margin-left: 3px;
+}
+
+/* ======================== menu(sub-list) ======================= */
+.sub-list{
+    padding: 0px;
+}
+
+/* ======================== -on ============================== */
+.-on, .-on:visited {
+    color: var(--white);
+    background-color: var(--yellow);
+    border-radius: 4px;
+}
+
+/* ======================== -none ============================== */
+.-none{
+    display: none;
+}
+#-none{
+    display: none;
+}
+
+/* ======================== main-content ======================= */
+.main-content{
+    width: 80%;
+    padding: 0px 2%;
+    border-radius: 5px;
+    background-color: aliceblue;
+}
+/* ======================== search(人才查詢不需要) ======================= */
+/* .search{
+    position: relative;
+    width: 35%;
+    border-radius: 5px;
+    
+}
+.search-bar{
+    border: transparent;
+    background-color: rgb(230, 229, 229);
+    width: 86%;
+    height: 40px;
+    padding: 0px 10px;
+    outline: transparent;
+    border-radius: 5px 0px 0px 5px;
+    font-size: large;
+}
+.search-btn{
+   position: absolute;
+   border: 0;
+   width: 14%;
+   height: 40px;
+   right: 0;
+   background-color: rgb(230, 229, 229);
+   border-radius: 0px 5px 5px 0px;
+   font-size: large;
+   cursor: pointer;
+}
+.search-btn i{
+    color: rgb(69, 69, 69);
+} */
+
+/* ======================== talent-search ======================= */
+
+form{
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+    width: 70%;
+}    
+
+form h1{
+    margin: 20px 0px;
+}
+form .list{
+    position: relative;
+    font-size: x-large;
+    font-weight: 600;
+}
+form .list i{
+    color: var(--yellow);
+    margin-left: -50px;
+}
+label{
+    display: inline-block;
+    width: 100px;
+}
+form input{
+    border: transparent;
+    outline: transparent; 
+    background-color: rgb(224, 224, 224);
+    font-size: medium;
+    width: 70%;
+    padding: 9px;
+    margin: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+form input:focus{
+    border: 2px solid var(--yellow);
+    background-color: var(--white);
+}
+
+.talent-search-btn{
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 140px;
+    height: 35px;
+    border: 0;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: var(--white);
+    background-color: var(--yellow);
+    cursor: pointer;
+}  
+.talent-search-btn:hover{
+    background-color: var(--yellow);
+    color: white;
+    filter:brightness(0.7);
+}
+.talent-search-btn a,
+.talent-search-btn a:visited{
+    color: var(--white);
+}
+
+/* ================================================================== */
+/* ======================== job-category-list ======================= */
+/* ================================================================== */
+.job-category-list{
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    letter-spacing: 1px;
+    background-color: hsla(0, 0%, 0%, .5);
+}
+
+.job-category-container{
+    position:absolute;
+    height: 85%;
+    width: 60%;
+    margin: 20px auto;
+    list-style: none;
+    background-color: var(--white);
+    border: 4px solid var(--white);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgb(132, 130, 130);
+}
+
+.job-category-container i{
+    color: rgb(69, 68, 68);
+}
+
+/* ======================== job-category-title ======================= */
+.job-category-title{
+    position: relative;
+    display: flex;
+    height: 8%;
+    justify-content: center;
+}
+.job-category-title h3{
+    padding: 5px;
+    font-size: x-large;
+}
+.job-category-title .fa-xmark{
+    position: absolute;
+    font-size: large;
+    right: 0;
+    padding: 7px 10px 7px 7px;
+    cursor: pointer;
+}   
+.chosen-category-list{
+    padding:20px 15px;
+    flex-wrap: wrap;
+}
+
+.chosen-category-list .chosen-count{
+    margin-right: 15px;
+    font-weight: 600;
+    font-size: larger;
+}
+.chosen-list-on-input,
+.chosen-list{
+    padding: 5px;
+    font-size: 1rem;
+    color: var(--white);
+    background-color: var(--yellow);
+    border-radius: 4px;
+    margin: 0px 3px;
+    cursor: pointer;
+}
+.chosen-list-on-input .fa-xmark,
+.chosen-list .fa-xmark{
+    margin-left: 5px;
+}
+/* 下面是動態生成的chosen-job-list tags */
+/* .chosen-list-on-input{
+   position: absolute;
+   top: 10px;
+   left: 120px;
+} */
+
+/* ======================== job-category-body ======================= */
+.job-category-body{
+    display: flex;
+    flex-direction: row;
+    height: 65%;
+    font-weight: 600;
+}
+
+/* ======================== job-category-left-side ======================= */
+.job-category-left-side{
+    width: 50%;
+    overflow-y:scroll ;
+}
+
+.job-category-left-side .job-list{
+    display: flex;
+    padding: 10px;
+    color: rgb(59, 59, 59);
+    background-color: rgb(232, 232, 232);
+    border: 1px solid rgb(186, 186, 186);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.job-category-left-side .job-list:hover,
+.job-category-right-side .second-chosen-list:hover,
+.job-category-right-side .third-chosen-list label:hover{
+    color:rgb(255, 255, 255);
+    background-color: rgb(251, 195, 92);
+}
+.job-category-left-side .job-list i{
+    margin-left: auto;
+    color: var(--yellow);
+}
+
+/* ======================== job-category-right-side ======================= */
+.job-category-right-side{
+    position: relative;
+    width: 50%;
+    font-weight: normal;
+    cursor: pointer;
+    border: 1px rgb(141, 141, 141) solid;
+    overflow-y:scroll;
+}
+/* ============= fisrt-second-third-layer =============== */
+.first-chosen-list, .second-chosen-list{
+    display: flex;
+    flex-direction: row;
+    padding: 10px 20px;
+}
+
+.first-chosen-list label,
+.second-chosen-list label,
+.third-chosen-list label{
+    width: 100%;
+    cursor: pointer;
+}
+
+/* ============= fisrt-layer =============== */
+.first-chosen-list{
+    position: sticky;
+    top: 0;
+    z-index: 22;
+    background-color: rgb(141, 141, 141);
+    font-weight: 600;
+}
+.first-chosen-list .chosen-list-content{
+    color: var(--white);
+}
+
+/* ============= second-layer =============== */
+.second-chosen-list{
+    color: rgb(59, 59, 59); 
+    border-top: 1px dashed rgb(59, 59, 59);  
+    border-bottom: 1px dashed rgb(59, 59, 59);  
+}
+.second-chosen-list label{
+    padding-left: 25px;
+}
+.second-chosen-list .caret-icon i{
+    padding:  0px 10px;
+    margin-right: -5px;
+    font-size: 1.5rem;
+    color: var(--yellow);
+}
+input[type="checkbox"] {
+    accent-color:var(--yellow);
+    transform: scale(1.3);
+    margin-right: 5px;
+    }
+/* ============= third-layer =============== */
+
+.third-chosen-list label{
+    padding: 10px 0px 10px 73px;
+}   
+/* ======================== job-category-buttom ======================= */
+.job-category-buttom{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.job-category-buttom .job-category-btn{
+    margin-top: 15px;
+    padding: 8px 40px;
+    border-radius: 4px;
+    border: none;
+    color: var(--white);
+    background-color: var(--yellow);
+    cursor: pointer;
+}
+/* ======================== job-list -chosen(動態生成的標籤) ======================= */
+.job-category-left-side .-chosen{
+    background-color: white;
+    color: var(--yellow);
+}
+
+
+/* ======================== member-side-bar(右邊會員欄) =============================*/
+.member-side-bar{
+    position: sticky;
+    top: 0;
+    left: 0;
+    height: 550px;
+    width: 25%;
+    background-color: rgb(252, 184, 67);
+    border-radius: 10px;
+}
+
+.member-side-bar .member-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px auto;
+    width: 85%;
+    padding: 5%;
+    border-radius: 10px;
+    background-color: var(--white);
+}
+
+.member-side-bar .member-img{
+    border: 1px white solid;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px rgb(252, 184, 67) solid;
+}
+
+.member-side-bar img{
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.logout{
+    position: absolute;
+    list-style: none;
+    padding: 5px 10px;
+    border-radius: 7px;
+    bottom: 7%;
+    right: 10%;
+    font-weight: 600;
+    background-color: var(--navyblue);
+    color: var(--white);
+}
+
+.logout a:visited{
+    color: var(--white);
+}

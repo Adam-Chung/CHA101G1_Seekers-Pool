@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEEKER'S POOL 招募管理</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="../css/vacancyjobcase.css">
+    <!-- jQuery -->
+    <script src="../js/jquery-3.6.4.min.js"></script>
+</head>
+
+<body>
+    <main>
+
+        <div class="container">
+
+            <!-- ======================= side-bar(左邊欄位) ====================== -->
+            <div class="side-bar">
+                <div class="logo">
+                    <div class="img">
+                        <img src="../img/tsmc.png" alt="this is a logo" id="logoImg">
+                    </div>
+                    <h3 id="brand-name">台雞電股份有限公司</h3>
+                </div>
+                <menu>
+                    <ul>
+                        <li class="main-list center">
+                            <a href="#" draggable="false"> <!--第一個-->
+                                <i class="fa-solid fa-address-card"></i>會員中心
+                                <div class="caret-icon">
+                                    <i class="fa-solid fa-sort-down"></i>
+                                    <i id="-none" class="fa-solid fa-caret-up"></i>
+                                </div>
+                            </a>
+
+                            <!-- ======================= sub-menu ====================== -->
+                            <ul class="sub-menu collapse -none">
+                                <li class="sub-list">
+                                    <a href="#" draggable="false">會員資料管理</a>
+                                </li class="sub-list">
+
+                                <li class="sub-list">
+                                    <a href="#" draggable="false">職缺管理</a>
+                                </li class="sub-list">
+
+                                <li class="sub-list">
+                                    <a href="#" draggable="false">應徵者管理</a>
+                                </li>
+
+                                <li class="sub-list">
+                                    <a href="#" draggable="false">面試排程管理</a>
+                                </li>
+
+                                <li class="sub-list">
+                                    <a href="#" draggable="false">聯絡訊息</a>
+                                </li>
+
+                                <li class="sub-list">
+                                    <a href="#" draggable="false">徵才博覽會</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="main-list talent-search">
+                            <a href="../TalentSearch/TalentSearch.html" draggable="false"> <!--第二個-->
+                                <i class="fa-solid fa-user-tie"></i>人才查詢
+                            </a>
+
+                        </li>
+
+                        <li class="main-list purchase">
+                            <a href="#" draggable="false"> <!--第三個-->
+                                <i class="fa-solid fa-cart-shopping"></i>刊登方案
+                                <div class="caret-icon">
+                                    <i class="fa-solid fa-sort-down"></i>
+                                    <i id="-none" class="fa-solid fa-caret-up"></i>
+                                </div>
+                            </a>
+                            <ul class="sub-menu collapse -none">
+                                <li class="sub-list">
+                                    <a href="./EnterpriseJOBCaseConfirm.html" draggable="false">我要刊登</a>
+                                </li class="sub-list">
+
+                                <li class="sub-list">
+                                    <a href="#" draggable="false">刊登訂單查詢</a>
+                                </li class="sub-list">
+                            </ul>
+                        </li>
+
+
+                        <li class="main-list customer-service">
+                            <a href="#" draggable="false"> <!--第四個-->
+                                <i class="fa-solid fa-headset"></i>客服
+                                <div class="caret-icon">
+                                    <i class="fa-solid fa-sort-down"></i>
+                                    <i id="-none" class="fa-solid fa-caret-up"></i>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="logout">
+                            <a href="#" draggable="false"> <!--第五個-->
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>登出
+                            </a>
+                        </li>
+
+                    </ul>
+                </menu>
+            </div>
+
+            <!-- ======================= main-content ====================== -->
+            <div class="main-content">
+
+                <!-- ======================= search bar ====================== -->
+                <div class="search">
+                    <input type="text" class="search-bar" placeholder="請輸入人才關鍵字">
+                    <button type="submit" class="search-btn">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+
+                <table class="table table-hover" style="text-align: center; margin-top: 10px;">
+                    <thead class="thead-Dark">
+                        <tr class="trHead">
+                            <th id="PT_NO" class="PT_NO">編號</th>
+                            <th id="PT_NAME" class="PT_NAME">職務名稱</th>
+                            <th id="JC_Name" class="JC_Name">方案名稱</th>
+                            <th id="JC_NUM" class="JC_NUM">刊登狀態</th>
+                            <th id="JC_TOP" class="JC_TOP">置頂狀態</th>
+                            <th id="JC_DEADLINE" class="JC_DEADLINE">截止日</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="ptNo" name="ptNo">1</td>
+                            <td class="ptName" name="ptName">
+                                <a href="#">IOS 初階工程師 (Junior IOS Developer)</a>
+                            </td>
+                            <td class="jcName" name="jcName">方案一</td>
+                            <td class="jcNum" name="jcNum">
+                                <div class="btn-group btn-group-sm" role="group"
+                                    aria-label="Basic radio toggle button group">
+                                    <input type="radio" class="btn-check" name="onPost" id="onPost1" autocomplete="off">
+                                    <label class="btn btn-outline-success" for="onPost1">上架</label>
+                                    <input type="radio" class="btn-check" name="onPost" id="onPost2" autocomplete="off"
+                                        checked>
+                                    <label class="btn btn-outline-secondary" for="onPost2">下架</label>
+                                </div>
+                            </td>
+                            <td class="jcTop" name="jcTop">
+                                <div class="btn-group btn-group-sm" role="group"
+                                    aria-label="Basic radio toggle button group">
+                                    <input type="radio" class="btn-check" name="onTop" id="onTop1" autocomplete="off">
+                                    <label class="btn btn-outline-success" for="onTop1">置頂</label>
+                                    <input type="radio" class="btn-check" name="onTop" id="onTop2" autocomplete="off"
+                                        checked>
+                                    <label class="btn btn-outline-secondary" for="onTop2">未置頂</label>
+                                </div>
+                            </td>
+                            <td class="jcDeadline" name="jcDeadline">2023/10/1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script>
+        // ===================================================================================
+        // 左邊欄位打開闔起動畫 (ok)
+        $("ul").on("click", ".main-list", function () {
+            $(this).closest(".main-list").find(".sub-menu").slideToggle(400, function () {
+                $(this).closest(".main-list").find(".sub-menu").toggleClass("-none")
+            });
+        });
+
+    </script>
+</body>
+
+</html>

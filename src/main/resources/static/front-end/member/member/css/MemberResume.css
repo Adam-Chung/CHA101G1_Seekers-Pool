@@ -1,0 +1,135 @@
+html,
+body {
+    font-family: "Lato", "Noto Sans TC", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.content-cotainer {
+    max-width: 950px;
+    /* 限制最大寬度 */
+    margin: 0 auto;
+    padding: 40px 50px;
+    background-color: #f6f7f8;
+    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08);
+}
+
+h2 {
+    border-bottom: 1px solid #999999;
+    padding-bottom: 10px;
+    margin: 24px 0 8px;
+    /* 上 右 下，最後一個值會帶入 右 的設定 */
+    font-size: 32px;
+}
+
+h3 {
+    font-size: 21px;
+    margin: 0 0 8px;
+    font-weight: 500;
+}
+
+section {
+    margin-bottom: 48px;
+}
+
+p {
+    color: #666666;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+span {
+    font-size: 20px;
+}
+
+/* Personal Info */
+.avatar {
+    text-align: center;
+    /* 內容置中 */
+}
+
+.avatar-img {
+    /* border-radius: 50%; */
+    border: 3px solid white;
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    position: relative;
+    left: 20px;
+}
+
+.name {
+    text-align: center;
+    font-size: 32px;
+    margin: 20px 0;
+}
+
+.social-media {
+    text-align: center;
+    /* 內容置中 */
+    margin-bottom: 20px;
+}
+
+.social-media-link {
+    color: #999999;
+    text-decoration: none;
+    /* 沒有底線 */
+    margin: 0 5px;
+    /* 圖示間隔 */
+}
+
+.social-media-link:hover {
+    /* 滑鼠移過來時啟用這組設定  */
+    color: #ff6600;
+}
+
+.title {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 16px;
+    letter-spacing: 2px;
+    color: #ff6600;
+}
+
+/* Skill Section */
+.skill-name,
+.language-name {
+    padding-top: 16px;
+}
+
+/* Experience Section */
+hr {
+    border: 0px;
+    /* 不要框架 */
+    height: 1px;
+    background: #cccccc;
+    /* 讓背景色填滿高度 1px 的元素空間 */
+    margin: 20px 0;
+}
+
+.company,
+.duration {
+    color: #666666;
+    font-size: 16px;
+    margin-right: 20px;
+    /* 兩組資訊之間的間隔 (大) */
+}
+
+.fa-building,
+.fa-calendar-days {
+    margin-right: 5px;
+    /* 圖示與文字間隔 (小) */
+}
+
+/* ---------- 按鈕 ---------- */
+.info-confirm {
+    display: block;
+    margin: auto;
+    margin-bottom: 30px;
+    border-radius: 4px;
+    height: 40px;
+    width: 90px;
+    border: 0px;
+    background-color: #59ace0;
+    color: white;
+}

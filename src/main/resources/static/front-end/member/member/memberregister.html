@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- header footer用 -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>會員註冊</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- jQuery -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <!-- 引入header、footer的JS -->
+    <script type="text/javascript" src="js/include.js"></script>
+
+
+    <!-- 此頁面用 -->
+    <link rel="stylesheet" href="css/MemberRegister.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <script>
+        let projectName = window.location.pathname.split('/')[1]; // SeekerPool
+
+        $(function () {
+
+            //確認上下密碼是否一致訊息
+            let flag = false;
+            $("#memPassword2").change(function () {
+                if ($("#memPassword2").val() != $("#memPassword").val()) {
+                    $("#checkCodeTr").removeAttr("hidden");
+                    flag = false;
+                } else {
+                    $("#checkCodeTr").prop("hidden", true);
+                    flag = true;
+                }
+            })
+            $("#memPassword").change(function () {
+                if ($("#memPassword2").val() != $("#memPassword").val()) {
+                    $("#checkCodeTr").removeAttr("hidden");
+                    flag = false;
+                } else {
+                    $("#checkCodeTr").prop("hidden", true);
+                    flag = true;
+                }
+            })
+
+            $("#registerForm").submit(function () {
+                var formData = new FormData($("#registerForm")[0]);//構造FormData物件
+                if (flag) { //密碼一致才能送出
+                    $.ajax({
+                        url: "/" + projectName + "/MemberRegisterServlet",//接受請求的Servlet地址
+                        type: 'POST',
+                        data: formData,
+                        async: false,//同步請求
+                        cache: false,//不快取頁面
+                        contentType: false,//當form以multipart/form-data方式上傳檔案時，需要設定為false
+                        processData: false,//如果要傳送Dom樹資訊或其他不需要轉換的資訊，請設定為false
+                        success: function (data) {
+                            var data = JSON.parse(data);
+                            if (data.flag) {
+                                //寄驗證信
+                                $.post("/" + projectName + "/MemberCheckCodeServlet", {}, function () {
+                                    //有開多執行續，邊跳轉頁面邊寄信
+                                    //註冊成功，跳轉到成功頁面
+                                    location.href = "checkcode.html";
+                                });
+                            } else {
+                                //註冊失敗，給error_msg添加錯誤訊息
+                                alert(data.msg)
+                            }
+                        },
+                        error: function (data) {
+                            // location.href = "membererror.html";
+                        }
+                    });
+                } else {
+                    alert("請確認表格內容是否有誤");
+                }
+                return false; //返回true才會送出表單
+            })
+        });
+    </script>
+</head>
+
+<body>
+    <!--引入heaer頁面-->
+    <div id="header"></div>
+
+    <!--引入list頁面-->
+    <div class="list"></div>
+
+
+    <main>
+        <!--引入QandTop按鈕-->
+        <div id="QandTop"></div>
+
+        <div id="main-content">
+            <div class="rg_layout">
+                <div class="rg_form clearfix">
+                    <div class="rg_form_left">
+                        <p>會員註冊</p>
+                    </div>
+
+                    <div class="rg_form_center">
+                        <!--註冊表單-->
+                        <form id="registerForm" method="post" enctype="multipart/form-data">
+                            <!--提交請求表單標示符號-->
+                            <input type="hidden" name="action" value="register">
+
+                            <table style="margin-top: 25px;">
+                                <tr>
+                                    <td class="td_left">
+                                        <label for="memAccount">帳號</label>
+                                    </td>
+                                    <td class="td_right">
+                                        <input type="text" id="memAccount" name="memAccount" placeholder="請輸入帳號"
+                                            required>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="td_left">
+                                        <label for="memPassword">密碼</label>
+                                    </td>
+                                    <td class="td_right">
+                                        <input type="password" id="memPassword" name="memPassword" placeholder="請輸入密碼"
+                                            required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td_left">
+                                        <label for="memPassword">密碼確認</label>
+                                    </td>
+                                    <td class="td_right">
+                                        <input type="password" id="memPassword2" name="memPassword2"
+                                            placeholder="請再次輸入密碼" required>
+                                    </td>
+                                </tr>
+                                <tr style="height: 2px;" id="checkCodeTr" hidden>
+                                    <td class="td_left">
+                                    </td>
+                                    <td class="td_right">
+                                        <label style="color: red;">上下密碼不一致</label>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="td_left">
+                                        <label for="memName">姓名</label>
+                                    </td>
+                                    <td class="td_right">
+                                        <input type="text" id="memName" name="memName" placeholder="請輸入姓名" required>
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td class="td_left">
+                                        <label for="memGender">性别</label>
+                                    </td>
+                                    <td class="td_right other">
+                                        <input type="radio" id="memGender" name="memGender" value="男" checked> 男
+                                        <input type="radio" name="memGender" value="女"> 女
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="td_left">
+                                        <label for="memEmail">信箱</label>
+                                    </td>
+                                    <td class="td_right">
+                                        <input type="email" id="memEmail" name="memEmail" placeholder="請輸入信箱" required>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="td_left">
+                                        <label for="memMobile">手機</label>
+                                    </td>
+                                    <td class="td_right">
+                                        <input type="text" id="memMobile" name="memMobile" placeholder="請輸入手機" required>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="td_left">
+                                        <label for="memAddress">欲工作區域</label>
+                                    </td>
+                                    <td class="td_right">
+                                        <!-- <input type="text" id="memAddress" name="memAddress"
+                                            placeholder="請輸入欲工作區域 e.g. 新北市板橋區" required> -->
+
+                                        <select id="city" name="city" onchange="updateDistricts()" required>
+                                            <option value="">請選擇城市</option>
+                                            <option value="臺北市">臺北市</option>
+                                            <option value="新北市">新北市</option>
+                                            <option value="桃園市">桃園市</option>
+                                            <option value="新竹市">新竹市</option>
+                                            <option value="新竹縣">新竹縣</option>
+                                            <option value="苗栗縣">苗栗縣</option>
+                                            <option value="台中市">台中市</option>
+                                            <option value="彰化縣">彰化縣</option>
+                                            <option value="雲林縣">雲林縣</option>
+                                        </select>
+
+                                        <select id="district" name="district" required>
+                                            <option value="">請先選擇行政區</option>
+                                        </select>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="td_left">
+                                        <label for="memPic">會員照片</label>
+                                    </td>
+                                    <td class="td_right">
+                                        <input type="file" id="memPic" name="memPic" required>
+                                    </td>
+                                </tr>
+
+                                <tr style="display: none;">
+                                    <td class="td_left">
+                                        <label for="nlSub">電子報</label>
+                                    </td>
+                                    <td class="td_right other">
+                                        <input type="radio" name="nlSub" value=1 checked> 訂閱
+                                        <input type="radio" name="nlSub" value=0> 不訂閱
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td class="td_left">
+                                    </td>
+                                    <td class="td_right check">
+                                        <input type="submit" class="submit" value="註冊">
+                                        <span id="msg" style="color: red;"></span>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </form>
+                    </div>
+                    <div class="rg_form_right">
+                        <p>
+                            已有帳號？
+                            <a href="memberlogin.html">立即登入</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <!--引入footer頁面-->
+    <div id="footer"></div>
+
+    <script>
+        //縣市行政區
+        function updateDistricts() {
+            var citySelect = document.getElementById("city");
+            var districtSelect = document.getElementById("district");
+            var cityValue = citySelect.value;
+            districtSelect.innerHTML = "";
+
+            // 將行政區的選項加入第二個下拉選單
+            switch (cityValue) {
+                case "臺北市":
+                    addOptions(districtSelect, [
+                        '中正區', '大同區', '中山區', '松山區', '大安區',
+                        '萬華區', '信義區', '士林區', '北投區', '內湖區',
+                        '南港區', '文山區'
+                    ]);
+                    break;
+                case "桃園市":
+                    addOptions(districtSelect, [
+                        '中壢區', '平鎮區', '龍潭區', '楊梅區', '新屋區',
+                        '觀音區', '桃園區', '龜山區', '八德區', '大溪區',
+                        '復興區', '大園區', '蘆竹區'
+                    ]);
+                    break;
+                case "新北市":
+                    addOptions(districtSelect, [
+                        '萬里區', '金山區', '板橋區', '汐止區', '深坑區',
+                        '石碇區', '瑞芳區', '平溪區', '雙溪區', '貢寮區',
+                        '新店區', '坪林區', '烏來區'
+                    ]);
+                    break;
+                case "新竹市":
+                    addOptions(districtSelect, [
+                        '東區', '北區', '香山區'
+                    ]);
+                    break;
+                case "新竹縣":
+                    addOptions(districtSelect, [
+                        '竹北市', '竹東鎮', '新埔鎮', '關西鎮', '湖口鄉',
+                        '新豐鄉', '峨眉鄉', '寶山鄉', '北埔鄉', '芎林鄉',
+                        '橫山鄉', '尖石鄉', '五峰鄉'
+                    ]);
+                    break;
+                case "苗栗縣":
+                    addOptions(districtSelect, [
+                        '苗栗市', '頭份市', '苑裡鎮', '公館鄉', '大湖鄉',
+                        '泰安鄉', '銅鑼鄉', '三義鄉', '西湖鄉', '卓蘭鎮',
+                        '造橋鄉', '頭屋鄉', '南庄鄉', '獅潭鄉', '後龍鎮',
+                        '通霄鎮', '苗栗縣竹南鎮'
+                    ]);
+                    break;
+                case "台中市":
+                    addOptions(districtSelect, [
+                        '中區', '東區', '南區', '西區', '北區',
+                        '北屯區', '西屯區', '南屯區', '太平區', '大里區',
+                        '霧峰區', '烏日區', '豐原區', '后里區', '石岡區',
+                        '東勢區', '新社區', '潭子區', '大雅區', '神岡區',
+                        '大肚區', '沙鹿區', '龍井區', '梧棲區', '清水區',
+                        '大甲區', '外埔區', '大安區'
+                    ]);
+                    break;
+                case "彰化縣":
+                    addOptions(districtSelect, [
+                        '彰化市', '員林市', '和美鎮', '鹿港鎮', '溪湖鎮',
+                        '二林鎮', '田中鎮', '北斗鎮', '永靖鄉', '埔心鄉',
+                        '社頭鄉', '芳苑鄉', '花壇鄉', '秀水鄉', '鹿港鎮',
+                        '福興鄉', '線西鄉', '伸港鄉', '福興鄉', '線西鄉',
+                        '伸港鄉', '福興鄉', '線西鄉', '伸港鄉', '福興鄉',
+                        '線西鄉', '伸港鄉', '福興鄉', '線西鄉', '伸港鄉'
+                    ]);
+                    break;
+                case "雲林縣":
+                    addOptions(districtSelect, [
+                        '斗六市', '斗南鎮', '虎尾鎮', '西螺鎮', '土庫鎮',
+                        '北港鎮', '古坑鄉', '大埤鄉', '莿桐鄉', '林內鄉',
+                        '二崙鄉', '崙背鄉', '麥寮鄉', '東勢鄉', '褒忠鄉',
+                        '臺西鄉', '元長鄉', '四湖鄉', '口湖鄉', '水林鄉'
+                    ]);
+                    break;
+            }
+        }
+        function addOptions(selectElement, options) {
+            for (var i = 0; i < options.length; i++) {
+                var option = document.createElement("option");
+                option.text = options[i];
+                selectElement.add(option);
+            }
+        }
+    </script>
+
+</body>
+
+</html>

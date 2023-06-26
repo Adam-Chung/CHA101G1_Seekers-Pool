@@ -1,0 +1,28 @@
+/* ======================線上課程============================================ */
+.center1 {
+    text-align: center;
+}
+
+.center2 {
+    text-align: center;
+}
+
+.center3 {
+    text-align: center;
+}
+
+.center4 {
+    text-align: center;
+}
+
+.container1,
+.container2,
+.container3,
+.container4 {
+    margin-top: 10px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-around;
+}

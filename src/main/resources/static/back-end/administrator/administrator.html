@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+	<title>Seeker's Pool</title>
+	<meta content="" name="description">
+	<meta content="" name="keywords">
+
+	<!-- Favicons -->
+	<link href="../../common/img/handshake-regular.svg" rel="icon">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.gstatic.com" rel="preconnect">
+	<link
+		href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+		rel="stylesheet">
+
+	<!-- Vendor CSS Files -->
+	<link href="../../common/css/packageCSS/bootstrap.min.css" rel="stylesheet">
+	<link href="../../common/css/packageCSS/bootstrap-icons.css" rel="stylesheet">
+	<link href="../../common/css/packageCSS/boxicons.min.css" rel="stylesheet">
+	<link href="../../common/css/packageCSS/quill.snow.css" rel="stylesheet">
+	<link href="../../common/css/packageCSS/quill.bubble.css" rel="stylesheet">
+	<link href="../../common/css/packageCSS/remixicon.css" rel="stylesheet">
+	<link href="../../common/css/packageCSS/style.css" rel="stylesheet">
+
+	<!-- Template Main CSS File -->
+	<link href="../../common/css/Employee.css" rel="stylesheet">
+	<style>
+		td>input {
+			width: 70%;
+			border: 2px solid #a5c5fe;
+			border-radius: 5px;
+			box-sizing: border-box;
+		}
+
+		td>img {
+			max-width: 100px;
+			max-height: 60%;
+		}
+	</style>
+
+	<!-- Font Awesome-->
+	<script src="https://kit.fontawesome.com/244879c400.js" crossorigin="anonymous"></script>
+	<!-- jQuery -->
+	<script src="../../common/js/jquery-3.6.4.min.js"></script>
+
+</head>
+
+<body>
+	<!-- ========================== Header ================================ -->
+	<div id="header1"></div>
+
+	<!-- ========================== Sidebar =============================== -->
+	<div id="sidebar1"></div>
+
+	<!-- =========================== main ================================= -->
+	<main id="main" class="main">
+		<div class="pagetitle">
+			<h1>員工總覽</h1>
+			<nav>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="Employee.html">Home</a></li>
+					<li class="breadcrumb-item active"><a href="Administrator1.html">員工管理</a></li>
+					<li class="breadcrumb-item active">員工總覽</li>
+				</ol>
+			</nav>
+		</div>
+		<hr>
+
+		<div class="row">
+			<div class="mb-3 col-lg-4">
+				<label for="inputAdmId" class="form-label"><strong style="font-size: large;">員工查詢</strong></label>
+				<div class="input-group">
+					<input type="text" class="form-control" id="inputAdmId" placeholder="Search by typing here...">
+					<button type="button" class="btn btn-primary" id="searchAdmId">
+						<strong>查詢</strong>
+					</button>
+				</div>
+			</div>
+
+			<div class="mb-3 col-lg-4 d-flex align-items-end">
+				<a href="administratoradd.html">
+					<button type="button" class="btn btn-primary">
+						<strong>新增員工基本資料</strong>
+					</button>
+				</a>
+			</div>
+		</div>
+
+		<span class="counter pull-right"></span>
+		<div class="table table-hover">
+			<table class="table table-hover">
+				<thead class="bill-header cs">
+					<tr>
+						<th id="ADM_ID" class="ADM_ID">編號</th>
+						<th id="ADM_NAME" class="ADM_NAME">姓名</th>
+						<th id="ADM_POSITION" class="ADM_POSITION">職位</th>
+						<th id="ADM_ACCOUNT" class="ADM_ACCOUNT">帳號</th>
+						<th id="ADM_PASSWORD" class="ADM_PASSWORD">密碼</th>
+						<th id="ADM_STATUS" class="ADM_STATUS">狀態</th>
+						<th id="ADM_PHOTO" class="ADM_PHOTO">頭像</th>
+						<th id="ADM_UPDATE" class="ADM_UPDATE">操作</th>
+						<th id="ADM_DELETE" class="ADM_DELETE">刪除</th>
+					</tr>
+				</thead>
+				<tbody>
+
+				</tbody>
+			</table>
+		</div>
+		<!-- 底部分頁 -->
+		<nav aria-label="Page navigation">
+			<ul class="pagination justify-content-center">
+				<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Previous</a></li>
+				<li class="page-item"><a class="page-link" href="#">1</a></li>
+				<li class="page-item"><a class="page-link" href="#">2</a></li>
+				<li class="page-item"><a class="page-link" href="#">3</a></li>
+				<li class="page-item"><a class="page-link" href="#">Next</a></li>
+			</ul>
+		</nav>
+	</main>
+
+	<!-- 首頁sidebar下拉 -->
+	<script src="../../common/js/packageJS/bootstrap.bundle.min.js"></script>
+
+
+	<script>
+		$(function () {
+			// ======== 引入header ===========
+			$.get("../../common/buildPage/Employee_Header.html", function (data) {
+				$("#header1").html(data);
+
+				$.getScript("../../common/js/Employee.js", function () {
+				});
+			});
+
+			// ======== 引入sidebar ===========
+			$.get("../../common/buildPage/Employee_Sidebar.html", function (data) {
+				$("#sidebar1").html(data);
+			});
+
+			// ======== AJAX ===========
+			/* ==== 登入即查詢全部 ==== */
+			$.ajax({
+				url: "../../AdministratorServlet",
+				method: "POST",
+				dataType: "JSON",
+				data: { action: "getAll" },
+				async: false,//同步請求
+				cache: false,//不快取頁面contentType: false,//當form以multipart/form-data方式上傳檔案時，需要設定為false
+				success: function (res) {
+					for (let i = 0; i < res.length; i++) {
+						console.log("${res[i].admId}: " + res[i].admId);
+						console.log("${res[i].admPhoto}: " + res[i].admPhoto);
+						$("tbody").append(`<tr id="all">
+								<td style='text-align: center' class="admId" name="admId">${res[i].admId}</td>
+								<td style='text-align: center' class="admName" name="admName">${res[i].admName}</td>
+								<td style='text-align: center' class="admPosition" name="admPosition">${res[i].admPosition}</td>
+								<td style='text-align: center' class="admAccount" name="admAccount">${res[i].admAccount}</td>
+								<td style='text-align: center' class="admPassword" name="admPassword">${res[i].admPassword}</td>
+								<td style='text-align: center' class="admStatus" name="admStatus">${res[i].admStatus}</td>
+								<td style='text-align: center' class="admPhoto" name="admPhoto"></td>
+								<td class='no-border'
+									style='vertical-align: middle; text-align: center;'>
+									<button class='btn btn-outline-secondary btn-sm btnEdit'
+										style='margin-left: 5px; vertical-align: auto;' type="submit">
+										<strong>Edit</strong>
+									</button>
+								</td>
+								<td class='no-border'
+									style='vertical-align: middle; text-align: center;'>
+									<button class='btn btn-outline-danger btn-sm btnDelete'
+										style='margin-left: 5px; vertical-align: auto;' type="submit">
+										<strong>Delete</strong>
+									</button>
+								</td>
+							</tr>`);
+						$("tbody tr:last-child td:eq(-3)").html(`<img src="${res[i].admPhoto}" alt="圖片">`);
+					}
+				}
+			})
+
+			/* ==== 查單一 ==== */
+			$("#searchAdmId").click(function () {
+				$.ajax({
+					url: "../../AdministratorServlet",
+					method: 'POST',
+					datatype: "JSON",
+					contentType: false, // 設置為 false 或 'multipart/form-data'
+					data: {
+						action: "getOne_For_Display",
+						admId: $("input.form-control").val().trim(),
+						admName: $("input.form-control").val().trim(),
+					},
+					success: function (res) {
+						if (res) {
+							$("tr#trContext").remove();
+							console.log(res);
+							$("tbody").append(`<tr id="trContext">
+									<td style='text-align: center' class="admId" name="admId">${res.admId}</td>
+									<td style='text-align: center' class="admName" name="admName">${res.admName}</td>
+									<td style='text-align: center' class="admPosition" name="admPosition">${res.admPosition}</td>
+									<td style='text-align: center' class="admAccount" name="admAccount">${res.admAccount}</td>
+									<td style='text-align: center' class="admPassword" name="admPassword">${res.admPassword}</td>
+									<td style='text-align: center' class="admStatus" name="admStatus">${res.admStatus}</td>
+									<td style='text-align: center' class="admPhoto" name="admPhoto"></td>
+									<td class='no-border'
+										style='vertical-align: middle; text-align: center;'>
+										<button class='btn btn-outline-secondary btn-sm btnEdit'
+											style='margin-left: 5px; vertical-align: auto;' type="submit">
+											<strong>Edit</strong>
+										</button>
+										<td class='no-border'
+											style='vertical-align: middle; text-align: center;'>
+											<button class='btn btn-outline-danger btn-sm btnDelete'
+												style='margin-left: 5px; vertical-align: auto;' type="submit">
+												<strong>Delete</strong>
+											</button>
+										</td>
+									</td>
+
+								</tr>`);
+							$("tbody tr:last-child td:eq(-3)").html(`<img src="${res.admPhoto}" alt="圖片">`);
+							$("tr#trContext").prevAll().remove();
+							console.log($("tr#trContext"));
+						} else {
+							$("tr#trNO").remove();
+							console.log(res);
+							$("tbody").append(`<tr id="trNO">
+									<td style='text-align: center; color: red; font-weight: bold;'>查無此編號!!!</td>
+									<td style='text-align: center'></td>
+									<td style='text-align: center'></td>
+									<td style='text-align: center'></td>
+									<td style='text-align: center'></td>
+									<td style='text-align: center'></td>
+									<td style='text-align: center'></td>
+									<td style='text-align: center'></td>
+									<td style='text-align: center'></td>
+								</tr>`);
+							$("tr#trNO").prevAll().remove();
+							console.log($("tr#trNO"));
+						}
+					}
+				});
+			})
+
+			/* ==== 更新 編輯 ==== */
+			$(document).on("click", ".btnEdit", function () {
+
+				var $row = $(this).parents("tr");
+				var admName = $row.find("td.admName").text();
+				var admPosition = $row.find("td.admPosition").text();
+				var admAccount = $row.find("td.admAccount").text();
+				var admPassword = $row.find("td.admPassword").text();
+				var admStatus = $row.find("td.admStatus").text();
+				// 		        var admPhoto = $row.find("td.admPhoto").text();
+
+				$row.find("td:eq(1)").html("<input name='edit_admName' type='text' value='" + admName + "'>");
+				$row.find("td:eq(2)").html("<input name='edit_admPosition' type='text' value='" + admPosition + "'>");
+				$row.find("td:eq(3)").html("<input name='edit_admAccount' type='text' value='" + admAccount + "'>");
+				$row.find("td:eq(4)").html("<input name='edit_admPassword' type='text' value='" + admPassword + "'>");
+				$row.find("td:eq(5)").html("<input name='edit_admStatus' type='text' value='" + admStatus + "'>");
+				// 		        $row.find("td:eq(6)").html("<input name='edit_admPhoto' type='image' value='" + admPhoto + "'>");
+				$row.find("td:eq(7)").prepend("<button class='btn btn-outline-success btn-sm btnSave'type='submit'><strong>Save</strong></button>");
+				$(this).hide();
+			});
+
+			/* ==== 更新 儲存 ==== */
+			$(document).on("click", ".btnSave", function () {
+				var $row = $(this).parents("tr");
+				var admId = $row.find("td.admId").text();
+				var admName = $row.find("input[name='edit_admName']").val();
+				var admPosition = $row.find("input[name='edit_admPosition']").val();
+				var admAccount = $row.find("input[name='edit_admAccount']").val();
+				var admPassword = $row.find("input[name='edit_admPassword']").val();
+				var admStatus = $row.find("input[name='edit_admStatus']").val();
+				var admPhoto = $row.find("input[name='edit_admPhoto']").prop('files')[0]; // 獲取圖片文件
+
+				var formData = new FormData();
+				formData.append("action", "update");
+				formData.append("admId", admId);
+				formData.append("admName", admName);
+				formData.append("admPosition", admPosition);
+				formData.append("admAccount", admAccount);
+				formData.append("admPassword", admPassword);
+				formData.append("admStatus", admStatus);
+				formData.append("admPhoto", admPhoto); // 添加圖片文件到FormData
+
+				$.ajax({
+					url: "../../AdministratorServlet",
+					method: "POST",
+					dataType: "json",
+					contentType: false, // 設置為 false 或 'multipart/form-data'
+					data: formData,
+					success: function (res) {
+						$row.find("td:eq(1)").text(admName);
+						$row.find("td:eq(2)").text(admPosition);
+						$row.find("td:eq(3)").text(admAccount);
+						$row.find("td:eq(4)").text(admPassword);
+						$row.find("td:eq(5)").text(admStatus);
+						$row.find("td:eq(6)").text(admPhoto);
+						$(".btnSave").hide();
+						$(".btnEdit").show();
+					},
+					error: function (xhr, status, error) {
+
+					}
+				});
+			});
+
+			/* ==== 刪除 ==== */
+			$(document).on('click', '.btnDelete', function () {
+				console.log(this);
+				var admId = $(this).closest("tr").find("td.admId").text();
+
+				if (confirm("確定刪除?")) {
+					$.ajax({
+						url: "../../AdministratorServlet",
+						method: "POST",
+						dataType: "json",
+						data: {
+							action: "delete",
+							admId: admId,
+						},
+						success: function (res) {
+							console.log("res: " + res);
+							alert("確定刪除此員工?");
+							$(this).closest("tr").remove();
+						}
+					});
+				}
+
+			});
+		});
+
+
+	</script>
+
+</body>
+
+</html>
