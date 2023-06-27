@@ -1,0 +1,59 @@
+img {
+    max-width: 100%;
+}
+
+/*===================== main 區域========================*/
+main.main {
+
+    /* height: 1000px; */
+
+    width: calc(100% - var(--aside-width));
+    margin-left: var(--aside-width);
+    min-height: calc(100vh - var(--header-height));
+
+    padding: 20px;
+}
+
+
+
+main.main ul.item_list {
+    border: 1px solid red;
+    list-style: none;
+    margin: 0;
+
+    padding: 0;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+main.main ul.item_list>li {
+    border: 1px solid black;
+    /* display: inline-block; !會有問題 */
+    width: calc((100% - 60px)/4);
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+main.main ul.item_list>li:nth-child(4n) {
+    margin-right: 0;
+}
+
+main.main ul.item_list>li a {
+    display: block;
+    border: 1px solid white;
+    text-decoration: none;
+}
+
+main.main ul.item_list>li a div.img_block {
+    border: 1px solid black;
+    font-size: 0;
+}
+
+main.main ul.item_list>li a span.item_text {
+    display: block;
+    border: 1px solid green;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

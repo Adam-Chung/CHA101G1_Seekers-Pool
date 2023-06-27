@@ -1,0 +1,391 @@
+/* color palette */
+/* https://colorhunt.co/palette/f6f1f1afd3e219a7ce146c94 */
+/* https://colorhunt.co/palette/fffbeb495579263159251749 */
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+/* #6096B4
+#93BFCF
+#BDCDD6
+#EEE9DA */
+:root {
+    --navyblue: #2c7095;
+    --skyblue: #93BFCF;
+    --yellow: rgb(252, 146, 54);
+    --white: rgb(253, 243, 231);
+}
+
+/* ========================== header ============================= */
+header {
+    position: relative;
+}
+
+/* ========================== navbar ============================= */
+nav {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to left, rgb(12, 84, 117), var(--navyblue));
+    height: 8rem;
+    box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.737);
+}
+
+/* ========================== logo ============================= */
+.logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 12rem;
+    width: 45%;
+}
+
+.logoName {
+    position: relative;
+    font-size: 2rem;
+    font-weight: 800;
+    height: 5rem;
+    letter-spacing: 2px;
+}
+
+.seeker {
+    color: var(--white);
+}
+
+.pool {
+    position: absolute;
+    bottom: 0;
+    right: 20%;
+    color: var(--white);
+}
+
+img {
+    height: 60%;
+    margin: 0px 30px;
+    cursor: pointer;
+}
+
+
+/* ========================== menu ============================= */
+
+.menu ul {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    margin-right: 1rem;
+    font-size: 1.3rem;
+}
+
+.menu ul li {
+    position: relative;
+    z-index: 999;
+}
+
+.menu ul li.menu-item::before {
+    content: "";
+    position: absolute;
+    height: .3rem;
+    background-color: var(--yellow);
+    width: 0%;
+    bottom: 0.1rem;
+    transition: all 400ms;
+    z-index: -1;
+}
+
+.menu ul li.menu-item:hover:before {
+    width: 100%;
+}
+
+.menu ul li {
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.menu ul li.menu-item a {
+    color: var(--white);
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.menu ul li a i {
+    margin-left: .5rem;
+}
+
+.menu ul li.menu-item a:visited {
+    color: var(--white);
+}
+
+.menu ul li.menu-item a:hover {
+    color: var(--yellow);
+}
+
+.login,
+.company-hire {
+    padding: 0.7rem 0.4rem;
+    border-radius: 3px;
+}
+
+.login,
+.company-hire {
+    font-weight: 600;
+    color: var(--yellow);
+}
+
+.login:hover,
+.company-hire:hover {
+    color: var(--white);
+    background-color: var(--yellow);
+}
+
+/* ========================== list ============================= */
+.list {
+    position: sticky;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: var(--yellow);
+    height: 2.5rem;
+    top: 0px;
+    width: 100%;
+    align-items: center;
+    letter-spacing: 1px;
+    font-size: 1.25rem;
+    font-weight: 800;
+    list-style: none;
+    z-index: 13;
+    box-shadow: 0px 3px 10px var(--navyblue);
+}
+
+.list-left-side,
+.list-right-side {
+    display: flex;
+    flex-direction: row;
+}
+
+.list .list-item {
+    position: relative;
+    margin: 5px 10px;
+}
+
+.list .list-item:nth-child(1) {
+    margin-left: 2rem;
+}
+
+.list .list-left-side .list-item:not(:nth-child(4)):before {
+    content: "";
+    position: absolute;
+    height: 80%;
+    width: 1.5px;
+    top: 15%;
+    right: -0.6rem;
+    background-color: var(--white);
+}
+
+.list .list-item a {
+    color: var(--white);
+    transition: all 200ms;
+}
+
+.list .list-item a:hover {
+    position: relative;
+    color: var(--navyblue);
+}
+
+.username {
+    padding: 0px 5px;
+    font-weight: bolder;
+}
+
+/* ========================== main ============================= */
+
+main {
+    position: relative;
+    background-color: var(--white);
+    min-height: 600px;
+    /*暫定700px*/
+    height: auto;
+    width: 100%;
+    border-radius: 0px 0px 35px 35px;
+    box-shadow: 0px 5px 5px var(--yellow);
+    z-index: 1;
+}
+
+main .gotop {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    right: 3%;
+    bottom: 8%;
+    width: 4rem;
+    height: 8rem;
+    border-radius: 1rem;
+    background: linear-gradient(145deg, #d6dce7da, #fdffffd8);
+    box-shadow: 4px 4px 10px #dbdfe86b,
+        -1px -1px 10px #7c7c7cfd;
+    z-index: 999;
+}
+
+.service,
+.gotop-btn {
+    background-color: var(--yellow);
+
+    display: grid;
+    place-items: center;
+    width: 70%;
+    height: 35%;
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px #b3b3b3,
+        -5px -5px 10px #ffffff;
+}
+
+.service i,
+.gotop-btn i {
+    font-size: 1.8rem;
+    color: white;
+    cursor: pointer;
+}
+
+.service:active,
+.gotop-btn:active {
+    box-shadow: 5px 5px 10px #b3b3b3,
+        -5px -5px 10px #ffffff;
+}
+
+/* ==========================search============================= */
+.search {
+    position: relative;
+    width: 30%;
+    border-radius: 5px;
+    display: none;
+    background-color: var(--white);
+}
+
+.search-input {
+    position: relative;
+    height: 2.5rem;
+    font-size: 1rem;
+    width: 100%;
+    outline: transparent;
+    border: transparent;
+    border-radius: 3px;
+    padding-left: 1rem;
+}
+
+.search-btn {
+    position: absolute;
+    right: 0%;
+    height: 2.5rem;
+    width: 4rem;
+    border: 0;
+    border-radius: 0px 3px 3px 0px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.search-btn:active {
+    background-color: rgb(196, 226, 247);
+}
+
+.search-btn i {
+    color: var(--yellow);
+    line-height: 2.5rem;
+}
+
+/* ========================== footer ============================= */
+footer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to left, rgb(12, 84, 117), var(--navyblue));
+    line-height: 30px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    z-index: 0;
+}
+
+footer::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(to left, rgb(12, 84, 117), var(--navyblue));
+    top: -20%;
+    left: 0%;
+    z-index: -222;
+}
+
+.footer-bar {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-top {
+    display: flex;
+    padding: 0 50px;
+}
+
+.footer-top>div {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 50px;
+
+}
+
+.left-side-bar {
+    width: 40%;
+    margin-left: 100px;
+}
+
+h3 {
+    margin: 0 auto;
+    font-size: 1.5rem;
+    color: var(--yellow);
+    margin-bottom: 1.5rem;
+}
+
+.left-side-bar p {
+    text-indent: 3rem;
+    color: var(--white);
+}
+
+.middle-bar a,
+.right-side-bar a {
+    color: var(--white);
+}
+
+.middle-bar a:visited,
+.right-side-bar a:visited {
+    color: var(--white);
+}
+
+.right-side-bar a:hover,
+.middle-bar a:hover,
+.left-side-bar a:hover {
+    color: var(--yellow);
+}
+
+.copyright {
+    display: flex;
+    width: 100%;
+    height: 2rem;
+    background-color: rgba(0, 0, 0, 0.632);
+    color: var(--white);
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+/* ========================= */

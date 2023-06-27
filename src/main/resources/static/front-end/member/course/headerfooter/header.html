@@ -1,0 +1,36 @@
+<!-- ==================================== header ============================================= -->
+
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="./images/logo.png" alt="this is a logo" id="logoImg">
+                <!-- <h1>SEEKER'S POOL</h1> -->
+                <div class="logoName">
+                    <div class="seeker">SEEKER'S</div>
+                    <div class="pool">POOL</div>
+                </div>
+                
+            </div>
+            <div class="menu">
+                <ul>
+                    <li class="menu-item"><a href="#">線上課程</a></li>
+                    <li class="menu-item"><a href="#">文章專區</a></li>
+                    <li class="menu-item"><a href="#">會員中心</a></li>
+                    <li class="menu-login">
+                        <a href="#" class="login">註冊 / 登入<i class="fa-solid fa-right-to-bracket"></i></a>
+                    </li>
+                    <li class="menu-company-hire ">
+                        <a href="#" class="company-hire">企業徵才<i class="fa fa-building"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+<!-- <script type="text/javascript" src="js/HandF.js"></script> -->
+
+<script>
+        // 點擊logo後返回到主頁
+        const logoImg = document.getElementById("logoImg");
+        logoImg.addEventListener("click", () => window.location.href = "blankPage.html");
+</script>

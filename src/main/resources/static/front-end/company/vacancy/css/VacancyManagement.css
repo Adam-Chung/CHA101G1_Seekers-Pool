@@ -1,0 +1,504 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+:root{
+    --navyblue: rgb(72, 76, 127);
+    --skyblue: #93BFCF;
+    --yellow:rgb(252, 146, 54);
+    --white:rgb(252, 245, 237);
+}
+/* ======================== body ============================ */
+body{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+main{
+    position: relative;
+}
+/* ======================== add-vacancies-form 新增職缺表單 ======================= */
+.add-vacancy{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    min-height: 1200px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    letter-spacing: 1px;
+    background-color: hsla(0, 0%, 0%, .7);
+}
+.edit-vacancy{
+    position: absolute;
+    top: 67vh;
+    left: 37%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    min-height: 1100px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    letter-spacing: 1px;
+    background-color: hsla(0, 0%, 0%, .7);
+}
+.add-vacancy-container,
+.edit-vacancy-container{
+    position:absolute;
+    height: auto;
+    width: 60%;
+    margin: 50px auto;
+    list-style: none;
+    background-color: var(--white);
+    border: 14px solid var(--white);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgb(132, 130, 130);
+
+}
+
+.edit-vacancy-container i{
+    color: rgb(69, 68, 68);
+}
+
+/* ======================== add-vacancy-title ======================= */
+.add-vacancy-title,
+.edit-vacancy-title{
+    position: relative;
+    display: flex;
+    height: 8%;
+    justify-content: center;
+}
+
+.add-vacancy-title h3,
+.edit-vacancy-title h3{
+    padding: 5px;
+    font-size: x-large;
+}
+
+.add-vacancy-title .fa-xmark,
+.edit-vacancy-title .fa-xmark{
+    position: absolute;
+    font-size: large;
+    right: 0;
+    padding: 7px 10px 7px 7px;
+    cursor: pointer;
+}
+.add-vacancy-form,
+.edit-vacancy-form{
+    padding: 10px;
+    background-color: rgb(237, 237, 237);
+    border-radius: 15px;
+}
+
+.add-vacancy-form div,
+.edit-vacancy-form div{
+    margin: 10px 0;
+}
+
+.add-vacancy-form div span,
+.edit-vacancy-form div span{
+    display: inline-block;
+    height: 30px;
+    font-weight: 600;
+}
+
+.showPtName, .showPtType{
+    width: auto;
+}
+
+.row5, .row9{
+    display: flex;
+    flex-direction: row;
+    font-size: medium;
+}
+
+.add-vacancy-form input[type= text],
+.edit-vacancy-form input[type= text]{
+    outline-color: var(--yellow);
+    padding: 7px;
+    width: 60.8%;
+    font-size: medium;
+}
+
+.add-vacancy-form input[type= text]:invalid,
+.edit-vacancy-form input[type= text]:invalid{
+    outline-color: red;
+}
+
+.add-vacancy-form select,
+.edit-vacancy-form select{
+    width: 20%;
+    padding: 5px;
+    font-size: medium;
+    outline-color: var(--yellow);
+}
+#other-requirements,
+#job-description{
+    outline-color: var(--yellow);
+    font-size: medium;
+    margin-left: 5px;
+    padding: 10px 7px;
+}
+#other-requirements,
+#job-description::placeholder{
+    display: inline;
+    justify-content: start;
+    text-align: start;
+}
+
+.reminder{
+    font-size: small;
+    color: gray;;
+}
+
+.submit-edit-btn,
+.submit-add-btn{
+    width: 100px;
+    height: 35px;
+    margin-top: 25px;
+    font-size: large;
+    color: rgb(250, 249, 247);
+    background-color:rgb(10, 197, 10);
+    border:0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.submit-edit-btn:hover,
+.submit-add-btn:hover{
+    background-color:rgb(5, 84, 5);
+}
+/* ======================== container ======================= */
+.container{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    min-height: 100%;
+    padding: 10px;
+    background-color: white;
+}
+
+/* ======================== side-bar ======================= */
+.side-bar{
+    position: sticky;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--navyblue);
+    width: 20%;
+    height: 95vh;
+    color: var(--white);
+    border-radius: 10px;
+    overflow-y: scroll;
+}
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-button {
+    background: transparent;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-track-piece {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(46, 46, 46, 0.4);
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: transparent;
+}
+
+.side-bar .logo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px auto;
+    width: 100%;
+    padding: 5%;
+}
+.side-bar .img{
+    border-radius: 50%;
+    width: 55%;
+    aspect-ratio: 1;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+.side-bar img{
+    object-fit: contain;
+    max-width: 100%;
+}
+
+/* ======================== menu(main-list) ======================= */
+menu{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+menu ul{
+    height: 100%;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+menu ul li.main-list,
+menu ul li ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    list-style: none;
+    padding: 2% 3%;
+}
+
+menu ul li.main-list i{
+    cursor: pointer;
+}
+
+menu ul li.main-list a{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 10px;
+}
+
+.caret-icon{
+    margin-left: auto;
+    align-self: first baseline;
+}
+
+menu ul li a:visited{
+    color: var(--white);
+}
+menu ul li a:hover{
+    color: var(--yellow);
+}
+
+.center, .talent-search{
+    margin-left: 3px;
+}
+.main-list a{
+    color: var(--white);
+}
+
+/* ======================== menu(sub-list) ======================= */
+
+/* ======================== -none ============================== */
+.-none{
+    display: none;
+}
+#-none{
+    display: none;
+}
+
+/* ======================== main-content ======================= */
+.main-content{
+    width: 80%;
+    padding: 0 2%;
+}
+
+
+/* ======================== search ======================= */
+.search{
+    position: relative;
+    width: 50%;
+    border-radius: 5px;
+}
+.search-bar{
+    border: transparent;
+    background-color: rgb(230, 229, 229);
+    width: 100%;
+    height: 40px;
+    padding: 0 10px;
+    outline: transparent;
+    border-radius: 5px;
+    font-size: large;
+}
+.search-btn{
+    position: absolute;
+    border: 0;
+    width: 13%;
+    height: 40px;
+    right: 0;
+    background-color: rgb(230, 229, 229);
+    border-radius: 0 5px 5px 0;
+    font-size: large;
+    cursor: pointer;
+}
+.search-btn i{
+    color: var(--yellow);
+}
+
+.search-btn:hover,
+.search-btn i:hover{
+    color: var(--yellow);
+    background-color: #b2b2b2;
+}
+
+/* ========================= vacancy ==========================*/
+.vacancy-top{
+    display: flex;
+    height: 80px;
+    align-items: center;
+}
+
+.vacancy-top .change-status-page{
+    margin-left: auto;
+    border-radius: 4px;
+    padding: 4px 16px;
+    font-size: larger;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.vacancy-top .change-status-page:visited{
+    color: #15381d;
+}
+
+.vacancy-top .change-status-page:hover{
+    background-color: #6bc041;
+    color: white;
+}
+
+.vacancy-top .add-vacancy-btn{
+    height: 40px;
+    padding: 0 30px;
+    border: 0;
+    color: white;
+    font-size: large;
+    background-color: gray;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.vacancy-top .add-vacancy-btn:hover{
+    color: var(--yellow);
+    background-color: rgb(67, 67, 67);
+}
+
+.all-vacancies-container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px rgb(104, 104, 104) solid;
+}
+
+.vacancy-title{
+    font-size: xx-large;
+    margin: 25px;
+}
+
+.vacancy-header{
+    position: sticky;
+    top: 0;
+    display: flex;
+    background-color: var(--navyblue);
+    padding: 10px 0;
+}
+.vacancy-header span{
+    text-align: center;
+    font-size: large;
+    color: var(--white);
+}
+.vacancy-list{
+    width: 100%;
+}
+
+.vacancy-content{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.vacancy-list:nth-child(even){
+    background-color: rgb(213, 233, 252);
+}
+
+.vacancy-list span{
+    display: inline-block;
+    line-height: 30px;
+    font-weight: bolder;
+    letter-spacing: 1px;
+    word-wrap: break-word;
+}
+.vacancy-list a{
+    color: black;
+}
+
+.job-number{
+    width: 4%;
+    margin-left: 10px;
+}
+.job-title{
+    width: 50%;
+}
+ .on-post, .on-top{
+    width: 15%;
+    text-align: center;
+}
+
+.vacancy-content .job-type{
+    text-align: center;
+    height: 25px;
+    margin-right: 5px;
+    padding: 0 3px;
+    border-radius: 3px;
+}
+.vacancy-content .-parttime{
+    background-color: rgb(250, 197, 99);
+    color: rgb(255, 77, 0);
+}
+.vacancy-content .-fulltime{
+    background-color: rgb(107, 247, 200);
+    color: green;
+}
+
+.fa-crown{
+    color: gold;
+    margin-right: 3px;
+}
+.vacancy-header .edit-btn,
+.vacancy-header .delete-btn{
+    width: 75px;
+}
+.vacancy-content .edit-btn,
+.vacancy-content .delete-btn{
+    flex-direction: row;
+    border: 0;
+    color: var(--white);
+    font-size: large;
+    width: 70px;
+    height: 30px;
+    margin: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.vacancy-content .delete-btn{
+    background-color: red;
+}
+.vacancy-content .edit-btn{
+    background-color: var(--yellow);
+}
+.vacancy-content .delete-btn:hover{
+    background-color: rgb(130, 0, 0);
+}
+.vacancy-content .edit-btn:hover{
+    background-color: rgb(112, 73, 1);
+}
+/* ===== 登出鍵 =====*/
+
+

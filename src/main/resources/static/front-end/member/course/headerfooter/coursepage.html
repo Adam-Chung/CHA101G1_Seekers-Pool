@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blank</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- jQuery -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <!-- 引入header、footer的JS -->
+    <script type="text/javascript" src="js/include.js"></script>
+
+    <style>
+        /* 基本樣式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* 橫幅廣告樣式 */
+        .banner {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+
+
+        /* 頁尾樣式 */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!--引入heaer頁面-->
+    <div id="header"></div>
+
+
+    <!--引入heaer頁面-->
+    <div class="list"></div>
+
+    <main>
+        <!--引入QandTop按鈕-->
+        <div id="QandTop"></div>
+        <main>
+            <section class="banner">
+                <img src="banner.jpg" alt="線上訓練課程">
+                <form action="https://www.example.com/search" method="get">
+                    <input type="text" name="q" placeholder="">
+                    <button type="submit">搜尋</button>
+                </form>
+            </section>
+
+            <section class="products">
+                <div class="product-item">
+                    <img src="product1.jpg" alt="課程圖片">
+                    <h3>課程名稱</h3>
+                    <p>課程描述</p>
+                    <button>加入購物車</button>
+                </div>
+                <!-- 其他商品項目... -->
+            </section>
+
+        </main>
+    </main>
+
+
+    <!--引入footer頁面-->
+    <div id="footer"></div>
+
+</body>
+
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blank</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/cc.css">
+    <!-- jQuery -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <!-- 引入header、footer的JS -->
+    <script type="text/javascript" src="js/include.js"></script>
+
+    <style>
+        /* 基本樣式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* 橫幅廣告樣式 */
+        .banner {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+
+
+        /* 頁尾樣式 */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!--引入header頁面-->
+    <div id="header"></div>
+
+    <!--引入list頁面-->
+    <div class="list"></div>
+
+
+
+    <main id="searchResults">
+        <section>
+            <form action="">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="請輸入關鍵字" aria-label="Recipient's username"
+                        aria-describedby="button-addon2">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">搜尋</button>
+                </div>
+            </form>
+        </section>
+
+        <!--引入QandTop按鈕-->
+        <div id="QandTop"></div>
+        <!-- 影片 -->
+        <div class="container" id="videocontainer">
+
+        </div>
+    </main>
+
+
+    <!--引入footer頁面-->
+    <div id="footer"></div>
+
+</body>
+<script>
+    function getParameter(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = location.search.substr(1).match(reg);
+        if (r != null) return (r[2]); return null;
+    }
+    //getall
+    $(function () {
+        $.ajax({
+            url: "/SeekerPool/GetAllCourseServlet",
+            method: "POST",
+            dataType: "JSON",
+            // async: false,//同步請求
+            // cache: false,//不快取頁面
+            success: function (res) {
+
+                $("div#videocontainer").append(`
+                    <div id="instrucions">
+                    <video id="my_video_1" class="video-js vjs-default-skin" width="640px" height="267px" controls
+                    preload="none" poster='${res[getParameter("onNo") - 1].onPic}'
+                    data-setup='{ "aspectRatio":"640:267", "playbackRates": [1, 1.5, 2] }'>
+                    <source src=" ${res[getParameter("onNo") - 1].onVideo}" type='video/mp4' />
+                    </video>
+                    </div>
+                    <div>
+                    <h2>${res[getParameter("onNo") - 1].onTitle}</h2>
+                    <p style="max-width:600px;max-height: 800px;" class="card-text">
+                        ${res[getParameter("onNo") - 1].onIndex}
+                    </p>
+                    </div >
+                        `)
+
+            }
+        })
+
+    })
+
+
+</script>
+
+
+</html>

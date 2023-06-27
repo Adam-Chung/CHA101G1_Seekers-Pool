@@ -1,0 +1,81 @@
+/*--------- 評價星等 ---------*/
+.rating {
+    margin-top: 50px;
+}
+
+.stars {
+    font-size: 24px;
+}
+
+.star {
+    color: #FFD700;
+    cursor: pointer;
+}
+
+.rating-info,
+.purchase-info {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.rating-count,
+.purchase-count {
+    font-weight: bold;
+}
+
+
+.product {
+    margin-bottom: 30px;
+}
+
+.product-inner {
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    padding: 10px;
+}
+
+.product img {
+    margin-bottom: 10px;
+}
+
+/* 付款方式
+form {
+    width: 400px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+h2 {
+    margin-top: 20px;
+}
+
+div {
+    margin-bottom: 10px;
+}
+
+label {
+    display: inline-block;
+    width: 150px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+    width: 200px;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+#bank-account {
+    display: none;
+}
+
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+} */

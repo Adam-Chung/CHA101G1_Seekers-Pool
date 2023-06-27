@@ -37,6 +37,9 @@ public class ServletContextListener implements javax.servlet.ServletContextListe
 	            Class<?> cls = Class.forName("com.mysql.cj.jdbc.AbandonedConnectionCleanupThread");
 	            Method method = cls.getMethod("checkedShutdown");
 	            method.invoke(null);
+	            
+	            
+	            
 	        } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
 	            e.printStackTrace();
 	        }

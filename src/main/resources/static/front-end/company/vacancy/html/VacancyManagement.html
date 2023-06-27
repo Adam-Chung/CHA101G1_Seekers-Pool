@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SEEKER'S POOL 招募管理</title>
+
+  <!-- 引入 Axios, Vue, css, jquery-->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="../js/vue.js"></script>
+  <link rel="stylesheet" href="../css/VacancyManagement.css" />
+  <script src="../js/jquery-3.4.1.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+<main class="app">
+  <!-- ======================= add-vacancy(新增職務) ====================== -->
+  <div class="add-vacancy -none" >
+    <div class="add-vacancy-container -none">
+
+      <div class="add-vacancy-title">
+        <h3>新增職務</h3>
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+
+        <form class="add-vacancy-form">
+          <div class="row row1">
+            <span>職務性質</span>
+            <input type="radio" name="job-type" id="fulltime-radio" value="0" v-model="vacancy.jobType" checked>
+            <label for="fulltime-radio">全職</label>
+
+            <input type="radio" name="job-type" id="parttime-radio" value="1" v-model="vacancy.jobType">
+            <label for="parttime-radio">兼職</label>
+
+          </div>
+          <div class="row row2">
+            <span>職務名稱</span> <!-- 用戶自己取 -->
+            <input type="text" id="job-title-input" v-model="vacancy.jobName" pattern="\S+" >
+          </div>
+          <div class="row row3">
+            <span>職務類別</span>
+            <select name="job-industry" id="job-industry" v-model="vacancy.ptNo">
+              <option disabled selected value="">請選擇產業類別</option>
+              <option v-for="type in uniqueTypes" :value="type">{{ type }}</option>
+            </select>
+
+            <!-- 使用了 :disabled="!selectedIndustry"，這表示當 selectedIndustry 為假值（例如 null 或空字符串）時，disabled 屬性會被設置為 true，從而禁用「職務類別」的 select 元素。當選擇了「產業類別」後，selectedIndustry 的值將變為真值，disabled 屬性將變為 false，用戶可以選擇「職務類別」。 -->
+            <select name="job-category" id="job-category" :disabled="!vacancy.ptNo" v-model="vacancy.ptName">
+              <option v-for="item in correspondingJobName" :value="item.ptName">{{ item.ptName }}</option>
+            </select>
+          </div>
+          <div class="row row4">
+            <span>上班地點</span>
+            <select name="cities" id="cities" v-model="vacancy.cityName">
+              <option disabled selected value="">請選擇縣市</option>
+              <option  v-for="item in citiesData" :value="item.cityName" >{{ item.cityName }}</option>
+            </select>
+
+            <!-- 使用了 :disabled="!selectedCity，這表示當 selectedCity 為假值（例如 null 或空字符串）時，disabled 屬性會被設置為 true，從而禁用「鄉鎮市區」的 select 元素。當選擇了「縣市」後，selectedCity 的值將變為真值，disabled 屬性將變為 false，用戶可以選擇「鄉鎮市區」。 -->
+            <select name="districts" id="districts" :disabled="!vacancy.cityName" v-model="vacancy.districtName">
+              <option v-for="item in correspondingDistrict" :value="item.districtName">{{ item.districtName }}</option>
+            </select>
+          </div>
+          <div class="row row6">
+            <span style="visibility: hidden">你看不見</span>
+            <input type="text" id="job-location-input" placeholder="例: 中山路123號" pattern="\S+" v-model="vacancy.jobAddress" >
+          </div>
+          <div class="row row5">
+            <span>工作內容</span>
+            <textarea name="job-description" id="job-description" maxlength="800" style="max-height: 250px; max-width: 80%; min-height: 100px; min-width: 80%;" v-model="vacancy.jobContent"></textarea>
+          </div>
+          <div class="row row9">
+            <span>其他條件</span>
+            <textarea name="other-requirements" id="other-requirements" maxlength="800" style="max-height: 250px; max-width: 80%; min-height: 100px; min-width: 80%;" v-model="vacancy.jobOther"></textarea>
+          </div>
+          <div class="row10">
+            <span>工作待遇</span>
+            <input type="text" id="salary-number" style="width: 100px;" pattern="\S+" v-model="vacancy.jobSalary" >元
+          </div>
+          <p class="reminder">*待提交後，平台方會盡速審核並上架!</p>
+          <div style="text-align: center;">
+            <button type="submit" class="submit-add-btn" v-on:click="submitAddForm()">新增</button>
+          </div>
+        </form>
+    </div>
+  </div>
+  <!-- ======================= add-vacancy(新增職務) 結束 ====================== -->
+
+  <!-- ======================================================================== -->
+
+    <div class="container">
+
+      <!-- ======================= side-bar(左邊欄位) ====================== -->
+      <div class="side-bar">
+        <div class="logo">
+          <div class="img">
+            <img src="../img/TSMC_logo.svg.png" alt="this is a logo" id="logoImg">
+          </div>
+          <h3 id="brand-name">台雞電股份有限公司</h3>
+        </div>
+        <menu>
+          <ul>
+            <li class="main-list center">
+              <a href="#" draggable="false"> <!--第一個-->
+                <i class="fa-solid fa-address-card"></i>會員中心
+                <div class="caret-icon">
+                  <i class="fa-solid fa-sort-down"></i>
+                </div>
+              </a>
+
+              <!-- ======================= sub-menu ====================== -->
+              <ul class="sub-menu collapse -none">
+                <li class="sub-list">
+                  <a href="#" draggable="false">會員資料管理</a>
+                </li>
+
+                <li class="sub-list">
+                  <a href="../html/VacancyManagement.html" draggable="false">職缺管理</a>
+                </li>
+
+                <li class="sub-list">
+                  <a href="#" draggable="false">應徵者管理</a>
+                </li>
+
+                <li class="sub-list">
+                  <a href="#" draggable="false">面試排程管理</a>
+                </li>
+
+                <li class="sub-list">
+                  <a href="#" draggable="false">聯絡訊息</a>
+                </li>
+
+                <li class="sub-list">
+                  <a href="#" draggable="false">徵才博覽會</a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="main-list talent-search">
+              <a href="../html/TalentSearch.html" draggable="false"> <!--第二個-->
+                <i class="fa-solid fa-user-tie"></i>人才查詢
+              </a>
+
+            </li>
+
+            <li class="main-list purchase">
+              <a href="#" draggable="false"> <!--第三個-->
+                <i class="fa-solid fa-cart-shopping"></i>購買
+                <div class="caret-icon">
+                  <i class="fa-solid fa-sort-down"></i>
+                </div>
+              </a>
+            </li>
+            <li class="main-list customer-service">
+              <a href="#" draggable="false"> <!--第四個-->
+                <i class="fa-solid fa-headset"></i>客服
+                <div class="caret-icon">
+                  <i class="fa-solid fa-sort-down"></i>
+                  <i id="-none" class="fa-solid fa-caret-up"></i>
+                </div>
+              </a>
+            </li>
+            <li class="main-list logout">
+              <a href="#" draggable="false"> <!--第五個-->
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>登出
+              </a>
+            </li>
+          </ul>
+        </menu>
+      </div>
+
+      <!-- ======================= main-content ====================== -->
+      <div class="main-content">
+
+        <!-- ======================= search bar ====================== -->
+        <div class="search">
+          <form @submit.prevent="search">
+            <input type="text"
+                   class="search-bar"
+                   @keyup.enter="search()"
+                   v-model.trim="keyword"
+                   placeholder="請輸入欲工作地點、技能搜尋人才">
+            <button type="submit" class="search-btn">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </form>
+        </div>
+
+        <!-- ============= vacancy management 職缺管理 ================= -->
+        <div class="vacancy-top">
+          <h3 class="vacancy-title">職缺總攬</h3>
+          <button class="add-vacancy-btn"><i class="fa-solid fa-plus"></i>新增職缺</button>
+          <a href="#" class="change-status-page">修改狀態</a>
+        </div>
+
+        <div class="all-vacancies-container">
+
+          <!-- ============= vacancy-header ================= -->
+          <div class="vacancy-header vacancy-list">
+            <span class="job-number"></span>
+            <span class="job-title">職務名稱</span>
+            <span class="on-post">刊登狀態</span>
+            <span class="on-top">置頂狀態</span>
+            <span class="edit-btn">編輯</span>
+            <span class="delete-btn">刪除</span>
+          </div>
+          <!-- ===================== vacancy-lists ========================== -->
+
+          <div class="vacancy-list" v-for="(item, index) in vacanciesData">
+            <div class="vacancy-content">
+              <span class="job-number">{{ index + 1 }}</span>
+
+              <span class="job-type -fulltime" v-if="item.jobType === 0">全</span>
+              <span class="job-type -parttime" v-if="item.jobType === 1">兼</span>
+
+              <span class="job-title"><a href="#">{{item.jobName}}</a></span>
+
+              <span class="job-date">{{item.createTime}}</span>
+
+              <span class="on-post" v-if="item.jobUpload === 0">已上架</span>
+              <span class="on-post" v-if="item.jobUpload === 1">未上架</span>
+
+              <span class="on-top" v-if="item.jobTop === 0">已置頂</span>
+              <span class="on-top" v-if="item.jobTop === 1">未置頂</span>
+
+              <button class="edit-btn" @click="editVacancy(item.jobNo)">編輯</button>
+              <button class="delete-btn" @click="deleteVacancy(item.jobNo)">刪除</button>
+            </div>
+          </div>
+
+          <!-- ======================= edit-vacancy(編輯職務) 開始 ====================== -->
+          <div class="edit-vacancy -none">
+            <div class="edit-vacancy-container -none">
+
+              <div class="edit-vacancy-title" >
+                <h3>編輯職務</h3>
+                <i class="fa-solid fa-xmark" @click="goBack()"></i>
+              </div>
+
+              <form class="edit-vacancy-form" v-for="edit in editData">
+                <div class="row row1">
+                  <span>職務性質</span>
+                  <input type="radio" name="job-type" id="fulltime-radio"  :value="0" v-bind:checked="edit.jobType ===0" v-model="editedVacancy.jobType">
+                  <label for="fulltime-radio">全職</label>
+                  <input type="radio" name="job-type" id="parttime-radio"  :value="1" v-bind:checked="edit.jobType ===1" v-model="editedVacancy.jobType">
+                  <label for="parttime-radio">兼職</label>
+                </div>
+                <div class="row row2">
+                  <span>職務名稱</span> <!-- 用戶自己取 -->
+                  <input type="text" id="job-title-input" pattern="\S+" v-model="editedVacancy.jobName">
+                </div>
+                <div class="row row3">
+                  <span>職務類別</span>
+
+                  <!--             可以給talentSearch參考       <span class="showPtType" v-for="pt in showInfo(edit.ptNo)">{{pt.ptType}}</span>-->
+<!--                    <span class="showPtType" v-for="pt in showInfo(edit.ptNo)">{{pt.ptName}}</span>-->
+
+                  <select name="job-industry" id="job-industry"  v-model="selectedIndustry">
+                    <option v-for="type in showInfo(edit.ptNo)" :label="type.ptType" hidden="hidden"></option>
+                    <option v-for="type in uniqueTypes" :value="type" :label="type">{{type}}</option> <!--watch抓的值是:value裡的值-->
+                  </select>
+                  <select name="job-category" id="job-category" v-model="selectedName">
+                    <option v-for="type in showInfo(edit.ptNo)" :value="msg1"  :label="type.ptName" hidden="hidden"></option>
+                    <option v-for="item in correspondingJobName"  :label="item.ptName">{{item.ptName}}</option>
+                  </select>
+                </div>
+
+                <div class="row row4">
+                  <span>上班地點</span>
+                  <select name="cities" id="cities" v-model="editedVacancy.cityName">
+                    <option :label="edit.cityName" hidden="hidden"></option>
+                    <option v-for="item in citiesData" :value="item.cityName">{{ item.cityName }}</option> //watch抓的值是:value裡的值
+                  </select>
+                  <select name="districts" id="districts"  v-model="editedVacancy.districtName">
+                    <option :label="edit.districtName" :value="msg2" hidden="hidden"></option>
+                    <option v-for="item in correspondingDistrict" :label="item.districtName">{{item.districtName}}</option>
+                  </select>
+                </div>
+
+                <div class="row row6">
+                  <span style="visibility: hidden">你看不見</span>
+                  <input type="text" id="job-location-input" placeholder="例: 中山路123號" pattern="\S+" v-model="editedVacancy.jobAddress">
+                </div>
+                <div class="row row5">
+                  <span>工作內容</span>
+                  <textarea name="job-description" id="job-description" maxlength="800" style="max-height: 250px; max-width: 80%; min-height: 100px; min-width: 80%;"  v-model="editedVacancy.jobContent"></textarea>
+                </div>
+                <div class="row row9">
+                  <span>其他條件</span>
+                  <textarea name="other-requirements" id="other-requirements" maxlength="800" style="max-height: 250px; max-width: 80%; min-height: 100px; min-width: 80%;"  v-model="editedVacancy.jobOther"></textarea>
+                </div>
+                <div class="row10">
+                  <span>工作待遇</span>
+                  <input type="text" id="salary-number" style="width: 100px;" pattern="\S+" v-model="editedVacancy.jobSalary">元
+                </div>
+                <p class="reminder">沒事的</p>
+                <div style="text-align: center;">
+                  <button type="submit" class="submit-edit-btn" v-on:click="submitEditForm()">保存</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <!-- ======================= edit-vacancy(編輯職務) 結束 ====================== -->
+        </div>
+        <!-- ============= vacancy management 職缺管理結束 ================= -->
+      </div>
+
+    </div>
+</main>
+<script>
+
+  // ===================================================================================
+  // 左邊欄位打開闔起動畫 (ok)
+  $("ul").on("click", ".main-list", function () {
+    $(this).closest(".main-list").find(".sub-menu").slideToggle(400 , function(){
+      $(this).closest(".main-list").find(".sub-menu").toggleClass("-none")
+    });
+  });
+
+  // ========================== 變數 =========================
+  var $addVacancy = $(".add-vacancy");
+  var $addVacancyContainer = $(".add-vacancy-container");
+  var $addVacancyBtn = $(".vacancy-top .add-vacancy-btn");
+  var $editVacancy = $(".edit-vacancy");
+  var $editVacancyContainer = $(".edit-vacancy-container");
+  var $xMark = $(".fa-xmark");
+  var $submitAddBtn = $(".submit-add-btn")
+
+  // 彈出新增職缺表單 (ok)
+  $addVacancyBtn.on("click", function(){
+
+    popUp($addVacancy, $addVacancyContainer);
+  })
+  // // 彈出編輯職缺表單 (ok)
+  // $editVacancyBtn.on("click", function(){
+  //   popUp($editVacancy, $editVacancyContainer);
+  // })
+
+  function popUp(item1, item2){   //popUp 方法
+    item1.removeClass("-none");
+    item2.removeClass("-none");
+    item1.css({ zIndex: 1 });
+  }
+
+  //  退出清單(x鍵、新增鍵) (ok)
+  $xMark.on("click", function(){
+    goBack($addVacancy);
+    goBack($editVacancy);
+  })
+  $submitAddBtn.on("click", function(){
+    goBack($addVacancy);
+  })
+  function goBack(item1){   //goBack 方法
+    item1.addClass("-none");
+  }
+
+  $(document).ready(function() {
+    $(document).on('click', ".edit-btn", function(){
+      var $editVacancy = $("main .edit-vacancy:eq(0)"); // 替换 ".parent" 和 ".child" 为实际的父层和子层选择器，0 表示第一个 <div> 元素
+      var $editVacancyContainer = $("main .edit-vacancy-container:eq(0)"); // 替换 ".parent" 和 ".child" 为实际的父层和子层选择器，0 表示第一个 <div> 元素
+
+      $editVacancy.removeClass("-none");
+      $editVacancyContainer.removeClass("-none");
+      $editVacancy.css({ zIndex: 1 });
+    });
+
+  });
+
+
+</script>
+<!--================== vue =====================-->
+<script src="../vue/ShowAllVacancies.vue.js"></script>
+<script src="../vue/AddVacancyForm.vue.js"></script>
+<script src="../vue/KeywordSearch.vue.js"></script>
+</body>
+</html>

@@ -1,0 +1,578 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+:root{ 
+    --navyblue: rgb(72, 76, 127);
+    --skyblue: #93BFCF;
+    --yellow:rgb(252, 146, 54);
+    --white:rgb(252, 245, 237);
+}
+/* ======================== body ============================ */
+body{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+main{
+    position: relative;
+    
+}
+/* ======================== container ======================= */
+.container{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    min-height: 100%;
+    padding: 10px;
+    background-color: white;
+}
+
+/* ======================== side-bar ======================= */
+.side-bar{
+    position: sticky;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--navyblue);
+    width: 20%;
+    height: 95vh;
+    color: var(--white);
+    border-radius: 10px;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+  }
+
+::-webkit-scrollbar-button {
+    background: transparent;
+    border-radius: 4px;
+  }
+
+::-webkit-scrollbar-track-piece {
+    background: transparent;
+  }
+
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(46, 46, 46, 0.4);
+  }
+
+::-webkit-scrollbar-track {
+    box-shadow: transparent;
+  }
+  
+.side-bar .logo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px auto;
+    width: 100%;
+    padding: 5%;
+}
+
+.side-bar .img{
+    border-radius: 50%;
+    width: 55%;
+    aspect-ratio: 1;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+.side-bar img{
+    object-fit: contain;
+    max-width: 100%;  
+}
+
+/* ======================== menu(main-list) ======================= */
+menu{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+menu ul{
+    height: 100%;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+menu ul li{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    list-style: none;
+    padding: 2% 3%;
+}
+
+menu ul li i{
+    cursor: pointer;
+}
+
+menu ul li a{
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 5px 10px;
+}
+
+.caret-icon{
+margin-left: auto;
+align-self: first baseline;
+}
+
+menu ul li a:visited{
+    color: var(--white);
+}
+menu ul li a:hover{
+    color: var(--yellow);
+}
+
+.center, .talent-search{
+    margin-left: 3px;
+}
+.main-list a{
+    color: var(--white);
+}
+/* ======================== menu(sub-list) ======================= */
+.sub-list{
+    padding: 0px;
+}
+
+/* ======================== -on ============================== */
+.-on, .-on:visited {
+    color: var(--white);
+    background-color: var(--yellow);
+    border-radius: 4px;
+}
+
+/* ======================== -none ============================== */
+.-none{
+    display: none;
+}
+#-none{
+    display: none;
+}
+
+/* ======================== main-content ======================= */
+.main-content{
+    width: 80%;
+    padding: 0px 2%;
+    border-radius: 5px;
+    background-color: aliceblue;
+}
+
+/* ======================== talent-search ======================= */
+
+form{
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+    width: 70%;
+}    
+
+form h1{
+    margin: 20px 0px;
+}
+form .list{
+    position: relative;
+    font-size: x-large;
+    font-weight: 600;
+}
+form .list i{
+    color: var(--yellow);
+    margin-left: -50px;
+    cursor: pointer;
+}
+form .list .keyword{
+    margin-right: 25px;
+}
+form input{
+    border: transparent;
+    outline: transparent; 
+    background-color: rgb(224, 224, 224);
+    font-size: medium;
+    width: 70%;
+    padding: 9px;
+    margin: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+form input:focus{
+    border: 2px solid var(--yellow);
+    background-color: var(--white);
+}
+
+.talent-search-btn{
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 140px;
+    height: 35px;
+    border: 0;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: var(--white);
+    background-color: var(--yellow);
+    cursor: pointer;
+}  
+.talent-search-btn:hover{
+    background-color: var(--yellow);
+    color: white;
+    filter:brightness(0.7);
+}
+.talent-search-btn a,
+.talent-search-btn a:visited{
+    color: var(--white);
+}
+
+/* ================================================================== */
+/* ======================== job-category-list ======================= */
+/* ================================================================== */
+.job-category-list{
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    letter-spacing: 1px;
+    background-color: hsla(0, 0%, 0%, .5);
+}
+
+.job-category-container{
+    position:absolute;
+    height: 85%;
+    width: 60%;
+    margin: 20px auto;
+    list-style: none;
+    background-color: var(--white);
+    border: 14px solid var(--white);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgb(132, 130, 130);
+}
+
+.job-category-container i{
+    color: rgb(69, 68, 68);
+}
+
+/* ======================== job-category-title ======================= */
+.job-category-title{
+    position: relative;
+    display: flex;
+    height: 8%;
+    justify-content: center;
+}
+.job-category-title h3{
+    padding: 5px;
+    font-size: x-large;
+}
+.job-category-title .fa-xmark{
+    position: absolute;
+    font-size: large;
+    right: 0;
+    padding: 7px 10px 7px 7px;
+    cursor: pointer;
+}   
+.chosen-category-list{
+    padding:20px 15px;
+    flex-wrap: wrap;
+}
+
+.chosen-category-list .chosen-count{
+    margin-right: 15px;
+    font-weight: 600;
+    font-size: larger;
+}
+.chosen-list-on-input,
+.chosen-list{
+    padding: 5px;
+    font-size: 1rem;
+    color: var(--white);
+    background-color: var(--yellow);
+    border-radius: 4px;
+    margin: 0px 3px;
+    cursor: pointer;
+}
+.chosen-list-on-input .fa-xmark,
+.chosen-list .fa-xmark{
+    margin-left: 5px;
+}
+/* 下面是動態生成的chosen-job-list tags */
+/* .chosen-list-on-input{
+   position: absolute;
+   top: 10px;
+   left: 120px;
+} */
+
+
+
+.first-chosen-list label,
+.second-chosen-list label{
+    width: 100%;
+    cursor: pointer;
+}
+
+/* ============= first-layer =============== */
+.first-chosen-list{
+    position: sticky;
+    top: 0;
+    background-color: rgb(141, 141, 141);
+    font-weight: 600;
+    z-index: 22;
+}
+.first-chosen-list label,
+.second-chosen-list label{
+    padding: 10px;
+}
+.first-chosen-list .chosen-list-content{
+    color: var(--white);
+}
+
+/* ============= second-layer =============== */
+.second-chosen-list{
+    color: rgb(59, 59, 59);
+}
+
+.second-chosen-list .caret-icon i{
+    padding:  0px 10px;
+    margin-right: -5px;
+    font-size: 1.5rem;
+    color: var(--yellow);
+}
+
+.all-countries-list input[type="checkbox"]{
+    display: none;
+}
+
+input[type="checkbox"] {
+    accent-color:var(--yellow);
+    transform: scale(1.3);
+    margin-right: 5px;
+    }
+
+/* ======================== job-list -chosen(動態生成的標籤) ======================= */
+.-chosen{
+    background-color: white !important;
+    color: var(--yellow) !important; 
+}
+/* ========================== 職務類別選單結束 ============================== */
+
+/* ========================== 地區類別選單 ============================== */
+.country-category-list{
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    letter-spacing: 1px;
+    background-color: hsla(0, 0%, 0%, .5);
+}
+
+.country-category-container{
+    position:absolute;
+    height: 85%;
+    width: 60%;
+    margin: 20px auto;
+    list-style: none;
+    background-color: var(--white);
+    border: 14px solid var(--white);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgb(132, 130, 130);
+}
+
+.country-category-container i{
+    color: rgb(69, 68, 68);
+}
+
+/* ======================== country-category-title ======================= */
+.country-category-title{
+    position: relative;
+    display: flex;
+    height: 8%;
+    justify-content: center;
+}
+.country-category-title h3{
+    padding: 5px;
+    font-size: x-large;
+}
+.country-category-title .fa-xmark{
+    position: absolute;
+    font-size: large;
+    right: 0;
+    padding: 7px 10px 7px 7px;
+    cursor: pointer;
+}   
+.chosen-category-list{
+    padding:20px 15px;
+    flex-wrap: wrap;
+}
+
+.chosen-category-list .chosen-count{
+    margin-right: 15px;
+    font-weight: 600;
+    font-size: larger;
+}
+.chosen-list-on-input,
+.chosen-list{
+    padding: 5px;
+    font-size: 1rem;
+    color: var(--white);
+    background-color: var(--yellow);
+    border-radius: 4px;
+    margin: 0px 3px;
+    cursor: pointer;
+}
+.chosen-list-on-input .fa-xmark,
+.chosen-list .fa-xmark{
+    margin-left: 5px;
+}
+
+/* 下面是動態生成的chosen-country-list tags */
+/* .chosen-list-on-input{
+   position: absolute;
+   top: 10px;
+   left: 120px;
+} */
+
+/* ======================== country-category-body ======================= */
+.country-category-body{
+    display: flex;
+    flex-direction: row;
+    height: 65%;
+    font-weight: 600;
+}
+
+/* ======================== country-category-left-side ======================= */
+.country-category-left-side{
+    position: relative;
+    height: 100%;
+    width: 50%;
+}
+
+.taiwan-title{
+    display: flex;
+    padding: 10px;
+    width: 100%;
+    font-size: larger;
+    letter-spacing: 5px;
+    background-color: gray;
+}
+
+.all-countries-list{
+    overflow-y: scroll;
+    height: calc(100% - 45px);
+}
+.country-category-left-side .country-list{
+    position: relative;
+    display: flex;
+    padding: 10px;
+    width: 100%;
+    color: rgb(59, 59, 59);
+    background-color: rgb(232, 232, 232);
+    border: 1px solid rgb(186, 186, 186);
+    border-right: 0;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.country-category-left-side .country-list:hover,
+.country-category-right-side label:hover{
+    color:rgb(255, 255, 255);
+    background-color: rgb(251, 195, 92);
+}
+.country-category-left-side .country-list span{
+    margin-left: 10px;
+}
+.country-category-left-side .country-list i{
+    position: absolute;
+    display: grid;
+    place-items: center;
+    top: 0px;
+    right: 0px;
+    width: 50px;
+    height: 100%;
+    border-left: 0;
+    color: var(--yellow);
+}
+.country-category-left-side .country-list i:active{
+    background-color: rgba(141, 140, 140, 0.977);
+}
+
+/* ======================== country-category-right-side ======================= */
+.country-category-right-side{
+    position: relative;
+    width: 50%;
+    cursor: pointer;
+    border: 1px rgb(141, 141, 141) solid;
+    overflow-y:scroll;
+}
+/* ============= first-second-third-layer =============== */
+.country-category-right-side .first-chosen-list{
+    font-size: larger;
+}
+.country-category-right-side .first-chosen-list, 
+.country-category-right-side .second-chosen-list{
+    display: flex;
+    flex-direction: column;
+}
+
+/* ============= first-layer =============== */
+.country-category-right-side .first-chosen-list{
+    position: sticky;
+    top: 0;
+    background-color: var(--yellow);
+    font-weight: 600;
+}
+.first-chosen-list .chosen-list-content{
+    color: var(--white);
+}
+
+/* ============= second-layer =============== */
+.second-chosen-list label{
+    padding-left: 25px;
+    border-bottom: 1px solid var(--yellow);
+}
+.second-chosen-list .caret-icon i{
+    padding:  0px 10px;
+    margin-right: -5px;
+    font-size: 1.5rem;
+    color: var(--yellow);
+}
+  
+/* ======================== job-category-buttom ======================= */
+.country-category-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.country-category-button .country-category-btn{
+    margin-top: 15px;
+    padding: 8px 40px;
+    border-radius: 4px;
+    border: none;
+    color: var(--white);
+    background-color: var(--yellow);
+    cursor: pointer;
+}
+/* ======================== job-list -chosen(動態生成的標籤) ======================= */
+.country-category-left-side .-chosen{
+    background-color: white;
+    color: var(--yellow);
+}
+/* ========================== 地區類別選單結束 ============================== */
+
+/* ===== 登出鍵 =====*/
+
+

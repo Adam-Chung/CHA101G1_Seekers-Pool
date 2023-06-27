@@ -1,0 +1,417 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+:root{ 
+    --navyblue: rgb(72, 76, 127);
+    --skyblue: #93BFCF;
+    --yellow:rgb(252, 146, 54);
+    --white:rgb(252, 245, 237);
+}
+/* ======================== body ============================ */
+body{
+    position: relative;
+    width: 100vw;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+/* ======================== talent-bio (人才履歷) ============================== */
+.talent-bio{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    z-index: 3;
+    background-color: rgba(0, 0, 0, 0.603);
+}
+
+.talent-bio-container{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height: auto;
+    border-radius: 3px;
+    color: rgb(53, 53, 53);
+    background-color: rgb(244, 247, 248);
+    border: 2px solid rgb(82, 201, 252);
+    padding: 25px;
+    line-height: 1.5rem;
+    letter-spacing: 2px;
+}
+
+.talent-bio-container > div{
+    margin-left: 2%;
+    padding: 30px 10px;
+}
+.talent-bio-container > div:not(:last-child){
+    border-bottom: 2px rgb(53, 222, 234) solid;
+}
+.talent-bio-container h3{
+    font-size: x-large;
+    margin: 0 0 2% -2%;
+}
+
+/* ====== 第一層 ====== */
+.bio-info{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    font-weight: 600;
+    justify-content: space-between;
+    padding: 30px 10px;
+    border-bottom: 2px rgb(53, 222, 234) solid; 
+}
+
+.bio-background{
+    display: flex;
+    flex-direction: column;
+    margin-left: 2%;
+}
+
+.bio-background h2{
+    font-size: x-large;
+    margin: 0 0 2% -10%;
+}
+
+.bio-background span{
+    line-height: 2rem;
+}
+
+.bio-background span i{
+    color:rgb(82, 201, 252) ;
+    margin-right: 5px;
+}
+
+.bio-info .bio-img{
+    max-width: 20%;
+    margin: 2%;
+}
+
+.bio-img img{
+    object-fit: contain;
+    border-radius: 8px;
+    max-width: 100%;
+}
+
+.bio-info > i{
+    position: absolute;
+    right: 0;
+    top: -10px;
+    font-size: larger;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    padding: 7px;
+}
+
+.bio-info > i:hover{   
+    background-color: rgb(138, 220, 255);
+}
+
+/* ====== 第四層 ====== */
+.bio-autobiography .bio-content{
+    text-indent: 2rem;
+    text-align: justify;
+}
+
+
+/* ======================== container ======================= */
+.container{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    min-height: 100%;
+    padding: 10px;
+    background-color: white;
+}
+
+/* ======================== side-bar ======================= */
+.side-bar{
+    position: sticky;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--navyblue);
+    width: 20%;
+    height: 95vh;
+    color: var(--white);
+    border-radius: 10px;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+  }
+
+::-webkit-scrollbar-button {
+    background: transparent;
+    border-radius: 4px;
+  }
+
+::-webkit-scrollbar-track-piece {
+    background: transparent;
+  }
+
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(46, 46, 46, 0.4);
+  }
+
+::-webkit-scrollbar-track {
+    box-shadow: transparent;
+  }
+.side-bar .logo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px auto;
+    width: 100%;
+    padding: 5%;
+}
+.side-bar .img{
+    border-radius: 50%;
+    width: 55%;
+    aspect-ratio: 1;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+.side-bar img{
+    object-fit: contain;
+    max-width: 100%;  
+}
+
+/* ======================== menu(main-list) ======================= */
+menu{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+menu ul{
+    height: 100%;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+menu ul li.main-list,
+menu ul li ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    list-style: none;
+    padding: 2% 3%;
+}
+
+menu ul li.main-list i{
+    cursor: pointer;
+}
+
+menu ul li.main-list a{
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 5px 10px;
+}
+
+.caret-icon{
+margin-left: auto;
+align-self: first baseline;
+}
+
+menu ul li a:visited{
+    color: var(--white);
+}
+menu ul li a:hover{
+    color: var(--yellow);
+}
+
+.main-list a{
+    color: var(--white);
+}
+/* ======================== -none ============================== */
+.-none{
+    display: none;
+}
+#-none{
+    display: none;
+}
+
+/* ======================== main-content ======================= */
+.main-content{
+    position: relative;
+    width: 80%;
+    padding: 0 2%;
+}
+
+/* ======================== search ======================= */
+.search{
+    position: relative;
+    width: 50%;
+    border-radius: 5px;
+}
+.search-bar{
+    border: transparent;
+    background-color: rgb(230, 229, 229);
+    width: 100%;
+    height: 40px;
+    padding: 0 10px;
+    outline: transparent;
+    border-radius: 5px;
+    font-size: large;
+}
+.search-btn{
+   position: absolute;
+   border: 0;
+   width: 13%;
+   height: 40px;
+   right: 0;
+   background-color: rgb(230, 229, 229);
+   border-radius: 0 5px 5px 0;
+   font-size: large;
+   cursor: pointer;
+}
+.search-btn i{
+    color: var(--yellow);
+}
+
+.search-btn:hover,
+.search-btn i:hover{
+    color: var(--yellow);
+    background-color: #b2b2b2;
+}
+/* ======================== talent-number(搜尋出來的人才人數) ======================= */
+.talent-number{
+    display: flex;
+    flex-direction: row;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding-top: 15px;
+}
+/* ======================== talent-list-container(搜尋出來的人才清單) ======================= */
+.talent-list-container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+}
+.talent-list{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    margin-top: 20px;
+    width: 90%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px rgba(99, 98, 98, 0.546);
+    background-color: rgb(238, 238, 238);
+    z-index: 1;
+}
+.talent-list .talent-img{
+    display: flex;
+    margin: auto 0;
+    width: 20%;
+    aspect-ratio: 1;
+    font-size: 0;
+    border-radius: 10px;
+}
+.talent-list .talent-img img{
+    border-radius: 7px;
+}
+
+.talent-full-info{
+    margin-left: -150px;
+}
+.talent-info-top{
+    margin-left: -22px;    
+}
+.talent-name{
+    font-size: large;
+    line-height: 30px;
+    padding: 3px 15px;
+    margin-right: 5px;
+    border-radius: 20px;
+    color: white;
+    background-color: var(--navyblue);
+}
+
+.gender{
+    display: inline-block;
+    padding: 1px 2px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.man{
+    color: darkblue;
+    background-color: rgba(153, 153, 252, 0.29);
+}
+
+.woman{
+    color: mediumvioletred;
+    background-color: rgba(255, 117, 190, 0.59);
+}
+
+.department{
+    margin-left: 5px;
+}
+
+.talent-info-bottom{
+    display: flex;
+    flex-direction: column;
+    line-height: 30px;
+    padding-top: 10px;
+    font-weight: bold;
+    list-style: none;
+}
+
+.talent-info-bottom li span{
+    background-color: cornflowerblue;
+    color: white;
+    border-radius: 5px;
+    padding: 1px 7px;
+}
+
+.talent-btn-container{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+}
+.talent-btn-container i{
+    margin-right: 5px;
+}
+
+.check-bio-btn,
+.interview-invitation-btn{
+    padding: 8px 16px;
+    margin-right: 20px;
+    border: none;
+    font-weight: 600;
+    color: var(--white);
+    background-color: var(--yellow);
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.check-bio-btn:hover,
+.interview-invitation-btn:hover{
+    background-color: rgb(97, 59, 28);
+}
+
+.interview-invitation-btn i,
+.check-bio-btn i{
+    color: var(--white);
+}
+
+/* ===== 登出鍵 =====*/

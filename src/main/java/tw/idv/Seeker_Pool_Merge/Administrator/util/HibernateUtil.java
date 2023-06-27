@@ -6,13 +6,13 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-public class HibernateUtil {
+public class HibernateUtil { 
 
 	private static StandardServiceRegistry registry;
 	private static SessionFactory sessionFactory;
 
 	private static void buildSessionFactory() {
-		
+
 		try {
 			registry = new StandardServiceRegistryBuilder().configure().build();
 			MetadataSources metadataSource = new MetadataSources(registry);
@@ -22,17 +22,17 @@ public class HibernateUtil {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static SessionFactory getSessionFactory() {
-		if(sessionFactory==null) {
+		if (sessionFactory == null) {
 			buildSessionFactory();
 		}
 		return sessionFactory;
 	}
-	
+
 	public static void shutdown() {
-		if(registry!=null) {
-		StandardServiceRegistryBuilder.destroy(registry);	
+		if (registry != null) {
+			StandardServiceRegistryBuilder.destroy(registry);
 		}
 	}
 }

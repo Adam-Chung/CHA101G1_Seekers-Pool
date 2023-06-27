@@ -1,0 +1,60 @@
+/* 課程商品列表樣式 */
+.course-list {
+    padding: 40px 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 10px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.course-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.add-to-cart {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-to-cart:hover {
+    background-color: #0056b3;
+}
+
+/* 響應式設定 */
+@media (max-width: 767px) {
+
+    .table th,
+    .table td {
+        padding: 6px;
+        width: 20%;
+    }
+
+    .course-image {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+/* 顯示搜尋結果樣式 */
+#searchResults {
+    margin-top: 20px;
+}
