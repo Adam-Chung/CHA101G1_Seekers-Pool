@@ -1,0 +1,78 @@
+<!-- ==================================== list ============================================= -->
+
+<div class="list-left-side">
+  <li class="list-item">
+    <a href="#">最新消息</a>
+  </li>
+  <li class="list-item">
+    <a href="#">就業博覽會</a>
+  </li>
+  <li class="list-item">
+    <a href="#">電子報</a>
+  </li>
+  <li class="list-item">
+    <a href="#"
+      >地圖找工作<i
+        class="fa-solid fa-map-location-dot"
+        style="margin-left: 0.2rem"
+      ></i
+    ></a>
+  </li>
+</div>
+<div class="search">
+  <input type="text" placeholder="請輸入公司、職缺名" class="search-input" />
+  <button type="submit" class="search-btn">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+</div>
+<div class="list-right-side">
+  <li class="list-item username">
+    <a href="#"><span>XXX 先生/小姐</span></a>
+  </li>
+  <li class="list-item logout">
+    <a href="#">登出</a>
+  </li>
+</div>
+
+<script>
+  var list = document.querySelector(".list");
+  var input = document.querySelector(".search");
+  window.addEventListener("scroll", function () {
+    // 獲取list相對於頁面頂部的偏移量
+    var listOffset = list.getBoundingClientRect().top;
+
+    // 如果list的偏移量小於等於0，說明他已經停留在頁面頂部
+    if (listOffset <= 0) {
+      input.style.display = "block"; // 顯示輸入框
+      list.style.height = "3.5rem";
+      list.style.background =
+        "linear-gradient(to right, rgb(12, 84, 117) , var(--navyblue))";
+    } else {
+      input.style.display = "none"; // 隱藏輸入框
+      list.style.height = "2.5rem";
+      list.style.background = "rgb(255, 141, 41)";
+      var list_a = document.querySelectorAll(".list-item a");
+      list_a.forEach(function (e) {
+        e.style.color = "rgb(253, 243, 231)"; // 重置颜色
+      });
+    }
+  });
+
+  var list_a = document.querySelectorAll(".list-item a");
+  list_a.forEach(function (e) {
+    e.addEventListener("mouseover", function () {
+      if (list.getBoundingClientRect().top <= 0) {
+        this.style.color = "rgb(255, 141, 41)";
+      } else {
+        this.style.color = "#2c7095";
+      }
+    });
+    e.addEventListener("mouseout", function () {
+      if (list.getBoundingClientRect().top <= 0) {
+        this.style.color = "rgb(253, 243, 231)";
+      } else {
+        this.style.color = "rgb(253, 243, 231)";
+      }
+    });
+  });
+</script>

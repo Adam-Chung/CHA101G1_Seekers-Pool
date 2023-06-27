@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Seeker's Pool</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="./img/handshake-regular.svg" rel="icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="./packageCSS/bootstrap.min.css" rel="stylesheet">
+    <link href="./packageCSS/bootstrap-icons.css" rel="stylesheet">
+    <link href="./packageCSS/boxicons.min.css" rel="stylesheet">
+    <link href="./packageCSS/quill.snow.css" rel="stylesheet">
+    <link href="./packageCSS/quill.bubble.css" rel="stylesheet">
+    <link href="./packageCSS/remixicon.css" rel="stylesheet">
+    <link href="./packageCSS/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="./css/Employee.css" rel="stylesheet">
+
+    <!-- Font Awesome-->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> -->
+    <script src="https://kit.fontawesome.com/244879c400.js" crossorigin="anonymous"></script>
+
+
+    <style>
+        .add {
+            border-radius: 0.375rem !important;
+
+        }
+
+        .add-block {
+            width: 200px;
+        }
+
+        td {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========================== Header ================================ -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+
+        <div class="d-flex flex-row align-items-center justify-content-between" style="margin-bottom: -10px;">
+            <a href="Employee.html" class="logo d-flex align-items-center">
+                <img src="./img/handshake-regular.svg" alt="" style="margin-right: 10px;">
+                <span class="d-none d-lg-block">
+                    <h5 style="margin-bottom: 0px;"><a href="Employee.html">Seeker's P<i
+                                class="fa-regular fa-face-smile"></i><i class="fa-regular fa-face-smile"></i>L
+                        </a></h5>
+                </span>
+            </a>
+            <img src="./img/bars-solid.svg" class="toggle-sidebar-btn" alt="">
+        </div>
+        <!-- End Logo -->
+
+        <div class="search-bar">
+            <form class="search-form d-flex align-items-center" method="POST" action="#">
+                <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                <button type="submit" title="Search"><img src="./img/magnifying-glass-solid.svg" alt=""></button>
+            </form>
+        </div>
+        <!-- End Search Bar -->
+
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+                <li class="nav-item d-block d-lg-none">
+                    <a class="nav-link nav-icon search-bar-toggle " href="#">
+                        <i class="bi bi-search"></i>
+                    </a>
+                </li>
+                <!-- End Search Icon-->
+
+                <li class="nav-item dropdown pe-3">
+
+                    <a class="profile-photo nav-profile d-flex align-items-center pe-0" href="#"
+                        data-bs-toggle="dropdown">
+                        <img src="./img/happy-quokka.jpg" alt="Profile" class="rounded-circle">
+                        <span class="d-none d-md-block dropdown-toggle ps-2">Kelsey Lin</span>
+                    </a>
+                    <!-- End Profile Iamge Icon -->
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li class="dropdown-header">
+                            <h6>Kelsey Lin</h6>
+                            <span>Backend Engineer</span>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                                <i class="bi bi-person"></i>
+                                <span>My Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                                <i class="bi bi-gear"></i>
+                                <span>Account Settings</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                                <i class="bi bi-question-circle"></i>
+                                <span>Need Help?</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Sign Out</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                    <!-- End Profile Dropdown Items -->
+                </li>
+                <!-- End Profile Nav -->
+            </ul>
+        </nav>
+        <!-- End Icons Navigation -->
+    </header>
+    <!-- End Header -->
+
+    <!-- ========================= Sidebar ============================== -->
+    <aside id="sidebar" class="sidebar">
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+            <li class="nav-item">
+                <a class="nav-link " href="Employee.html">
+                    <img src="./img/house-solid.svg" alt="">
+                    <span>Home</span>
+                </a>
+            </li>
+            <!-- End Dashboard Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#administrator-nav" data-bs-toggle="collapse" href="#">
+                    <img src="./img/user-regular.svg" alt=""><span>員工管理</span><img src="./img/angle-down-solid.svg"
+                        class="angle-down-solid ms-auto" alt="">
+                </a>
+                <ul id="administrator-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="./Administrator1.html">
+                            <img src="./img/circle-regular.svg" alt=""><span>員工資料管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./Administrator2.html">
+                            <img src="./img/circle-regular.svg" alt=""><span>員工權限管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./Administrator3.html">
+                            <img src="./img/circle-regular.svg" alt=""><span>講師權限管理</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- End 員工管理 Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#member-nav" data-bs-toggle="collapse" href="#">
+                    <img src="./img/address-card-regular.svg" alt=""><span>會員管理</span><img
+                        src="./img/angle-down-solid.svg" class="angle-down-solid ms-auto" alt="">
+                </a>
+                <ul id="member-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="#">
+                            <img src="./img/circle-regular.svg" alt=""><span>一般會員管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="./img/circle-regular.svg" alt=""><span>企業會員管理</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- End 會員管理 Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#lecturer-nav" data-bs-toggle="collapse" href="#">
+                    <img src="./img/user-tie-solid.svg" alt=""><span>講師專區</span><img src="./img/angle-down-solid.svg"
+                        class="angle-down-solid ms-auto" alt="">
+                </a>
+                <ul id="lecturer-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="#">
+                            <img src="./img/circle-regular.svg" alt=""><span>講師總覽</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="./img/circle-regular.svg" alt=""><span>留言區回覆</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- End 講師專區 Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#job-nav" data-bs-toggle="collapse" href="#">
+                    <img src="./img/briefcase-solid.svg" alt=""></i><span>職缺管理</span><img
+                        src="./img/angle-down-solid.svg" class="angle-down-solid ms-auto" alt="">
+                </a>
+                <ul id="job-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="./job_type.html">
+                            <img src="./img/circle-regular.svg" alt=""><span>職務規格維護</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./job_indstry.html">
+                            <img src="./img/circle-regular.svg" alt=""><span>行業類別維護</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./job_skill.html">
+                            <img src="./img/circle-regular.svg" alt=""><span>技能規格維護</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./job_report.html">
+                            <img src="./img/circle-regular.svg" alt=""><span>審核管理</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- End 職缺管理 Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#job-case-nav" data-bs-toggle="collapse" href="#">
+                    <img src="./img/rectangle-ad-solid.svg" alt=""><span>職缺刊登方案管理</span><img
+                        src="./img/angle-down-solid.svg" class="angle-down-solid ms-auto" alt="">
+                </a>
+                <ul id="job-case-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="./JobCase.html">
+                            <img src="./img/circle-regular.svg" alt=""><span>職缺刊登方案</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- End 職缺刊登方案管理 Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#online-course-nav" data-bs-toggle="collapse" href="#">
+                    <img src="./img/circle-play-regular.svg" alt=""></i><span>線上訓練課程管理</span><img
+                        src="./img/angle-down-solid.svg" class="angle-down-solid ms-auto" alt="">
+                </a>
+                <ul id="online-course-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="#">
+                            <img src="./img/circle-regular.svg" alt=""><span>線上課程管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="./img/circle-regular.svg" alt=""><span>課程訂單管理</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- End 線上訓練課程管理 Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#job-fair-nav" data-bs-toggle="collapse" href="#">
+                    <img src="./img/lightbulb-regular.svg" alt=""></i><span>徵才博覽會管理</span><img
+                        src="./img/angle-down-solid.svg" class="angle-down-solid ms-auto" alt="">
+                </a>
+                <ul id="job-fair-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="#">
+                            <img src="./img/circle-regular.svg" alt=""><span>活動管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="./img/circle-regular.svg" alt=""><span>參展企業管理</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- End 徵才博覽會管理 Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#article-nav" data-bs-toggle="collapse" href="#">
+                    <img src="./img/newspaper-regular.svg" alt=""><span>文章專區管理</span><img
+                        src="./img/angle-down-solid.svg" class="angle-down-solid ms-auto" alt="">
+                </a>
+                <ul id="article-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="#">
+                            <img src="./img/circle-regular.svg" alt=""><span>徵才活動文章</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="./img/circle-regular.svg" alt=""><span>審核被檢舉文章</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- End 文章專區管理 Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#scheduler-nav" data-bs-toggle="collapse" href="#">
+                    <img src="./img/calendar-days-regular.svg" alt=""><span>排程器管理</span><img
+                        src="./img/angle-down-solid.svg" class="angle-down-solid ms-auto" alt="">
+                </a>
+                <ul id="scheduler-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="./Scheduler.html">
+                            <img src="./img/circle-regular.svg" alt=""><span>熱門職務、技能與電子報寄送</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- End 排程器管理 Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#info-nav" data-bs-toggle="collapse" href="#">
+                    <img src="./img/circle-question-regular.svg" alt=""></i><span>前台資訊管理</span><img
+                        src="./img/angle-down-solid.svg" class="angle-down-solid ms-auto" alt="">
+                </a>
+                <ul id="info-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="#">
+                            <img src="./img/circle-regular.svg" alt=""><span>最新消息管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="./img/circle-regular.svg" alt=""><span>電子報管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="./img/circle-regular.svg" alt=""><span>FAQ管理</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- End 前台資訊管理 Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#">
+                    <img src="./img/headset-solid.svg" alt=""></i>
+                    <span>線上客服管理</span>
+                </a>
+            </li>
+            <!-- End 線上客服管理 Nav -->
+        </ul>
+    </aside>
+    <!-- End Sidebar-->
+
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+            <h1>職缺管理</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="Employee.html">Home</a></li>
+                    <li class="breadcrumb-item active">職缺管理</li>
+                    <li class="breadcrumb-item active">職務規格管理</li>
+                </ol>
+            </nav>
+        </div>
+        <hr>
+        <!-- End Page Title -->
+
+        <div class="row">
+            <div class="mb-3 col-lg-4">
+                <label for="formInputQuery" class="form-label"><strong style="font-size:large;">查詢行業</strong></label>
+                <div class="input-group">
+                    <input type="text" class="form-control ptType" id="formInputQuery"
+                        placeholder="Search by typing here...">
+                    <button type="button" class="btn btn-primary typebutton"><strong>查詢</strong></button>
+                </div>
+            </div>
+            <div class="mb-3 col-lg-4">
+                <label for="formInputAdd" class="form-label"><strong style="font-size:large;">查詢職務</strong></label>
+                <div class="input-group">
+                    <input type="text" class="form-control ptName" id="formInputAdd"
+                        placeholder="Search by typing here...">
+                    <button type="button" class="btn btn-primary positionbutton"><strong>查詢</strong></button>
+                </div>
+            </div>
+            <div class="mb-3 col-lg-4">
+                <label for="formInputQuery" class="form-label"><strong style="font-size:large;">行業 /
+                        職務新增</strong></label>
+                <div class="input-group add-block">
+                    <a href="JobTypeAdd.html" class="btn btn-primary form-control add"><strong>新增</strong></a>
+
+                    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">修改行業 / 職務</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <form>
+                                    <div class="modal-body">
+
+                                        <div class="mb-3">
+                                            <label for="recipient-name" class="col-form-label">行業名稱</label>
+                                            <input type="text" class="form-control" id="recipient-name">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="recipient-name" class="col-form-label">職務名稱</label>
+                                            <input type="text" class="form-control" id="recipient-name">
+                                        </div>
+
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary"
+                                            data-bs-dismiss="modal">Save</button>
+                                    </div>
+                                </form> -->
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        <span class="counter pull-right"></span>
+        <div class="table-responsive table table-hover table-bordered results">
+            <table class="table table-hover table-bordered">
+                <thead class="bill-header cs">
+                    <tr>
+                        <th id="AUT_NO" class="AUT_NO" style="width: 100px;">職務編號</th>
+                        <th id="AUT_NAME" class="AUT_NAME">行業名稱</th>
+                        <th id="AUT_DESCRIPTION" class="AUT_DESCRIPTION">職務名稱</th>
+                        <th id="AUT_COUNT" class="AUT_COUNT">搜尋次數</th>
+
+                        <th id="AUT_DELETE" class="AUT_DELETE">刪除</th>
+
+                    </tr>
+                </thead>
+                <tbody class="position_table">
+                    <tr>
+                        <td style="text-align: center" style="width: 100px;">
+                            <a href="http://127.0.0.1:5500/Employee/Job_type_edit.html"><strong>01</strong></a>
+                        </td>
+                        <td style="text-align: center">軟體業</td>
+                        <td style="text-align: center">JAVA工程師</td>
+                        <td style="text-align: center">0</td>
+
+                        <td style="vertical-align: middle; text-align: center;">
+                            <button class="btn delete-button" style="margin-left: 5px; vertical-align: auto;"
+                                type="button">刪除</button>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 首頁sidebar下拉 -->
+        <script src="./packageJS/bootstrap.bundle.min.js"></script>
+
+        <!-- Template Main JS File -->
+        <script src="./js/Employee.js"></script>
+
+        <script src="./vendors/jquery/jquery-3.6.4.min.js"></script>
+
+        <!--fontawesome-->
+        <script src="https://kit.fontawesome.com/244879c400.js" crossorigin="anonymous"></script>
+
+        <script>
+
+            let projectName = window.location.pathname.split('/')[1]; //SeekerPool
+
+            $(document).ready(function () {
+
+                let n = 1;
+
+                $.ajax({
+                    url: '/' + projectName + "/JobTypeShow", // 請將 URL 替換為您的 Servlet 映射路徑
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        // 清空表格
+                        $(".position_table").empty();
+
+                        // 將資料填充到表格中
+                        $.each(data, function (index, item) {
+                            //**************************** 該段有把data-ptNO放進  未來維護要注意 ****************************
+                            var row = "<tr>";
+                            row += "<td>"
+                                + "<a href='JobTypeEdit.html?ptNO=" + item.ptNO + "'>"
+                                + "<strong>" + item.ptNO + "</strong>" + "</a>" + "</td>";
+                            row += "<td>" + item.ptType + "</td>";
+                            row += "<td>" + item.ptName + "</td>";
+                            row += "<td>" + item.ptSearchTimes + "</td>";
+                            row += "<td>" + "<button class='delete-button' data-ptNO='" + item.ptNO + "'>" + '刪除' + "</button>" + "</td>";
+                            row += "</tr>";
+                            $(".position_table").append(row);
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        console.log("Error: " + error);
+                    }
+                });
+
+            });
+        </script>
+
+        <script>
+
+            $('.typebutton').on('click', function () {
+                var ptType = $(".ptType").val();
+                console.log('ptType : ' + ptType);
+
+                // 建立要傳送的資料物件
+                var data = {
+                    ptType: ptType
+                };
+
+
+
+                // 發送 AJAX 請求
+                $.ajax({
+                    url: '/' + projectName + "/JobTypeSelect",
+                    method: "POST",
+                    data: data,
+                    dataType: "json",
+                    success: function (data) {
+                        // 清空表格
+                        $(".position_table").empty();
+
+                        // 將資料填充到表格中
+                        $.each(data, function (index, item) {
+
+                            //**************************** 該段有把data-ptNO放進  未來維護要注意 ****************************
+                            var row = "<tr>";
+                            row += "<td>"
+                                + "<a href='JobTypeEdit.html?ptNO=" + item.ptNO + "'>"
+                                + "<strong>" + item.ptNO + "</strong>" + "</a>" + "</td>";
+                            row += "<td>" + item.ptType + "</td>";
+                            row += "<td>" + item.ptName + "</td>";
+                            row += "<td>" + item.ptSearchTimes + "</td>";
+                            row += "<td>" + "<button class='delete-button' data-ptNO='" + item.ptNO + "'>" + '刪除' + "</button>" + "</td>";
+                            row += "</tr>";
+                            $(".position_table").append(row);
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        // 處理錯誤
+                        console.error(error);
+                    }
+                });
+            });
+        </script>
+
+        <script>
+
+            $('.positionbutton').on('click', function () {
+                var ptName = $(".ptName").val();
+                console.log('ptName : ' + ptName);
+
+                // 建立要傳送的資料物件
+                var data = {
+                    ptName: ptName
+                };
+
+
+
+                // 發送 AJAX 請求
+                $.ajax({
+                    url: '/' + projectName + "/JobNameSelect",
+                    method: "POST",
+                    data: data,
+                    dataType: "json",
+                    success: function (data) {
+                        // 清空表格
+                        $(".position_table").empty();
+
+                        // 將資料填充到表格中
+                        $.each(data, function (index, item) {
+
+                            //**************************** 該段有把data-ptNO放進  未來維護要注意 ****************************
+                            var row = "<tr>";
+                            row += "<td>"
+                                + "<a href='JobTypeEdit.html?ptNO=" + item.ptNO + "'>"
+                                + "<strong>" + item.ptNO + "</strong>" + "</a>" + "</td>";
+                            row += "<td>" + item.ptType + "</td>";
+                            row += "<td>" + item.ptName + "</td>";
+                            row += "<td>" + item.ptSearchTimes + "</td>";
+                            row += "<td>" + "<button class='delete-button' data-ptNO='" + item.ptNO + "'>" + '刪除' + "</button>" + "</td>";
+                            row += "</tr>";
+                            $(".position_table").append(row);
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        // 處理錯誤
+                        console.error(error);
+                    }
+                });
+            });
+        </script>
+
+        <script>
+
+
+            $('.position_table').on('click', '.delete-button', function () {
+
+                console.log('測試開始');
+                // 這邊的ptno值在網頁上一直是小寫，所以才無視規則改小寫，而不是原本的ptNo
+                var ptNO = $(this).data('ptno');
+                var currentRow = $(this).closest('tr'); //獲取按鈕當段的<tr>
+                console.log('ptNO : ' + ptNO);
+
+                var result = confirm("確認要刪除嗎？");
+                if (result) {
+                    // 使用者點擊了確認按鈕
+
+                    $.ajax({
+                        url: '/' + projectName + "/JobPositionDelete",
+                        method: 'POST',
+                        data: { ptNO: ptNO },
+                        dataType: 'json',
+                        success: function (response) {
+                            // 在前端擊時刪除該行，不用重整畫面
+                            console.log('刪除成功');
+                            currentRow.remove();
+                        },
+                        error: function (xhr, status, error) {
+                            // 处理错误
+                        }
+                    });
+
+                } else {
+                    // 使用者點擊了取消按鈕
+                    console.log("取消刪除");
+                }
+
+
+
+            });
+
+        </script>
+</body>
+
+</html>

@@ -17,7 +17,7 @@ import tw.idv.Seeker_Pool_Merge.fong.dao.ApplyRecordDao;
 import tw.idv.Seeker_Pool_Merge.fong.vo.ApplyRecordShowVo;
 
 public class ApplyRecordDaoImpl implements ApplyRecordDao {
-	private DataSource dataSource = HikariCPUtil.getInstance().getDataSource();
+	private DataSource dataSource = HikariCPUtil.getDataSource();
 	private JdbcTemplate template = new JdbcTemplate(dataSource);
 	PreparedStatement pstmt = null;
 
@@ -48,7 +48,7 @@ public class ApplyRecordDaoImpl implements ApplyRecordDao {
 				where J.JOB_NO = A.JOB_NO AND C.COM_MEM_ID = A.COM_MEM_ID AND MEM_ID = ?
 				and( J.JOB_NAME like ? or C.COM_NAME like ? )
 				""";
-
+		ResultSet rs = null;
 		try (Connection con = dataSource.getConnection()) {
 			// 動態拼接
 			StringBuilder sb = new StringBuilder(sql);
@@ -75,7 +75,7 @@ public class ApplyRecordDaoImpl implements ApplyRecordDao {
 			}
 
 			// 執行SQL
-			ResultSet rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			List<ApplyRecordShowVo> applyRecords = new ArrayList<ApplyRecordShowVo>();
 
 			//存入applyRecords中
@@ -126,6 +126,13 @@ public class ApplyRecordDaoImpl implements ApplyRecordDao {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
+			}
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace();
+				}
 			}
 		}
 		return null;

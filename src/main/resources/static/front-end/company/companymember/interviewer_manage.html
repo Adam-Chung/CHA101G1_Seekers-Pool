@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InterviewerManage</title>
+    <link rel="stylesheet" href="./css/interviewer_manage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- 此頁用 -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <!-------------------- 引入axios -------------------->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- 引入sweetalert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <!-- ======================= side-bar ====================== -->
+            <div class="side-bar">
+                <div class="logo">
+                    <div class="img">
+                        <img src="./img/TSMC_logo.svg.png" alt="this is a logo" id="logoImg">
+                    </div>
+                    <h3 id="brand-name" style="font-size: large;">台雞電股份有限公司</h3>
+                </div>
+                <menu>
+                    <ul>
+                        <li class="main-list center">
+                            <a href="#" draggable="false"> <!--第一個-->
+                                <i class="fa-solid fa-address-card"></i>會員中心
+                                <div class="caret-icon">
+                                    <i class="fa-solid fa-sort-down"></i>
+                                    <i id="-none" class="fa-solid fa-caret-up"></i>
+                                </div>
+                            </a>
+
+                            <!-- ======================= sub-menu ====================== -->
+                            <ul class="sub-menu collapse -none">
+                                <li class="sub-list">
+                                    <a href="companyInfo.html" draggable="false">會員資料管理</a>
+                                </li class="sub-list">
+
+                                <li class="sub-list">
+                                    <a href="#" draggable="false">職缺管理</a>
+                                </li class="sub-list">
+
+                                <li class="sub-list -on">
+                                    <a href="interviewer_manage.html" draggable="false">應徵者管理</a>
+                                </li>
+
+                                <!-- <li class="sub-list">
+                                    <a href="#" draggable="false">面試排程管理</a>
+                                </li>
+
+                                <li class="sub-list">
+                                    <a href="#" draggable="false">聯絡訊息</a>
+                                </li> -->
+
+                                <li class="sub-list">
+                                    <a href="../jobfair/jfindex/Companyjobfair.html" draggable="false">徵才博覽會</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="main-list talent-search">
+                            <a href="/TalentSearch/TalentSearch.html" draggable="false" style="color: white;">
+                                <!--第二個-->
+                                <i class="fa-solid fa-user-tie" style="color: white;"></i>人才查詢
+                                <!-- <div class="caret-icon">
+                                    <i class="fa-solid fa-sort-down"></i>
+                                    <i id="-none" class="fa-solid fa-caret-up"></i>
+                                </div> -->
+                            </a>
+
+                        </li>
+
+                        <li class="main-list purchase">
+                            <a href="#" draggable="false"> <!--第三個-->
+                                <i class="fa-solid fa-cart-shopping"></i>購買
+                                <div class="caret-icon">
+                                    <i class="fa-solid fa-sort-down"></i>
+                                    <i id="-none" class="fa-solid fa-caret-up"></i>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="main-list customer-service">
+                            <a href="#" draggable="false"> <!--第四個-->
+                                <i class="fa-solid fa-headset"></i>客服
+                                <div class="caret-icon">
+                                    <i class="fa-solid fa-sort-down"></i>
+                                    <i id="-none" class="fa-solid fa-caret-up"></i>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="logout">
+                            <a href="javascript:location.href='/SeekerPool/CompanyLogout'" draggable="false">
+                                <!--第五個 -->
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>登出
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </menu>
+            </div>
+
+            <div>
+                <!-- 人才們表格 -->
+                <div id="main-content">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-16 col-xxl-12">
+                            <div class="card shadow">
+                                <div
+                                    class="card-header d-flex flex-wrap justify-content-center align-items-center justify-content-sm-between gap-3">
+                                    <h5 class="display-6 text-nowrap text-capitalize mb-0">應徵者管理</h5>
+
+                                    <div class="input-group input-group-sm w-auto">
+                                        <select name="filter" id="filter" class="form-control form-control-sm">
+                                            <option value="100" selected>---請選擇目前狀態---</option>
+                                            <option value="0">已投履歷，未有面試</option>
+                                            <option value="1">已安排面試</option>
+                                            <option value="2">面試已完成，等待通知</option>
+                                            <option value="3">企業發面試，待回覆</option>
+                                            <option value="4">取消面試</option>
+                                            <option value="8">未錄取</option>
+                                            <option value="9">錄取成功</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- <div class="input-group input-group-sm w-auto">
+                                        <input class="form-control form-control-sm" type="text">
+                                        <button class="btn btn-outline-primary btn-sm" type="button">搜尋</button>
+                                    </div> -->
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>名字</th>
+                                                    <th>學歷</th>
+                                                    <!-- <th>技能</th> -->
+                                                    <th>應徵職缺</th>
+                                                    <th>應徵日期</th>
+                                                    <th>面試日期</th>
+                                                    <th>目前狀態</th>
+                                                    <th class="text-center">履歷</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- <tr>
+                                                    <td class="text-truncate" name="memName">阿峰</td>
+                                                    <td class="text-truncate" name="memCollege">台灣大學</td>
+                                                    <td name="jobName">軟體工程師</td>
+                                                    <td class="text-truncate" name="applyDate">2023-05-23</td>
+                                                    <td class="text-truncate" name="interDate">2023-05-23</td>
+                                                    <td class="text-truncate" name="hireStatus">已投履歷</td>
+                                                    <td class="text-center">
+                                                        <button class="btn btn-outline-primary btn-sm"
+                                                            type="button">詳情</button>
+                                                    </td>
+                                                </tr> -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <!-- 分頁 -->
+                                    <!-- <span>
+                                        <ul class="pagination pagination-sm mb-0 justify-content-center">
+                                            <li class="page-item"><a class="page-link" aria-label="Previous"
+                                                    href="#"><span aria-hidden="true">«</span></a></li>
+                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span
+                                                        aria-hidden="true">»</span></a></li>
+                                        </ul>
+                                    </span> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-container">
+                        <!-- <section class="personal-info">
+                            <div class="avatar">
+                                <img class="avatar-img" src="https://randomuser.me/api/portraits/women/17.jpg"
+                                    alt="我的頭像">
+                            </div>
+                            <h1 class="name" name="memName">
+                                Kristina Adams
+                            </h1>
+                            <div class="title">
+                                <span class="college" name="memCollege">台灣大學</span>
+                                <span class="department" name="memDepartment">資訊工程學系</span><span> | </span>
+                                <span class="section" name="memAddress">台北</span><span> | </span>
+                                <span class="e-mail" name="memEmail">Kristina111@gmail.com</span>
+                            </div>
+                            <p class="autobiography" name="memBio">
+                                　　我是 BT Genie，是 Beta Camp 學習體驗 (Student Success) 團隊的一員。
+                                自從接觸程式設計以來，我就深深地被它所吸引，尤其是在網頁開發領域，我發現自己能夠透過編寫程式碼來創造出對他人有用、有趣的產品。
+                                在大學的時候，我修習了許多和電腦科學相關的課程，並且自學了多種程式語言。這讓我對於程式設計有了基本的認識，也了解到在開發網頁時需要注意的重要細節。
+                                此外，我也有在一些開源專案中擔任志工，這不僅讓我學習到如何在團隊中與他人合作，更讓我看到自己的程式碼能如何影響到真實世界。
+                                畢業後，我開始在一家知名的科技公司擔任軟體工程師。在這個職位上，我不僅提升了自己的編程技能，也學會了如何解決實際工作中遇到的各種問題。我很享受在解決問題的過程中，如何透過創新思考和技術實力來將想法變為實現的過程。
+                                雖然我已經在軟體開發領域有了一定的成就，但我仍然保持著對學習的熱情。我相信，只有不斷學習和努力，我才能在這個快速變化的科技世界中保持領先。
+                                未來，期待有機會能將我的專業知識和技能，帶入新的工作環境，並且和團隊一起創造出更多令人驚豔的產品。
+                            </p>
+                        </section>
+                        <section class="skill-section">
+                            <h2>專業技能</h2>
+                            <div class="skills">
+                                <div class="skill">
+                                    <h3 class="skill-name" name="skNo">程式設計入門, 掌握網頁開發, 軟體工程師實力</h3>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="language-section">
+                            <h2>語文能力</h2>
+                            <div class="language">
+                                <h3 class="language-name" name="memLang">英文, 日文</h3>
+                            </div>
+                        </section> -->
+                    </div>
+                </div>
+
+                <hr>
+                <!-- 個人履歷頁 -->
+                <div class="button-block">
+                    <button class="button" id="go-interview">安排面試</button>
+                    <button class="button" id="cancel-interview">取消面試</button>
+                    <button class="button" id="complete-interview">完成面試</button>
+                    <button class="button" id="hire">錄取</button>
+                    <button class="button" id="not-admitted">未錄取</button>
+                </div>
+                <!-- <div class="calendar shadow bg-white p-5">
+                    <div class="d-flex align-items-center ">
+                        <h5 class="display-6 text-nowrap text-capitalize mb-0">閔&謙 個人履歷頁 </h5>
+
+                    </div>
+                    .....個人履歷頁......
+                    <br>
+                    <br>
+                    <br>
+
+                    <button>安排面試</button>
+                    <button>取消面試</button>
+                    <br>
+                    <button>錄取</button>
+                    <button>未錄取</button> -->
+            </div>
+        </div>
+    </main>
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="./js/readInfoHeader.js"></script>
+    <script>
+        // ===================================================================================
+        // 左邊欄位打開闔起動畫 (ok)
+        $(function () {
+            $(".center").find(".sub-menu").slideToggle(400, function () {
+                $(this).closest(".main-list").find(".sub-menu").toggleClass("-none")
+            });
+        })
+
+        $("ul").on("click", ".main-list", function () {
+            $(this).closest(".main-list").find(".sub-menu").slideToggle(400, function () {
+                $(this).closest(".main-list").find(".sub-menu").toggleClass("-none")
+            });
+        });
+    </script>
+    <script src="./js/interviewer_manage.js"></script>
+</body>
+
+</html>

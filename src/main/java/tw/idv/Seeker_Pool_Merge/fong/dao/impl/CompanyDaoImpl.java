@@ -13,7 +13,7 @@ import tw.idv.Seeker_Pool_Merge.fong.vo.CompanyMemberShowVo;
 
 public class CompanyDaoImpl implements CompanyDao {
 
-	private DataSource dataSource = HikariCPUtil.getInstance().getDataSource();
+	private DataSource dataSource = HikariCPUtil.getDataSource();
 	private JdbcTemplate template = new JdbcTemplate(dataSource);
 
 	@Override

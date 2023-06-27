@@ -17,6 +17,10 @@
     <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="./css/interview_invite.css">
 
+    <!-------------------- 引入axios -------------------->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- 引入sweetalert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body>
@@ -45,7 +49,7 @@
                             <!-- ======================= sub-menu ====================== -->
                             <ul class="sub-menu collapse -none">
                                 <li class="sub-list">
-                                    <a href="#" draggable="false">會員資料管理</a>
+                                    <a href="companyInfo.html" draggable="false">會員資料管理</a>
                                 </li class="sub-list">
 
                                 <li class="sub-list">
@@ -53,19 +57,19 @@
                                 </li class="sub-list">
 
                                 <li class="sub-list -on">
-                                    <a href="#" draggable="false">應徵者管理</a>
+                                    <a href="interviewer_manage.html" draggable="false">應徵者管理</a>
                                 </li>
 
-                                <li class="sub-list">
+                                <!-- <li class="sub-list">
                                     <a href="#" draggable="false">面試排程管理</a>
                                 </li>
 
                                 <li class="sub-list">
                                     <a href="#" draggable="false">聯絡訊息</a>
-                                </li>
+                                </li> -->
 
                                 <li class="sub-list">
-                                    <a href="#" draggable="false">徵才博覽會</a>
+                                    <a href="../jobfair/jfindex/Companyjobfair.html" draggable="false">徵才博覽會</a>
                                 </li>
                             </ul>
                         </li>
@@ -103,12 +107,11 @@
                         </li>
 
                         <li class="logout">
-                            <a href="#" draggable="false"> <!--第五個 -->
+                            <a href="javascript:location.href='/SeekerPool/CompanyLogout'" draggable="false">
+                                <!--第五個 -->
                                 <i class="fa-solid fa-arrow-right-from-bracket"></i>登出
                             </a>
                         </li>
-
-
                     </ul>
                 </menu>
             </div>
@@ -122,6 +125,16 @@
                 </div>
                 <form>
                     <div class="form-content">
+                        <!-- <div class="applicant">
+                            <p class="applicants">面試者<span id="applicant-name">XXX</span></p>
+                        </div> -->
+                        <div class="job">
+                            <p>應徵職缺：</p>
+                            <!-- <select id="job-title">
+                                <option value="">前端工程師</option>
+                                <option value="">後端工程師</option>
+                            </select> -->
+                        </div>
                         <div class="time-picker">
                             <label for="datetime" class="datetime">面試日期</label>
                             <input type="date" id="datetime" name="interDate">
@@ -144,37 +157,15 @@
                             <p class="">6月9日 14:00 - 15:00</p> -->
                         </div>
                     </div>
-                    <div id="loading_img"><button type="submit" id="interview-invite"
-                            onclick="interviewSubmit();">送出</button>
-                    </div>
+                    <button type="submit" id="interview-invite" onclick="interviewSubmit();">送出</button>
                 </form>
-
-
-
             </div>
-
         </div>
     </main>
 
-
     <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="./js/readInfoHeader.js"></script>
     <script>
-
-        let projectName = window.location.pathname.split('/')[1]; // SeekerPool
-
-        // ==================初始化日期為當天============================================
-        $(function () {
-            var date = new Date();
-            var day = date.getDate();
-            var month = date.getMonth() + 1;
-            var year = date.getFullYear();
-            if (month < 10) month = "0" + month;
-            if (day < 10) day = "0" + day;
-            var today = year + "-" + month + "-" + day;
-            $("#datetime").attr("value", today);
-        });
-
-        // ===================================================================================
         // 左邊欄位打開闔起動畫 (ok)
         $(function () {
             $(".center").find(".sub-menu").slideToggle(400, function () {
@@ -187,96 +178,8 @@
                 $(this).closest(".main-list").find(".sub-menu").toggleClass("-none")
             });
         });
-
-        // ================================= 新增面試時間 ====================================
-        let dateCounter = 0;
-        // 儲存已被選擇的時間段
-        let selectedDateTimes = [];
-
-        $("#add-time").click(function () {
-
-            if (dateCounter < 3) {
-
-                const dateInput = $("#datetime").val();
-                const timeZone = $("#time-zone").val();
-
-                // 轉換日期格式: "YYYY-MM-DD" - "MM月DD日"
-                const dateParts = dateInput.split("-");
-                let month = parseInt(dateParts[1], 10);  // Parse the month to integer to remove leading zero.
-                let day = parseInt(dateParts[2], 10);    // Parse the day to integer to remove leading zero.
-                const formattedDate = month + '月' + day + '日';
-
-                // 選擇的日期及時間轉換成新字串
-                const newDateTime = formattedDate + ' ' + timeZone;
-
-                // 時間段已被選擇則不加入
-                if (selectedDateTimes.includes(newDateTime)) {
-                    // 將警告訊息顯示出來
-                    $("#warning").css("visibility", "visible");
-                    return;
-                }
-
-                dateCounter += 1;
-                $("#warning").css("visibility", "hidden");
-
-                selectedDateTimes.push(newDateTime);
-                const newP = $('<p></p>').text(newDateTime);
-                newP.addClass('date-' + dateCounter);
-
-                $("#chosenDateTime").append(newP);
-            } else {
-                alert("最多選三個時段");
-            }
-        });
-
-
-        // =====================================================================
-        //按下按鈕後送出邀請
-        function interviewSubmit() {
-            if (dateCounter != 0) {
-                let date1 = $(".date-1").html();
-                let date2 = $(".date-2").html();
-                let date3 = $(".date-3").html();
-                //????????????? 人才的ID，先用假資料代替，後續要用動態拿取
-                let memId = 1;
-                //??????????????????還要選擇哪一職缺"id"，先用假資料代替，後續要用動態拿取
-                let jobNo = 2;
-
-
-
-                $.ajax({
-                    url: "/" + projectName + "/ComInterviewInviteServlet",
-                    type: 'POST',
-                    data: { memId: memId, date1: date1, date2: date2, date3: date3, jobNo: jobNo },
-                    async: false,//同步請求
-                    cache: false,//不快取頁面
-                    beforeSend: function () {  //都無法比success先執行?!??
-                        // $("#interview-invite").html("請稍後...");
-                        // $("#interview-invite").attr({ disabled: "disabled" });
-                        // $('#loading_img').html('<img style="max-width: 100px; display:block; margin:auto;" src="./images/loading.gif">');
-                    },
-                    success: function (data) {
-                        var data = JSON.parse(data);
-                        if (data.flag) {
-                            //郵件寄送成功
-                            alert("已郵件通知該位人才");
-                        } else {
-                            //郵件寄送失敗
-                            alert("郵件寄送失敗，請稍後再試");
-                        }
-                    },
-                    error: function () {
-                        location.href = "membererror.html";
-                    }
-                });
-
-
-
-            } else {
-                alert("請至少選擇一個時段");
-            }
-        }
     </script>
+    <script src="./js/interview_invite.js"></script>
 </body>
 
 </html>

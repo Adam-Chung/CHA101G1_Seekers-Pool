@@ -1,0 +1,23 @@
+<!-- ==================================== QandTop ============================================= -->
+
+<div class="container">
+    <div class="gotop">
+        <div class="service">
+            <i class="fa-solid fa-headset"></i>
+        </div>
+        <div class="gotop-btn">
+            <i class="fa-solid fa-up-long"></i>
+        </div>
+    </div>
+</div>
+
+<script>
+    var button = document.querySelector(".gotop-btn");
+
+    button.addEventListener('click', function () {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' // 使用平滑的滚动效果
+        });
+    });
+</script>

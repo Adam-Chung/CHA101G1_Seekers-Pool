@@ -70,7 +70,7 @@ public class ComInterviewInviteServlet extends HttpServlet {
 		interviewTime1.setCheckTimeKey(CheckTimeKeys.get(0));
 		interviewTime1.setDateTime(date1);
 		interviewTime1.setCompany(company);
-		interviewTime1.setJobId(jobNo);
+		interviewTime1.setJobId(jobNo); 
 		interviewTime1.setMember(member);
 		interviewTime1.setCheckTimeKeys(CheckTimeKeys);
 //		req.getServletContext().setAttribute(interviewTime1.getCheckTimeKey(), interviewTime1); //之後換成 Redis

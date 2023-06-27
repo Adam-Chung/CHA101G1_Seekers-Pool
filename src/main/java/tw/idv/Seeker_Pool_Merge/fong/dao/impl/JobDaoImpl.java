@@ -12,7 +12,7 @@ import tw.idv.Seeker_Pool_Merge.fong.dao.JobDao;
 import tw.idv.Seeker_Pool_Merge.fong.vo.JobVo;
 
 public class JobDaoImpl implements JobDao {
-	private DataSource dataSource = HikariCPUtil.getInstance().getDataSource();
+	private DataSource dataSource = HikariCPUtil.getDataSource();
 	private JdbcTemplate template = new JdbcTemplate(dataSource);
 
 	@Override

@@ -29,7 +29,7 @@ public class CollectServlet extends HttpServlet {
 		// 儲存登錄狀態
 
 		Integer memId = (Integer) (req.getSession().getAttribute("memberLogin"));
-		System.out.println("memId = " + memId);
+//		System.out.println("memId = " + memId);
 		
 		if (memId == null) {
 			//在前端跳轉頁面
@@ -44,7 +44,7 @@ public class CollectServlet extends HttpServlet {
 
 		        // 呼叫 service 的 addCollect 方法，將 collectVo 傳遞給該方法
 		        CollectVo collect = collectService.addCollect(collectVo);
-		        System.out.println(collect);
+//		        System.out.println(collect);
 
 
 		        // 轉回 json 物件傳回前端

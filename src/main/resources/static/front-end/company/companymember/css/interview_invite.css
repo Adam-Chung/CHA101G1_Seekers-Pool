@@ -113,11 +113,25 @@ p {
 button:hover {
     background: #3F9DF4;
     color: white;
-    cursor: pointer;
 }
 
-#interview-invite:hover {
-    background: #3F9DF4;
-    color: white;
-    cursor: pointer;
+/* ---------- 職缺 ---------- */
+.applicant,
+.job {
+    display: flex;
+    flex-direction: row;
+    margin-left: 50px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+#applicant-name,
+#job-title {
+    color: #055fb4;
+}
+
+#applicant-name {
+    border: 1px solid blue;
+    margin-left: 40px;
 }

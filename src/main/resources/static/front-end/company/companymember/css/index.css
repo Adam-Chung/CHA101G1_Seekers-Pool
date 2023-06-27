@@ -1,0 +1,180 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+:root {
+    --navyblue: rgb(72, 76, 127);
+    --skyblue: #93BFCF;
+    --yellow: rgb(252, 146, 54);
+    --white: rgb(252, 245, 237);
+}
+
+/* ======================== body ============================ */
+body {
+    position: relative;
+    width: 100vw;
+    height: 100%;
+}
+
+/* ======================== container ======================= */
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    padding: 10px;
+    background-color: white;
+}
+
+/* ======================== side-bar ======================= */
+.side-bar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--navyblue);
+    width: 20%;
+    height: 100vh;
+    color: var(--white);
+    border-radius: 10px;
+}
+
+.side-bar .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px auto;
+    width: 100%;
+    padding: 5%;
+}
+
+.side-bar .img {
+    border-radius: 50%;
+    width: 55%;
+    aspect-ratio: 1;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.side-bar img {
+    object-fit: contain;
+    max-width: 100%;
+}
+
+/* ======================== menu(main-list) ======================= */
+menu {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+menu ul {
+    height: 100%;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+menu ul li.main-list,
+menu ul li ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    list-style: none;
+    padding: 2% 3%;
+}
+
+menu ul li.main-list i {
+    cursor: pointer;
+}
+
+menu ul li.main-list a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 10px;
+}
+
+.caret-icon {
+    margin-left: auto;
+    align-self: first baseline;
+}
+
+menu ul li a:visited {
+    color: var(--white);
+}
+
+menu ul li a:hover {
+    color: var(--yellow);
+}
+
+.center,
+.talent-search {
+    margin-left: 3px;
+}
+
+/* ======================== menu(sub-list) ======================= */
+
+/* ======================== -none ============================== */
+.-none {
+    display: none;
+}
+
+#-none {
+    display: none;
+}
+
+/* ======================== main-content ======================= */
+.main-content {
+    width: 80%;
+    padding: 0px 2%;
+}
+
+/* ======================== search ======================= */
+.search {
+    position: relative;
+    width: 50%;
+    border-radius: 5px;
+}
+
+.search-bar {
+    border: transparent;
+    background-color: rgb(230, 229, 229);
+    width: 100%;
+    height: 40px;
+    padding: 0px 10px;
+    outline: transparent;
+    border-radius: 5px;
+    font-size: large;
+}
+
+.search-btn {
+    position: absolute;
+    border: 0;
+    width: 14%;
+    height: 40px;
+    right: 0;
+    background-color: rgb(230, 229, 229);
+    border-radius: 0px 5px 5px 0px;
+    font-size: large;
+    cursor: pointer;
+}
+
+.search-btn i {
+    color: rgb(69, 69, 69);
+}
+
+/* ===== 登出鍵 =====*/
+.logout {
+    position: absolute;
+    list-style: none;
+    bottom: 7%;
+    right: 13%;
+    font-weight: 600;
+}

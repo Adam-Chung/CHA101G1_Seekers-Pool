@@ -16,7 +16,7 @@ import tw.idv.Seeker_Pool_Merge.fong.vo.MemberVo;
 
 public class MemberDaoImpl implements MemberDao{
 
-	private DataSource dataSource = HikariCPUtil.getInstance().getDataSource();
+	private DataSource dataSource = HikariCPUtil.getDataSource();
 	private JdbcTemplate template = new JdbcTemplate(dataSource);
 	//測試用
 //	boolean isUsingPool = HikariCPUtil.isUsingConnectionPool();

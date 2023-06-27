@@ -89,9 +89,10 @@
           contentType: false,//當form以multipart/form-data方式上傳檔案時，需要設定為false
           processData: false,//如果要傳送Dom樹資訊或其他不需要轉換的資訊，請設定為false
 
-          success: function () {
-            // var data = JSON.parse(data);
+          success: function (data) {
+//             var data = JSON.parse(data);
             $("#memPic").prop("src", data.memPic);
+            showInfo();
           },
           error: function (data) {
             location.href = "membererror.html";
@@ -424,10 +425,10 @@
               <span class="heading-icon-block">
                 <i class="fa-solid fa-circle-exclamation"></i>
               </span>
-              <h2>屏蔽公司</h2>
+              <h2>屏蔽企業</h2>
             </div>
             <div class="add-company">
-              <input type="text" placeholder="輸入公司名稱連續字串" class="company-name inputBlockCom">
+              <input type="text" placeholder="請輸入企業名稱" class="company-name inputBlockCom">
 
               <button class="add-blocked-company add-blocked-company-button">新增</button>
               <div class="errorMsgCompany" style="color: red;"></div>

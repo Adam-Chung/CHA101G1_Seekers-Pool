@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+ 	<meta http-equiv="Pragma" content="no-cache">
+ 	<meta http-equiv="Expires" content="0">
+    
+    <title>blank</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- jQuery -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <!-- 引入header、footer的JS -->
+    <script type="text/javascript" src="js/include.js"></script>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600);
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-font-smoothing: antialiased;
+            -o-font-smoothing: antialiased;
+            font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        body {
+            font-family: "Open Sans", Helvetica, Arial, sans-serif;
+            font-weight: 300;
+            font-size: 12px;
+            line-height: 30px;
+            color: #777;
+            background: rgb(253, 243, 231);
+        }
+
+        .container {
+            max-width: 400px;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        #contact input[type="text"],
+        #contact input[type="email"],
+        #contact input[type="tel"],
+        #contact input[type="url"],
+        #contact textarea,
+        #contact button[type="submit"] {
+            font: 400 12px/16px "Open Sans", Helvetica, Arial, sans-serif;
+        }
+
+        #contact {
+            background: #F9F9F9;
+            padding: 25px;
+            margin: 50px 0;
+        }
+
+        #contact h3 {
+            color: #F96;
+            display: block;
+            font-size: 30px;
+            font-weight: 400;
+        }
+
+        #contact h4 {
+            margin: 5px 0 15px;
+            display: block;
+            font-size: 13px;
+        }
+
+        fieldset {
+            border: medium none !important;
+            margin: 0 0 10px;
+            min-width: 100%;
+            padding: 0;
+            width: 100%;
+        }
+
+        #contact input[type="text"],
+        #contact input[type="email"],
+        #contact input[type="tel"],
+        #contact input[type="url"],
+        #contact select,
+        #contact textarea {
+            width: 100%;
+            border: 1px solid #CCC;
+            background: #FFF;
+            margin: 0 0 5px;
+            padding: 10px;
+        }
+
+        #contact input[type="text"]:hover,
+        #contact input[type="email"]:hover,
+        #contact input[type="tel"]:hover,
+        #contact input[type="url"]:hover,
+        #contact select:hover,
+        #contact textarea:hover {
+            -webkit-transition: border-color 0.3s ease-in-out;
+            -moz-transition: border-color 0.3s ease-in-out;
+            transition: border-color 0.3s ease-in-out;
+            border: 1px solid #AAA;
+        }
+
+        #contact textarea {
+            height: 100px;
+            max-width: 100%;
+            resize: none;
+        }
+
+        #contact button[type="submit"] {
+            cursor: pointer;
+            width: 100%;
+            border: none;
+            background: #0CF;
+            color: #FFF;
+            margin: 0 0 5px;
+            padding: 10px;
+            font-size: 15px;
+        }
+
+        #contact button[type="submit"]:hover {
+            background: #09C;
+            -webkit-transition: background 0.3s ease-in-out;
+            -moz-transition: background 0.3s ease-in-out;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        #contact button[type="submit"]:active {
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        #contact input:focus,
+        #contact select:focus,
+        #contact textarea:focus {
+            outline: 0;
+            border: 1px solid #999;
+        }
+
+        ::-webkit-input-placeholder {
+            color: #888;
+        }
+
+        :-moz-placeholder {
+            color: #888;
+        }
+
+        ::-moz-placeholder {
+            color: #888;
+        }
+
+        :-ms-input-placeholder {
+            color: #888;
+        }
+
+
+
+        /* 上傳區CSS */
+        body {
+            background: #f9e2cc;
+            font-family: 'Arial'
+        }
+
+        .made-by {
+            text-align: center;
+            padding-top: 50px;
+            color: #896746;
+        }
+
+        .file-wrapper {
+            width: 200px;
+            height: 200px;
+            border: 10px solid gray;
+            position: relative;
+            margin: auto;
+            margin-bottom: 50px;
+        }
+
+        .file-wrapper:after {
+            content: '+';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: max-content;
+            height: max-content;
+            display: block;
+            max-height: 85px;
+            font-size: 70px;
+            font-weight: bolder;
+            color: gray;
+        }
+
+        .file-wrapper:before {
+            content: 'UPLOAD IMAGE RATIO 5:5';
+            display: block;
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: auto;
+            bottom: 35px;
+            width: max-content;
+            height: max-content;
+            font-size: 0.75em;
+            color: gray;
+        }
+
+        .file-wrapper:hover:after {
+            font-size: 73px;
+        }
+
+        .file-wrapper .close-btn {
+            display: none;
+        }
+
+        input[type="file"] {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            z-index: 99999;
+            cursor: pointer;
+        }
+
+        .file-set {
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: transparent;
+            padding: 10px;
+            border-width: 0px;
+        }
+
+        .file-set:hover {
+            transition: all 0.5s ease-out;
+            filter: brightness(110%);
+        }
+
+        .file-set:before {
+            color: transparent;
+        }
+
+        .file-set:after {
+            color: transparent;
+        }
+
+        .file-set .close-btn {
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            display: block;
+            background: #000;
+            color: #fff;
+            top: 0;
+            right: 0;
+            font-size: 25px;
+            text-align: center;
+            line-height: 1.5;
+            cursor: pointer;
+            opacity: 0.8;
+        }
+
+        .file-set>input {
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!--引入heaer頁面-->
+    <div id="header"></div>
+
+
+    <!--引入heaer頁面-->
+    <div class="list"></div>
+
+    <main>
+        <!--引入QandTop按鈕-->
+        <div id="QandTop"></div>
+        <div class="main-content">
+            <div class="container">
+                <form id="contact" action="/SeekerPool/ReportEnterpriseService" method="post" enctype="multipart/form-data">
+                    <h3>公司 / 職缺 檢舉頁面</h3>
+                    <h4>送出資料後敝單位將盡快給您回覆</h4>
+                    <fieldset>
+                        <select tabindex="1"  NAME="rjtNo" required>
+                            <option value="0" selected disabled>請選擇</option>
+                            <option value="1">網路相關問題</option>
+                            <option value="2">公司面試、職場相關問題</option>
+                        </select>
+                    </fieldset>
+                    <!-- <fieldset>
+                        <input placeholder="Your Email Address" type="email" tabindex="2" required>
+                    </fieldset>
+                    <fieldset>
+                        <input placeholder="Your Phone Number" type="tel" tabindex="3" required>
+                    </fieldset>
+                    <fieldset>
+                        <input placeholder="Reported Company Name" type="text" tabindex="4" required>
+                    </fieldset> -->
+                    <fieldset>
+                        <textarea placeholder="請把您寶貴的意見與想法寫上" tabindex="2" required NAME="reContent"></textarea>
+                    </fieldset>
+                    <div class="file-wrapper">
+                        <input type="file" NAME="reUpload" accept="image/*" />
+                        <div class="close-btn">×</div>
+                    </div>
+
+                    <fieldset>
+                        <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+                    </fieldset>
+                </form>
+
+
+            </div>
+        </div>
+    </main>
+
+
+    <!--引入footer頁面-->
+    <div id="footer"></div>
+    <script>
+
+        $('input[name="reUpload"]').on('change', function () {
+            readURL(this, $('.file-wrapper'));  //Change the image
+        });
+
+        $('.close-btn').on('click', function () { //Unset the image
+            let file = $('input[name="reUpload"]');
+            $('.file-wrapper').css('background-image', 'unset');
+            $('.file-wrapper').removeClass('file-set');
+            file.replaceWith(file = file.clone(true));
+        });
+
+        //FILE
+        function readURL(input, obj) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    obj.css('background-image', 'url(' + e.target.result + ')');
+                    obj.addClass('file-set');
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        };
+    </script>
+</body>
+
+</html>

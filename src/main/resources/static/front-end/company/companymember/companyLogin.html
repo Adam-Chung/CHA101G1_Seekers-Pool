@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <!-- header footer用 -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>CompanyLogin</title>
+    <!-- <link rel="stylesheet" href="./css/style.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- jQuery -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <!-- 引入header、footer的JS -->
+    <!-- <script type="text/javascript" src="js/include.js"></script> -->
+
+    <!-- 此頁面用 -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="fonts/simple-line-icons.min.css"> -->
+    <link rel="stylesheet" href="./css/login.css">
+
+    <script>
+        $(function () {
+            $('#loginForm').submit(function () {
+                $.post('/SeekerPool/CompanyLogin', $(this).serialize(), function (data) {
+                    // .post 函數會直接將回傳的JSON字串解析成JS物件，所以不用再自己轉
+                    if (data.flag) {
+                        location.href = "companyIndex.html";
+                    } else {
+                        alert(data.errorMsg);
+                    }
+                })
+                return false;  // 阻止表單的默認提交行為
+            })
+        })
+    </script>
+
+</head>
+
+<body>
+    <!--引入heaer頁面-->
+    <div id="header"></div>
+
+    <!--引入list頁面-->
+    <div class="list"></div>
+
+    <main>
+        <!--引入QandTop按鈕-->
+        <div id="QandTop"></div>
+
+        <div id="main-content">
+            <!-- 內容 -->
+            <section class="position-relative py-4 py-xl-5">
+                <div class="container">
+                    <div class="row mb-5">
+                        <div class="col-md-8 col-xl-6 text-center mx-auto">
+                            <h2>企業登入</h2>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card mb-5">
+                                <div class="card-body d-flex flex-column align-items-center">
+                                    <!-- 登入圖片 -->
+                                    <!-- <div class="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4">
+                                        <img src="./img/loginCompany.png" alt="">
+                                    </div> -->
+                                    <!-- 表單區 -->
+                                    <form id="loginForm" method="post" class="text-center">
+                                        <div class="mb-3">
+                                            <label for="account">帳號</label>
+                                            <input class="form-control" type="text" name="comMemAccount"
+                                                placeholder="請輸入8 - 30位數帳號" />
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="password">密碼</label>
+                                            <input class="form-control" type="password" name="comMemPassword"
+                                                placeholder="請輸入8 - 30位數密碼" />
+                                        </div>
+                                        <div class="mb-3"><button type="submit">登入</button></div>
+                                    </form>
+
+                                    <!-- <p class="text-muted"><a href="send-email.html">忘記你的密碼？</a></p> -->
+                                    <div class="reg">沒有帳號？<a href="companyRegister.html">立即註冊</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- 內容 -->
+
+    <!--引入footer頁面-->
+    <div id="footer"></div>
+</body>
+
+</html>

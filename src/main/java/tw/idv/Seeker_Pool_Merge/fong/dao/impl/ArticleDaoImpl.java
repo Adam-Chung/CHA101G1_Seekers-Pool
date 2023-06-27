@@ -13,7 +13,7 @@ import tw.idv.Seeker_Pool_Merge.fong.dao.ArticleDao;
 import tw.idv.Seeker_Pool_Merge.fong.vo.ArticleVo;
 
 public class ArticleDaoImpl implements ArticleDao {
-	private DataSource dataSource = HikariCPUtil.getInstance().getDataSource();
+	private DataSource dataSource = HikariCPUtil.getDataSource();
 	private JdbcTemplate template = new JdbcTemplate(dataSource);
 
 	@Override

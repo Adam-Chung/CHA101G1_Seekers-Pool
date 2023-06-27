@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- header footer用 -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CompanyRegister</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- jQuery -->
+    <script src="./js/jquery-3.4.1.min.js"></script>
+    <!-- 引入header、footer的JS -->
+    <!-- <script type="text/javascript" src="./js/include.js"></script> -->
+    <script src="./js/companyRegister.js"></script>
+    <!-- 引入sweetalert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- 此頁面用 -->
+    <!-- <link rel="stylesheet" type="text/css" href="css/common.css"> -->
+    <link rel="stylesheet" href="./css/companyRegister.css">
+</head>
+
+<body>
+    <!--引入heaer頁面-->
+    <div id="header"></div>
+
+    <!-- 引入list頁面
+    <div class="list"></div> -->
+
+    <main>
+        <!--引入QandTop按鈕-->
+        <div id="QandTop"></div>
+
+        <div id="main-content">
+            <div class="rg_layout">
+                <div class="rg_form clearfix">
+                    <div class="rg_form_left">
+                        <p id="registerTitle">企業帳號註冊</p>
+                    </div>
+
+                    <div class="rg_form_center">
+                        <!-------------------- 註冊表單 -------------------->
+                        <form id="registerForm" method="post" enctype="multipart/form-data">
+                            <!-------------------- 提交請求表單標示符號 -------------------->
+                            <input type="hidden" name="action" value="register">
+
+                            <p class="error-message"></p>
+                            <table style="margin-top: 25px;">
+                                <tr>
+                                    <td class="td_left">
+                                        <label for="account">帳號</label>
+                                    </td>
+                                    <td class="td_right">
+                                        <input type="text" id="account" name="comMemAccount" placeholder="請輸入8 - 30位數帳號"
+                                            required>
+                                    </td>
+                                    <span id="account-error" class="error-message"></span>
+                                </tr>
+                                <tr>
+                                    <td class="td_left">
+                                        <label for="password">密碼</label>
+                                    </td>
+                                    <td class="td_right">
+                                        <input type="password" id="password" name="comMemPassword"
+                                            placeholder="請輸入8 - 30位數密碼" required>
+                                    </td>
+                                    <span id="password-error" class="error-message"></span>
+                                </tr>
+
+                                <tr>
+                                    <td class="td_left">
+                                        <label for="companyName">公司名稱</label>
+                                    </td>
+                                    <td class="td_right">
+                                        <input type="text" id="companyName" name="comName" placeholder="請輸入公司名稱"
+                                            required>
+                                    </td>
+                                    <span id="companyName-error" class="error-message"></span>
+                                </tr>
+
+                                <tr>
+                                    <td class="td_left">
+                                        <label for="taxNumber">公司統編</label>
+                                    </td>
+                                    <td class="td_right">
+                                        <input type="text" id="taxNumber" name="taxNum" placeholder="8位數號碼" required>
+                                    </td>
+                                    <span id="taxNumber-error" class="error-message"></span>
+                                </tr>
+
+                                <tr>
+                                    <td class="td_left">
+                                        <label for="companyEmail">公司信箱</label>
+                                    </td>
+                                    <td class="td_right">
+                                        <input type="email" id="companyEmail" name="comEmail"
+                                            placeholder="example@mail.com" required>
+                                    </td>
+                                    <span id="companyEmail-error" class="error-message"></span>
+                                </tr>
+
+                                <tr>
+                                    <td class="td_left">
+                                        <label for="companyTel">公司電話</label>
+                                    </td>
+                                    <td class="td_right">
+                                        <input type="text" id="companyTel" name="comTel" placeholder="0226778888"
+                                            required>
+                                    </td>
+                                    <span id="companyTel-error" class="error-message"></span>
+                                </tr>
+
+                                <tr>
+                                    <td class="td_left">
+                                        <label for="companyAddress">公司地址</label>
+                                    </td>
+                                    <td class="td_right">
+                                        <input type="text" id="companyAddress" name="comAddress"
+                                            placeholder="台北市信義區信義路一段" required>
+                                    </td>
+                                    <span id="companyAddress-error" class="error-message"></span>
+                                </tr>
+
+                                <tr>
+                                    <td class="td_left">
+                                        <label for="comPicture">公司LOGO</label>
+                                    </td>
+                                    <td class="td_right">
+                                        <input type="file" id="comPicture" name="comPicture" required>
+                                    </td>
+                                </tr>
+
+                                <!-- <tr>
+                                    <td class="td_left">
+                                        <label for="comData">驗證文件</label>
+                                    </td>
+                                    <td class="td_right">
+                                        <input type="file" id="dataUpload" name="dataUpload" required>
+                                    </td>
+                                </tr> -->
+
+                                <tr>
+                                    <td class="td_left">
+                                    </td>
+                                    <td class="td_right check">
+                                        <input type="submit" class="submit" value="註冊">
+                                    </td>
+                                    <span id="msg" style="color: red;"></span>
+                                </tr>
+
+                            </table>
+                        </form>
+                    </div>
+                    <div class="rg_form_right">
+                        <p id="accountExists">
+                            已有帳號？
+                            <a href="companyLogin.html" id="loginRightNow">立即登入</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!--引入footer頁面-->
+    <div id="footer"></div>
+</body>
+
+</html>

@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" id="the_html">
+
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+	<title>Seeker's Pool</title>
+	<meta content="" name="description">
+	<meta content="" name="keywords">
+	<style>
+		div.overlay {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100vh;
+			background-color: hsla(0, 0%, 0%, .5);
+			display: none;
+			align-items: center;
+		}
+
+		/* 元素 article 置中及基本樣式 */
+		div.overlay>article {
+			background-color: white;
+			width: 90%;
+			max-width: 800px;
+			border-radius: 10px;
+			box-shadow: 0 0 10px deeppink;
+			padding: 10px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-30%, -40%);
+			align-items: center;
+		}
+
+		div.overlay>article>div {
+			transform: translate(20%, 10%);
+		}
+
+		button:hover {
+			box-shadow: 0 0 10px deeppink;
+
+		}
+
+		#preview {
+			border: 1px solid lightgray;
+			display: inline-block;
+			max-width: 100px;
+			max-height: 150px;
+			position: relative;
+			margin-top: 50px;
+			transform: translate(400px, -60px);
+		}
+
+		#preview span.text {
+			position: absolute;
+			display: inline-block;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			z-index: -1;
+			color: lightgray;
+		}
+
+		#preview img.preview_img {
+			width: 100%;
+		}
+	</style>
+
+	<!-- Favicons -->
+	<link href="./img/handshake-regular.svg" rel="icon">
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.gstatic.com" rel="preconnect">
+	<link
+		href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+		rel="stylesheet">
+
+	<!-- Vendor CSS Files -->
+	<link href="./packageCSS/bootstrap.min.css" rel="stylesheet">
+	<!--<link href="./packageCSS/bootstrap-icons.css" rel="stylesheet">-->
+	<link href="./packageCSS/boxicons.min.css" rel="stylesheet">
+	<link href="./packageCSS/quill.snow.css" rel="stylesheet">
+	<link href="./packageCSS/quill.bubble.css" rel="stylesheet">
+	<link href="./packageCSS/remixicon.css" rel="stylesheet">
+	<link href="./packageCSS/style.css" rel="stylesheet">
+
+	<!-- Template Main CSS File -->
+	<link href="./css/Employee.css" rel="stylesheet">
+
+	<!-- Font Awesome-->
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> -->
+	<script src="https://kit.fontawesome.com/9e03cf01f9.js" crossorigin="anonymous"></script>
+	<style>
+		tbody,
+		td,
+		tfoot,
+		th,
+		thead,
+		tr {
+			border-style: none;
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<!-- ========================== Header ================================ -->
+	<header id="header" class="header fixed-top d-flex align-items-center">
+
+		<div class="d-flex flex-row align-items-center justify-content-between" style="margin-bottom: -10px;">
+			<a href="Employee.html" class="logo d-flex align-items-center"> <img src="./img/handshake-regular.svg"
+					alt="" style="margin-right: 10px;">
+				<span class="d-none d-lg-block">
+					<h5 style="margin-bottom: 0px;">
+						<a href="Employee.html">Seeker's P<i class="fa-regular fa-face-smile"></i><i
+								class="fa-regular fa-face-smile"></i>L
+						</a>
+					</h5>
+				</span>
+			</a> <img src="./img/bars-solid.svg" class="toggle-sidebar-btn" alt="">
+		</div>
+		<!-- End Logo -->
+
+		<div class="search-bar">
+			<form class="search-form d-flex align-items-center" method="POST" action="#">
+				<input type="text" name="query" placeholder="Search" title="Enter search keyword">
+				<button type="submit" title="Search">
+					<img src="./img/magnifying-glass-solid.svg" alt="">
+				</button>
+			</form>
+		</div>
+		<!-- End Search Bar -->
+
+		<nav class="header-nav ms-auto">
+			<ul class="d-flex align-items-center">
+				<li class="nav-item d-block d-lg-none"><a class="nav-link nav-icon search-bar-toggle " href="#"> <i
+							class="bi bi-search"></i>
+					</a></li>
+				<!-- End Search Icon-->
+
+				<li class="nav-item dropdown pe-3"><a class="profile-photo nav-profile d-flex align-items-center pe-0"
+						href="#" data-bs-toggle="dropdown"> <img src="./img/happy-quokka.jpg" alt="Profile"
+							class="rounded-circle">
+						<span id="name" class="d-none d-md-block dropdown-toggle ps-2"></span>
+					</a> <!-- End Profile Iamge Icon -->
+
+					<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+						<li class="dropdown-header">
+							<h6 id="name"></h6> <span>Backend Engineer</span>
+						</li>
+						<li>
+							<hr class="dropdown-divider">
+						</li>
+
+						<li><a class="dropdown-item d-flex align-items-center" href="users-profile.html"> <i
+									class="bi bi-person"></i> <span>My
+									Profile</span>
+							</a></li>
+						<li>
+							<hr class="dropdown-divider">
+						</li>
+
+						<li><a class="dropdown-item d-flex align-items-center" href="users-profile.html"> <i
+									class="bi bi-gear"></i> <span>Account
+									Settings</span>
+							</a></li>
+						<li>
+							<hr class="dropdown-divider">
+						</li>
+
+						<li><a class="dropdown-item d-flex align-items-center" href="pages-faq.html"> <i
+									class="bi bi-question-circle"></i>
+								<span>Need Help?</span>
+							</a></li>
+						<li>
+							<hr class="dropdown-divider">
+						</li>
+
+						<li><a id="out" class="dropdown-item d-flex align-items-center" style="cursor:pointer;"> <i
+									class="bi bi-box-arrow-right"></i> <span id="out">Sign
+									Out</span>
+							</a>
+						</li>
+
+					</ul> <!-- End Profile Dropdown Items -->
+				</li>
+				<!-- End Profile Nav -->
+			</ul>
+		</nav>
+		<!-- End Icons Navigation -->
+	</header>
+	<!-- End Header -->
+
+	<!-- ========================= Sidebar ============================== -->
+	<aside id="sidebar" class="sidebar">
+
+		<ul class="sidebar-nav" id="sidebar-nav">
+			<li class="nav-item"><a class="nav-link " href="Employee.html">
+					<img src="./img/house-solid.svg" alt=""> <span>Home</span>
+				</a></li>
+			<!-- End Dashboard Nav -->
+
+			<li class="nav-item"><a class="nav-link collapsed" data-bs-target="#administrator-nav"
+					data-bs-toggle="collapse" href="../administrator/administrator.html"> <img
+						src="./img/user-regular.svg" alt=""><span>員工管理</span><img src="./img/angle-down-solid.svg"
+						class="angle-down-solid ms-auto" alt="">
+				</a>
+				<ul id="administrator-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+					<li><a href="http://localhost:8081/Seeker_Pool_Mix/back-end/administrator/administrator.html"> <img
+								src="./img/circle-regular.svg" alt=""><span>員工資料管理</span>
+						</a></li>
+					<li><a href="./Administrator2.html"> <img src="./img/circle-regular.svg" alt=""><span>員工權限管理</span>
+						</a></li>
+					<li><a href="./Administrator3.html"> <img src="./img/circle-regular.svg" alt=""><span>講師權限管理</span>
+						</a></li>
+				</ul>
+			</li>
+			<!-- End 員工管理 Nav -->
+
+			<li class="nav-item"><a class="nav-link collapsed" data-bs-target="#member-nav" data-bs-toggle="collapse"
+					href="#">
+					<img src="./img/address-card-regular.svg" alt=""><span>會員管理</span><img
+						src="./img/angle-down-solid.svg" class="angle-down-solid ms-auto" alt="">
+				</a>
+				<ul id="member-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+					<li><a href="#"> <img src="./img/circle-regular.svg" alt=""><span>一般會員管理</span>
+						</a></li>
+					<li><a href="../../companymember/allCompany.html"> <img src="./img/circle-regular.svg"
+								alt=""><span>企業會員管理</span>
+						</a></li>
+				</ul>
+			</li>
+			<!-- End 會員管理 Nav -->
+
+			<li class="nav-item"><a class="nav-link collapsed" data-bs-target="#lecturer-nav" data-bs-toggle="collapse"
+					href="#">
+					<img src="./img/user-tie-solid.svg" alt=""><span>講師專區</span><img src="./img/angle-down-solid.svg"
+						class="angle-down-solid ms-auto" alt="">
+				</a>
+				<ul id="lecturer-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+					<li><a href="#"> <img src="./img/circle-regular.svg" alt=""><span>講師總覽</span>
+						</a></li>
+					<li><a href="#"> <img src="./img/circle-regular.svg" alt=""><span>留言區回覆</span>
+						</a></li>
+				</ul>
+			</li>
+			<!-- End 講師專區 Nav -->
+
+			<li class="nav-item"><a class="nav-link collapsed" data-bs-target="#job-nav" data-bs-toggle="collapse"
+					href="#"> <img src="./img/briefcase-solid.svg" alt=""></i><span>職缺管理</span><img
+						src="./img/angle-down-solid.svg" class="angle-down-solid ms-auto" alt="">
+				</a>
+				<ul id="job-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+					<li><a href="#"> <img src="./img/circle-regular.svg" alt=""><span>職務規格維護</span>
+						</a></li>
+					<li><a href="#"> <img src="./img/circle-regular.svg" alt=""><span>審核管理</span>
+						</a></li>
+				</ul>
+			</li>
+			<!-- End 職缺管理 Nav -->
+
+			<li class="nav-item"><a class="nav-link collapsed" data-bs-target="#job-case-nav" data-bs-toggle="collapse"
+					href="#">
+					<img src="./img/rectangle-ad-solid.svg" alt=""><span>職缺刊登方案管理</span><img
+						src="./img/angle-down-solid.svg" class="angle-down-solid ms-auto" alt="">
+				</a>
+				<ul id="job-case-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+					<li><a href="./JobCase.html"> <img src="./img/circle-regular.svg" alt=""><span>職缺刊登方案</span>
+						</a></li>
+				</ul>
+			</li>
+			<!-- End 職缺刊登方案管理 Nav -->
+
+			<li class="nav-item"><a class="nav-link collapsed" data-bs-target="#online-course-nav"
+					data-bs-toggle="collapse" href="#"> <img src="./img/circle-play-regular.svg"
+						alt=""></i><span>線上訓練課程管理</span><img src="./img/angle-down-solid.svg"
+						class="angle-down-solid ms-auto" alt="">
+				</a>
+				<ul id="online-course-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+					<li><a href="#"> <img src="./img/circle-regular.svg" alt=""><span>線上課程管理</span>
+						</a></li>
+					<li><a href="#"> <img src="./img/circle-regular.svg" alt=""><span>課程訂單管理</span>
+						</a></li>
+				</ul>
+			</li>
+			<!-- End 線上訓練課程管理 Nav -->
+
+			<li class="nav-item"><a class="nav-link collapsed" data-bs-target="#job-fair-nav" data-bs-toggle="collapse"
+					href="#">
+					<img src="./img/lightbulb-regular.svg" alt=""></i><span>徵才博覽會管理</span><img
+						src="./img/angle-down-solid.svg" class="angle-down-solid ms-auto" alt="">
+				</a>
+				<ul id="job-fair-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+					<li><a href="./job_fair.html"> <img src="./img/circle-regular.svg" alt=""><span>活動管理</span>
+						</a></li>
+					<li><a href="./Exhibitor.html"> <img src="./img/circle-regular.svg" alt=""><span>參展企業管理</span>
+						</a></li>
+				</ul>
+			</li>
+			<!-- End 徵才博覽會管理 Nav -->
+
+			<li class="nav-item"><a class="nav-link collapsed" data-bs-target="#article-nav" data-bs-toggle="collapse"
+					href="#">
+					<img src="./img/newspaper-regular.svg" alt=""><span>文章專區管理</span><img
+						src="./img/angle-down-solid.svg" class="angle-down-solid ms-auto" alt="">
+				</a>
+				<ul id="article-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+					<li><a href="./job_fair_article.html"> <img src="./img/circle-regular.svg"
+								alt=""><span>徵才活動文章管理</span>
+						</a></li>
+					<li><a href="#"> <img src="./img/circle-regular.svg" alt=""><span>審核被檢舉文章</span>
+						</a></li>
+				</ul>
+			</li>
+			<!-- End 文章專區管理 Nav -->
+
+			<li class="nav-item"><a class="nav-link collapsed" data-bs-target="#scheduler-nav" data-bs-toggle="collapse"
+					href="#">
+					<img src="./img/calendar-days-regular.svg" alt=""><span>排程器管理</span><img
+						src="./img/angle-down-solid.svg" class="angle-down-solid ms-auto" alt="">
+				</a>
+				<ul id="scheduler-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+					<li><a href="#"> <img src="./img/circle-regular.svg" alt=""><span>熱門職務&技能</span>
+						</a></li>
+				</ul>
+			</li>
+			<!-- End 排程器管理 Nav -->
+
+			<li class="nav-item"><a class="nav-link collapsed" data-bs-target="#info-nav" data-bs-toggle="collapse"
+					href="#"> <img src="./img/circle-question-regular.svg" alt=""></i><span>前台資訊管理</span><img
+						src="./img/angle-down-solid.svg" class="angle-down-solid ms-auto" alt="">
+				</a>
+				<ul id="info-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+					<li><a href="#"> <img src="./img/circle-regular.svg" alt=""><span>最新消息管理</span>
+						</a></li>
+					<li><a href="#"> <img src="./img/circle-regular.svg" alt=""><span>電子報管理</span>
+						</a></li>
+					<li><a href="#"> <img src="./img/circle-regular.svg" alt=""><span>FAQ管理</span>
+						</a></li>
+				</ul>
+			</li>
+			<!-- End 前台資訊管理 Nav -->
+
+			<li class="nav-item"><a class="nav-link collapsed" href="#">
+					<img src="./img/headset-solid.svg" alt=""></i> <span>線上客服管理</span>
+				</a></li>
+			<!-- End 線上客服管理 Nav -->
+		</ul>
+	</aside>
+	<!-- End Sidebar-->
+
+	<main id="main" class="main">
+
+		<div class="pagetitle">
+			<h1>活動管理</h1>
+			<nav>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="Employee.html">Home</a></li>
+					<li class="breadcrumb-item active">徵才博覽會管理</li>
+					<li class="breadcrumb-item active">活動管理</li>
+				</ol>
+			</nav>
+		</div>
+		<hr>
+		<!-- End Page Title -->
+
+		<div class="row">
+			<div class="mb-3 col-lg-4">
+				<label for="formInputQuery" class="form-label"><strong style="font-size: large;">查詢活動</strong></label>
+				<div class="input-group">
+					<select id="season">
+						<option selected disabled>請選擇</option>
+						<option>已上架</option>
+						<option>未上架</option>
+					</select>
+					<button type="button" class="btn btn-primary" id="search" style="z-index: 0 !important">
+						<strong>查詢</strong>
+					</button>
+				</div>
+			</div>
+			<div class="mb-3 col-lg-4">
+				<button href="./job_fair_add.html" type="button" class="btn btn-primary" id="all"
+					style="margin-top: 30px;transform: translate(-10%, 0%); width:150px;height:35px; ">
+					<strong>所有活動明細</strong>
+				</button>
+
+			</div>
+			<div class="mb-3 col-lg-4">
+				<a href="./job_fair_add.html">
+					<button href="./job_fair_add.html" type="button" class="btn btn-primary"
+						style="margin-top: 30px;transform: translate(-150%, 0%);height:35px">
+						<strong>新增活動</strong>
+					</button>
+				</a>
+
+			</div>
+		</div>
+
+		<span class="counter pull-right"></span>
+		<div class="table-responsive table table-hover table-bordered results">
+			<table class="table table-hover table-bordered"
+				style="overflow: hidden; text-overflow: ellipsis;border-style:none;">
+				<thead class="bill-header cs" style="border:1px solid lightgray;border-style:none;">
+					<tr>
+						<th id="AUT_IMG" class="AUT_IMG">活動圖片</th>
+						<th id="AUT_NO" class="AUT_NO">編號</th>
+						<th id="AUT_NAME" class="AUT_NAME">名稱</th>
+						<th id="AUT_NAME" class="AUT_NAME">活動說明</th>
+						<th id="AUT_NAME" class="AUT_NAME">活動時間</th>
+						<th id="AUT_DESCRIPTION" class="AUT_DESCRIPTION">報名時間</th>
+						<th id="AUT_DESCRIPTION" class="AUT_DESCRIPTION">狀態</th>
+						<th id="AUT_EDIT" class="AUT_EDIT">編輯</th>
+						<th id="AUT_SAVE" class="AUT_SAVE">上架</th>
+					</tr>
+				</thead>
+				<tbody>
+
+				</tbody>
+			</table>
+		</div>
+		<div class="overlay">
+			<article></article>
+		</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- 首頁sidebar下拉 -->
+<script src="./packageJS/bootstrap.bundle.min.js"></script>
+
+<!-- Template Main JS File -->
+<script src="./js/Employee.js"></script>
+
+<script src="./vendors/jquery/jquery-3.6.4.min.js"></script>
+
+<!--fontawesome-->
+<script src="https://kit.fontawesome.com/244879c400.js" crossorigin="anonymous"></script>
+<script>
+	$(function () {
+
+		$.ajax({
+			url: "/SeekerPool/JobFair",
+			method: 'POST',
+			datatype: "JSON",
+			data: { action: "getAlljf" },
+			success: function (res) {
+				var a;
+
+				for (let i = 0; i < res.length; i++) {
+					console.log(res[i]);
+					if (res[i].jrStatus === 0) {
+						a = "未上架";
+					} else if (res[i].jrStatus === 1) {
+						a = "已上架"
+					}
+					console.log(a);
+					$("tbody").append(`<tr id="all"style="background-color:#FFFFFF;border:1px solid lightgray;text-align: center;">
+						<td style="text-align: center;width: 200px; "><img src="${res[i].jrArImg}"
+						style="height: 150px;max-width:100%;max-height:100%;"></td>
+					<td id="jf" style="text-align: center;width: 50px;">${res[i].jfNo}</td>
+					<td>${res[i].jfName}</td>
+					<td style="text-align: center;vertical-align: middle; text-align: center;overflow: hidden;
+ 						  text-overflow: ellipsis;max-width: 200px;">
+ 						 <p id="p"class="card-text"style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
+ 	                    	  -webkit-line-clamp: 3;
+		                    ">${res[i].jfActivity}</p>
+						<td style="text-align: center;vertical-align: middle; text-align: center;max-width: 200px;">
+						${res[i].jfStartTime + "~" + res[i].jfEndTime}
+						<td style="text-align: center;vertical-align: middle; text-align: center;max-width: 200px;">
+						${res[i].regStartTime + "~" + res[i].regEndTime}
+						<td id="sta"style="text-align: center;vertical-align: middle; text-align: center;max-width: 50px;">
+						${a}
+					<td style="text-align: center;vertical-align: middle; text-align: center;max-width: 50px;">
+						<button class="btn btn_edit" id="ed" name="${res[i].jfNo}"
+							style="margin-left: 5px; vertical-align: auto; cursor: pointer;" type="submit">
+							<i class="fa-sharp fa-solid fa-pen-to-square" style="color: #eed111;"></i>
+						</button>
+					</td>
+					<td style="text-align: center;vertical-align: middle; text-align: center;max-width: 70px;">
+						<button class="btn btn_save" name="${res[i].jfNo}"style="margin-left: 5px;cursor: pointer;"
+							type="submit" id="de">
+						<i class="fa-sharp fa-solid fa-arrow-up"></i>
+						</button>
+					</td>
+				</tr>`);
+
+				}
+				$("tbody").on("click", "button#ed", function () {
+					$("div.overlay").fadeIn();
+				});
+
+				$("div.overlay > article").on("click", function (e) {
+					e.stopPropagation();
+				});
+
+			}
+
+		})
+		//右上角員工名
+		$.ajax({
+			url: "/SeekerPool/administrator.do",
+			method: 'POST',
+			datatype: "JSON",
+			data: { action: "getOne_For_Display3" },
+			success: function (res) {
+
+				$("span#name").text(res.admName);
+				$("h6#name").text(res.admName);
+				$("table").attr("id", res.admId);
+			}
+		})
+		//右上角登出
+		$("a#out").on("click", function (e) {
+			e.preventDefault;
+		})
+		$("span#out").on("click", function () {
+			if (confirm("確定要登出?")) {
+
+				$.ajax({
+					url: "/SeekerPool/administrator.do",
+					method: 'POST',
+					datatype: "JSON",
+					data: { action: "logout" },
+					success: function (res) {
+						alert(res);
+						window.location.replace('./EmployeeLogin.html');
+					}
+				})
+			}
+		})
+
+	});
+
+	//上架按鈕
+	$("tbody").on("click", "button#de", function () {
+		$(this).attr("id", "deon");
+
+		if ($(this).closest("tr").find("td#sta").text().trim() === "已上架") {
+			alert("已經上架囉!");
+		} else {
+			if (confirm("確定要上架?")) {
+
+
+
+				$.ajax({
+					url: "/SeekerPool/JobFair",
+					method: 'POST',
+					datatype: "JSON",
+					data: { action: "de", jfNo: $("button#deon").attr("name"), jrStatus: "未上架" },
+					success: function (res) {
+						alert(res);
+						location.reload();
+					}
+				})
+			} else {
+
+			}
+		}
+	})
+
+	//編輯按鈕
+	$("tbody").on("click", "button#ed", function () {
+		$(this).attr("id", "edon");
+		console.log($("button#edon").attr("name"))
+		$.ajax({
+			url: "/SeekerPool/JobFair",
+			method: 'POST',
+			datatype: "JSON",
+			data: { action: "getOne_For_Display2", jfNo: $("button#edon").attr("name") },
+			success: function (res) {
+				$("button#edon").attr("id", "ed");
+				$("article").children().remove();
+				$("article").append(`<div class="row">
+	    			    				<div class="col-lg-2 mb-3">
+	    								<label for="schemeNumber" class="form-label" >活動編號</label>
+	    							</div>
+	    							<div class="col-lg-4">
+	    								<input type="text" readonly="readonly"class="form-control" id="schemeNumber1" value="${res.jfNo}">
+	    							</div>
+	    						</div>
+	    						<div class="row">
+	    							<div class="col-lg-2 mb-3">
+	    								<label for="schemeNumber" class="form-label">員工編號</label>
+	    							</div>
+	    							<div class="col-lg-4">
+	    								<input type="text" readonly="readonly"class="form-control" id="schemeNumber2" value="${res.admId}">
+	    							</div>
+	    						</div>
+
+	    						<div class="row">
+	    							<div class="col-lg-2 mb-3">
+	    								<label for="schemeNumber" class="form-label">活動名稱</label>
+	    							</div>
+	    							<div class="col-lg-4">
+	    								<input type="text" class="form-control" id="schemeNumber3"value="${res.jfName}">
+	    							</div>
+	    						</div>
+
+	    						<div class="row">
+	    							<div class="col-lg-2 mb-3">
+	    								<label for="schemeNumber" class="form-label">活動開始時間</label>
+	    							</div>
+	    							<div class="col-lg-4">
+	    								<input type="date" class="form-control" id="schemeNumber4"value="${res.jfStartTime}">
+	    							</div>
+	    						</div>
+
+	    						<div class="row">
+	    							<div class="col-lg-2 mb-3">
+	    								<label for="schemeNumber" class="form-label">活動結束時間</label>
+	    							</div>
+	    							<div class="col-lg-4">
+	    								<input type="date" class="form-control" id="schemeNumber5"value="${res.jfEndTime}">
+	    							</div>
+	    						</div>
+
+	    						<div class="row">
+	    							<div class="col-lg-2 mb-3">
+	    								<label for="schemeNumber" class="form-label">報名開始時間</label>
+	    							</div>
+	    							<div class="col-lg-4">
+	    								<input type="date" class="form-control" id="schemeNumber6"value="${res.regStartTime}">
+	    							</div>
+	    						</div>
+	    						<div class="row">
+	    							<div class="col-lg-2 mb-3">
+	    								<label for="schemeNumber" class="form-label">報名結束時間</label>
+	    							</div>
+	    							<div class="col-lg-4">
+	    								<input type="date" class="form-control" id="schemeNumber7" value="${res.regEndTime}">
+	    							</div>
+	    						</div>
+
+	    						<div class="row align-items-center">
+	    							<div class="col-lg-2 mb-3">
+	    								<label for="schemeNumber" class="form-label">活動內容</label>
+	    							</div>
+	    							<div class="col-lg-4">
+	    								<textarea class="form-control" id="schemeNumber8">${res.jfActivity}</textarea>
+	    							</div>
+	    						</div>
+	    						<div class="row" style="display: inline-block;">
+	    							<div>
+	    								<label>商品圖片：</label> <input type="file" id="p_file" value="${res.jrArImg}">
+	    							</div>
+	    							<div id="preview">
+	    							<span class="text">預覽圖</span>
+	    						</div>
+	    						</div>
+	    						<div class="row align-items-center" id="last">
+	    							<div class="col-lg-2">
+	    								<button type="submit" class="btn btn-primary" id='up' style="transform: translate(150px,-15px)">儲存</button>
+	    							</div>
+	    						</div>
+	    							<button type="button" class="btn_modal_close" style="transform:translate(500px,-50px)">關閉</button>`);
+				$("input#schemeNumber2").val($("table").attr("id"));
+				var p_file_el = document.getElementById("p_file");
+
+				var preview_el = document.getElementById("preview");
+
+				var preview_img = function (file) {
+
+					var reader = new FileReader(); // 用來讀取檔案
+					reader.readAsDataURL(file); // 讀取檔案
+					reader.addEventListener("load", function () {
+						let img_str = '<img src="' + reader.result + '" class="preview_img">';
+						preview_el.innerHTML = img_str;
+					});
+				};
+				p_file_el.addEventListener("change", function (e) {
+					if (this.files.length > 0) {
+						preview_img(this.files[0]);
+					} else {
+						preview_el.innerHTML = '<span class="text">預覽圖</span>';
+					}
+				});
+
+			}
+
+
+		})
+
+
+	})
+
+	//按完編輯按鈕後彈出燈箱裡的儲存按鈕
+	$("article").on("click", "button#up", function (e) {
+
+		e.preventDefault();
+		var send_data = {};
+		var img_base64_el = document.querySelector(".preview_img");
+		if (img_base64_el) {
+			send_data.img_base64 = img_base64_el.getAttribute("src");
+		}
+		console.log(send_data);
+		let file = JSON.stringify(send_data)
+		var rules = new RegExp('/\d/')
+		const rules2 = /^.+\.(jpe?g|gif|png)$/i;
+
+		if ($("input#schemeNumber1").val().trim() === "" || rules.test($("input#schemeNumber1").val().trim())) {
+			alert("活動編號請輸入數字!");
+			return;
+
+		} else {
+			if ($("input#schemeNumber2").val().trim() === "" || rules.test($("input#schemeNumber2").val().trim())) {
+				alert("員工編號請輸入數字!");
+				return;
+			} else {
+				if ($("input#schemeNumber3").val() === "") {
+					alert("請輸入文章名稱!");
+					return;
+				} else {
+					if ($("input#schemeNumber4").val() === "") {
+						alert("請輸入活動開始時間!");
+						return;
+					} else {
+						if ($("input#schemeNumber5").val() === "") {
+							alert("請輸入活動結束時間!");
+							return;
+						} else {
+							if ($("input#schemeNumber6").val() === "") {
+								alert("請輸入活動報名開始時間!");
+								return;
+							} else {
+								if ($("input#schemeNumber7").val() === "") {
+									alert("請輸入活動報名結束時間!");
+									return;
+								} else {
+									if ($("textarea#schemeNumber8").val() === "") {
+										alert("請輸入活動內容!");
+										return;
+									} else {
+										if ($("input#p_file").val() === "") {
+											alert("請選擇上傳圖片!");
+											return;
+										} else {
+											$.ajax({
+												url: "/SeekerPool/JobFair",
+												method: 'POST',
+												datatype: "JSON",
+												data: {
+													action: "up",
+													jfNo: $("input#schemeNumber1").val(),
+													admId: $("input#schemeNumber2").val(),
+													jfName: $("input#schemeNumber3").val(),
+													jfStartTime: $("input#schemeNumber4").val(),
+													jfEndTime: $("input#schemeNumber5").val(),
+													regStartTime: $("input#schemeNumber6").val(),
+													regEndTime: $("input#schemeNumber7").val(),
+													jfActivity: $("textarea#schemeNumber8").val(),
+													file: file,
+													jrArImg: $("input#p_file")[0].files[0]['name']
+												},
+												success: function (res) {
+													console.log(res);
+													alert(res);
+													location.reload();
+
+												},
+											});
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+	});
+
+	//按完編輯按鈕後彈出燈箱裡的關閉按鈕
+	$("article").on("click", "button.btn_modal_close, div.overlay", function (e) {
+
+		$("div.overlay").fadeOut();
+	});
+
+	$("button#search").click(function () {
+
+
+
+		console.log($("select#season").val());
+
+		if ($("select#season").val() === null) {
+			alert("請選擇查詢條件")
+		} else {
+			$("tr#all").remove();
+			$.ajax({
+				url: "/SeekerPool/JobFair",
+				method: 'POST',
+				datatype: "JSON",
+				data: { action: "get_For_Display2", season: $("select#season").val() },
+				success: function (res) {
+					var a;
+					for (let i = 0; i < res.length; i++) {
+						if (res[i].jrStatus === 0) {
+							a = "未上架";
+						} else if (res[i].jrStatus === 1) {
+							a = "已上架"
+						}
+						console.log(a);
+
+
+						console.log(res[i]);
+						$("tbody").append(`<tr id="all"style="background-color:#FFFFFF;border:1px solid lightgray;text-align: center;">
+							<td style="text-align: center;width: 200px; "><img src="${res[i].jrArImg}"
+							style="height: 150px;max-width:100%;max-height:100%;"></td>
+						<td id="jf" style="text-align: center;width: 50px;">${res[i].jfNo}</td>
+						<td>${res[i].jfName}</td>
+						<td style="text-align: center;vertical-align: middle; text-align: center;overflow: hidden;
+	  						  text-overflow: ellipsis;max-width: 200px;">
+	  						<p id="p"class="card-text"style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
+	  	                    	  -webkit-line-clamp: 3;
+			                    ">${res[i].jfActivity}</p>
+							<td style="text-align: center;vertical-align: middle; text-align: center;max-width: 200px;">
+							${res[i].jfStartTime + "~" + res[i].jfEndTime}
+							<td style="text-align: center;vertical-align: middle; text-align: center;max-width: 200px;">
+							${res[i].regStartTime + "~" + res[i].regEndTime}
+						<td id="sta"style="text-align: center;vertical-align: middle; text-align: center;max-width: 50px;">
+						${a}
+						<td style="text-align: center;vertical-align: middle; text-align: center;max-width: 50px;">
+							<button class="btn btn_edit" id="ed" name="${res[i].jfNo}"
+								style="margin-left: 5px; vertical-align: auto; cursor: pointer;" type="submit">
+								<i class="fa-sharp fa-solid fa-pen-to-square" style="color: #eed111;"></i>
+							</button>
+						</td>
+						<td style="text-align: center;vertical-align: middle; text-align: center;max-width: 70px;">
+							<button class="btn btn_save" name="${res[i].jfNo}"style="margin-left: 5px;cursor: pointer;"
+								type="submit" id="de">
+							<i class="fa-sharp fa-solid fa-arrow-up"></i>
+							</button>
+						</td>
+					</tr>`);
+
+
+					}
+
+
+				}
+			});
+		}
+	})
+
+	//查看全部按鈕
+	$("button#all").click(function () {
+		$("tr#all").remove();
+		$.ajax({
+			url: "/SeekerPool/JobFair",
+			method: 'POST',
+			datatype: "JSON",
+			data: { action: "getAll2" },
+			success: function (res) {
+				var a;
+
+				for (let i = 0; i < res.length; i++) {
+					console.log(res[i]);
+					if (res[i].jrStatus === 0) {
+						a = "未上架";
+					} else if (res[i].jrStatus === 1) {
+						a = "已上架"
+					}
+
+					console.log(a);
+					$("tbody").append(`<tr id="all"style="background-color:#FFFFFF;border:1px solid lightgray;text-align: center;">
+								<td style="text-align: center;width: 200px; "><img src="${res[i].jrArImg}"
+								style="height: 150px;max-width:100%;max-height:100%;"></td>
+							<td id="jf" style="text-align: center;width: 50px;">${res[i].jfNo}</td>
+							<td>${res[i].jfName}</td>
+							<td style="text-align: center;vertical-align: middle; text-align: center;overflow: hidden;
+	 	  						  text-overflow: ellipsis;max-width: 200px;">
+	 	  						<p id="p"class="card-text"style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
+		  	                    	  -webkit-line-clamp: 3;
+				                    ">${res[i].jfActivity}</p>
+								<td style="text-align: center;vertical-align: middle; text-align: center;max-width: 200px;">
+								${res[i].jfStartTime + "~" + res[i].jfEndTime}
+								<td style="text-align: center;vertical-align: middle; text-align: center;max-width: 200px;">
+								${res[i].regStartTime + "~" + res[i].regEndTime}
+								<td id="sta"style="text-align: center;vertical-align: middle; text-align: center;max-width: 50px;">
+								${a}
+							<td style="text-align: center;vertical-align: middle; text-align: center;max-width: 50px;">
+								<button class="btn btn_edit" id="ed" name="${res[i].jfNo}"
+									style="margin-left: 5px; vertical-align: auto; cursor: pointer;" type="submit">
+									<i class="fa-sharp fa-solid fa-pen-to-square" style="color: #eed111;"></i>
+								</button>
+							</td>
+							<td style="text-align: center;vertical-align: middle; text-align: center;max-width: 70px;">
+								<button class="btn btn_save" name="${res[i].jfNo}"style="margin-left: 5px;cursor: pointer;"
+									type="submit" id="de">
+								<i class="fa-sharp fa-solid fa-arrow-up"></i>
+								</button>
+							</td>
+						</tr>`);
+				}
+			}
+		})
+	})
+
+</script>
+
+
+</html>

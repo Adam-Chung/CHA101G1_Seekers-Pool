@@ -1,0 +1,236 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: auto 0;
+    background-color: #f6f7f8;
+}
+
+:root {
+    --personal-header-height: 200px;
+    --profile-avatar-width: 160px;
+}
+
+i {
+    color: #93bfcf;
+}
+
+/* ---------- 主內容 ---------- */
+.main-content {
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* ---------- 企業資訊 ---------- */
+.company-header {
+    display: flex;
+    justify-content: space-around;
+    height: 250px;
+    width: 90%;
+    padding: 20px 80px 20px 50px;
+    margin: auto;
+    border-radius: 8px;
+    background-color: #f6f7f8;
+    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08);
+}
+
+figure {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    /* 需要設定一個確定的高度才能將子元素置中 */
+    margin: 0;
+}
+
+.company-header .profile-avatar {
+    border: 3px solid white;
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+}
+
+.company-header .profile-box {
+    display: inline-block;
+    /* border: 1px solid #6096b4; */
+    padding: 10px;
+    margin-left: 20px;
+    height: 100%;
+    min-width: 500px;
+}
+
+.company-header .profile-box h1 {
+    margin: 0 0 5px 5px;
+}
+
+.company-header .profile-box .info {
+    display: flex;
+    flex-direction: column;
+}
+
+.company-header .profile-box .info .info_list-item {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.company-header .profile-box .info .info_list-item span {
+    align-self: left;
+    color: #3f3f42;
+    font-size: 18px;
+}
+
+.company-header .profile-box .description {
+    margin-top: 10px;
+    margin-left: 10px;
+    /*   white-space: pre-wrap; */
+    overflow: hidden;
+    color: #3f3f42;
+}
+
+/* ---------- 檢舉按鈕 ---------- */
+.report-botton {
+    border-radius: 4px;
+    border: 0px;
+    width: 110px;
+    height: 40px;
+    margin-top: 30px;
+    background-color: #59ace0;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.report-botton:hover {
+    background-color: #055fb4;
+    color: white;
+}
+
+/* ---------- header的icon ---------- */
+#icon-block-1 {
+    margin-left: 3px;
+    margin-right: 7px;
+}
+
+#icon-block-2 {
+    margin-left: 3px;
+    margin-right: 5px;
+}
+
+/* ---------- 面板區 ---------- */
+.content-cotainer {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    margin: auto;
+    width: 90%;
+}
+
+.office-photo-panel,
+.job-panel,
+.company-rate-panel {
+    width: 75%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    /* 設定子元素的高度都相同 */
+    border-radius: 4px;
+    background-color: white;
+    box-shadow: 0.15rem 0 0.3rem rgba(35, 49, 56, 0.16);
+}
+
+.heading {
+    display: flex;
+    padding: 5px;
+    border-bottom: 1px solid #dfe6e9;
+}
+
+.heading .heading-icon-block {
+    margin: 7px 10px 7px 8px;
+}
+
+.heading h2 {
+    margin: 0;
+    color: #233138;
+}
+
+/* ---------- 環境照片 ---------- */
+.office-photo-panel {
+    margin-bottom: 30px;
+}
+
+.office-photo-panel .office-photo {
+    width: 200px;
+    border: 1px solid #ddd;
+    margin: 10px;
+}
+
+.office-photo-panel .panel-body {
+    margin: 20px;
+}
+
+/* ---------- 職缺列表 ---------- */
+.job-panel {
+    margin-bottom: 30px;
+}
+
+.job-panel .panel-body {
+    margin: 30px;
+}
+
+.job-panel .panel-body .job-block {
+    border: 1px solid #eee;
+    margin: 10px 15px 0px 15px;
+}
+
+.job-panel .panel-body .job-block a {
+    padding-left: 20px;
+}
+
+/* ---------- 企業評價 ---------- */
+.company-rate-panel .panel-body {
+    padding: 30px;
+}
+
+.rate-block {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding: 30px;
+}
+
+.rate-block .user-icon {
+    border: 3px solid lightgrey;
+    border-radius: 100%;
+    width: 80px;
+    height: auto;
+}
+
+.rate-block .rate {
+    /* border: 1px solid blue; */
+    width: 50px;
+}
+
+.rate-block .rate span {
+    font-size: 24px;
+}
+
+.rate-block .rate-content {
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+    padding: 8px;
+    margin-left: 30px;
+    width: 600px;
+}
+
+.rate-block .rate-content p {
+    font-size: 20px;
+}
+
+/* ========================== main ============================= */
+main {
+    /* main內容會超過預設1500px的高度所以覆寫 */
+    height: 100%;
+}

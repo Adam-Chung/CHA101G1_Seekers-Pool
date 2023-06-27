@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/EmployeeLogin.css">
+</head>
+
+<body>
+    <div class="login-page">
+        <div class="form">
+            <!--註冊-->
+            <!-- <form class="register-form">
+                <input type="text" placeholder="name" />
+                <input type="password" placeholder="password" />
+                <input type="text" placeholder="email address" />
+                <button>create</button>
+                <p class="message">Already registered? <a href="#">Sign In</a></p>
+            </form> -->
+
+            <!---->
+
+            <p>
+            <h1>Seeker's Pool<br>
+                <h2>員工登入</h2>
+            </h1>
+            <input id="1" type="text" placeholder="Account" required />
+            <input id="2" type="password" placeholder="Password" required />
+            <!-- <div class="input-group">
+                    <span class="input-group-text"><img src="./img/user-regular.svg" alt=""></i></span>
+                    <input type="text" class="form-control" placeholder="ID" required>
+                </div>
+
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+                    <input type="password" class="form-control" placeholder="Password" required>
+                </div> -->
+            <button id="login" type="button">login</button>
+            <!-- <p class="message">Not registered? <a href="#">Create an account</a></p> -->
+
+        </div>
+    </div>
+    <script src="./js/EmployeeLogin.js"></script>
+    <script src="./vendors/jquery/jquery-3.6.4.min.js"></script>
+    <script>
+
+        //登入按鈕
+        $("button#login").on("click", function () {
+            $.ajax({
+                url: "/SeekerPool/administrator.do",
+                method: 'POST',
+                datatype: "JSON",
+                data: { action: "getOne_For_Display2", admAccount: $("input#1").val(), admPassword: $("input#2").val() },
+                success: function (res) {
+
+                    if (res === "請確認帳號密碼!") {
+                        alert(res);
+                    } else {
+                        window.location.replace('./job_fair.html');
+
+                    }
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

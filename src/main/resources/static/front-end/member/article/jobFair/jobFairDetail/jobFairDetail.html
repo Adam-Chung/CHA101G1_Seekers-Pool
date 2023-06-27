@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>jobFairDetail</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web:400,600,700">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/Button-Change-Text-on-Hover.css">
+    <link rel="stylesheet" href="assets/css/Button-Outlines---Pretty.css">
+    <link rel="stylesheet" href="assets/css/Features-Image-1.css">
+    <link rel="stylesheet" href="assets/css/Features-Image.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+    <!-- jQuery -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <!-- 引入header、footer的JS -->
+    <script type="text/javascript" src="js/include.js"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Krona+One|Quicksand:300,400,700&amp;display=swap">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/5.0.7/sweetalert2.min.css">
+    <style>
+        body {
+            background-color: lightgoldenrodyellow;
+        }
+    </style>
+</head>
+
+<body>
+    <!--引入heaer頁面-->
+    <div id="header"></div>
+
+
+    <!--引入heaer頁面-->
+    <div class="list"></div>
+    <main>
+        <!--引入QandTop按鈕-->
+        <div id="QandTop"></div>
+        <div class="container" id="art" style="padding: 0%;transform: translateX(40px);width: 700px; margin-bottom: 50px;">
+            
+        </div>
+    </main>
+    <div id="footer"></div>
+    <!-- bootstraps -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/5.0.7/sweetalert2.min.js"></script>
+
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/Modal-commerce-popup-button.js"></script>
+
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+    $(function(){
+    	 function getUrlParam(name) {
+		        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+		        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+		        if (r != null) return unescape(r[2]); return null; //返回参数值
+		    }
+      	 $.ajax({
+   	        url: "/Seeker_Pool_Mix/JobRecruitment",
+   	        method: 'POST',
+   	        datatype: "JSON",
+   	        data: {action: "getOne_For_Display" ,jrArNo: getUrlParam('jrArNo')},
+   	        success: function(res){	
+   	        	$("div#art").append(`
+   	        			<div class="row" style="padding: 0;height: 400px;width: 700px; ">
+   	                 <div class="col-md-12" style="padding: 0%;height: 400px;"><img class="rounded w-100 h-100 fit-cover"
+   	                         style="padding: 0;margin: 0; " src="${res.jrArImg}">
+   	                 </div>
+   	             </div>
+   	             <div class="row" style="background-color: white;margin-bottom: 20px; width: 700px;">
+   	                 <div class="col-md-12" style="margin-bottom: 20px;">
+   	                     <div
+   	                         class="text-center text-md-start d-flex flex-column align-items-center align-items-md-start mb-5" >
+   	                         <div style="margin-top:20px" style="word-wrap:break-word;">
+   	                      
+   	                         <h4 style="margin-left:70px;margin-top:40px;margin-bottom:40px;font-weight: 900;font-size:48px;">${res.jrArTitle}</h4>
+   	                         <label style="margin-left:30px;">---------------------------------------------- <Strong>活動時間:</Strong> ---------------------------------------------</label>
+   	                          
+   	                             <p style="margin-left:215px;margin-top:20px;margin-bottom:40px;">${res.jrArStartTime+" ~ " +res.jrArEndTime}</p>
+   	                          <label style="margin-left:30px;">---------------------------------------------- <Strong>參展企業:</Strong> ---------------------------------------------</label>
+   	                          
+   	                             <p style="margin-left:250px;margin-top:20px;margin-bottom:40px;">${res.jrArCom}</p>
+   	                          <label style="margin-left:30px;">---------------------------------------------- <Strong>活動內容:</Strong> ---------------------------------------------</label>
+   	                          
+   	                             <p style="margin-left:90px;margin-top:20px;width:530px;word-wrap:break-word;">${res.jrArContent}</p>
+   	                          </div>
+   	                             <p style="margin-top:20px">
+   	                             <a href="../index/jobFairArticle.html">
+   	                         <button class="btn btn-link border-pretty" style="color:#ce9c95;" type="button">返回徵才文章列表
+   	                             <i class="icon ion-android-arrow-forward"></i></button></p></a>
+   	                          
+
+   	                     </div>
+   	                 </div>
+   	             </div>
+   	        		    `)
+   	        	
+   	        	
+   	        }
+   	        })
+   	})
+    </script>
+</body>
+
+</html>

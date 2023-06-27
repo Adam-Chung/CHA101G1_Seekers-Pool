@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Seeker's Pool</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="./img/handshake-regular.svg" rel="icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="./packageCSS/bootstrap.min.css" rel="stylesheet">
+    <link href="./packageCSS/bootstrap-icons.css" rel="stylesheet">
+    <link href="./packageCSS/boxicons.min.css" rel="stylesheet">
+    <link href="./packageCSS/quill.snow.css" rel="stylesheet">
+    <link href="./packageCSS/quill.bubble.css" rel="stylesheet">
+    <link href="./packageCSS/remixicon.css" rel="stylesheet">
+    <link href="./packageCSS/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="./css/Employee.css" rel="stylesheet">
+
+    <!-- Font Awesome-->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> -->
+    <script src="https://kit.fontawesome.com/244879c400.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <!-- ========================== Header ================================ -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+
+        <div class="d-flex flex-row align-items-center justify-content-between" style="margin-bottom: -10px;">
+            <a href="Employee.html" class="logo d-flex align-items-center">
+                <img src="./img/handshake-regular.svg" alt="" style="margin-right: 10px;">
+                <span class="d-none d-lg-block">
+                    <h5 style="margin-bottom: 0px;"><a href="Employee.html">Seeker's P<i
+                                class="fa-regular fa-face-smile"></i><i class="fa-regular fa-face-smile"></i>L
+                        </a></h5>
+                </span>
+            </a>
+            <img src="./img/bars-solid.svg" class="toggle-sidebar-btn" alt="">
+        </div>
+        <!-- End Logo -->
+
+        <div class="search-bar">
+            <form class="search-form d-flex align-items-center" method="POST" action="#">
+                <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                <button type="submit" title="Search"><img src="./img/magnifying-glass-solid.svg" alt=""></button>
+            </form>
+        </div>
+        <!-- End Search Bar -->
+
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+                <li class="nav-item d-block d-lg-none">
+                    <a class="nav-link nav-icon search-bar-toggle " href="#">
+                        <i class="bi bi-search"></i>
+                    </a>
+                </li>
+                <!-- End Search Icon-->
+
+                <li class="nav-item dropdown pe-3">
+
+                    <a class="profile-photo nav-profile d-flex align-items-center pe-0" href="#"
+                        data-bs-toggle="dropdown">
+                        <img src="./img/happy-quokka.jpg" alt="Profile" class="rounded-circle">
+                        <span class="d-none d-md-block dropdown-toggle ps-2">Kelsey Lin</span>
+                    </a>
+                    <!-- End Profile Iamge Icon -->
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li class="dropdown-header">
+                            <h6>Kelsey Lin</h6>
+                            <span>Backend Engineer</span>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                                <i class="bi bi-person"></i>
+                                <span>My Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                                <i class="bi bi-gear"></i>
+                                <span>Account Settings</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                                <i class="bi bi-question-circle"></i>
+                                <span>Need Help?</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Sign Out</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                    <!-- End Profile Dropdown Items -->
+                </li>
+                <!-- End Profile Nav -->
+            </ul>
+        </nav>
+        <!-- End Icons Navigation -->
+    </header>
+    <!-- End Header -->
+
+    <!-- ========================= Sidebar ============================== -->
+    <aside id="sidebar" class="sidebar">
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+            <li class="nav-item">
+                <a class="nav-link " href="Employee.html">
+                    <img src="./img/house-solid.svg" alt="">
+                    <span>Home</span>
+                </a>
+            </li>
+            <!-- End Dashboard Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#administrator-nav" data-bs-toggle="collapse" href="#">
+                    <img src="./img/user-regular.svg" alt=""><span>員工管理</span><img src="./img/angle-down-solid.svg"
+                        class="angle-down-solid ms-auto" alt="">
+                </a>
+                <ul id="administrator-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="./Administrator1.html">
+                            <img src="./img/circle-regular.svg" alt=""><span>員工資料管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./Administrator2.html">
+                            <img src="./img/circle-regular.svg" alt=""><span>員工權限管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./Administrator3.html">
+                            <img src="./img/circle-regular.svg" alt=""><span>講師權限管理</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- End 員工管理 Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#member-nav" data-bs-toggle="collapse" href="#">
+                    <img src="./img/address-card-regular.svg" alt=""><span>會員管理</span><img
+                        src="./img/angle-down-solid.svg" class="angle-down-solid ms-auto" alt="">
+                </a>
+                <ul id="member-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="#">
+                            <img src="./img/circle-regular.svg" alt=""><span>一般會員管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="./img/circle-regular.svg" alt=""><span>企業會員管理</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- End 會員管理 Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#lecturer-nav" data-bs-toggle="collapse" href="#">
+                    <img src="./img/user-tie-solid.svg" alt=""><span>講師專區</span><img src="./img/angle-down-solid.svg"
+                        class="angle-down-solid ms-auto" alt="">
+                </a>
+                <ul id="lecturer-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="#">
+                            <img src="./img/circle-regular.svg" alt=""><span>講師總覽</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="./img/circle-regular.svg" alt=""><span>留言區回覆</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- End 講師專區 Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#job-nav" data-bs-toggle="collapse" href="#">
+                    <img src="./img/briefcase-solid.svg" alt=""></i><span>職缺管理</span><img
+                        src="./img/angle-down-solid.svg" class="angle-down-solid ms-auto" alt="">
+                </a>
+                <ul id="job-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="#">
+                            <img src="./img/circle-regular.svg" alt=""><span>職務規格維護</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="./img/circle-regular.svg" alt=""><span>審核管理</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- End 職缺管理 Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#job-case-nav" data-bs-toggle="collapse" href="#">
+                    <img src="./img/rectangle-ad-solid.svg" alt=""><span>職缺刊登方案管理</span><img
+                        src="./img/angle-down-solid.svg" class="angle-down-solid ms-auto" alt="">
+                </a>
+                <ul id="job-case-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="./JobCase.html">
+                            <img src="./img/circle-regular.svg" alt=""><span>職缺刊登方案</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- End 職缺刊登方案管理 Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#online-course-nav" data-bs-toggle="collapse" href="#">
+                    <img src="./img/circle-play-regular.svg" alt=""></i><span>線上訓練課程管理</span><img
+                        src="./img/angle-down-solid.svg" class="angle-down-solid ms-auto" alt="">
+                </a>
+                <ul id="online-course-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="#">
+                            <img src="./img/circle-regular.svg" alt=""><span>線上課程管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="./img/circle-regular.svg" alt=""><span>課程訂單管理</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- End 線上訓練課程管理 Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#job-fair-nav" data-bs-toggle="collapse" href="#">
+                    <img src="./img/lightbulb-regular.svg" alt=""></i><span>徵才博覽會管理</span><img
+                        src="./img/angle-down-solid.svg" class="angle-down-solid ms-auto" alt="">
+                </a>
+                <ul id="job-fair-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="./job_fair.html">
+                            <img src="./img/circle-regular.svg" alt=""><span>活動管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./Exhibitor.html">
+                            <img src="./img/circle-regular.svg" alt=""><span>參展企業管理</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- End 徵才博覽會管理 Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#article-nav" data-bs-toggle="collapse" href="#">
+                    <img src="./img/newspaper-regular.svg" alt=""><span>文章專區管理</span><img
+                        src="./img/angle-down-solid.svg" class="angle-down-solid ms-auto" alt="">
+                </a>
+                <ul id="article-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="./job_fair_article.html">
+                            <img src="./img/circle-regular.svg" alt=""><span>徵才活動文章</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="./img/circle-regular.svg" alt=""><span>審核被檢舉文章</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- End 文章專區管理 Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#scheduler-nav" data-bs-toggle="collapse" href="#">
+                    <img src="./img/calendar-days-regular.svg" alt=""><span>排程器管理</span><img
+                        src="./img/angle-down-solid.svg" class="angle-down-solid ms-auto" alt="">
+                </a>
+                <ul id="scheduler-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="#">
+                            <img src="./img/circle-regular.svg" alt=""><span>熱門職務&技能</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- End 排程器管理 Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#info-nav" data-bs-toggle="collapse" href="#">
+                    <img src="./img/circle-question-regular.svg" alt=""></i><span>前台資訊管理</span><img
+                        src="./img/angle-down-solid.svg" class="angle-down-solid ms-auto" alt="">
+                </a>
+                <ul id="info-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="#">
+                            <img src="./img/circle-regular.svg" alt=""><span>最新消息管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="./img/circle-regular.svg" alt=""><span>電子報管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="./img/circle-regular.svg" alt=""><span>FAQ管理</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- End 前台資訊管理 Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#">
+                    <img src="./img/headset-solid.svg" alt=""></i>
+                    <span>線上客服管理</span>
+                </a>
+            </li>
+            <!-- End 線上客服管理 Nav -->
+        </ul>
+    </aside>
+    <!-- End Sidebar-->
+
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+            <h1>參展企業管理</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="Employee.html">Home</a></li>
+                    <li class="breadcrumb-item active">徵才博覽會管理</li>
+                    <li class="breadcrumb-item active">參展企業管理</li>
+                </ol>
+            </nav>
+        </div>
+        <hr>
+        <!-- End Page Title -->
+
+        <div class="row">
+            <div class="mb-3 col-lg-4">
+                <label for="formInputQuery" class="form-label"><strong style="font-size:large;">查詢活動</strong></label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="formInputQuery" placeholder="Search by typing here...">
+                    <button type="button" class="btn btn-primary"><strong>查詢</strong></button>
+                </div>
+            </div>
+
+        </div>
+        </div>
+        <span class="counter pull-right"></span>
+        <div class="table-responsive table table-hover table-bordered results">
+            <table class="table table-hover table-bordered">
+                <thead class="bill-header cs">
+                    <tr>
+                        <th id="AUT_IMG" class="AUT_IMG">活動圖片</th>
+                        <th id="AUT_NO" class="AUT_NO">活動編號</th>
+                        <th id="AUT_NAME" class="AUT_NAME">活動名稱</th>
+                        <th id="AUT_DESCRIPTION" class="AUT_DESCRIPTION">參加活動企業</th>
+                        <th id="AUT_EDIT" class="AUT_EDIT">編輯</th>
+                        <th id="AUT_SAVE" class="AUT_SAVE">儲存</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 首頁sidebar下拉 -->
+        <script src="./packageJS/bootstrap.bundle.min.js"></script>
+
+        <!-- Template Main JS File -->
+        <script src="./js/Employee.js"></script>
+
+        <script src="./vendors/jquery/jquery-3.6.4.min.js"></script>
+
+        <!--fontawesome-->
+        <script src="https://kit.fontawesome.com/244879c400.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.7.0.js"
+		integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+		crossorigin="anonymous"></script>
+		<script>
+		$(function(){
+	    	
+	    	 $.ajax({
+	 	        url: "/Seeker_Pool_Mix/SignupRecordServlet",
+	 	        method: 'POST',
+	 	        datatype: "JSON",
+	 	        data: {action: "look2"},
+	 	        success: function(res){
+	 	        	for(let i=0;i<res.length;i++){
+	 	        
+	 	        	console.log(res[i]);
+	 	   
+	 	        	$("tbody").append(`
+	 	        			 <tr>
+	                        <td style="text-align: center">
+	                            <img src="${res[i].jrArImg}" style="height: 150px;">
+	                        </td>
+	                        <td style="text-align: center">${res[i].jfNo}</td>
+	                        <td>${res[i].jfName}</td>
+	                        <td style="vertical-align: middle; text-align: center;">
+	                           ${res[i].comName}
+	                        <td style="vertical-align: middle; text-align: center;">
+	                            <button class="btn btn_edit" style="margin-left: 5px; vertical-align: auto;"
+	                                type="submit"><i class="fa-solid fa-pencil"
+	                                    style="color: rgb(255, 217, 0);"></i></button>
+	                        </td>
+	                        <td style="vertical-align: middle; text-align: center;">
+	                            <button class="btn btn_save" style="margin-left: 5px;" type="submit"><i
+	                                    class="fa-solid fa-check" style="color: green;"></i></button>
+	                        </td>
+	                    </tr>
+	 	        		    `)
+	 	        	}
+	 	        	
+	 	        }
+	 	        })
+		})
+		</script>
+</body>
+
+</html>

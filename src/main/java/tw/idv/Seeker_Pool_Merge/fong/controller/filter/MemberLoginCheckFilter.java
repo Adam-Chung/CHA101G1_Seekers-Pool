@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 //@WebFilter("/*")
 //@WebFilter(value={"/fongpage/*", "XXX"}) 或是  @WebFilter(urlPatterns={"/fongpage/*", "XXX"}) 
-@WebFilter("/front-end/member/member/*") // 要從專案名稱後開始寫，只有在此資料中的需要被驗證 member是否登入
+@WebFilter(urlPatterns={"/front-end/member/member/*"}) // 要從專案名稱後開始寫，只有在此資料中的需要被驗證 member是否登入
 public class MemberLoginCheckFilter extends HttpFilter {
 	//可以改成用繼承 extends HttpFilter ， 不用 implements Filter，就可以直接使用HttpServletRequest，不用將ServletRequest 進行強轉成HttpServletRequest
 	private static final long serialVersionUID = 6197057707314002538L;

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blank</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/companyProfile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- jQuery -->
+    <script src="./js/jquery-3.4.1.min.js"></script>
+    <!-- 引入header、footer的JS -->
+    <script type="text/javascript" src="./js/include.js"></script>
+    <!-------------------- 引入axios -------------------->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <!--引入header頁面-->
+    <div id="header"></div>
+
+    <!--引入header頁面-->
+    <div class="list"></div>
+
+    <main>
+        <!--引入QandTop按鈕-->
+        <div id="QandTop"></div>
+        <div id="main-content">
+            <!-------------------- 企業資訊header -------------------->
+            <header class="company-header">
+                <figure class="profile-pic">
+                    <img src="" id="logoImg" alt="profile-picture" class="profile-avatar" name="comPicture">
+                </figure>
+                <div class="profile-box">
+                    <h1 id="companyName" class="company-name" name="comName">蘋果公司</h1>
+                    <div class="info">
+                        <div class="info_list-item">
+                            <span class="heading-icon-block" id="icon-block-1">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </span>
+                            <span id="address" class="location" name="comAddress">臺北市信義區市府路45號</span>
+                        </div>
+                        <div class="info_list-item">
+                            <span class="heading-icon-block" id="icon-block-2">
+                                <i class="fa-solid fa-phone"></i>
+                            </span>
+                            <span id="phone" class="education-level" name="comTel">02-27778888</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="report-block">
+                    <button class="report-botton">檢舉企業</button>
+                </div>
+            </header>
+
+            <!-------------------- 面板區 -------------------->
+            <div class="content-cotainer">
+                <!-------------------- 辦公環境照片 -------------------->
+                <!-- <div class="office-photo-panel">
+                    <div class="heading">
+                        <span class="heading-icon-block">
+                            <i class="fa-solid fa-circle-info"></i>
+                        </span>
+                        <h2>環境照片</h2>
+                    </div>
+                    <div class="panel-body">
+                        <img src="./images/Banner-Product-PrivateOffice.jpg" alt="Office photo 1" class="office-photo">
+                        <img src="./images/Banner-Product-PrivateOffice.jpg" alt="Office photo 2" class="office-photo">
+                        <img src="./images/Banner-Product-PrivateOffice.jpg" alt="Office photo 3" class="office-photo">
+                    </div>
+                </div> -->
+                <!-------------------- 職缺列表 -------------------->
+                <div class="job-panel">
+                    <div class="heading">
+                        <span class="heading-icon-block">
+                            <i class="fa-solid fa-circle-info"></i>
+                        </span>
+                        <h2>工作機會列表</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="job-block">
+                            <h3 class="job-title"><a href="">Java 軟體工程師</a></h3>
+                        </div>
+                        <div class="job-block">
+                            <h3 class="job-title"><a href="">UI/UX 設計師</a></h3>
+                        </div>
+                        <div class="job-block">
+                            <h3 class="job-title"><a href="">專案產品經理</a></h3>
+                        </div>
+                        <div class="job-block">
+                            <h3 class="job-title"><a href="">行政助理</a></h3>
+                        </div>
+                        <div class="job-block">
+                            <h3 class="job-title"><a href="">行銷企劃專員</a></h3>
+                        </div>
+                    </div>
+                </div>
+                <!-------------------- 企業評價 -------------------->
+                <!-- <div class="company-rate-panel">
+                    <div class="heading">
+                        <span class="heading-icon-block">
+                            <i class="fa-solid fa-circle-info"></i>
+                        </span>
+                        <h2>企業評價</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="rate-block">
+                            <img src="./img/pikachu.png" alt="使用者1" class="user-icon">
+                            <div class="rate"><span>5分</span></div>
+                            <div class="rate-content">
+                                <p class="content">皮卡皮，皮皮皮卡，皮卡皮卡皮卡皮！（有免費零食水果，每週三訂下午茶，每年固定調薪，讚讚）</p>
+                            </div>
+                        </div>
+                        <div class="rate-block">
+                            <img src="./img/mokuro.png" alt="使用者2" class="user-icon">
+                            <div class="rate"><span>3分</span></div>
+                            <div class="rate-content">
+                                <p class="content">母勾古母勾古～母勾古母勾古母勾古母勾古～！（辦公室政治嚴重，福利OK，整體來說還可以）</p>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </main>
+
+    <!--引入footer頁面-->
+    <div id="footer"></div>
+</body>
+
+<script src="./js/companyProfile.js"></script>
+
+</html>

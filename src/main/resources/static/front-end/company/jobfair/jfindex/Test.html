@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<button type="button" style="height:50px;width:150px"> go </button>
+<script src="https://code.jquery.com/jquery-3.7.0.js"
+		integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+		crossorigin="anonymous"></script>
+<script>
+$("button").on("click",function(){
+	$.ajax({
+	    url: "/Seeker_Pool/JobFair",
+	    method: 'POST',
+	    datatype: "JSON",
+	    data: { action: "com" },
+	    success: function (res) {
+	    	window.location.replace('./Companyjobfair.html');
+	    }
+	})
+})
+
+</script>
+</body>
+</html>

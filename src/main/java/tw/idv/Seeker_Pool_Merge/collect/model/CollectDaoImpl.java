@@ -12,7 +12,7 @@ import tw.idv.Seeker_Pool_Merge.common.util.HikariCPUtil;
 public class CollectDaoImpl implements CollectDao {
 
 	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
-	private static DataSource ds = HikariCPUtil.getInstance().getDataSource();
+	private static DataSource ds = HikariCPUtil.getDataSource();
 //	static {
 //		try {
 //			Context ctx = new InitialContext();
@@ -87,6 +87,27 @@ public class CollectDaoImpl implements CollectDao {
 			throw new RuntimeException("找不到這個資料庫" + se.getMessage());
 		} finally {
 			// 關閉資源的程式碼
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
 		}
 
 		return collectVo;

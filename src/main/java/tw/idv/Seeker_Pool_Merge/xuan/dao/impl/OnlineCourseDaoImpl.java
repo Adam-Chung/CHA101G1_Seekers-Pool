@@ -17,8 +17,8 @@ import tw.idv.Seeker_Pool_Merge.xuan.dao.OnlineCourseDao;
 import tw.idv.Seeker_Pool_Merge.xuan.vo.OnlineCourseVo;
 
 public class OnlineCourseDaoImpl implements OnlineCourseDao {
-	private DataSource dataSource= HikariCPUtil.getInstance().getDataSource();
-
+	private DataSource dataSource= HikariCPUtil.getDataSource();
+ 
 //	public OnlineCourseDaoImpl() {
 //		try {
 //			Context ctx = new InitialContext();

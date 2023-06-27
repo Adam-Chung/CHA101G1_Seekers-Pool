@@ -1,0 +1,304 @@
+body {
+  background: #efefef;
+  margin: 0;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.4em;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+
+
+h1 {
+  font-size: 3.0em;
+  line-height: 1.3em;
+
+
+}
+
+.jobing-header {
+  height: 50px;
+  background: white;
+  border-bottom: 1px solid #ccc;
+}
+
+.jobing-header .j-button {
+  display: inline-block;
+  float: right;
+  color: #666;
+  padding: 0 1em;
+  line-height: 50px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.jobing-header .j-button:hover {
+  color: #000;
+}
+
+.main {
+  background: #fff;
+  border: 1px solid #ddd;
+  max-width: 1000px;
+  margin: 2em auto;
+}
+
+.button {
+  display: inline-block;
+  background: #e52e41;
+  border: 1px solid #e52e41;
+  color: #fff;
+  padding: 0 2em;
+}
+
+.button.secondary {
+  background: #fff;
+  color: #999;
+  border-color: #ccc;
+  line-height: 2.2em;
+}
+
+.company-header {
+  overflow: hidden;
+  height: 435px;
+}
+
+.company-header ul {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  height: 60px;
+  line-height: 60px;
+}
+
+.company-header li {
+  float: left;
+}
+
+.company-header .follow {
+  float: right;
+}
+
+.company-header .follow a {
+  margin: 10px;
+  line-height: 40px;
+}
+
+.company-header .logo {
+  z-index: 10;
+  position: relative;
+  top: -20px;
+}
+
+.company-header .logo a {
+  display: block;
+  background: #fff;
+  width: 125px;
+  height: 60px;
+  line-height: 60px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  text-align: center;
+  margin: 0 0 0 20px;
+}
+
+.company-header .nav a {
+  color: #333;
+  padding: 0 1em;
+  border-right: 1px solid #ddd;
+  line-height: 60px;
+  display: inline-block;
+}
+
+.headline-image {
+  height: 350px;
+  overflow: hidden;
+  position: relative;
+  margin: auto;
+}
+
+.headline-image img {
+  width: 100%;
+}
+
+.headline-image i {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  vertical-align: middle;
+  z-index: 2;
+  font-size: 5em;
+  opacity: 0.7;
+  width: 80px;
+  height: 80px;
+  color: #fff;
+}
+
+.slide {
+  clear: left;
+  padding: 50px;
+  border-bottom: 1px solid #ddd;
+}
+
+.slide p {
+  margin: 0 0 1em;
+}
+
+.company-page .job-detail {
+  display: none;
+}
+
+.job-page .profile-content,
+.job-page .open-jobs,
+.job-page .callout-content {
+  display: none;
+}
+
+.profile-content h2 {
+  font-size: 1.5em;
+  margin: 0 0 0.5em;
+}
+
+.profile-content p:first-of-type {
+  color: #e52e41;
+  font-size: 1.4em;
+  line-height: 1.3em;
+}
+
+/*
+.company-header, .profile-content {
+display: none;
+}
+*/
+.open-jobs h2 {
+  font-size: 2em;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.open-jobs h3 {
+  float: left;
+  font-size: 1.3em;
+  color: #e52e41;
+}
+
+.open-jobs h3 span {
+  font-size: 0.7em;
+  color: #333;
+  display: block;
+}
+
+.open-jobs ul {
+  margin-left: 250px;
+}
+
+.open-jobs li {
+  margin-bottom: 0.5em;
+}
+
+.open-jobs .groups {
+  border-top: 1px solid #ddd;
+  padding-top: 1.5em;
+}
+
+.open-jobs .groups div {
+  margin-bottom: 1.5em;
+  padding-bottom: 1.5em;
+  border-bottom: 1px solid #ddd;
+}
+
+.callout-content {
+  background: #e52e41;
+}
+
+.callout-content h2 {
+  font-size: 1.5em;
+  margin: 0 0 0.5em;
+}
+
+.callout-content div {
+  background: #fff;
+  position: relative;
+  z-index: 2;
+  padding: 3em;
+}
+
+.callout-content .logo {
+  padding-top: 20px;
+  text-align: center;
+}
+
+.job-detail h2 {
+  font-size: 1.3em;
+  margin-bottom: 0.5em;
+}
+
+.job-detail ul {
+  margin-bottom: 1em;
+}
+
+.job-detail .button {
+  display: block;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.job-detail .apply-button {
+  line-height: 60px;
+  font-size: 1.3em;
+}
+
+.job-detail .apply-top {
+  float: right;
+  width: 220px;
+  margin-left: 40px;
+
+
+}
+
+.job-detail .apply-top p {
+  margin-top: 1.5em;
+}
+
+.job-detail .job-body {
+  margin-right: 300px;
+}
+
+.job-detail .map img {
+  max-width: 100%;
+}
+
+/*# sourceMappingURL=sytle.css.map */
+.logo-img {
+  height: 30vh;
+  width: 30vh;
+  float: right;
+
+  margin-right: 0px;
+}
+
+li {
+  line-height: 1.3em;
+  margin: 0 0 0.5em;
+}
+
+.job-content {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-weight: bold;
+  border-bottom: 1px solid black;
+  color: red;
+}
+
+.company {
+  font-size: large;
+  font-weight: bold;
+  color: blue;
+}

@@ -13,30 +13,29 @@ import java.util.Properties;
  *
  */
 public class HikariCPUtil {
-	
-	private static final String CONFIG_FILE_PATH = "Hikari.properties";
-	private static HikariCPUtil hikariCPUtil = new HikariCPUtil();
-	
-	
-	public static HikariCPUtil getInstance() {
-		return hikariCPUtil;
-	}
+    private static final String CONFIG_FILE_PATH = "Hikari.properties";
+    private static HikariDataSource dataSource;
 
-    public HikariDataSource getDataSource() {
+    static { 
         try {
-        	ClassLoader classLoader = HikariCPUtil.class.getClassLoader();
+            ClassLoader classLoader = HikariCPUtil.class.getClassLoader();
             InputStream inputStream = classLoader.getResourceAsStream(CONFIG_FILE_PATH);
 
             Properties properties = new Properties();
             properties.load(inputStream);
 
             HikariConfig config = new HikariConfig(properties);
-            return new HikariDataSource(config);
-            
+            dataSource = new HikariDataSource(config);
+
         } catch (Exception e) {
             // 异常处理
             e.printStackTrace();
-            return null;
+            dataSource = null;
         }
     }
+
+    public static HikariDataSource getDataSource() {
+        return dataSource;
+    }
 }
+
