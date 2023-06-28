@@ -56,7 +56,7 @@ public class ApplyRecordDaoImpl implements ApplyRecordDao {
 			if (filterNum != 100) {
 				sb.append(" and hire_status = ?");
 			}
-			sb.append(" ORDER BY A.INTER_DATE limit ? , ?;");
+			sb.append(" ORDER BY A.APPLY_DATE limit ? , ?;");
 
 			sql = sb.toString();
 			pstmt = con.prepareStatement(sql);
