@@ -34,16 +34,16 @@ $(function () {
                 var data = JSON.parse(data);
                 if (data.flag) {
                     // 註冊成功，跳轉到驗證碼頁面
-                    location.href = "send_email.html";
+                    location.href = "company_send_email.html";
                 } else {
                     // 註冊失敗，給error_msg添加錯誤訊息
                     // alert(data.errorMsg)
-                    swal("更新失敗", ${ data.errorMsg }, "error");
+                    swal("更新失敗", `${data.errorMsg}`, "error");
                 }
             },
             error: function (data) {
                 // alert(data.errorMsg)
-                swal("更新失敗", ${ data.errorMsg }, "error");
+                swal("更新失敗", `${data.errorMsg}`, "error");
             }
         });
 

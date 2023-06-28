@@ -19,7 +19,25 @@ $(function () {
             success: function (data) {
                 console.log(data);  // 印出從後端回傳的數據
                 if (data.flag) {
-                    location.href = "info.html";
+                    Swal.fire({
+                        title: '恭喜註冊成功!!',
+                        timer: 1000,
+                        icon: 'success',
+                        width: 400,
+                        padding: '3em',
+                        color: '#817be0',
+                        background: '#fff',
+                        backdrop: `
+                                    rgba(0,0,023,0.3)
+                                    url(https://sweetalert2.github.io/images/nyan-cat.gif)
+                                    right bottom
+                                    repeat
+                                  `
+                    }).then(() => {
+                        setTimeout(() => {
+                            location.href = "companyIndex.html";
+                        }, 1000)
+                    })
                 } else {
                     alert(data.errorMsg);
                 }
