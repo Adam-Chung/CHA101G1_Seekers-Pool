@@ -17,4 +17,28 @@ public class Districts {
     private String districtName;
     private Integer cityId;
 
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    public String getZip() {
+        return zip;
+    }
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
+    public String getDistrictName() {
+        return districtName;
+    }
+    public void setDistrictName(String districtName) {
+        this.districtName = districtName;
+    }
+    public Integer getCityId() {
+        return cityId;
+    }
+    public void setCityId(Integer cityId) {
+        this.cityId = cityId;
+    }
 }

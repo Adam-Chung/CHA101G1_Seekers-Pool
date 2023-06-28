@@ -14,6 +14,14 @@ new Vue({
             vacanciesData: [], // 接收資料庫來的全部職缺
             editData : [],
             vacancy: [], // 添加 vacancy 属性
+            initialDistrict: '',
+
+            page:1, // 存當前的頁數
+            pageSize: 10,
+            totalDataNumber: null,
+            generatedNumber:[],
+            activeIndex: 0, // 初始激活的索引
+
             // 下面接收用戶編輯後的資料
             editedVacancy:{
                 jobType : 0, // 全職、兼職
@@ -33,61 +41,121 @@ new Vue({
         }
     },
     mounted() {
+        this.fetchData(1,this.pageSize)
         axios.all([
             axios.get("/SeekerPool/cities"),
             axios.get("/SeekerPool/positionType"),
-            axios.get("/SeekerPool/vacancy"),
-        ]).then(axios.spread((resCities , resType, resVacancy) => {
+        ]).then(axios.spread((resCities , resType) => {
             this.citiesData = resCities.data.data;
             this.positionTypeData = resType.data.data;
-            this.vacanciesData = resVacancy.data.data;
+
             console.log("MOUNTED獲取資料成功")
 
         }))
     },
+
     methods:{
+        fetchData(page, pageSize) {
+            axios.get('/SeekerPool/vacancy/page', {
+                params: {
+                    page: page,
+                    pageSize: pageSize
+                }
+            })
+                .then(response => {
+                    // 请求成功，处理响应数据
+                    this.vacanciesData = response.data.data.rows; // 他回傳那包的結構裡面data裡面又有rows
+                    this.totalDataNumber = response.data.data.total;
+                    this.roundNumber;
+                    console.log(response.data);
+                })
+                .catch(error => {
+                    // 请求失败，处理错误
+                    console.error(error);
+                });
+        },
+
         // 保存編輯後的表單資料
         submitEditForm(){
             this.transformTypeNameToPtNo();
             // 檢查表單欄位是否填寫
             if (!this.checkFormFields()) {
                 // 有未填寫的欄位，顯示錯誤訊息或其他處理方式
-                this.showErrorMessage('請填寫所有必填欄位！');
                 return;
+            }else {
+                // 發送 POST 請求
+                axios.put('/SeekerPool/vacancy', this.editedVacancy)
+                    .then(response => {
+                        // 處理成功回應
+                        this.initialDistrict = this.editedVacancy.districtName;
+                        console.log(response.data);
+                        this.fetchData(this.page, 10);  // 編輯後要再一次更新列表的資料
+                        // 例如顯示成功訊息或重新導向到其他頁面
+                        Swal.fire({
+                            title: '已成功保存!!',
+                            icon: 'success',
+                            width: 400,
+                            padding: '3em',
+                            color: '#817be0',
+                            background: '#fff',
+                            backdrop: `
+                                        rgba(0,0,023,0.3)
+                                        url(https://sweetalert2.github.io/images/nyan-cat.gif)
+                                        right bottom
+                                        repeat
+                                      `
+                        });
+                        this.goBack();
+                    })
+                    .catch(error => {
+                        // 處理錯誤回應
+                        console.error(error);
+                        // 顯示錯誤訊息
+                        Swal.fire({
+                            title: '有錯誤!',
+                            text: '表單提交失敗!',
+                            icon: 'error',
+                            timer: 2000
+                        })
+                    });
             }
-            // 發送 POST 請求
-            axios.put('/SeekerPool/vacancy', this.editedVacancy)
-                .then(response => {
-                    // 處理成功回應
-                    console.log(response.data);
-                    this.fetchNewData();  // 編輯後要再一次更新列表的資料
-                    // 例如顯示成功訊息或重新導向到其他頁面
-                    this.showSuccessMessage('表單保存成功！');
-                    this.goBack();
-                })
-                .catch(error => {
-                    // 處理錯誤回應
-                    console.error(error);
-                    // 例如顯示錯誤訊息
-                    this.showErrorMessage('表單提交失敗，請稍後再試！');
-                });
+
         },
         checkFormFields() {
             // 檢查表單欄位是否填寫
-            if (!this.editedVacancy.jobName) {
-                // 職務名稱未填寫
-                this.showErrorMessage('職務名稱不能為空！');
+            if (this.editedVacancy.jobName === null || this.editedVacancy.jobName === '') {
+                this.sweetalert('注意!', '職務名稱幫我填一下!!', 'warning','關閉' )
                 return false;
+            }else if(this.editedVacancy.ptName === '' || this.editedVacancy.ptName === null){
+                this.sweetalert('注意!', '職缺類別幫我填一下!', 'warning', '關閉');
+                return false;
+            }else if(this.editedVacancy.districtName=== '' || this.editedVacancy.districtName === null){
+                this.sweetalert('注意!', '地區還沒選擇喔!', 'warning', '關閉');
+                return false;
+            }else if(this.editedVacancy.jobAddress === '' || this.editedVacancy.jobAddress === null){
+                this.sweetalert('注意!', '剩餘地址幫我補上喔!!', 'warning', '關閉');
+                return false;
+            }else if(this.editedVacancy.jobContent === '' || this.editedVacancy.jobContent === null){
+                this.sweetalert('注意!', '方便幫我介紹一下工作內容嗎?', 'warning', '關閉');
+                return false;
+            }else if(this.editedVacancy.jobSalary === 0 || this.editedVacancy.jobSalary === null){
+                this.sweetalert('注意!', '請填入給付薪水金額!', 'warning', '關閉');
+                return false;
+            }else if(this.editedVacancy.jobOther === '' || this.editedVacancy.jobOther === null){
+                this.editedVacancy.jobOther = '無';
+                return true;
+            }else {
+                return true;
             }
-            // 檢查其他必填欄位...
-            return true;
         },
-        // 跳出警示
-        showErrorMessage(msg) {
-            alert(msg);
-        },
-        showSuccessMessage(msg) {
-            alert(msg);
+        sweetalert(title1, text2, icon3, confirmButtonText4, timer5){
+            Swal.fire({
+                title: title1,
+                text: text2,
+                icon: icon3,
+                confirmButtonText: confirmButtonText4,
+                timer: timer5,
+            })
         },
         // 透過table.job 的 jobId 來編輯此職缺資料
         editVacancy(id){
@@ -109,29 +177,42 @@ new Vue({
                 }
             })
         },
-        deleteVacancy(id){
-            axios.delete(`/SeekerPool/vacancy/${id}`).then(res => {
-                    // 删除请求成功后的处理逻辑
-                    console.log('資料删除成功');
-                    // 獲取最新數據
-                    this.fetchNewData();  // 刪除後要再一次更新列表的資料
-                }).catch(error => {
-                        // 删除請求失敗
-                        console.error('資料删除失败', error);
-                    });
-        },
-        fetchNewData(){
-            axios.get('/SeekerPool/vacancy')
-                .then(response => {
-                    // 獲取最新資料成功後的處理邏輯
-                    console.log('獲取最新資料成功', response.data.data);
-                    // 更新資料
-                    this.vacanciesData = response.data.data;
-                })
-                .catch(error => {
-                    // 獲取最新資料失敗後的處理邏輯
-                    console.error('獲取最新資料失敗', error);
-                });
+        deleteVacancy(id) {
+            Swal.fire({
+                title: '這是真的嗎?',
+                text: "刪除職缺可是沒有回頭路的!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#209318',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '沒錯，刪了吧!',
+                cancelButtonText: '好啦等等，我再想想...'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // 用户确认删除
+                    axios.delete(`/SeekerPool/vacancy/${id}`)
+                        .then(res => {
+                            // 删除成功通知
+                            Swal.fire(
+                                '已刪除!',
+                                '此職缺已被刪除!',
+                                'success'
+                            ).then(() => {
+                                // 获取最新数据
+                                this.fetchData(this.page , 10);
+                            });
+                        })
+                        .catch(error => {
+                            // 删除请求失败
+                            console.error('職缺刪除失敗', error);
+                            Swal.fire(
+                                '刪除失敗',
+                                '無法刪除職缺。',
+                                'error'
+                            );
+                        });
+                }
+            });
         },
 
         // 用來將前端的職務名稱轉換成對應的id(job這table只能存id)
@@ -166,7 +247,34 @@ new Vue({
         goBack(){
             var $editVacancy = $(".edit-vacancy");
             $editVacancy.addClass("-none");
-        }
+        },
+        //被點擊到的分頁加上class="active"
+
+        setActive(index) {
+            this.activeIndex = index;
+            this.page = index+1; // 存當前頁面數
+            this.fetchData(index+1,10)
+        },
+        goPrePage(){
+            if(this.page !== 1){
+                this.page--;
+                this.activeIndex = this.page -1; // 讓下一頁增加 class="active"
+                this.fetchData(this.page, 10) // 去抓下一頁的資料
+            }
+        },
+        goNextPage(){
+            if(this.page !== this.generatedNumber.length){
+                this.activeIndex = this.page; // 讓下一頁增加 class="active"
+                this.fetchData(this.page+1, 10) // 去抓下一頁的資料
+                this.page++
+            }
+        },
+        clearDistrict(){
+            if (this.editedVacancy.districtName !== this.initialDistrict) {
+                this.editedVacancy.districtName = '';
+            }
+        },
+
     },
 
     computed:{
@@ -178,14 +286,23 @@ new Vue({
             });
             return Array.from(typesSet);
         },
+        // 算頁數要有幾頁
+        roundNumber(){
+            this.totalDataNumber = Math.ceil(this.totalDataNumber/10);
+            this.generatedNumber = []; // 要先清空要不然前端頁面的頁數會隨著刷新不斷重複
+            let x = 1;
+            while(x <= this.totalDataNumber){
+                this.generatedNumber.push(x);
+                x++;
+            }
+        }
     },
 
     watch:{
         selectedIndustry(value) {
             // 根據選擇的產業類別值發起請求或處理相應邏輯，並更新職務類別數據
-            console.log("還沒動過this.editedVacancy.ptType的值是: " + this.editedVacancy.ptType)
+
             this.editedVacancy.ptType = value;
-            console.log("那現在this.editedVacancy.ptType的值是: " + this.editedVacancy.ptType)
             axios.get(`/SeekerPool/positionType/${value}`)
                 .then(res => {
                     if (res.data.code) {
@@ -197,10 +314,11 @@ new Vue({
         selectedName(value) {
             // 根據選擇的產業類別值發起請求或處理相應邏輯，並更新職務類別數據
             this.editedVacancy.ptName = value;
-            console.log("那現在this.editedVacancy.ptName的值是: " + this.editedVacancy.ptName)
+            this.selectedName = value;
             console.log("最後看一下selectedName" + this.selectedName)
         },
         'editedVacancy.cityName'(cityName) {
+
             // 根據選擇的縣市發起請求或處理相應邏輯，並更新鄉鎮市區數據
             axios.get(`/SeekerPool/districts/${cityName}`)
                 .then(res => {

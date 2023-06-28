@@ -11,7 +11,7 @@
   <script src="../js/vue.js"></script>
   <link rel="stylesheet" href="../css/VacancyManagement.css" />
   <script src="../js/jquery-3.4.1.min.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -27,7 +27,7 @@
         <i class="fa-solid fa-xmark"></i>
       </div>
 
-        <form class="add-vacancy-form">
+        <form class="add-vacancy-form" @submit.prevent="submitAddForm">
           <div class="row row1">
             <span>職務性質</span>
             <input type="radio" name="job-type" id="fulltime-radio" value="0" v-model="vacancy.jobType" checked>
@@ -38,11 +38,11 @@
 
           </div>
           <div class="row row2">
-            <span>職務名稱</span> <!-- 用戶自己取 -->
+            <span><span class="must">※</span>職務名稱</span> <!-- 用戶自己取 -->
             <input type="text" id="job-title-input" v-model="vacancy.jobName" pattern="\S+" >
           </div>
           <div class="row row3">
-            <span>職務類別</span>
+            <span><span class="must">※</span>職務類別</span>
             <select name="job-industry" id="job-industry" v-model="vacancy.ptNo">
               <option disabled selected value="">請選擇產業類別</option>
               <option v-for="type in uniqueTypes" :value="type">{{ type }}</option>
@@ -54,7 +54,7 @@
             </select>
           </div>
           <div class="row row4">
-            <span>上班地點</span>
+            <span><span class="must">※</span>上班地點</span>
             <select name="cities" id="cities" v-model="vacancy.cityName">
               <option disabled selected value="">請選擇縣市</option>
               <option  v-for="item in citiesData" :value="item.cityName" >{{ item.cityName }}</option>
@@ -66,24 +66,24 @@
             </select>
           </div>
           <div class="row row6">
-            <span style="visibility: hidden">你看不見</span>
+            <span style="visibility: hidden"><span class="must -hidden">※</span>你看不見</span>
             <input type="text" id="job-location-input" placeholder="例: 中山路123號" pattern="\S+" v-model="vacancy.jobAddress" >
           </div>
           <div class="row row5">
-            <span>工作內容</span>
+            <span><span class="must">※</span>工作內容</span>
             <textarea name="job-description" id="job-description" maxlength="800" style="max-height: 250px; max-width: 80%; min-height: 100px; min-width: 80%;" v-model="vacancy.jobContent"></textarea>
           </div>
           <div class="row row9">
-            <span>其他條件</span>
+            <span><span class="must -hidden">※</span>其他條件</span>
             <textarea name="other-requirements" id="other-requirements" maxlength="800" style="max-height: 250px; max-width: 80%; min-height: 100px; min-width: 80%;" v-model="vacancy.jobOther"></textarea>
           </div>
           <div class="row10">
-            <span>工作待遇</span>
-            <input type="text" id="salary-number" style="width: 100px;" pattern="\S+" v-model="vacancy.jobSalary" >元
+            <span><span class="must">※</span>工作待遇</span>
+            <input type="number" id="salary-number" style="width: 100px;" pattern="\S+" v-model="vacancy.jobSalary" >元
           </div>
-          <p class="reminder">*待提交後，平台方會盡速審核並上架!</p>
+          <p class="reminder">有<span class="must">※</span>是必填欄位!</p>
           <div style="text-align: center;">
-            <button type="submit" class="submit-add-btn" v-on:click="submitAddForm()">新增</button>
+            <button type="submit" class="submit-add-btn">新增</button>
           </div>
         </form>
     </div>
@@ -192,7 +192,7 @@
 
         <!-- ============= vacancy management 職缺管理 ================= -->
         <div class="vacancy-top">
-          <h3 class="vacancy-title">職缺總攬</h3>
+          <h3 class="vacancy-title">職缺總覽</h3>
           <button class="add-vacancy-btn"><i class="fa-solid fa-plus"></i>新增職缺</button>
           <a href="#" class="change-status-page">修改狀態</a>
         </div>
@@ -209,6 +209,9 @@
             <span class="delete-btn">刪除</span>
           </div>
           <!-- ===================== vacancy-lists ========================== -->
+          <div>
+            <span v-if="vacanciesData.length === 0">快來幫我添加第一筆職缺吧!</span>
+          </div>
 
           <div class="vacancy-list" v-for="(item, index) in vacanciesData">
             <div class="vacancy-content">
@@ -217,31 +220,42 @@
               <span class="job-type -fulltime" v-if="item.jobType === 0">全</span>
               <span class="job-type -parttime" v-if="item.jobType === 1">兼</span>
 
-              <span class="job-title"><a href="#">{{item.jobName}}</a></span>
+              <span class="job-title">{{item.jobName}}</span>
 
-              <span class="job-date">{{item.createTime}}</span>
+              <span class="on-post" v-if="item.jobUpload === 0">未上架</span>
+              <span class="on-post" v-if="item.jobUpload === 1">已上架</span>
 
-              <span class="on-post" v-if="item.jobUpload === 0">已上架</span>
-              <span class="on-post" v-if="item.jobUpload === 1">未上架</span>
-
-              <span class="on-top" v-if="item.jobTop === 0">已置頂</span>
-              <span class="on-top" v-if="item.jobTop === 1">未置頂</span>
+              <span class="on-top" v-if="item.jobTop === 0">未置頂</span>
+              <span class="on-top" v-if="item.jobTop === 1">已置頂</span>
 
               <button class="edit-btn" @click="editVacancy(item.jobNo)">編輯</button>
               <button class="delete-btn" @click="deleteVacancy(item.jobNo)">刪除</button>
             </div>
           </div>
-
+          <!--  pagination       -->
+          <div class="pagination-container">
+            <ul class="page">
+              <li class="page__btn"><span class="pre" @click="goPrePage()"><i class="fa-solid fa-angle-left"></i></span></li>
+              <li class="page__numbers"
+                  v-for="(num, index) in generatedNumber"
+                  :key="index"
+                  :class="{ active: activeIndex === index }"
+                  @click="setActive(index)"
+                  >{{num}}</li>
+              <li class="page__btn"><span class="next" @click="goNextPage()"><i class="fa-solid fa-angle-right"></i></span></li>
+            </ul>
+          </div>
+          <!--  pagination       -->
           <!-- ======================= edit-vacancy(編輯職務) 開始 ====================== -->
           <div class="edit-vacancy -none">
             <div class="edit-vacancy-container -none">
 
               <div class="edit-vacancy-title" >
-                <h3>編輯職務</h3>
+                <h3 @click="test()">編輯職務</h3>
                 <i class="fa-solid fa-xmark" @click="goBack()"></i>
               </div>
 
-              <form class="edit-vacancy-form" v-for="edit in editData">
+              <form class="edit-vacancy-form" @submit.prevent="submitEditForm" v-for="edit in editData">
                 <div class="row row1">
                   <span>職務性質</span>
                   <input type="radio" name="job-type" id="fulltime-radio"  :value="0" v-bind:checked="edit.jobType ===0" v-model="editedVacancy.jobType">
@@ -250,11 +264,11 @@
                   <label for="parttime-radio">兼職</label>
                 </div>
                 <div class="row row2">
-                  <span>職務名稱</span> <!-- 用戶自己取 -->
+                  <span><span class="must">※</span>職務名稱</span> <!-- 用戶自己取 -->
                   <input type="text" id="job-title-input" pattern="\S+" v-model="editedVacancy.jobName">
                 </div>
                 <div class="row row3">
-                  <span>職務類別</span>
+                  <span><span class="must">※</span>職務類別</span>
 
                   <!--             可以給talentSearch參考       <span class="showPtType" v-for="pt in showInfo(edit.ptNo)">{{pt.ptType}}</span>-->
 <!--                    <span class="showPtType" v-for="pt in showInfo(edit.ptNo)">{{pt.ptName}}</span>-->
@@ -270,36 +284,36 @@
                 </div>
 
                 <div class="row row4">
-                  <span>上班地點</span>
-                  <select name="cities" id="cities" v-model="editedVacancy.cityName">
+                  <span><span class="must">※</span>上班地點</span>
+                  <select name="cities" id="cities" v-model="editedVacancy.cityName" @change="clearDistrict()">
                     <option :label="edit.cityName" hidden="hidden"></option>
                     <option v-for="item in citiesData" :value="item.cityName">{{ item.cityName }}</option> //watch抓的值是:value裡的值
                   </select>
-                  <select name="districts" id="districts"  v-model="editedVacancy.districtName">
+                  <select name="districts" id="districts"  v-model="editedVacancy.districtName" >
                     <option :label="edit.districtName" :value="msg2" hidden="hidden"></option>
                     <option v-for="item in correspondingDistrict" :label="item.districtName">{{item.districtName}}</option>
                   </select>
                 </div>
 
                 <div class="row row6">
-                  <span style="visibility: hidden">你看不見</span>
-                  <input type="text" id="job-location-input" placeholder="例: 中山路123號" pattern="\S+" v-model="editedVacancy.jobAddress">
+                  <span style="visibility: hidden"><span class="must -hidden">※</span>你看不見</span>
+                  <input type="text" id="job-location-input" placeholder="例: 中山路123號" pattern="\S+" v-model="editedVacancy.jobAddress" >
                 </div>
                 <div class="row row5">
-                  <span>工作內容</span>
-                  <textarea name="job-description" id="job-description" maxlength="800" style="max-height: 250px; max-width: 80%; min-height: 100px; min-width: 80%;"  v-model="editedVacancy.jobContent"></textarea>
+                  <span><span class="must">※</span>工作內容</span>
+                  <textarea name="job-description" id="job-description" maxlength="800" style="max-height: 250px; max-width: 80%; min-height: 100px; min-width: 80%;"  v-model="editedVacancy.jobContent" ></textarea>
                 </div>
                 <div class="row row9">
-                  <span>其他條件</span>
+                  <span><span class="must -hidden">※</span>其他條件</span>
                   <textarea name="other-requirements" id="other-requirements" maxlength="800" style="max-height: 250px; max-width: 80%; min-height: 100px; min-width: 80%;"  v-model="editedVacancy.jobOther"></textarea>
                 </div>
                 <div class="row10">
-                  <span>工作待遇</span>
-                  <input type="text" id="salary-number" style="width: 100px;" pattern="\S+" v-model="editedVacancy.jobSalary">元
+                  <span><span class="must">※</span>工作待遇</span>
+                  <input type="text" id="salary-number" style="width: 100px;" pattern="\S+" v-model="editedVacancy.jobSalary" >元
                 </div>
-                <p class="reminder">沒事的</p>
+                <p class="reminder">有<span class="must">※</span>是必填欄位!</p>
                 <div style="text-align: center;">
-                  <button type="submit" class="submit-edit-btn" v-on:click="submitEditForm()">保存</button>
+                  <button type="submit" class="submit-edit-btn">保存</button>
                 </div>
               </form>
             </div>

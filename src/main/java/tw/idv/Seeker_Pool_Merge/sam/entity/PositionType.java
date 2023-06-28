@@ -18,4 +18,29 @@ public class PositionType {
     private String ptType;
     private String ptName;
     private Integer ptSearchTimes;
+
+    public Integer getPtNo() {
+        return ptNo;
+    }
+    public void setPtNo(Integer ptNo) {
+        this.ptNo = ptNo;
+    }
+    public String getPtType() {
+        return ptType;
+    }
+    public void setPtType(String ptType) {
+        this.ptType = ptType;
+    }
+    public String getPtName() {
+        return ptName;
+    }
+    public void setPtName(String ptName) {
+        this.ptName = ptName;
+    }
+    public Integer getPtSearchTimes() {
+        return ptSearchTimes;
+    }
+    public void setPtSearchTimes(Integer ptSearchTimes) {
+        this.ptSearchTimes = ptSearchTimes;
+    }
 }

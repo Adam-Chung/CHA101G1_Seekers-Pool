@@ -1,18 +1,16 @@
 package tw.idv.Seeker_Pool_Merge.sam.service.impl;
 
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import tw.idv.Seeker_Pool_Merge.sam.entity.Job;
 import tw.idv.Seeker_Pool_Merge.sam.entity.PageBean;
 import tw.idv.Seeker_Pool_Merge.sam.mapper.VacancyMapper;
 import tw.idv.Seeker_Pool_Merge.sam.service.VacancyService;
+
+import java.util.List;
 
 @Service
 public class VacancyServiceImpl implements VacancyService {
@@ -47,12 +45,18 @@ public class VacancyServiceImpl implements VacancyService {
     /**
      * 新增職缺
      *
-     * @param id
+     * @param jobId
      */
 
+
+//    當table.job的jobId被table.skill_request, report_enterprise, collect_job給參照到時
+//    需要一並把table.skill_request, report_enterprise, collect_job的jobId給刪除才能正常刪除職缺
     @Override
-    public void delete(Integer id) {
-        vacancyMapper.delete(id);
+    public void deleteJob(Integer jobId) {
+        vacancyMapper.deleteSkillRequest(jobId);  // 首先删除关联的子行
+        vacancyMapper.deleteReportEnterprise(jobId);  // 首先删除关联的子行
+        vacancyMapper.deleteCollectJob(jobId);  // 首先删除关联的子行
+        vacancyMapper.deleteJob(jobId);         // 然后删除职缺行
     }
 
 //    保存修改後職缺

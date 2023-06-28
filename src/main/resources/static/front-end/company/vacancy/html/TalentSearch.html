@@ -10,7 +10,7 @@
   <script src="../js/vue.js"></script>
   <link rel="stylesheet" href="../css/TalentSearch.css" />
   <script src="../js/jquery-3.4.1.min.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -87,7 +87,7 @@
                      class="second-list-checkbox"
                      :disabled="isMaxSelectionReached || (isFirstLayerCityChecked && district.cityId === selectedCityId)"
                      :value="district.districtName"
-                     v-model="multipleChecked">{{district.districtName}}{{district.cityId}}{{selectedCityId}}
+                     v-model="multipleChecked">{{district.districtName}}
             </label>
           </div>
           <!-- 第二層結束 -->
@@ -202,6 +202,7 @@
                     type="text"
                     id="keyword"
                     name="keyword"
+                    :disabled="jobLocation.length > 0"
                     @keyup.enter="search()"
                     v-model.trim="keyword"
                     placeholder="請輸入欲工作地點、技能等搜尋人才"
@@ -213,13 +214,21 @@
             <input type="text"
                    id="job-location-input"
                    name="job-location"
+                   :disabled="keyword.length > 0"
                    v-model="jobLocation"
                    @click="openCountryForm()"
                    placeholder="人才欲工作地點" readonly />
             <i class="fa-solid fa-angle-down" @click="openCountryForm()"></i>
           </div>
 
-          <button type="submit" class="talent-search-btn">查詢</button>
+          <div>
+            <p class="small">*關鍵字、工作地點擇一查詢，謝謝您!!</p>
+          </div>
+          <div>
+            <button type="submit" class="talent-search-btn">查詢</button>
+            <button type="reset" class="talent-reset-btn" @click="reset()">清空</button>
+          </div>
+
         </form>
       </div>
     </div>

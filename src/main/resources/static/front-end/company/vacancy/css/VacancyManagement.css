@@ -86,9 +86,17 @@ main{
     position: absolute;
     font-size: large;
     right: 0;
-    padding: 7px 10px 7px 7px;
+    padding: 4px 6px;
+    border-radius: 50%;
     cursor: pointer;
+    transition: 0.3s all;
 }
+
+.add-vacancy-title .fa-xmark:hover,
+.edit-vacancy-title .fa-xmark:hover{
+    background-color: rgba(0, 0, 0, 0.39);
+}
+
 .add-vacancy-form,
 .edit-vacancy-form{
     padding: 10px;
@@ -96,6 +104,13 @@ main{
     border-radius: 15px;
 }
 
+.must{
+    font-size: small;
+    color: darkred;
+}
+.-hidden{
+    visibility: hidden;
+}
 .add-vacancy-form div,
 .edit-vacancy-form div{
     margin: 10px 0;
@@ -119,7 +134,9 @@ main{
 }
 
 .add-vacancy-form input[type= text],
-.edit-vacancy-form input[type= text]{
+.add-vacancy-form input[type= number],
+.edit-vacancy-form input[type= text],
+.edit-vacancy-form input[type= number]{
     outline-color: var(--yellow);
     padding: 7px;
     width: 60.8%;
@@ -127,7 +144,9 @@ main{
 }
 
 .add-vacancy-form input[type= text]:invalid,
-.edit-vacancy-form input[type= text]:invalid{
+.add-vacancy-form input[type= number]:invalid,
+.edit-vacancy-form input[type= text]:invalid,
+.edit-vacancy-form input[type= number]:invalid{
     outline-color: red;
 }
 
@@ -393,7 +412,7 @@ menu ul li a:hover{
     display: flex;
     flex-direction: column;
     width: 100%;
-    border: 1px rgb(104, 104, 104) solid;
+    /*border: 1px rgb(104, 104, 104) solid;*/
 }
 
 .vacancy-title{
@@ -499,6 +518,37 @@ menu ul li a:hover{
 .vacancy-content .edit-btn:hover{
     background-color: rgb(112, 73, 1);
 }
-/* ===== 登出鍵 =====*/
+/* ===== pagination =====*/
+.pagination-container{
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+.page{
+    display: flex;
+    list-style: none;
+    padding: 8px 10px;
+    border-radius: 7px;
+    background-color: var(--white);
+}
+.page li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 40px;
+    font-size: large;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.page li:hover{
+    background-color: rgba(255, 165, 0, 0.46);
+}
+
+.active{
+    background-color: var(--yellow);
+    color: white;
+}
 
 

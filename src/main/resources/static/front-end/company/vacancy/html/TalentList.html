@@ -11,7 +11,7 @@
     <script src="../js/vue.js"></script>
     <link rel="stylesheet" href="../css/TalentList.css" />
     <script src="../js/jquery-3.4.1.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -21,7 +21,7 @@
     />
 </head>
 <body>
-    <main>
+    <main id="app">
 
         <!-- =================== 人才履歷詳情燈箱 =====================-->
         <div class="talent-bio -none">
@@ -32,17 +32,16 @@
                     <div class="bio-background">
                         <h2 class="bio-name">{{info.memName}}</h2>
                         <span class="bio-gender"><i class="fa-solid fa-user"></i>{{info.memGender}}</span>
-                        <span class="bio-birth"><i class="fa-solid fa-cake-candles"></i>1970-08-05</span>
-                        <span class="bio-contact"><i class="fa-solid fa-phone"></i>0989000222</span>
-                        <span class="bio-address"><i class="fa-solid fa-location-dot"></i>桃園市中壢區</span>
-                        <span class="bio-email"><i class="fa-solid fa-envelope"></i>ipman@gmail.com</span>
+                        <span class="bio-contact"><i class="fa-solid fa-phone"></i>{{ phoneNumber }}</span>
+                        <span class="bio-address"><i class="fa-solid fa-location-dot"></i>{{ info.memAddress }}</span>
+                        <span class="bio-email"><i class="fa-solid fa-envelope"></i>{{ info.memEmail }}</span>
                     </div>
 
                     <div class="bio-img">
                         <img src="../img/bio-img.png" alt="selfie">
                     </div>
 
-                    <i class="fa-solid fa-xmark" @click="goBack()"></i>
+                    <i class="fa-solid fa-xmark" @click.stop="goBack()"></i>
                 </div>
 
                 <!-- 第二層 -->
@@ -54,14 +53,21 @@
 
                 <!-- 第三層 -->
                 <div class="bio-certificate">
-                    <h3>語言能力 Language</h3>
+                    <h3>語言能力 Languages</h3>
                     <ul>
-                        <li class="certificate-list">多益290分</li>
-                        <li class="certificate-list">日語N2</li>
+                        <li class="certificate-list" v-for="lang in langArray">{{ lang }}</li>
                     </ul>
                 </div>
 
                 <!-- 第四層 -->
+                <div class="skill-list">
+                    <h3>技術 Skills</h3>
+                    <ul>
+                        <li class="certificate-list" v-for="skill in skillArray">{{ skill }}</li>
+                    </ul>
+                </div>
+
+                <!-- 第五層 -->
                 <div class="bio-autobiography">
                     <h3>個人自傳 Autobiography</h3>
                     <p class="bio-content">
@@ -70,7 +76,7 @@
                 </div>
             </div>
         </div>
-        <!-- =================== 人才履歷詳情燈箱 =====================-->
+        <!-- =================== 人才履歷詳情燈箱結束 =====================-->
 
         <div class="container">
 
@@ -89,7 +95,6 @@
                                 <i class="fa-solid fa-address-card"></i>會員中心
                                 <div class="caret-icon">
                                     <i class="fa-solid fa-sort-down"></i>
-                                    <i id="-none" class="fa-solid fa-caret-up"></i>
                                 </div>
                             </a>  
                             
@@ -124,20 +129,13 @@
                        <li class="main-list talent-search">
                             <a href="../html/TalentSearch.html" draggable="false"> <!--第二個-->
                                 <i class="fa-solid fa-user-tie"></i>人才查詢
-                                <!-- <div class="caret-icon">
-                                    <i class="fa-solid fa-sort-down"></i>
-                                    <i id="-none" class="fa-solid fa-caret-up"></i>
-                                </div> -->
-                            </a>  
-                            
-                        </li>
-
+                            </a>
+                       </li>
                         <li class="main-list purchase">
                             <a href="#" draggable="false"> <!--第三個-->
                                 <i class="fa-solid fa-cart-shopping"></i>購買
                                 <div class="caret-icon">
                                     <i class="fa-solid fa-sort-down"></i>
-                                    <i id="-none" class="fa-solid fa-caret-up"></i>
                                 </div>
                             </a>                        
                         </li>
@@ -146,7 +144,6 @@
                                 <i class="fa-solid fa-headset"></i>客服
                                 <div class="caret-icon">
                                     <i class="fa-solid fa-sort-down"></i>
-                                    <i id="-none" class="fa-solid fa-caret-up"></i>
                                 </div> 
                             </a>                      
                         </li>
@@ -176,7 +173,7 @@
                 </div>
 
                 <!-- 這裡以後要用下面程式碼動態生成數字並append在talent-count後 -->
-                <span class="talent-number">共搜尋到{{this.talentListData.length}}位人才!</span>
+                <span class="talent-number">一共搜尋到{{this.talentListData.length}}位人才!</span>
 
                 <!-- 這裡以後要用下面程式碼動態生成人才清單並append在container後 -->
                 <div class="talent-list-container">
@@ -202,11 +199,25 @@
 
                         <div class="talent-btn-container">
                             <button class="check-bio-btn" @click="openResume(info.memId)"><i class="fa-solid fa-eye"></i>查看詳細履歷</button>
-                            <button class="interview-invitation-btn"><i class="fa-regular fa-envelope"></i>邀約面試</button>
+                            <button class="interview-invitation-btn" @click="sendInvitation(info.memId)"><i class="fa-regular fa-envelope"></i>邀約面試</button>
                         </div>
                     </div>
                 </div>
                 <!--================================ 人選結束 ============================-->
+                <!--  pagination       -->
+                <div class="pagination-container">
+                    <ul class="page">
+                        <li class="page__btn"><span class="pre" @click="goPrePage()"><i class="fa-solid fa-angle-left"></i></span></li>
+                        <li class="page__numbers"
+                            v-for="(num, index) in generatedNumber"
+                            :key="index"
+                            :class="{ active: activeIndex === index }"
+                            @click="setActive(index)"
+                        >{{num}}</li>
+                        <li class="page__btn"><span class="next" @click="goNextPage()"><i class="fa-solid fa-angle-right"></i></span></li>
+                    </ul>
+                </div>
+                <!--  pagination       -->
             </div>
             <!--================================ 中間頁面結束 ============================-->
 
@@ -260,6 +271,6 @@
       })
     </script>
     <script src="../vue/TalentList.vue.js"></script>
-    <script src="../vue/TalentResume.vue.js"></script>
+<!--    <script src="../vue/TalentResume.vue.js"></script>-->
 </body>
 </html>

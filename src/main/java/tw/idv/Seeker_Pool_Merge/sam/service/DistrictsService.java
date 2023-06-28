@@ -1,8 +1,8 @@
 package tw.idv.Seeker_Pool_Merge.sam.service;
 
-import java.util.List;
-
 import tw.idv.Seeker_Pool_Merge.sam.entity.Districts;
+
+import java.util.List;
 
 public interface DistrictsService {
     List<Districts> list(String cityName);
