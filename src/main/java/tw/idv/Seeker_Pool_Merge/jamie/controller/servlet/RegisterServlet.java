@@ -59,14 +59,15 @@ public class RegisterServlet extends HttpServlet {
 		System.out.println("File name: " + fileName);
 
 		if ("comPicture".equals(fieldName)) {
-			String saveDirectory = "/uploads/comPicture";  // 使用絕對路徑
-			File fsaveDirectory = new File(saveDirectory);
+			String saveDirectory = "/uploads/comPicture";
+			String realPath = getServletContext().getRealPath(saveDirectory);
+			File fsaveDirectory = new File(realPath);
 			if (!fsaveDirectory.exists()) {
 				fsaveDirectory.mkdirs();  // 檢查檔案目錄是否存在，不存在則用 mkdirs() 建多個資料夾
 			}
 			File f = new File(fsaveDirectory, fileName);
-			part.write(f.getAbsolutePath());  // part類別的方法write() 利用File物件, 寫入指定的目錄
-			companyMember.setComPicture(saveDirectory + "\\" + fileName);
+			part.write(f.toString());  // part類別的方法write() 利用File物件, 寫入指定的目錄
+			companyMember.setComPicture(req.getContextPath() + saveDirectory + "/" + fileName);
 		}
 
 		// 3. 調用Service完成註冊
@@ -79,9 +80,10 @@ public class RegisterServlet extends HttpServlet {
 			resultInfo.setFlag(true);
 			// 讓使用者直接登入
 			CompanyMemberVo loginComMem = service.login(companyMember);
-			req.getSession().setAttribute("companyMember", loginComMem);
+			int comMemId = loginComMem.getComMemId();
+			req.getSession().setAttribute("companyMember", comMemId);
 			System.out.println("========================");
-			System.out.println("註冊成功，會員為：" + loginComMem);
+			System.out.println("註冊成功，會員為：" + comMemId);
 		} else {
 			// 註冊失敗
 			resultInfo.setFlag(false);

@@ -31,13 +31,12 @@ public class CompanyMemberDaoImpl implements CompanyMemberDao {
 	public boolean registerCompanyMember(CompanyMemberVo companyMember) {
 		String sql = """
 				insert into company_member
-				(COM_MEM_ACCOUNT, COM_MEM_PASSWORD, COM_NAME, TAX_NUM, COM_EMAIL, COM_TEL, COM_ADDRESS, COM_PICTURE, DATA_UPLOAD)
-				values (?, ?, ?, ?, ?, ?, ?, ?, ?);
+				(COM_MEM_ACCOUNT, COM_MEM_PASSWORD, COM_NAME, TAX_NUM, COM_EMAIL, COM_TEL, COM_ADDRESS, COM_PICTURE)
+				values (?, ?, ?, ?, ?, ?, ?, ?);
 				""";
 		template.update(sql, companyMember.getComMemAccount(), companyMember.getComMemPassword(),
 				companyMember.getComName(), companyMember.getTaxNum(), companyMember.getComEmail(),
-				companyMember.getComTel(), companyMember.getComAddress(), companyMember.getComPicture(),
-				companyMember.getDataUpload());
+				companyMember.getComTel(), companyMember.getComAddress(), companyMember.getComPicture());
 
 		return true;
 	}
