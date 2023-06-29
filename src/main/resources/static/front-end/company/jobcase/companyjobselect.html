@@ -141,6 +141,10 @@
                     <!-- 動態產生 -->
                 </tbody>
             </table>
+            <div>
+                <button type="button" class="btn btn-primary" id="btnSave"
+                    style="float: right; margin-right:50px">儲存</button>
+            </div>
         </div>
 
     </main>
@@ -157,20 +161,23 @@
                 });
             });
 
-            // 
+            let upNum;
+            let topNum;
+            let jcAvailableNum;
+            let jcTop;
+
+            // 列表(顯示上架置頂數量)
             $.post({
                 url: "../../../JobQueryStatusServlet",
                 dataType: "JSON",
-                data: { action: "selectJobStatus", comMenId: "2" },
+                data: { action: "selectJobStatus" },
                 async: false,
                 cache: false,
                 success: function (r) {
                     $("tbody").empty();
-                    let upNum = 0;
-                    let topNum = 0;
+                    upNum = 0;
+                    topNum = 0;
                     for (let res of r) {
-                        // console.log("res.jobUpload: " + res.jobUpload);
-                        // console.log("res.jobTop : " + res.jobTop);
                         // 假設r.jcDeadline為「Oct 10, 2023, 12:00:00 AM」格式的日期字串
                         let originalDate = new Date(res.jcDeadline);
                         let year = originalDate.getFullYear();
@@ -185,17 +192,17 @@
                                 </td>
                                 <td class="jcNum" name="jcNum">
                                     <div class="btn-group btn-group-sm" role="group" aria-label="Basic radio toggle button group">
-                                        <input type="radio" class="btn-check onpost" name="onPost${res.jobNo}" id="onPost${res.jobNo}_1" value="1" autocomplete="off">
+                                        <input type="radio" class="btn-check 1 onpost" name="onPost${res.jobNo}" id="onPost${res.jobNo}_1" value="1" autocomplete="off">
                                         <label class="btn btn-outline-success" for="onPost${res.jobNo}_1">上架</label>
-                                        <input type="radio" class="btn-check onpost" name="onPost${res.jobNo}" id="onPost${res.jobNo}_0" value="0" autocomplete="off">
+                                        <input type="radio" class="btn-check 0 onpost" name="onPost${res.jobNo}" id="onPost${res.jobNo}_0" value="0" autocomplete="off">
                                         <label class="btn btn-outline-secondary" for="onPost${res.jobNo}_0">下架</label>
                                     </div>
                                 </td>
                                 <td class="jcTop" name="jcTop">
                                     <div class="btn-group btn-group-sm" role="group" aria-label="Basic radio toggle button group">
-                                        <input type="radio" class="btn-check ontop" name="onTop${res.jobNo}" id="onTop${res.jobNo}_1" value="1" autocomplete="off">
+                                        <input type="radio" class="btn-check 1 ontop" name="onTop${res.jobNo}" id="onTop${res.jobNo}_1" value="1" autocomplete="off">
                                         <label class="btn btn-outline-success" for="onTop${res.jobNo}_1">置頂</label>
-                                        <input type="radio" class="btn-check ontop" name="onTop${res.jobNo}" id="onTop${res.jobNo}_0" value="0" autocomplete="off">
+                                        <input type="radio" class="btn-check 0 ontop" name="onTop${res.jobNo}" id="onTop${res.jobNo}_0" value="0" autocomplete="off">
                                         <label class="btn btn-outline-secondary" for="onTop${res.jobNo}_0">未置頂</label>
                                     </div>
                                 </td>
@@ -203,72 +210,141 @@
                             </tr>`
                         )
 
+
                         // console.log("res.jobUpload type: " + typeof res.jobUpload); // type Number
                         // console.log("res.jobTop type: " + typeof res.jobTop); // type Number
-                        if (res.jobUpload === 1) {
-                            if (upNum <= res.jcAvailableNum) {
-                                // console.log(upNum <= res.jcAvailableNum);
-                                upNum++;
-                                $(".JC_NUM").html(`刊登狀態 (<span style="color:red">${upNum}</span><span>/</span><span style="color:blue">${res.jcAvailableNum}</span>)`);
-                            }
+
+                        if (res.jobUpload === 0) {
+                            $("input#onPost" + res.jobNo + "_0").prop("checked", true);
+                            $(".JC_NUM").html(`刊登狀態 (<span style="color:red">${upNum}</span><span>/</span><span style="color:blue">${res.jcAvailableNum}</span>)`);
+                        } else if (res.jobUpload === 1) {
+                            $("input#onPost" + res.jobNo + "_1").prop("checked", true);
+                            upNum++;
+                            $(".JC_NUM").html(`刊登狀態 (<span style="color:red">${upNum}</span><span>/</span><span style="color:blue">${res.jcAvailableNum}</span>)`);
+                            // console.log("upNum:" + upNum);
+                            // if (upNum > res.jcAvailableNum) {
+                            //     $("input#onPost" + res.jobNo + "_0").prop("checked", true);
+                            //     alert("超出該數量");
+                            //     upNum--;
+                            //     $(".JC_NUM").html(`刊登狀態 (<span style="color:red">${upNum}</span><span>/</span><span style="color:blue">${res.jcAvailableNum}</span>)`);
+                            // }
                         }
 
-                        if (res.jobTop === 1) {
-                            if (topNum <= res.jcTop) {
-                                topNum++;
-                                $(".JC_TOP").html(`置頂狀態 (<span style="color:red">${topNum}</span><span>/</span><span style="color:blue">${res.jcTop}</span>)`);
-                            }
+                        jcAvailableNum = res.jcAvailableNum;
+                        jcTop = res.jcTop;
+
+                        if (res.jobTop === 0) {
+                            $("input#onTop" + res.jobNo + "_0").prop("checked", true);
+                            $(".JC_TOP").html(`置頂狀態 (<span style="color:red">${topNum}</span><span>/</span><span style="color:blue">${res.jcTop}</span>)`);
+
+                        } else if (res.jobTop === 1) {
+                            $("input#onTop" + res.jobNo + "_1").prop("checked", true);
+                            topNum++;
+                            console.log("topNum:" + topNum);
+                            $(".JC_TOP").html(`置頂狀態 (<span style="color:red">${topNum}</span><span>/</span><span style="color:blue">${res.jcTop}</span>)`);
+
                         }
+
                     }
+                }
+            }) 
+
+            // let upNum;
+            // let topNum;
+            // let jcAvailableNum;
+            // let jcTop;
+
+            // 上下架綁定 更新job
+            $(".onpost").on("click", function () {
+                var jobNo = $(this).attr("name").substring(6);
+                var jobUpload = $(this).val();
+                // console.log(jobNo);
+                // console.log(jobUpload);
+
+                if (jobUpload == 0) {
+                    upNum--;
+                }
+
+                if (upNum < jcAvailableNum) {
+                    $.post({
+                        url: "../../../JobUpdateStatusServlet",
+                        dataType: "JSON",
+                        data: { action: "updateJobUpload", jobNo: jobNo, jobUpload: jobUpload },
+                        async: false,
+                        cache: false,
+                        success: function (response) {
+
+                            console.log("JobUP status updated successfully");
+                        }
+                    });
+                } else {
+                    alert("超出該數量!!!");
+                }
+
+            });
+
+            // 置頂綁定
+            $(".ontop").on('click', function () {
+                var jobNo = $(this).attr("name").substring(5);
+                var jobTop = $(this).val();
+                console.log(jobNo);
+                console.log(jobTop);
+
+                if (jobTop == 0) {
+                    topNum--;
+                }
+
+                if (topNum < jcTop) {
+
+                    $.post({
+                        url: "../../../JobUpdateStatusServlet",
+                        dataType: "JSON",
+                        data: { action: "updateJobTopload", jobNo: jobNo, jobTop: jobTop },
+                        async: false,
+                        cache: false,
+                        success: function (response) {
+                            console.log("JobTop status updated successfully");
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("Error updating job status: " + error);
+                        }
+                    });
+                } else {
+                    alert("超出該數量!!!");
                 }
             })
 
+            // 更新已上架/已置頂數量
 
-            $(".onpost").on("click", function () {
-                var jobUploadValue = $(this).val();
-                console.log(jobUploadValue);
-                var jobNo = $(this).attr("name").substring(6);
-                console.log(jobNo);
-                var onPost = $(this).attr("name").substring(0, 6);
-                console.log(onPost);
+            $("#btnSave").click(function () {
+                console.log("AAA");
                 $.post({
-                    url: "../../../JobUpdateStatusServlet",
+                    url: "../../../JobUpTopNumStatusServlet",
                     dataType: "JSON",
-                    data: { action: "updateJobStatus", jobNo: jobNo, jobUploadValue: jobUploadValue, onPost: onPost ,comMemId:"2"},
-                    async: false,
-                    cache: false,
-                    success: function (response) {
-                        console.log("Job status updated successfully");
+                    data: { action: "JobUploadNum" },
+                    success: function (res) {
+                        console.log("成功進入 JobUploadNum");
                     },
-                    error: function (xhr, status, error) {
-                        console.error("Error updating job status: " + error);
-                    }
-                });
-            });
+                })
 
-            $(".ontop").on('click', function () {
-                var jobTopValue = $(this).val();
-                console.log(jobTopValue);
-                var jobNo = $(this).attr("name").substring(5);
-                console.log(jobNo);
-                var onTop = $(this).attr("name").substring(0, 5);
-                console.log(onTop);
                 $.post({
-                    url: "../../../JobUpdateStatusServlet",
+                    url: "../../../JobUpTopNumStatusServlet",
                     dataType: "JSON",
-                    data: { action: "updateJobStatus", jobNo: jobNo, jobTopValue: jobTopValue, onTop: onTop ,comMemId:"2"},
-                    async: false,
-                    cache: false,
-                    success: function (response) {
-                        console.log("Job status updated successfully");
+                    data: { action: "JobTopNum" },
+                    success: function (res) {
+                        console.log("成功進入 JobTopNum");
+                        alert("更新成功");
                     },
-                    error: function (xhr, status, error) {
-                        console.error("Error updating job status: " + error);
-                    }
-                });
+                })
             })
 
+            $("input.btn-check").click(function () {
+                // console.log("AAAAAA");
+                location.reload();
+            })
         })
+
+
     </script>
 </body>
 

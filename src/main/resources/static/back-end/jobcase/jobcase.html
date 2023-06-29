@@ -86,8 +86,8 @@
             <div class="col-lg-6">
                 <label for="inputQuery" class="form-label" style="font-size: large;"><strong>職缺刊登方案查詢</strong></label>
                 <div class="input-group">
-                    <span class="input-group-text">方案編號</span>
-                    <input type="text" aria-label="First name" class="form-control" id="inputQueryNo">
+<!--                     <span class="input-group-text">方案編號</span> -->
+<!--                     <input type="text" aria-label="First name" class="form-control" id="inputQueryNo"> -->
                     <span class="input-group-text">方案名稱</span>
                     <input type="text" aria-label="Last name" class="form-control" id="inputQueryName">
                     <button type="button" class="btn btn-primary" id="searchJcNo"><strong>查詢</strong></button>
@@ -173,7 +173,7 @@
 
             function queryAll(All) {
                 $.post({
-                    url: "/SeekerPool/JobCaseQueryServlet",
+                    url: "../../JobCaseQueryServlet",
                     dataType: "JSON",
                     data: { action: "selectAll" },
                     async: false,
@@ -213,19 +213,19 @@
             /* ==== 查單一 編號 ==== */
             $("#searchJcNo").click(function () {
                 // Get the values from both input fields
-                var queryNo = $("#inputQueryNo").val().trim();
+//                 var queryNo = $("#inputQueryNo").val().trim();
                 var queryName = $("#inputQueryName").val().trim();
 
-                if (queryNo !== "" && /^[0-9]$/.test(queryNo)) {
+                if (queryName !== "") {
                     $.post({
-                        url: "/SeekerPool/JobCaseQueryServlet",
+                        url: "../../JobCaseQueryServlet",
                         dataType: "JSON",
                         data: {
-                            action: "selectByNo",
-                            jcNo: queryNo
+                            action: "selectByName",
+                            queryName: queryName,
                         },
                         success: function (res) {
-                            console.log("Response for jcNo query: " + JSON.stringify(res));
+//                             console.log("Response for jcNo query: " + JSON.stringify(res));
                             if (res) {
                                 $("tr#trContext").remove();
                                 console.log("res : " + res);
@@ -270,8 +270,9 @@
                         }
                     });
                 } else {
-                    console.log("請輸入數字");
-                    alert("錯誤! 方案編號請輸入數字");
+//                     console.log("請輸入方案名稱");
+//                     alert("錯誤! 請輸入方案名稱");
+                    alert("錯誤! 方案名稱請輸入文字(ex:方案一)");
                 }
             });
 
@@ -323,7 +324,7 @@
 
 
                 $.ajax({
-                    url: "/SeekerPool/JobCaseUpdateServlet",
+                    url: "../../JobCaseUpdateServlet",
                     method: "POST",
                     dataType: "json",
                     data: {

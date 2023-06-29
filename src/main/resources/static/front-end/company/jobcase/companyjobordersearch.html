@@ -188,9 +188,9 @@
 
             // 查訂單全部
             $.post({
-                url: "../../../JobCaseQueryServlet",
+                url: "../../../JobOrderQueryServlet",
                 dataType: "JSON",
-                data: { action: "selectByOrder" },
+                data: { action: "selectComOrderAll" },
                 async: false,
                 cache: false,
                 success: function (res) {
@@ -223,6 +223,73 @@
                         )
                     }
                 }
+            })
+            // 查單一訂單(待增查無此訂單)
+            $("button#searchJcNo").click(function () {
+                var joNo = $("input#inputQueryNo").val().trim();
+                console.log("joNo : " + joNo);
+                var rules = new RegExp('\\d');
+
+                // if (joNo !== "" && isNaN(Number(joNo, 10))) {
+                $.post({
+                    url: "../../../JobOrderQueryServlet",
+                    dataType: "JSON",
+                    data: { action: "selectComOrderOne", joNo: joNo },
+                    async: false,
+                    cache: false,
+                    success: function (res) {
+                        // var res = JSON.parse(res) 
+                        $("tbody").empty();
+                        console.log("sucess............");
+                        console.log("res[0] : " + res[0].jcNo);
+                        if (res) {
+                            $("tr#all").remove();
+                            for (let r of res) {
+
+                                // 假設r.jcDeadline為「Oct 10, 2023, 12:00:00 AM」格式的日期字串
+                                let originalDate = new Date(r.jcDeadline);
+                                let year = originalDate.getFullYear();
+                                let month = ("0" + (originalDate.getMonth() + 1)).slice(-2); // 月份需加1，並在前面補0
+                                let day = ("0" + originalDate.getDate()).slice(-2); // 日需在前面補0
+                                let formattedDate = year + "-" + month + "-" + day;
+                                $("tbody").append(`
+                                        <tr id="all">
+                                            <td class="joNo" name="joNo">${r.joNo}</td>
+                                            <td class="jcName" name="jcName">${r.jcName}</td>
+                                            <td class="jcAvailableNum" name="jcAvailableNum">${r.jcAvailableNum}</td>
+                                            <td class="jcTop" name="jcTop">${r.jcTop}</td>
+                                            <td class="jcExpTime" name="jcExpTime">${r.jcExpTime}</td>
+                                            <td class="jcDeadline" name="jcDeadline">${formattedDate}</td>
+                                            <td class="jcPrice" name="jcPrice">${r.jcPrice}</td>
+                                            <td>
+                                                <button class='btn btn-outline-danger btn-sm btnDelete' type="submit">
+                                                    <strong>刪除</strong>
+                                                </button>
+                                            </td>
+                                        </tr> `
+                                )
+                            }
+                        } else {
+                            $("tr#trNO").remove();
+                            console.log("else res : " + res);
+                            $("tbody").append(`<tr id="trNO">
+										<td style='color: red; font-weight: bold;'>查無此訂單!!!</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>`);
+                            $("tr#trNO").prevAll().remove();
+                        }
+                    }
+                })
+                // } else {
+                //     console.log("請輸入數字");
+                //     alert("錯誤! 請輸入數字");
+                // }
             })
         })
 
