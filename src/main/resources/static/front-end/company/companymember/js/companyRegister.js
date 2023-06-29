@@ -2,18 +2,18 @@
 $(function () {
     $("#registerForm").submit(function () {
         // 先進行表單驗證
-        // if (!(
-        //     checkAccount() &&
-        //     checkPassword() &&
-        //     checkCompanyName() &&
-        //     checkTaxNum() &&
-        //     checkEmail() &&
-        //     checkTelephoneNumber() &&
-        //     checkAddress()
-        // )) {
-        //     // 驗證失敗，阻止表單提交
-        //     return false;
-        // }
+        if (!(
+            checkAccount() &&
+            checkPassword() &&
+            checkCompanyName() &&
+            checkTaxNum() &&
+            checkEmail() &&
+            checkTelephoneNumber() &&
+            checkAddress()
+        )) {
+            // 驗證失敗，阻止表單提交
+            return false;
+        }
 
         // 發送數據到伺服器
         // 校驗通過，發送ajax請求(異步提交)，提交表單的數據(不是提交表單)
@@ -59,85 +59,85 @@ $(function () {
 4. 公司相關資訊: 不得為空
  */
 
-// function checkAccount() {
-//     const account = $("#account").val();
-//     const reg_account = /^\w{8,30}$/;
-//     if (!reg_account.test(account)) {
-//         // 使用 .text() 或 .html() 更新錯誤訊息
-//         $("#account-error").text('帳號格式錯誤');
-//         return false;
-//     } else {
-//         // 如果驗證成功，清除錯誤訊息
-//         $("#account-error").text('');
-//         return true;
-//     }
-// }
+function checkAccount() {
+    const account = $("#account").val();
+    const reg_account = /^\w{8,30}$/;
+    if (!reg_account.test(account)) {
+        // 使用 .text() 或 .html() 更新錯誤訊息
+        $("#account-error").text('帳號格式錯誤');
+        return false;
+    } else {
+        // 如果驗證成功，清除錯誤訊息
+        $("#account-error").text('');
+        return true;
+    }
+}
 
-// function checkPassword() {
-//     const password = $("#password").val();
-//     if (password.length < 8 || password.length > 30) {
-//         $("#password-error").text('密碼長度錯誤');
-//         return false;
-//     } else {
-//         $("#password-error").text('');
-//         return true;
-//     }
-// }
+function checkPassword() {
+    const password = $("#password").val();
+    if (password.length < 8 || password.length > 30) {
+        $("#password-error").text('密碼長度錯誤');
+        return false;
+    } else {
+        $("#password-error").text('');
+        return true;
+    }
+}
 
-// function checkCompanyName() {
-//     const companyName = $("#companyName").val();
-//     if (companyName.trim() === "") {
-//         $("#companyName-error").text('公司名稱不得為空');
-//         return false;
-//     } else {
-//         $("#companyName-error").text('');
-//         return true;
-//     }
-// }
+function checkCompanyName() {
+    const companyName = $("#companyName").val();
+    if (companyName.trim() === "") {
+        $("#companyName-error").text('公司名稱不得為空');
+        return false;
+    } else {
+        $("#companyName-error").text('');
+        return true;
+    }
+}
 
-// function checkTaxNum() {
-//     const taxNumber = $("#taxNumber").val();
-//     const reg_taxNumber = /^[0-9]{8}$/;
-//     if (!reg_taxNumber.test(taxNumber)) {
-//         $("#taxNumber-error").text('統編號碼格式不正確');
-//         return false;
-//     } else {
-//         $("#taxNumber-error").text('');
-//         return true;
-//     }
-// }
+function checkTaxNum() {
+    const taxNumber = $("#taxNumber").val();
+    const reg_taxNumber = /^[0-9]{8}$/;
+    if (!reg_taxNumber.test(taxNumber)) {
+        $("#taxNumber-error").text('統編號碼格式不正確');
+        return false;
+    } else {
+        $("#taxNumber-error").text('');
+        return true;
+    }
+}
 
-// function checkEmail() {
-//     const email = $("#companyEmail").val();
-//     const reg_email = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-//     if (!reg_email.test(email)) {
-//         $("#companyEmail-error").text('e-mail格式不正確');
-//         return false;
-//     } else {
-//         $("#companyEmail-error").text('');
-//         return true;
-//     }
-// }
+function checkEmail() {
+    const email = $("#companyEmail").val();
+    const reg_email = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+    if (!reg_email.test(email)) {
+        $("#companyEmail-error").text('e-mail格式不正確');
+        return false;
+    } else {
+        $("#companyEmail-error").text('');
+        return true;
+    }
+}
 
-// function checkTelephoneNumber() {
-//     const telNum = $("#companyTel").val();
-//     const reg_telNum = /^(0[2-9]\d)\d{6,8}$/;
-//     if (!reg_telNum.test(telNum)) {
-//         $("#companyTel-error").text('電話號碼格式不正確');
-//         return false;
-//     } else {
-//         $("#companyTel-error").text('');
-//         return true;
-//     }
-// }
+function checkTelephoneNumber() {
+    const telNum = $("#companyTel").val();
+    const reg_telNum = /^(0[2-9]\d)\d{6,8}$/;
+    if (!reg_telNum.test(telNum)) {
+        $("#companyTel-error").text('電話號碼格式不正確');
+        return false;
+    } else {
+        $("#companyTel-error").text('');
+        return true;
+    }
+}
 
-// function checkAddress() {
-//     const companyAddress = $("#companyAddress").val();
-//     if (companyAddress.trim() === "") {
-//         $("#companyAddress-error").text('公司地址不得為空');
-//         return false;
-//     } else {
-//         $("#companyAddress-error").text('');
-//         return true;
-//     }
-// }
+function checkAddress() {
+    const companyAddress = $("#companyAddress").val();
+    if (companyAddress.trim() === "") {
+        $("#companyAddress-error").text('公司地址不得為空');
+        return false;
+    } else {
+        $("#companyAddress-error").text('');
+        return true;
+    }
+}

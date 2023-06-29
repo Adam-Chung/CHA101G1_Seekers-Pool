@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
 		try {
 			BeanUtils.populate(companyMember, map);
 		} catch (Exception e) {
-			System.out.println("登入 - 裝資料失敗");
+//			System.out.println("登入 - 裝資料失敗");
 			e.printStackTrace();
 		}
 		
@@ -51,13 +51,13 @@ public class LoginServlet extends HttpServlet {
 			// 帳號或密碼錯誤
 			resultInfo.setFlag(false);
 			resultInfo.setErrorMsg("您輸入的帳號或密碼錯誤，請稍後再試");
-			System.out.println("登入失敗");
+//			System.out.println("登入失敗");
 		} else {
 			// 登入成功
 			resultInfo.setFlag(true);
 			int comMemId = loginComMem.getComMemId();
 			req.getSession().setAttribute("companyMember", comMemId);
-			System.out.println("登入成功");
+//			System.out.println("登入成功");
 		}
 		
 		// 回應數據

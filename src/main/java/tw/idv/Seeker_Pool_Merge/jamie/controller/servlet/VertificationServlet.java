@@ -62,12 +62,12 @@ public class VertificationServlet extends HttpServlet {
 					companyMember.setComStatus(1);
 					service.updateCompanyStatus(companyMember);
 					jedis.del(key);
-					System.out.println("驗證成功!");
+//					System.out.println("驗證成功!");
 				} else {
 					// 驗證錯誤
 					resultInfo.setFlag(false);
 					resultInfo.setErrorMsg("驗證碼錯誤，請重新確認一次");
-					System.out.println("驗證失敗!");
+//					System.out.println("驗證失敗!");
 				}
 				
 				String jsonStr =  new JSONObject(resultInfo).toString();
