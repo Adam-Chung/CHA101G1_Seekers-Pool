@@ -134,7 +134,7 @@ new Vue({
         },
         // 把memId存入localStorage裡
         sendInvitation(memId){
-            this.url = `../html/TalentList.html?keyword=${encodeURIComponent(this.keyword)}`; // 問雯儀
+            this.url = `../../companymember/interview_invite.html?memId=${encodeURIComponent(memId)}`; // 問雯儀
             window.location.href = this.url;
         },
         setActive(index) {
