@@ -4,7 +4,6 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tw.idv.Seeker_Pool_Merge.sam.entity.Job;
 import tw.idv.Seeker_Pool_Merge.sam.entity.Member;
 import tw.idv.Seeker_Pool_Merge.sam.entity.PageBean;
 import tw.idv.Seeker_Pool_Merge.sam.mapper.TalentSearchMapper;
@@ -25,7 +24,7 @@ public class TalentSearchServiceImpl implements TalentSearchService {
 
     @Override
     public List<Member> list(String[] areas) {
-        return talentSearchMapper.findByTalentByArea(areas);
+        return talentSearchMapper.findTalentByArea(areas);
     }
 
     @Override
@@ -54,7 +53,7 @@ public class TalentSearchServiceImpl implements TalentSearchService {
         PageHelper.startPage(page, pageSize);
 
         //2. 執行查詢
-        List<Member> vacancyList = talentSearchMapper.findByTalentByArea(areas);
+        List<Member> vacancyList = talentSearchMapper.findTalentByArea(areas);
         Page<Member> p = (Page<Member>) vacancyList;
 
         //3. 封裝PageBean對象

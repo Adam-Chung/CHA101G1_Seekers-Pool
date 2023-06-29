@@ -87,7 +87,6 @@ new Vue({
                 axios.put('/SeekerPool/vacancy', this.editedVacancy)
                     .then(response => {
                         // 處理成功回應
-                        this.initialDistrict = this.editedVacancy.districtName;
                         console.log(response.data);
                         this.fetchData(this.page, 10);  // 編輯後要再一次更新列表的資料
                         // 例如顯示成功訊息或重新導向到其他頁面
@@ -274,6 +273,16 @@ new Vue({
                 this.editedVacancy.districtName = '';
             }
         },
+        clearPtName(){
+            if(this.editedVacancy.ptName){
+
+            }
+        },
+        test(){
+            alert("edit.ptName: " + this.editedVacancy.ptName)
+            alert("initialPtName: " + this.initialPtName)
+            alert("selectedName: " + this.selectedName)
+        }
 
     },
 
@@ -301,7 +310,6 @@ new Vue({
     watch:{
         selectedIndustry(value) {
             // 根據選擇的產業類別值發起請求或處理相應邏輯，並更新職務類別數據
-
             this.editedVacancy.ptType = value;
             axios.get(`/SeekerPool/positionType/${value}`)
                 .then(res => {
@@ -314,7 +322,7 @@ new Vue({
         selectedName(value) {
             // 根據選擇的產業類別值發起請求或處理相應邏輯，並更新職務類別數據
             this.editedVacancy.ptName = value;
-            this.selectedName = value;
+            alert("watch: " + this.editedVacancy.ptName)
             console.log("最後看一下selectedName" + this.selectedName)
         },
         'editedVacancy.cityName'(cityName) {
