@@ -149,11 +149,20 @@
 
             <li class="main-list purchase">
               <a href="#" draggable="false"> <!--第三個-->
-                <i class="fa-solid fa-cart-shopping"></i>購買
+                <i class="fa-solid fa-cart-shopping"></i>刊登方案
                 <div class="caret-icon">
                   <i class="fa-solid fa-sort-down"></i>
                 </div>
               </a>
+              <ul>
+                <li class="sub-list">
+                  <a href="../../jobcase/companyjobcase.html" draggable="false">我要刊登</a>
+                </li>
+
+                <li class="sub-list">
+                  <a href="../../jobcase/companyjobordersearch.html" draggable="false">刊登訂單查詢</a>
+                </li>
+              </ul>
             </li>
             <li class="main-list customer-service">
               <a href="#" draggable="false"> <!--第四個-->
@@ -194,7 +203,7 @@
         <div class="vacancy-top">
           <h3 class="vacancy-title">職缺總覽</h3>
           <button class="add-vacancy-btn"><i class="fa-solid fa-plus"></i>新增職缺</button>
-          <a href="#" class="change-status-page">修改狀態</a>
+          <a href="static/front-end/company/jobcase/companyjobselect.html" class="change-status-page">修改狀態</a>
         </div>
 
         <div class="all-vacancies-container">
@@ -273,7 +282,7 @@
                   <!--             可以給talentSearch參考       <span class="showPtType" v-for="pt in showInfo(edit.ptNo)">{{pt.ptType}}</span>-->
 <!--                    <span class="showPtType" v-for="pt in showInfo(edit.ptNo)">{{pt.ptName}}</span>-->
 
-                  <select name="job-industry" id="job-industry"  v-model="selectedIndustry">
+                  <select name="job-industry" id="job-industry"  v-model="selectedIndustry" @change="clearPtName()">
                     <option v-for="type in showInfo(edit.ptNo)" :label="type.ptType" hidden="hidden"></option>
                     <option v-for="type in uniqueTypes" :value="type" :label="type">{{type}}</option> <!--watch抓的值是:value裡的值-->
                   </select>
