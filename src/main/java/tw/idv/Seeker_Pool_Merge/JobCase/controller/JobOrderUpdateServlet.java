@@ -33,21 +33,21 @@ public class JobOrderUpdateServlet extends HttpServlet {
 			throws SecurityException, IOException, ServletException {
 		req.setCharacterEncoding("UTF-8");
 		System.out.println("request.getContentType(): " + req.getContentType());
-		System.out.println("進入update");
+//		System.out.println("進入update");
 		String joNo = req.getParameter("joNo");
-		System.out.println("joNo : " + joNo);
+//		System.out.println("joNo : " + joNo);
 		String comMemId = req.getParameter("comMemId");
-		System.out.println("comMemId : " + comMemId);
+//		System.out.println("comMemId : " + comMemId);
 		String jcNo = req.getParameter("jcNo");
-		System.out.println("jcNo : " + jcNo);
+//		System.out.println("jcNo : " + jcNo);
 		String jobPublishedNum = req.getParameter("jobPublishedNum");
-		System.out.println("jobPublishedNum : " + jobPublishedNum);
+//		System.out.println("jobPublishedNum : " + jobPublishedNum);
 		String jobPublishedTopNum = req.getParameter("jobPublishedTopNum");
-		System.out.println("jobPublishedTopNum : " + jobPublishedTopNum);
+//		System.out.println("jobPublishedTopNum : " + jobPublishedTopNum);
 		String jcDeadline = req.getParameter("jcDeadline");
-		System.out.println("jcDeadline : " + jcDeadline);
+//		System.out.println("jcDeadline : " + jcDeadline);
 		String jcStatus = req.getParameter("jcStatus");
-		System.out.println("jcStatus : " + jcStatus);
+//		System.out.println("jcStatus : " + jcStatus);
 
 		JoVO.setJoNo(Integer.valueOf(joNo));
 		JoVO.setComMemId(Integer.valueOf(comMemId));

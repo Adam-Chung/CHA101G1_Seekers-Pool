@@ -42,13 +42,13 @@ public class JobOrderInsertServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws SecurityException, IOException, ServletException {
 		req.setCharacterEncoding("UTF-8");
-		System.out.println("request.getContentType(): " + req.getContentType());
-		System.out.println("進入Insert");
+//		System.out.println("request.getContentType(): " + req.getContentType());
+//		System.out.println("進入Insert");
 
 		String jcNo = req.getParameter("jcNo");
-		System.out.println("jcNo : " + jcNo);
+//		System.out.println("jcNo : " + jcNo);
 		String jcDeadline = req.getParameter("jcDeadline");
-		System.out.println("jcDeadline : " + jcDeadline);
+//		System.out.println("jcDeadline : " + jcDeadline);
 		
 		DateFormat inputFormat = new SimpleDateFormat("yyyy-M-d");
 		DateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -61,8 +61,8 @@ public class JobOrderInsertServlet extends HttpServlet {
 		}
 		Timestamp timestamp = new Timestamp(time);
 		//動態
-		// int comMemId = (int) req.getSession().getAttribute("companyMember");
-		Integer comMemId = 6;
+		int comMemId = (int) req.getSession().getAttribute("companyMember");
+		// Integer comMemId = 6;
 		JoVO.setJcNo(Integer.valueOf(jcNo));
 		JoVO.setJcDeadline(timestamp);
 		JoVO.setComMemId(comMemId);

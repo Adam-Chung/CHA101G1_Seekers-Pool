@@ -33,20 +33,20 @@ public class JobCaseInsertServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws SecurityException, IOException, ServletException {
 		req.setCharacterEncoding("UTF-8");
-		System.out.println("request.getContentType(): " + req.getContentType());
+//		System.out.println("request.getContentType(): " + req.getContentType());
 		
 			String str1 = req.getParameter("jcName");
-			System.out.println("jcName : " + str1);
+//			System.out.println("jcName : " + str1);
 			String str2 = req.getParameter("jcExpTime");
-			System.out.println("jcExpTime : " + str2);
+//			System.out.println("jcExpTime : " + str2);
 			String str3 = req.getParameter("jcAvailableNum");
-			System.out.println("jcAvailableNum  " + str3);
+//			System.out.println("jcAvailableNum  " + str3);
 			String str4 = req.getParameter("jcTop");
-			System.out.println("jcTop : " + str4);
+//			System.out.println("jcTop : " + str4);
 			String str5 = req.getParameter("jcPrice");
-			System.out.println("jcPrice : " + str5);
+//			System.out.println("jcPrice : " + str5);
 			String str6 = req.getParameter("jcStatus");
-			System.out.println("jcStatus : " + str6);
+//			System.out.println("jcStatus : " + str6);
 
 			JcVO.setJcName(str1);
 			JcVO.setJcExpTime(Integer.valueOf(str2));
@@ -56,7 +56,7 @@ public class JobCaseInsertServlet extends HttpServlet {
 			JcVO.setJcStatus(Integer.valueOf(str6));
 			
 			JcDao.insert(JcVO);
-			System.out.println(JcVO);
+//			System.out.println(JcVO);
 			writePojo2Json(resp, JcVO);
 	}
 
