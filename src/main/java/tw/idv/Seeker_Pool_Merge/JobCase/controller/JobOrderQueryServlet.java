@@ -39,8 +39,8 @@ public class JobOrderQueryServlet extends HttpServlet{
 			System.out.println("進入 selectComOrderAll");
 			System.out.println(action);
 			// 要改動態生成企業編號
-//			int comMemId = (int) req.getSession().getAttribute("companyMember");
-			Integer comMemId=6;
+			// int comMemId = (int) req.getSession().getAttribute("companyMember");
+			Integer comMemId=1;
 			ComOrderQueryVO coqo=new ComOrderQueryVO();
 			coqo.setComMemId(comMemId);
 			List<ComOrderQueryVO> list = JoDao.comMemIdCase(coqo);
@@ -53,7 +53,9 @@ public class JobOrderQueryServlet extends HttpServlet{
 			String joNo = req.getParameter("joNo");
 			Integer JoNo=Integer.valueOf(joNo);
 			// 要改動態生成企業編號
-			Integer comMemId=6;
+			// int comMemId = (int) req.getSession().getAttribute("companyMember");
+
+			Integer comMemId=1;
 			ComOrderQueryVO coqo=new ComOrderQueryVO();
 			coqo.setComMemId(comMemId);
 			coqo.setJoNo(JoNo);

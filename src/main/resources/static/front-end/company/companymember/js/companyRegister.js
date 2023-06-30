@@ -1,6 +1,7 @@
 // AJAX連接
 $(function () {
     $("#registerForm").submit(function () {
+        $(".error-message").text('')
         // 先進行表單驗證
         if (!(
             checkAccount() &&
@@ -76,6 +77,7 @@ function checkAccount() {
 function checkPassword() {
     const password = $("#password").val();
     if (password.length < 8 || password.length > 30) {
+        $("#password-error").text('');
         $("#password-error").text('密碼長度錯誤');
         return false;
     } else {
@@ -87,6 +89,7 @@ function checkPassword() {
 function checkCompanyName() {
     const companyName = $("#companyName").val();
     if (companyName.trim() === "") {
+        $("#companyName-error").text('');
         $("#companyName-error").text('公司名稱不得為空');
         return false;
     } else {
@@ -99,6 +102,7 @@ function checkTaxNum() {
     const taxNumber = $("#taxNumber").val();
     const reg_taxNumber = /^[0-9]{8}$/;
     if (!reg_taxNumber.test(taxNumber)) {
+        $("#taxNumber-error").text('')
         $("#taxNumber-error").text('統編號碼格式不正確');
         return false;
     } else {
@@ -111,6 +115,7 @@ function checkEmail() {
     const email = $("#companyEmail").val();
     const reg_email = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
     if (!reg_email.test(email)) {
+        $("#companyEmail-error").text('')
         $("#companyEmail-error").text('e-mail格式不正確');
         return false;
     } else {
@@ -123,6 +128,7 @@ function checkTelephoneNumber() {
     const telNum = $("#companyTel").val();
     const reg_telNum = /^(0[2-9]\d)\d{6,8}$/;
     if (!reg_telNum.test(telNum)) {
+        $("#companyTel-error").text('')
         $("#companyTel-error").text('電話號碼格式不正確');
         return false;
     } else {
@@ -134,6 +140,7 @@ function checkTelephoneNumber() {
 function checkAddress() {
     const companyAddress = $("#companyAddress").val();
     if (companyAddress.trim() === "") {
+        $("#companyAddress-error").text('')
         $("#companyAddress-error").text('公司地址不得為空');
         return false;
     } else {
