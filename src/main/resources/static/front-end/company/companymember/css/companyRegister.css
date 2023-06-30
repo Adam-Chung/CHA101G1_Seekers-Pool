@@ -1,6 +1,6 @@
 .rg_layout {
 	width: 100%;
-	height: 700px;
+	height: 800px;
 	background-size: 100% 780px;
 	overflow: hidden;
 }
@@ -9,7 +9,7 @@
 .rg_layout .rg_form {
 	/* width: 886px; */
 	width: 1000px;
-	height: 700px;
+	height: 800px;
 	background-color: #fff;
 	margin: 24px auto;
 	border: 8px solid #eeeeee;
@@ -60,6 +60,14 @@
 
 .rg_form>.rg_form_center table tr {
 	height: 50px;
+}
+
+.rg_form>.rg_form_center table .error-tr {
+	height: 10px;
+
+}
+.rg_form>.rg_form_center table .error-tr td{
+	transform: translateX(145px);
 }
 
 .rg_form>.rg_form_center .td_right {

@@ -215,8 +215,7 @@ form input:focus{
 }
 
 .talent-search-btn{
-    margin: 0 auto;
-    margin-top: 20px;
+    margin: 40px 40px 0 190px;
     width: 140px;
     height: 35px;
     border: 0;
@@ -225,15 +224,27 @@ form input:focus{
     color: var(--white);
     background-color: var(--yellow);
     cursor: pointer;
+    transition: 0.3s all;
 }  
 .talent-search-btn:hover{
     background-color: var(--yellow);
     color: white;
     filter:brightness(0.7);
 }
-.talent-search-btn a,
-.talent-search-btn a:visited{
-    color: var(--white);
+
+.talent-reset-btn{
+    border: none;
+    background-color: transparent;
+    font-size: 1rem;
+    height: 35px;
+    width: 60px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s all;
+}
+.talent-reset-btn:hover{
+    background-color: rgba(0, 0, 0, 0.37);
+    color: white;
 }
 
 /* ================================================================== */
@@ -572,7 +583,11 @@ input[type="checkbox"] {
     color: var(--yellow);
 }
 /* ========================== 地區類別選單結束 ============================== */
-
+.small{
+    font-size: medium;
+    font-weight: bold;
+    color: darkred;
+}
 /* ===== 登出鍵 =====*/
 
 

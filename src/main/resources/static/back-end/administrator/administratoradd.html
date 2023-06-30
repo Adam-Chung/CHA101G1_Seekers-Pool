@@ -1,78 +1,75 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<title>Seeker's Pool</title>
-<meta content="" name="description">
-<meta content="" name="keywords">
+	<title>Seeker's Pool</title>
+	<meta content="" name="description">
+	<meta content="" name="keywords">
 
-<!-- Favicons -->
-<link href="../../common/img/handshake-regular.svg" rel="icon">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<!-- Favicons -->
+	<link href="../../common/img/handshake-regular.svg" rel="icon">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<!-- Google Fonts -->
-<link href="https://fonts.gstatic.com" rel="preconnect">
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-	rel="stylesheet">
+	<!-- Google Fonts -->
+	<link href="https://fonts.gstatic.com" rel="preconnect">
+	<link
+		href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+		rel="stylesheet">
 
-<!-- Vendor CSS Files -->
-<link href="../../common/css/packageCSS/bootstrap.min.css"
-	rel="stylesheet">
-<link href="../../common/css/packageCSS/bootstrap-icons.css"
-	rel="stylesheet">
-<link href="../../common/css/packageCSS/boxicons.min.css"
-	rel="stylesheet">
-<link href="../../common/css/packageCSS/quill.snow.css"
-	rel="stylesheet">
-<link href="../../common/css/packageCSS/quill.bubble.css"
-	rel="stylesheet">
-<link href="../../common/css/packageCSS/remixicon.css"
-	rel="stylesheet">
-<link href="../../common/css/packageCSS/style.css" rel="stylesheet">
+	<!-- Vendor CSS Files -->
+	<link href="../../common/css/packageCSS/bootstrap.min.css" rel="stylesheet">
+	<link href="../../common/css/packageCSS/bootstrap-icons.css" rel="stylesheet">
+	<link href="../../common/css/packageCSS/boxicons.min.css" rel="stylesheet">
+	<link href="../../common/css/packageCSS/quill.snow.css" rel="stylesheet">
+	<link href="../../common/css/packageCSS/quill.bubble.css" rel="stylesheet">
+	<link href="../../common/css/packageCSS/remixicon.css" rel="stylesheet">
+	<link href="../../common/css/packageCSS/style.css" rel="stylesheet">
 
-<!-- Template Main CSS File -->
-<link href="../../common/css/Employee.css" rel="stylesheet">
+	<!-- Template Main CSS File -->
+	<link href="../../common/css/Employee.css" rel="stylesheet">
 
-<!-- Font Awesome-->
-<script src="https://kit.fontawesome.com/244879c400.js"
-	crossorigin="anonymous"></script>
-	
-<style>
-	body {
-	  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif; 
-	}
-	#preview {
-        border: 1px solid lightgray;
-        display: inline-block;
-        width: 150px;
-        min-height: 150px;
-        position: relative;
-        }
+	<!-- Font Awesome-->
+	<script src="https://kit.fontawesome.com/244879c400.js" crossorigin="anonymous"></script>
 
-     #preview span.text {
-        position: absolute;
-        display: inline-block;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        z-index: -1;
-        color: lightgray;
-        }
+	<style>
+		body {
+			font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif;
+		}
 
-     #preview img.preview_img {
-        width: 100%;
-     	}
-     div {
-     margin:0px;
-     }
-</style>
-<!-- jQuery -->
-<script src="../../common/js/jquery-3.6.4.min.js"></script>
+		#preview {
+			border: 1px solid lightgray;
+			display: inline-block;
+			width: 150px;
+			min-height: 150px;
+			position: relative;
+		}
+
+		#preview span.text {
+			position: absolute;
+			display: inline-block;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			z-index: -1;
+			color: lightgray;
+		}
+
+		#preview img.preview_img {
+			width: 100%;
+		}
+
+		div {
+			margin: 0px;
+		}
+	</style>
+	<!-- jQuery -->
+	<script src="../../common/js/jquery-3.6.4.min.js"></script>
 
 </head>
+
 <body>
 	<!-- ========================== Header ================================ -->
 	<div id="header1"></div>
@@ -88,10 +85,8 @@
 			<nav>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="Employee.html">Home</a></li>
-					<li class="breadcrumb-item active"><a
-						href="Administrator1.html">員工管理</a></li>
-					<li class="breadcrumb-item active"><a
-						href="Administrator1.html">員工總覽</a></li>
+					<li class="breadcrumb-item active"><a href="Administrator1.html">員工管理</a></li>
+					<li class="breadcrumb-item active"><a href="Administrator1.html">員工總覽</a></li>
 					<li class="breadcrumb-item active">新增員工基本資料</li>
 				</ol>
 			</nav>
@@ -99,7 +94,7 @@
 		<hr>
 
 		<!--新增員工表單 -->
-         <form id="addAdminForm" method="post" enctype="multipart/form-data">
+		<form id="addAdminForm" method="post" enctype="multipart/form-data">
 			<div class="row">
 				<div class="col-lg-2 mb-3">
 					<label for="admName" class="form-label">員工姓名</label>
@@ -118,7 +113,6 @@
 						<option value="-1" disabled selected>-- 請選擇 --</option>
 						<option value="0">最高權限</option>
 						<option value="1">一般權限</option>
-						<option value="2">講師</option>
 					</select>
 				</div>
 			</div>
@@ -128,8 +122,7 @@
 					<label for="admAccount" class="form-label">員工帳號</label>
 				</div>
 				<div class="col-lg-4">
-					<input type="text" class="form-control" id="admAccount"
-						name="admAccount">
+					<input type="text" class="form-control" id="admAccount" name="admAccount">
 				</div>
 			</div>
 
@@ -138,11 +131,10 @@
 					<label for="admPassword" class="form-label">員工密碼</label>
 				</div>
 				<div class="col-lg-4">
-					<input type="text" class="form-control" id="admPassword"
-						name="admPassword">
+					<input type="text" class="form-control" id="admPassword" name="admPassword">
 				</div>
 			</div>
-			
+
 			<div class="row">
 				<div class="col-lg-2 mb-3">
 					<label for="admStatus" class="form-label">在職狀態</label>
@@ -161,17 +153,16 @@
 					<label for="admPhoto" class="form-label">頭貼</label>
 				</div>
 				<div class="col-lg-4">
-					<input type="file" class="form-control" id="admPhoto"
-						name="admPhoto">
+					<input type="file" class="form-control" id="admPhoto" name="admPhoto">
 					<div id="preview" style="margin: 10px 0px 0px;">
-                		<span class="text">預覽圖</span>
-            		</div>
-            		<div>
-            			<input  type="hidden" name="action" value="insert">
-						<button type="submit" class="btn btn-primary"
-							style="margin-top: 10px;" id="btnAddAdmbtn">新增員工</button>
-						<a href="administrator.html" class="btn btn-secondary"
-							style="margin: 10px 0px 0px 20px;"> 回到上一頁 </a>
+						<span class="text">預覽圖</span>
+					</div>
+					<div>
+						<input type="hidden" name="action" value="insert">
+						<button type="submit" class="btn btn-primary" style="margin-top: 10px;"
+							id="btnAddAdmbtn">新增員工</button>
+						<a href="administrator.html" class="btn btn-secondary" style="margin: 10px 0px 0px 20px;"> 回到上一頁
+						</a>
 					</div>
 				</div>
 			</div>
@@ -182,61 +173,63 @@
 	<script src="../../common/js/packageJS/bootstrap.bundle.min.js"></script>
 
 	<script>
-		$(function() {
+		$(function () {
 			// ======== 引入header ===========
-			$.get("../../common/buildPage/Employee_Header.html", function(data) {
+			$.get("../../common/buildPage/Employee_Header.html", function (data) {
 				$("#header1").html(data);
 
-				$.getScript("../../common/js/Employee.js", function() {
+				$.getScript("../../common/js/Employee.js", function () {
 				});
 			});
 
 			// ======== 引入sidebar ===========
-			$.get("../../common/buildPage/Employee_Sidebar.html", function(data) {
+			$.get("../../common/buildPage/Employee_Sidebar.html", function (data) {
 				$("#sidebar1").html(data);
 			});
-			
+
 			// ======= 透過 File 取得預覽圖 =======
-			$("input#admPhoto").change(function(){
+			$("input#admPhoto").change(function () {
 				console.log("AAA");
-				 var reader = new FileReader(); // 用來讀取檔案
-	                if (this.files.length > 0) {
-	                    reader.addEventListener("load", function () {
-	                        let img_str = '<img src="' + reader.result + '" class="preview_img">';
-	                        $("div#preview").html(img_str);
-	                    });
-	                    // 執行讀取檔案
-	                    reader.readAsDataURL(this.files[0]);
-	                } else {
-	                	let prePhoto='<span class="text">預覽圖</span>';
-	                	 $("div#preview").html(prePhoto);
-	                }
+				var reader = new FileReader(); // 用來讀取檔案
+				if (this.files.length > 0) {
+					reader.addEventListener("load", function () {
+						let img_str = '<img src="' + reader.result + '" class="preview_img">';
+						$("div#preview").html(img_str);
+					});
+					// 執行讀取檔案
+					reader.readAsDataURL(this.files[0]);
+				} else {
+					let prePhoto = '<span class="text">預覽圖</span>';
+					$("div#preview").html(prePhoto);
+				}
 			});
 
 			// ======== AJAX ===========
-			$("#addAdminForm").submit(function(){
+			$("#addAdminForm").submit(function () {
 				var formData = new FormData($("#addAdminForm")[0]);
 				$.ajax({
-					url : "../../AdministratorServlet",
-					method : 'POST',
-					datatype : "JSON",
-					data : formData,
+					url: "../../AdministratorServlet",
+					method: 'POST',
+					datatype: "JSON",
+					data: formData,
 					async: false,//同步請求
-                    cache: false,//不快取頁面
-                    contentType: false,//當form以multipart/form-data方式上傳檔案時，需要設定為false
-                    processData: false,//如果要傳送Dom樹資訊或其他不需要轉換的資訊，請設定為false
-					success: function(res){
-					    if(res.indexOf("success") === -1){
-					        alert('成功新增: '+ $("input#admName").val());
-					    }else{
-					        alert('失敗，請重新填寫');
+					cache: false,//不快取頁面
+					contentType: false,//當form以multipart/form-data方式上傳檔案時，需要設定為false
+					processData: false,//如果要傳送Dom樹資訊或其他不需要轉換的資訊，請設定為false
+					success: function (res) {
+						if (res.indexOf("success") === -1) {
+							alert('成功新增: ' + $("input#admName").val());
+						} else {
+							alert('失敗，請重新填寫');
 						};
 					}
 				});
 				return false; //返回true才會送出表單
 			});
+
 		});
 	</script>
-	
+
 </body>
+
 </html>

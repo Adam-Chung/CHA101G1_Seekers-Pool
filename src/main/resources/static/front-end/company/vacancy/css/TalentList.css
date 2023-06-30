@@ -36,12 +36,12 @@ body{
     display: flex;
     flex-direction: column;
     width: 60%;
-    height: auto;
     border-radius: 3px;
     color: rgb(53, 53, 53);
     background-color: rgb(244, 247, 248);
     border: 2px solid rgb(82, 201, 252);
     padding: 25px;
+    margin: 25px;
     line-height: 1.5rem;
     letter-spacing: 2px;
 }
@@ -309,8 +309,8 @@ menu ul li a:hover{
     position: relative;
     display: flex;
     justify-content: space-between;
-    padding: 15px;
-    margin-top: 20px;
+    padding: 10px;
+    margin-top: 10px;
     width: 90%;
     height: auto;
     border-radius: 5px;
@@ -332,6 +332,7 @@ menu ul li a:hover{
 
 .talent-full-info{
     margin-left: -150px;
+    letter-spacing: 2px;
 }
 .talent-info-top{
     margin-left: -22px;    
@@ -348,7 +349,7 @@ menu ul li a:hover{
 
 .gender{
     display: inline-block;
-    padding: 1px 2px;
+    padding: 1px 3px;
     font-weight: bold;
     border-radius: 5px;
 }
@@ -380,7 +381,7 @@ menu ul li a:hover{
     background-color: cornflowerblue;
     color: white;
     border-radius: 5px;
-    padding: 1px 7px;
+    padding: 2px 7px;
 }
 
 .talent-btn-container{
@@ -398,6 +399,7 @@ menu ul li a:hover{
     margin-right: 20px;
     border: none;
     font-weight: 600;
+    font-size: large;
     color: var(--white);
     background-color: var(--yellow);
     border-radius: 3px;
@@ -414,4 +416,36 @@ menu ul li a:hover{
     color: var(--white);
 }
 
-/* ===== 登出鍵 =====*/
+/* ===== pagination =====*/
+.pagination-container{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+.page{
+    display: flex;
+    list-style: none;
+    padding: 8px 10px;
+    border-radius: 7px;
+    background-color: var(--white);
+}
+.page li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 40px;
+    font-size: large;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.page li:hover{
+    background-color: rgba(255, 165, 0, 0.46);
+}
+
+.active{
+    background-color: var(--yellow);
+    color: white;
+}
+

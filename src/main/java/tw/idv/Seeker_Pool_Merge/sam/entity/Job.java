@@ -3,59 +3,170 @@ package tw.idv.Seeker_Pool_Merge.sam.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "job")
 public class Job {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "JOB_NO") // 職缺編號
     private Integer jobNo;
 
-    @Column(name = "COM_MEM_ID") // 企業編號
     private Integer comMemId;
 
-    @Column(name = "PT_NO") // 職務編號
     private Integer ptNo;
 
-    @Column(name = "JO_NO") // 訂單編號
     private Integer joNo;
 
-    @Column(name = "JOB_NAME") // 職缺名稱
     private String jobName;
 
-    @Column(name = "JOB_CONTENT") // 工作內容
     private String jobContent;
 
-    @Column(name = "JOB_SALARY") // 工作待遇
     private Integer jobSalary;
 
-    @Column(name = "JOB_TYPE") // 工作性質 (0:全職, 1:兼職) (default: 1)
+    // 工作性質 (0:全職, 1:兼職) (default: 1)
     private Integer jobType;
 
-    @Column(name = "CITY_NAME") // 工作縣市id
+     // 工作縣市id
     private String cityName;
 
-    @Column(name = "DISTRICT_NAME") // 工作鄉鎮市區
+     // 工作鄉鎮市區
     private String districtName;
 
-    @Column(name = "JOB_ADDRESS") // 工作地址
+     // 工作地址
     private String jobAddress;
 
-    @Column(name = "JOB_OTHER") // 其他條件
+     // 其他條件
     private String jobOther;
 
-    @Column(name = "JOB_STATUS") // 職缺狀態 (0:未刊登, 1:刊登中, 2:被檢舉已下架)(沒有在用)
+     // 職缺狀態 (0:未刊登, 1:刊登中, 2:被檢舉已下架)(沒有在用)
     private Integer jobStatus;
 
-    @Column(name = "JOB_UPLOAD") // 是否上架職缺 (0 : 已上架 1: 未上架) (default: 1)
+     // 是否上架職缺 (0 : 未上架 1: 已上架) (default: 0)
     private Integer JobUpload;
 
-    @Column(name = "JOB_TOP") // 是否置頂職缺 (0 : 已置頂 1: 未置頂) (default: 1)
+     // 是否置頂職缺 (0 : 未置頂 1: 已置頂) (default: 0)
     private Integer jobTop;
+
+    public Integer getJobNo() {
+        return jobNo;
+    }
+
+    public void setJobNo(Integer jobNo) {
+        this.jobNo = jobNo;
+    }
+
+    public Integer getComMemId() {
+        return comMemId;
+    }
+
+    public void setComMemId(Integer comMemId) {
+        this.comMemId = comMemId;
+    }
+
+    public Integer getPtNo() {
+        return ptNo;
+    }
+
+    public void setPtNo(Integer ptNo) {
+        this.ptNo = ptNo;
+    }
+
+    public Integer getJoNo() {
+        return joNo;
+    }
+
+    public void setJoNo(Integer joNo) {
+        this.joNo = joNo;
+    }
+
+    public String getJobName() {
+        return jobName;
+    }
+
+    public void setJobName(String jobName) {
+        this.jobName = jobName;
+    }
+
+    public String getJobContent() {
+        return jobContent;
+    }
+
+    public void setJobContent(String jobContent) {
+        this.jobContent = jobContent;
+    }
+
+    public Integer getJobSalary() {
+        return jobSalary;
+    }
+
+    public void setJobSalary(Integer jobSalary) {
+        this.jobSalary = jobSalary;
+    }
+
+    public Integer getJobType() {
+        return jobType;
+    }
+
+    public void setJobType(Integer jobType) {
+        this.jobType = jobType;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+
+    public String getDistrictName() {
+        return districtName;
+    }
+
+    public void setDistrictName(String districtName) {
+        this.districtName = districtName;
+    }
+
+    public String getJobAddress() {
+        return jobAddress;
+    }
+
+    public void setJobAddress(String jobAddress) {
+        this.jobAddress = jobAddress;
+    }
+
+    public String getJobOther() {
+        return jobOther;
+    }
+
+    public void setJobOther(String jobOther) {
+        this.jobOther = jobOther;
+    }
+
+    public Integer getJobStatus() {
+        return jobStatus;
+    }
+
+    public void setJobStatus(Integer jobStatus) {
+        this.jobStatus = jobStatus;
+    }
+
+    public Integer getJobUpload() {
+        return JobUpload;
+    }
+
+    public void setJobUpload(Integer jobUpload) {
+        JobUpload = jobUpload;
+    }
+
+    public Integer getJobTop() {
+        return jobTop;
+    }
+
+    public void setJobTop(Integer jobTop) {
+        this.jobTop = jobTop;
+    }
 }

@@ -17,12 +17,12 @@
         
         <property name="hibernate.current_session_context_class">thread</property>
           
-<!--         <mapping class="Administrator.vo.AdministratorVO"/> -->
-<!--         <mapping class="Administrator.vo.AuthorityVO"/> -->
-<!--         <mapping class="Administrator.vo.EmployeeLoginVO"/> -->
+        <mapping class="tw.idv.Seeker_Pool_Merge.Administrator.vo.AdministratorVO"/>
         <mapping class="tw.idv.Seeker_Pool_Merge.JobCase.vo.JobOrderVO"/>
         <mapping class="tw.idv.Seeker_Pool_Merge.JobCase.vo.JobVO"/>
         <mapping class="tw.idv.Seeker_Pool_Merge.JobCase.vo.JobCaseVO"/>
+        <mapping class="tw.idv.Seeker_Pool_Merge.JobCase.vo.ComJobQueryVO"/>
+        <mapping class="tw.idv.Seeker_Pool_Merge.JobCase.vo.ComOrderQueryVO"/>
 
     </session-factory>
 </hibernate-configuration>

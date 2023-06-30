@@ -1,13 +1,12 @@
 package tw.idv.Seeker_Pool_Merge.sam.service.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import tw.idv.Seeker_Pool_Merge.sam.entity.Districts;
 import tw.idv.Seeker_Pool_Merge.sam.mapper.DistrictsMapper;
 import tw.idv.Seeker_Pool_Merge.sam.service.DistrictsService;
+
+import java.util.List;
 
 @Service
 public class DistrictsServiceImpl implements DistrictsService {

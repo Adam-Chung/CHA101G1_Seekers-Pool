@@ -43,15 +43,6 @@ new Vue({
             this.selected = index-1;
             this.selectedCityName = this.citiesData[index-1];
         },
-        // fetchDistricts(index, cityName){
-        //     const selectDistrict = this.districtsData.filter(item => item.cityId === index); //要回傳整個districts資料要用filter
-        //     this.defaultDistrict = selectDistrict;
-        //     this.selectedCityName = cityName;
-        //
-        //     if (this.multipleChecked.length < this.maxSelection) {
-        //         this.multipleChecked.push(cityName);
-        //     }
-        // },
         getClass(index) {  //yes
             return {
                 '-chosen': this.selected === index,
@@ -72,9 +63,6 @@ new Vue({
             }));
 
         },
-        // removeSelected(index) {
-        //     this.multipleChecked.splice(index, 1); // 从 multipleChecked 中移除指定索引的元素
-        // },
         removeSelected(index) {
             const cityName = this.multipleChecked[index];
             const cityIndex = this.firstLayerCity.indexOf(cityName);
@@ -95,38 +83,13 @@ new Vue({
         },
         isFirstLayerCityChecked() {
             return this.firstLayerCity.length >0
-            // // 检查第一层城市是否被选中
-            // const isCityChecked = this.firstLayerCity.length > 0;
-            // alert("ischecked:" + isCityChecked)
-            // // 检查是否有与选定城市不相关的区域复选框被选中
-            // const isRelatedDistrictChecked = this.multipleChecked.some(item => {
-            //     const city = this.defaultDistrict.find(district => district.districtName === item);
-            //     alert(city && city.cityName !== this.firstLayerCityIndex)
-            //     return city && city.cityName !== this.firstLayerCityIndex;
-            // });
-            //
-            // // 返回两个条件的逻辑与运算结果
-            // return isCityChecked && !isRelatedDistrictChecked;
         },
-        // isDistrictRelatedToSelectedCity() {
-        //     return (district) => {
-        //         // 首先確保有一個被選中的城市
-        //         if (!this.selectedCityName) return false;
-        //
-        //         // 找到城市對應的 id
-        //         const cityId = this.citiesData.find(city => city.cityName === this.selectedCityName).id;
-        //
-        //         // 檢查區域是否與城市相關
-        //         return district.cityId === cityId;
-        //     };
-        // },
         isDistrictRelatedToSelectedCity() {
             return (district) => {
                 // 首先确保有一个被选中的城市
                 // if (!this.firstLayerCity.length) return false;
 
                 // 检查区域是否与任一选中的城市相相关
-                alert("come?")
                 return this.firstLayerCity.some(cityName => {
                     const cityId = this.citiesData.find(city => city.cityName === cityName).id;
                     return district.cityId === cityId;
@@ -242,16 +205,26 @@ new Vue({
     methods:{
         search(){
             if(this.keyword ==='' && this.jobLocation === ''){
-                return alert("查詢不得為空");
+                return Swal.fire({
+                    title: '不能空白喔!',
+                    text: '試試看加個關鍵字吧!',
+                    icon: 'warning',
+                    timer: 2000
+                })
             } else if(this.keyword !=='' && this.jobLocation === '') {
                 axios.get(`/SeekerPool/talent/${this.keyword}`)
                     .then(res => {
-                        if (res.data.data.length >0){ // 用length來判斷是否有資料回傳
-                            // 動態生成 URL
+                        if (res.data.data.rows.length >0){ // 用length來判斷是否有資料回傳
+                            // 動態生成 URL , 用 "?keyword=參數" 的方式把參數帶給../html/TalentList.html
                             this.url = `../html/TalentList.html?keyword=${encodeURIComponent(this.keyword)}`;
                             window.location.href = this.url;
                         }else {
-                            alert("關鍵字找不到喔!")
+                            Swal.fire({
+                                title: '抱歉沒有相關的人才...',
+                                text: '換個關鍵字試試看吧!',
+                                icon: 'warning',
+                                timer: 2300
+                            })
                         }
                     });
 
@@ -259,23 +232,35 @@ new Vue({
                 this.jobLocationArray = this.jobLocation.split(",");
                 axios.get(`/SeekerPool/talent/area/${this.jobLocationArray}`)
                     .then(res => {
-                        if (res.data.data.length >0){ // 用length來判斷是否有資料回傳
+                        if (res.data.data.rows.length >0){ // 用length來判斷是否有資料回傳
                             // 動態生成 URL
                             this.url = `../html/TalentList.html?areas=${encodeURIComponent(this.jobLocationArray)}`;
                             window.location.href = this.url;
                         }else {
-                            alert("關鍵字找不到喔!")
+                            Swal.fire({
+                                title: '抱歉沒有相關的人才...',
+                                text: '換個地點試試看吧!',
+                                icon: 'warning',
+                                timer: 2300
+                            })
                         }
                     });
             }
         },
-
+        reset(){
+            this.keyword='';
+            this.jobLocation='';
+        },
         openCountryForm(){
             $('.country-category-list').removeClass('-none').css('z-index', '22');
             $('.country-category-container').removeClass('-none').css('z-index', '22');
         },
     },
     watch: {
-
+        'jobLocation'(){
+            if(this.jobLocation !== ''){
+                this.keyword = '';
+            }
+        }
     },
 })
