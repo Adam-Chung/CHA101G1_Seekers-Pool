@@ -42,11 +42,11 @@ public class VertificationServlet extends HttpServlet {
 				jedis.del(key);
 				
 				// 寄信
-				System.out.println("寄信囉");
+//				System.out.println("寄信囉");
 				validCode = service.sendValidCode(companyMember);
 				// 開啟Redis來儲存key
 				jedis.setex(key, 15, validCode);
-				System.out.println("驗證碼為: " + key + ", 郵件寄出驗證碼: " + jedis.get(key));
+//				System.out.println("驗證碼為: " + key + ", 郵件寄出驗證碼: " + jedis.get(key));
 				
 			} else {
 				// 從Redis中取出驗證碼
@@ -54,7 +54,7 @@ public class VertificationServlet extends HttpServlet {
 			    
 				// 調用Service檢查輸入的驗證碼是否一致
 				boolean isCodeValid = service.checkValidCode(inputValidCode, validCode);
-				System.out.println("isCodeValid: " + isCodeValid);  // 測試用資訊
+//				System.out.println("isCodeValid: " + isCodeValid);  // 測試用資訊
 				
 				if (isCodeValid) {
 					// 驗證成功
