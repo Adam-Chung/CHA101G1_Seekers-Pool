@@ -61,8 +61,8 @@ public class JobOrderInsertServlet extends HttpServlet {
 		}
 		Timestamp timestamp = new Timestamp(time);
 		//動態
-//		int comMemId = (int) req.getSession().getAttribute("companyMember");
-		Integer comMemId = 6;
+		int comMemId = (int) req.getSession().getAttribute("companyMember");
+		// Integer comMemId = 6;
 		JoVO.setJcNo(Integer.valueOf(jcNo));
 		JoVO.setJcDeadline(timestamp);
 		JoVO.setComMemId(comMemId);
