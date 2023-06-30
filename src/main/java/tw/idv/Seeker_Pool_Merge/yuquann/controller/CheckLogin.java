@@ -2,7 +2,6 @@ package tw.idv.Seeker_Pool_Merge.yuquann.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,11 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import tw.idv.Seeker_Pool_Merge.yuquann.dao.JobSearchDao;
-import tw.idv.Seeker_Pool_Merge.yuquann.vo.JobVo;
-
-@WebServlet("/JobResultSearch")
-public class JobResultSearch extends HttpServlet {
+@WebServlet("/CheckLogin")
+public class CheckLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse res)
@@ -24,27 +20,25 @@ public class JobResultSearch extends HttpServlet {
 
 		req.setCharacterEncoding("utf-8");
 		res.setContentType("application/json;charset=utf-8");
-		String keyword = req.getParameter("keyword");
-		String city = req.getParameter("city");
-		String town = req.getParameter("town");
-		
 		PrintWriter out = res.getWriter();
-		
-		JobSearchDao dao = new JobSearchDao();
-		List<JobVo> list = dao.searchResult(keyword,city,town);
-//		System.out.println("JobSearch List : " + list);
-		
 		Gson gson = new Gson();
-		String json = gson.toJson(list);
-		out.print(json);
-//		System.out.println("json : " + json);
+		
+		Object memId0 = req.getSession().getAttribute("memberLogin");
+		if (memId0 == null) {
+			// 在前端跳轉頁面
+			String json = gson.toJson("notlogin");
+			res.getWriter().write(json);
+		}
+		
+		
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 		doGet(req, res);
 	}
-	public JobResultSearch() {
+
+	public CheckLogin() {
 		super();
 	}
 }

@@ -30,7 +30,7 @@ public class JobSkillDelete extends HttpServlet {
 		SkillTypeDao dao = new SkillTypeDao();
 		int rowcount = dao.skillDelete(skNo);
 		
-		System.out.println("Skill rowcount : " + rowcount);
+//		System.out.println("Skill rowcount : " + rowcount);
 		
 		if(rowcount == 1) {
 			Gson gson = new Gson();

@@ -37,7 +37,7 @@ public class JobResultShow extends HttpServlet {
 		//就算使用Object資料 最終都是轉成JSON輸出至前端
 		Gson gson = new Gson();
 		String json = gson.toJson(job);
-		System.out.println("JobResultShow json : " + json);
+//		System.out.println("JobResultShow json : " + json);
 		out.print(json);
 	}
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

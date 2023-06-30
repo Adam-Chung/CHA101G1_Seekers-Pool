@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Seeker's Pool</title>
+    <title>Seeker's Pool 職務總覽</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -235,22 +235,17 @@
                 </a>
                 <ul id="job-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="./job_type.html">
+                        <a href="./JobType.html">
                             <img src="./img/circle-regular.svg" alt=""><span>職務規格維護</span>
                         </a>
                     </li>
                     <li>
-                        <a href="./job_indstry.html">
-                            <img src="./img/circle-regular.svg" alt=""><span>行業類別維護</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./job_skill.html">
+                        <a href="./JobSkill.html">
                             <img src="./img/circle-regular.svg" alt=""><span>技能規格維護</span>
                         </a>
                     </li>
                     <li>
-                        <a href="./job_report.html">
+                        <a href="../report/JobReportShow.html">
                             <img src="./img/circle-regular.svg" alt=""><span>審核管理</span>
                         </a>
                     </li>
@@ -466,8 +461,6 @@
                         <th id="AUT_NO" class="AUT_NO" style="width: 100px;">職務編號</th>
                         <th id="AUT_NAME" class="AUT_NAME">行業名稱</th>
                         <th id="AUT_DESCRIPTION" class="AUT_DESCRIPTION">職務名稱</th>
-                        <th id="AUT_COUNT" class="AUT_COUNT">搜尋次數</th>
-
                         <th id="AUT_DELETE" class="AUT_DELETE">刪除</th>
 
                     </tr>
@@ -479,8 +472,6 @@
                         </td>
                         <td style="text-align: center">軟體業</td>
                         <td style="text-align: center">JAVA工程師</td>
-                        <td style="text-align: center">0</td>
-
                         <td style="vertical-align: middle; text-align: center;">
                             <button class="btn delete-button" style="margin-left: 5px; vertical-align: auto;"
                                 type="button">刪除</button>
@@ -527,7 +518,7 @@
                                 + "<strong>" + item.ptNO + "</strong>" + "</a>" + "</td>";
                             row += "<td>" + item.ptType + "</td>";
                             row += "<td>" + item.ptName + "</td>";
-                            row += "<td>" + item.ptSearchTimes + "</td>";
+                            // row += "<td>" + item.ptSearchTimes + "</td>";
                             row += "<td>" + "<button class='delete-button' data-ptNO='" + item.ptNO + "'>" + '刪除' + "</button>" + "</td>";
                             row += "</tr>";
                             $(".position_table").append(row);
@@ -574,7 +565,7 @@
                                 + "<strong>" + item.ptNO + "</strong>" + "</a>" + "</td>";
                             row += "<td>" + item.ptType + "</td>";
                             row += "<td>" + item.ptName + "</td>";
-                            row += "<td>" + item.ptSearchTimes + "</td>";
+                            // row += "<td>" + item.ptSearchTimes + "</td>";
                             row += "<td>" + "<button class='delete-button' data-ptNO='" + item.ptNO + "'>" + '刪除' + "</button>" + "</td>";
                             row += "</tr>";
                             $(".position_table").append(row);
@@ -621,7 +612,7 @@
                                 + "<strong>" + item.ptNO + "</strong>" + "</a>" + "</td>";
                             row += "<td>" + item.ptType + "</td>";
                             row += "<td>" + item.ptName + "</td>";
-                            row += "<td>" + item.ptSearchTimes + "</td>";
+                            // row += "<td>" + item.ptSearchTimes + "</td>";
                             row += "<td>" + "<button class='delete-button' data-ptNO='" + item.ptNO + "'>" + '刪除' + "</button>" + "</td>";
                             row += "</tr>";
                             $(".position_table").append(row);
