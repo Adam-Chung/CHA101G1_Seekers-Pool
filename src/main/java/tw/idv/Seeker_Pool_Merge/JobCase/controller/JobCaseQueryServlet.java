@@ -85,28 +85,28 @@ public class JobCaseQueryServlet extends HttpServlet {
 		}
 
 		/***************************
-		 * 開始 查詢後台單一訂單編號 jobcaseorder.html
+		 * 開始 查詢單一資料 轉交
 		 ****************************************/
 		if ("selectByOrderNo".equals(action)) {
 			System.out.println("進入 selectByOrderNo");
-//			List<String> errorMsgs = new LinkedList<String>();
-//			req.setAttribute("errorMsgs", errorMsgs);
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
 
 			/** 1.接收請求參數 - 輸入格式的錯誤處理 **/
 			String str_jcNo = req.getParameter("joNo");
 			System.out.println(str_jcNo);
 
-//			if (str_jcNo == null || str_jcNo.trim().isEmpty()) {
-//				errorMsgs.add("請輸入訂單編號");
-//			} else if (!str_jcNo.matches("\\d+")) {
-//				errorMsgs.add("訂單編號格式不正確(ex:1)");
-//			}
-//
-//			if (!errorMsgs.isEmpty()) {
-//				RequestDispatcher failureView = req.getRequestDispatcher("../../jobcase/jobcase.html");
-//				failureView.forward(req, resp);
-//				return;
-//			}
+			if (str_jcNo == null || str_jcNo.trim().isEmpty()) {
+				errorMsgs.add("請輸入訂單編號");
+			} else if (!str_jcNo.matches("\\d+")) {
+				errorMsgs.add("訂單編號格式不正確(ex:1)");
+			}
+
+			if (!errorMsgs.isEmpty()) {
+				RequestDispatcher failureView = req.getRequestDispatcher("../../jobcase/jobcase.html");
+				failureView.forward(req, resp);
+				return;
+			}
 
 			// Convert the validated jcNo to an Integer
 			Integer joNo = Integer.valueOf(str_jcNo);
@@ -116,7 +116,7 @@ public class JobCaseQueryServlet extends HttpServlet {
 
 		}
 		/***************************
-		 * 開始 後台查詢全部訂單 jobcaseorder.html
+		 * 開始 查詢訂單資料 轉交
 		 ****************************************/
 		if ("selectByOrder".equals(action)) {
 			System.out.println("進入 selectByOrder");
@@ -133,29 +133,29 @@ public class JobCaseQueryServlet extends HttpServlet {
 		 ****************************************/
 		if ("selectByCaseName".equals(action)) {
 //			System.out.println(action);
-//			List<String> errorMsgs = new LinkedList<String>();
-//			req.setAttribute("errorMsgs", errorMsgs);
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
 
 			/** 1.接收請求參數 - 輸入格式的錯誤處理 **/
-			String jcName = req.getParameter("jcName");
+			String str = req.getParameter("jcName");
 //			System.out.println(str);
 
-//			if (str == null || (str.trim()).length() == 0) {
-//				errorMsgs.add("請輸入正確方案名稱()");
-//			}
-//
-//			if (!errorMsgs.isEmpty()) {
-//				RequestDispatcher failureView = req.getRequestDispatcher("#");
-//				failureView.forward(req, resp);
-//				return;
-//			}
-//
-//			String jcName = null;
-//			try {
-//				jcName = str.trim();
-//			} catch (Exception e) {
-//				errorMsgs.add("方案名稱不正確");
-//			}
+			if (str == null || (str.trim()).length() == 0) {
+				errorMsgs.add("請輸入正確方案名稱()");
+			}
+
+			if (!errorMsgs.isEmpty()) {
+				RequestDispatcher failureView = req.getRequestDispatcher("#");
+				failureView.forward(req, resp);
+				return;
+			}
+
+			String jcName = null;
+			try {
+				jcName = str.trim();
+			} catch (Exception e) {
+				errorMsgs.add("方案名稱不正確");
+			}
 
 			/** 2.開始查詢資料 **/
 			JobCaseVO jc = JcDao.selectByCaseName(jcName);
