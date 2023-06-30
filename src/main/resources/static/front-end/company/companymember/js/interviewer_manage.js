@@ -31,6 +31,22 @@ function fetchAndUpdateApplicants(status = '100') {
             allApplicants = response.data;
             updateApplicantsTable(allApplicants);
             document.getElementById('filter').value = status;
+
+            // 監聽選單變化，過濾應徵者數據
+            document.getElementById('filter').addEventListener('change', function () {
+                // 清除已經顯示的履歷
+                document.querySelector('.content-container').innerHTML = '';
+
+                const status = parseInt(this.value, 10);
+
+                if (status === 100) {  // 如果選擇"---請選擇目前狀態---"，則顯示所有數據
+                    updateApplicantsTable(allApplicants);
+                } else {  // 否則，根據選擇的狀態過濾數據
+                    const filteredApplicants = allApplicants.filter(applicant => applicant.hireStatus === status);
+                    updateApplicantsTable(filteredApplicants);
+                }
+            });
+
             // 將選單設為 "面試已完成，等待通知"，並觸發 "change" 事件以更新表格
             // document.getElementById('filter').value = '2';
             document.getElementById('filter').dispatchEvent(new Event('change'));
@@ -54,21 +70,6 @@ window.onload = function () {
 //     .catch(function (error) {
 //         console.log(error);
 //     });
-
-// 監聽選單變化，過濾應徵者數據
-document.getElementById('filter').addEventListener('change', function () {
-    // 清除已經顯示的履歷
-    document.querySelector('.content-container').innerHTML = '';
-
-    const status = parseInt(this.value, 10);
-
-    if (status === '100') {  // 如果選擇"---請選擇目前狀態---"，則顯示所有數據
-        updateApplicantsTable(allApplicants);
-    } else {  // 否則，根據選擇的狀態過濾數據
-        const filteredApplicants = allApplicants.filter(applicant => applicant.hireStatus === status);
-        updateApplicantsTable(filteredApplicants);
-    }
-});
 
 // -------------------- 點擊詳情顯示會員履歷 --------------------
 let selectedApplicant = null;  // 儲存被選擇的求職者

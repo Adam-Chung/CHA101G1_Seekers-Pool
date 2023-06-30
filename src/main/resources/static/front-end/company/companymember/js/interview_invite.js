@@ -40,6 +40,7 @@ if (jobTitle) {
     axios.post('/SeekerPool/FrontEnd/InterviewInvite')
         .then(function (response) {
             const jobs = response.data;
+            console.log(jobs)
             const select = document.getElementById('job-title');
             select.innerHTML = '';  // 清空元素內容
 
@@ -107,9 +108,9 @@ function interviewSubmit() {
         let date3 = $(".date-3").html();
 
         // 人才的ID
-        const memId = localStorage.getItem('memId');
+        let memId = localStorage.getItem('memId');
         // 選擇哪一職缺"id"
-        const jobId = localStorage.getItem('jobId');
+        let jobId = localStorage.getItem('jobId');
 
         if (!jobId) {
             // = Sam的查詢人才

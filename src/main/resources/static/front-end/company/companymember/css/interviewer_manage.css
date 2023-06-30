@@ -270,6 +270,9 @@ span {
 }
 
 .avatar-img {
+    border: 3px solid white;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
 }
 
