@@ -40,8 +40,8 @@ public class JobUpTopNumStatusServlet extends HttpServlet {
 			System.out.println(action);
 			ComOrderQueryVO coqv=new ComOrderQueryVO();
 			// 要改成動態企業ID
-//			int comMemId = (int) req.getSession().getAttribute("companyMember");
-			Integer comMemId=6;
+			// int comMemId = (int) req.getSession().getAttribute("companyMember");
+			Integer comMemId=1;
 			coqv.setComMemId(comMemId);
 			List<ComOrderQueryVO> list = JoDao.updateJobUploadNum(coqv);
 			System.out.println("list" + list);
@@ -53,8 +53,8 @@ public class JobUpTopNumStatusServlet extends HttpServlet {
 			System.out.println(action);
 			ComOrderQueryVO coqv=new ComOrderQueryVO();
 			// 要改成動態企業ID
-//			int comMemId = (int) req.getSession().getAttribute("companyMember");
-			Integer comMemId=6;
+			// int comMemId = (int) req.getSession().getAttribute("companyMember");
+			Integer comMemId=1;
 			
 			coqv.setComMemId(comMemId);
 			List<ComOrderQueryVO> list = JoDao.updateJobTopNum(coqv);

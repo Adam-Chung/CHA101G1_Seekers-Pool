@@ -15,16 +15,44 @@
 }
 
 /* ======================== body ============================ */
-body {
+body{
     position: relative;
-    width: 100%;
+    width: 100vw;
     height: 100%;
+    overflow-x: hidden;
 }
 
 main {
     position: relative;
 }
 
+h3{
+    font-size: 1.17em !important;
+    font-weight: bold !important;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-button {
+    background: transparent;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-track-piece {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(46, 46, 46, 0.4);
+
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: transparent;
+}
 /* ======================== container ======================= */
 .container {
     position: fixed;
@@ -212,16 +240,6 @@ menu ul li a:hover {
 tbody>td,
 thead>tr {
     text-align: center;
-}
-
-
-/* ===== 登出鍵 =====*/
-.logout {
-    position: absolute;
-    list-style: none;
-    bottom: 7%;
-    right: 13%;
-    font-weight: 600;
 }
 
 /*--------------------------------------------------------------
