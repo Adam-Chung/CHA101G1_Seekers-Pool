@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Session;
 
 import tw.idv.Seeker_Pool_Merge.JobCase.util.HibernateUtil;
+import tw.idv.Seeker_Pool_Merge.JobCase.vo.ComOrderQueryVO;
 import tw.idv.Seeker_Pool_Merge.JobCase.vo.JobCaseVO;
 
 public interface JobCaseDao {
@@ -33,6 +34,8 @@ public interface JobCaseDao {
 			return HibernateUtil.getSessionFactory().getCurrentSession();
 		}
 
-//		public List<ComOrderQueryVO> selectOrderCase();
+		public List<ComOrderQueryVO> selectOrderCase(ComOrderQueryVO covo);
+		
+		public List<ComOrderQueryVO> selectOrderNo(Integer joNo);
 		
 }

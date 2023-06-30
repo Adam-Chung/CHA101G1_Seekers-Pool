@@ -9,10 +9,10 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
-@Data
+//@Data
 @Entity
 @Table(name="job")
-public class JobVO {
+public class JobVO implements java.io.Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	// 職缺編號
@@ -39,5 +39,53 @@ public class JobVO {
 	// 是否為置頂職缺
 	@Column(name="JOB_TOP")
 	private Integer jobTop;
+	public Integer getJobNo() {
+		return jobNo;
+	}
+	public void setJobNo(Integer jobNo) {
+		this.jobNo = jobNo;
+	}
+	public Integer getComMemId() {
+		return comMemId;
+	}
+	public void setComMemId(Integer comMemId) {
+		this.comMemId = comMemId;
+	}
+	public Integer getPtNo() {
+		return ptNo;
+	}
+	public void setPtNo(Integer ptNo) {
+		this.ptNo = ptNo;
+	}
+	public Integer getJoNo() {
+		return joNo;
+	}
+	public void setJoNo(Integer joNo) {
+		this.joNo = joNo;
+	}
+	public String getJobName() {
+		return jobName;
+	}
+	public void setJobName(String jobName) {
+		this.jobName = jobName;
+	}
+	public Integer getJobStatus() {
+		return jobStatus;
+	}
+	public void setJobStatus(Integer jobStatus) {
+		this.jobStatus = jobStatus;
+	}
+	public Integer getJobUpload() {
+		return jobUpload;
+	}
+	public void setJobUpload(Integer jobUpload) {
+		this.jobUpload = jobUpload;
+	}
+	public Integer getJobTop() {
+		return jobTop;
+	}
+	public void setJobTop(Integer jobTop) {
+		this.jobTop = jobTop;
+	}
 
 }

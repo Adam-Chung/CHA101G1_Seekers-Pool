@@ -75,16 +75,16 @@
             <hr>
         </div>
         <div class="row">
-            <div class="mb-3 col-lg-4">
-                <label for="formGroupExampleInput" class="form-label"><strong
-                        style="font-size:large;">刊登訂單查詢</strong></label>
+            <div class="mb-3 col-lg-3">
+                <label for="inputJcNoSearch" class="form-label"><strong style="font-size:large;">刊登訂單查詢</strong></label>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="formGroupExampleInput"
-                        placeholder="Search by typing here...">
-                    <button type="button" class="btn btn-primary"><strong>查詢</strong></button>
+                    <input type="text" class="form-control" id="inputJcNoSearch" placeholder="請輸入訂單編號">
+                    <button type="button" class="btn btn-primary" id="btnJcNoSearch"><strong>查詢</strong></button>
                 </div>
             </div>
-
+            <div class="mb-3 col-lg-6 d-flex align-items-end">
+                <button type="button" class="btn btn-primary" id="btnQuery"><strong>查詢全部</strong></button>
+            </div>
         </div>
         <span class="counter pull-right"></span>
         <div class="table table-hover">
@@ -98,20 +98,11 @@
                         <th id="JOB_PUBLISHED_TOP_NUM" class="JOB_PUBLISHED_TOP_NUM">可置頂數量</th>
                         <th id="JC_DEADLINE" class="JC_DEADLINE">刊登天數</th>
                         <th id="JC_DEADLINE" class="JC_DEADLINE">截止日</th>
-                        <th id="JC_PRICE" class="JC_PRICE">方案金額</th>
+                        <th id="JC_PRICE" class="JC_PRICE">方案金額($NTD)</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!--                     <tr> -->
-                    <!--                         <td class="joNo" name="joNo">1</td> -->
-                    <!--                         <td class="comName" name="comName">XXXXX</td> -->
-                    <!--                         <td class="jcNo" name="jcNo">1</td> -->
-                    <!--                         <td class="jcAvailableNum" name="jcAvailableNum">15</td> -->
-                    <!--                         <td class="jcTop" name="jcTop">3</td> -->
-                    <!--                         <td class="jcExpTime" name="jcExpTime">3</td> -->
-                    <!--                         <td class="jcDeadline" name="jcDeadline">2023/08/30</td> -->
-                    <!--                         <td class="jcPrice" name="jcPrice">5000</td> -->
-                    <!--                     </tr> -->
+                    <!-- 動態生成 -->
                 </tbody>
             </table>
         </div>
@@ -161,15 +152,14 @@
                 success: function (res) {
                     $("tbody").empty();
                     console.log("sucess............");
-                    console.log("res : " + res);
-
                     for (let r of res) {
                         // 假設r.jcDeadline為「Oct 10, 2023, 12:00:00 AM」格式的日期字串
-                        let originalDate = new Date(r.JcDeadline);
+                        let originalDate = new Date(r.jcDeadline);
                         let year = originalDate.getFullYear();
                         let month = ("0" + (originalDate.getMonth() + 1)).slice(-2); // 月份需加1，並在前面補0
                         let day = ("0" + originalDate.getDate()).slice(-2); // 日需在前面補0
                         let formattedDate = year + "-" + month + "-" + day;
+                        // console.log("formattedDate :" + formattedDate);
                         $("tbody").append(`
                             <tr id="all">
                                 <td class="joNo" name="joNo">${r.joNo}</td>
@@ -183,11 +173,74 @@
                             </tr> `
                         )
                     }
-
-
                 }
             })
+
+            $("#btnJcNoSearch").click(function () {
+                var joNo = $("#inputJcNoSearch").val().trim();
+                console.log(joNo);
+                $.ajax({
+                    url: "../../JobCaseQueryServlet",
+                    method: 'POST',
+                    datatype: "JSON",
+                    // contentType: false, // 設置為 false 或 'multipart/form-data'
+                    data: {
+                        action: "selectByOrderNo",
+                        joNo: joNo
+                    },
+                    success: function (res) {
+
+                        console.log("res :" + res);
+                        console.log("resjoNo :" + res[0].joNo);
+                        console.log("rescomName :" + res[0].comName);
+                        console.log("resjcName :" + res[0].jcName);
+                        console.log("BBB");
+                        if (res) {
+                            let originalDate = new Date(res[0].jcDeadline);
+                            let year = originalDate.getFullYear();
+                            let month = ("0" + (originalDate.getMonth() + 1)).slice(-2); // 月份需加1，並在前面補0
+                            let day = ("0" + originalDate.getDate()).slice(-2); // 日需在前面補0
+                            let formattedDate = year + "-" + month + "-" + day;
+                            $("tr#all").remove();
+                            console.log(res);
+                            $("tbody").append(
+                                `<tr id="all">
+                                    <td class="joNo" name="joNo">${res[0].joNo}</td>
+                                    <td class="comName" name="comName">${res[0].comName}</td>
+                                    <td class="jcName" name="jcName">${res[0].jcName}</td>
+                                    <td class="jcAvailableNum" name="jcAvailableNum">${res[0].jcAvailableNum}</td>
+                                    <td class="jcTop" name="jcTop">${res[0].jcTop}</td>
+                                    <td class="jcExpTime" name="jcExpTime">${res[0].jcExpTime}</td>
+                                    <td class="jcDeadline" name="jcDeadline">${formattedDate}</td>
+                                    <td class="jcPrice" name="jcPrice">${res[0].jcPrice}</td>
+                                </tr>`
+                            );
+                            $("tr#all").prevAll().remove();
+                        } else {
+                            $("tr#trNO").remove();
+                            console.log(res);
+                            $("tbody").append(
+                                `<tr id="trNO">
+									<td style='color: red; font-weight: bold;'>查無此編號!!!</td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>`);
+                            $("tr#trNO").prevAll().remove();
+                        }
+                    }
+                });
+            })
         });
+
+        $("button#btnQuery").click(function () {
+            console.log("重新載入");
+            location.reload();
+        })
     </script>
 
 </body>

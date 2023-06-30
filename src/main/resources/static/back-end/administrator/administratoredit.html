@@ -81,20 +81,20 @@
 
 	<main id="main" class="main">
 		<div class="pagetitle">
-			<h1>新增員工基本資料</h1>
+			<h1>編輯員工基本資料</h1>
 			<nav>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="Employee.html">Home</a></li>
 					<li class="breadcrumb-item active"><a href="Administrator1.html">員工管理</a></li>
 					<li class="breadcrumb-item active"><a href="Administrator1.html">員工總覽</a></li>
-					<li class="breadcrumb-item active">新增員工基本資料</li>
+					<li class="breadcrumb-item active">編輯員工基本資料</li>
 				</ol>
 			</nav>
 		</div>
 		<hr>
 
-		<!--新增員工表單 -->
-		<form id="addAdminForm" method="post" enctype="multipart/form-data">
+		<!--編輯員工表單 -->
+		<form id="editAdminForm" method="post" enctype="multipart/form-data">
 			<div class="row">
 				<div class="col-lg-2 mb-3">
 					<label for="admName" class="form-label">員工姓名</label>
@@ -158,9 +158,9 @@
 						<span class="text">預覽圖</span>
 					</div>
 					<div>
-						<input type="hidden" name="action" value="insert">
+						<input type="hidden" name="action" value="update">
 						<button type="submit" class="btn btn-primary" style="margin-top: 10px;"
-							id="btnAddAdmbtn">新增員工</button>
+							id="btnEditAdmbtn">更新</button>
 						<a href="administrator.html" class="btn btn-secondary" style="margin: 10px 0px 0px 20px;"> 回到上一頁
 						</a>
 					</div>
@@ -205,8 +205,22 @@
 			});
 
 			// ======== AJAX ===========
-			$("#addAdminForm").submit(function () {
-				var formData = new FormData($("#addAdminForm")[0]);
+			$("#editAdminForm").submit(function () {
+				var admName = $("#admName").val();
+				var admPosition = $("#admPosition").val();
+				var admAccount = $("#admAccount").val();
+				var admPassword = $("#admPassword").val();
+				var admStatus = $("#admStatus").val();
+				var admPhoto = $("img.preview_img").attr("src");
+				console.log("id : " + parseInt(getParameter("id")));
+				console.log("admName :" + admName);
+				console.log("admPosition :" + admPosition);
+				console.log("admAccount :" + admAccount);
+				console.log("admPassword :" + admPassword);
+				console.log("admStatus :" + admStatus);
+				console.log("Photo :" + admPhoto);
+				var formData = new FormData($("#editAdminForm")[0]);
+				formData.append("admId", parseInt(getParameter("id")));
 				$.ajax({
 					url: "../../AdministratorServlet",
 					method: 'POST',
@@ -218,7 +232,7 @@
 					processData: false,//如果要傳送Dom樹資訊或其他不需要轉換的資訊，請設定為false
 					success: function (res) {
 						if (res.indexOf("success") === -1) {
-							alert('成功新增: ' + $("input#admName").val());
+							alert('成功修改: ' + $("input#admName").val());
 						} else {
 							alert('失敗，請重新填寫');
 						};
@@ -226,6 +240,38 @@
 				});
 				return false; //返回true才會送出表單
 			});
+
+			function getParameter(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+				var r = location.search.substr(1).match(reg);
+				if (r != null) return (r[2]); return null;
+			}
+
+			$.ajax({
+				url: "../../AdministratorServlet",
+				method: "POST",
+				dataType: "JSON",
+				data: { action: "getAll" },
+				async: false,
+				cache: false,
+				success: function (res) {
+					for (let i = 0; i < res.length; i++) {
+						console.log("${res[i].admPosition}: " + res[i].admPosition);
+						console.log("${res[i].admAccount}: " + res[i].admAccount);
+						console.log("${res[i].admPhoto}: " + res[i].admPhoto);
+						if (res[i].admId === parseInt(getParameter("id"))) {
+							console.log("True -------- admID");
+							$("input#admName").val(res[i].admName);
+							$("select#admPosition").val(res[i].admPosition);
+							$("input#admAccount").val(res[i].admAccount);
+							$("input#admPassword").val(res[i].admPassword);
+							$("select#admStatus").val(res[i].admStatus);
+							$("div#preview").html('<img src="' + res[i].admPhoto + '" class="preview_img">');
+						}
+					}
+				}
+			})
+
 
 		});
 	</script>
