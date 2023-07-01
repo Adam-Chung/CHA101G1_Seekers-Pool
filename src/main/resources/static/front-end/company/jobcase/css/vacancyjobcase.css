@@ -8,7 +8,7 @@
 }
 
 :root {
-    --navyblue: #005F73;
+    --navyblue: rgb(72, 76, 127);
     --skyblue: #93BFCF;
     --yellow: rgb(252, 146, 54);
     --white: rgb(252, 245, 237);
@@ -81,9 +81,10 @@ aside.sidebar {
     flex-direction: column;
     background-color: var(--navyblue);
     width: 20%;
-    height: 100vh;
+    height: 95vh;
     color: var(--white);
     border-radius: 10px;
+    overflow-y: scroll;
 }
 
 aside.sidebar .logo {
@@ -98,11 +99,13 @@ aside.sidebar .logo {
 
 aside.sidebar .img {
     border-radius: 50%;
-    width: 60%;
+    width: 51%;
     aspect-ratio: 1;
-    margin: 0;
+    margin: 5px auto;
     display: flex;
     justify-content: center;
+    background-color: white;
+    overflow: hidden;
 }
 
 div.img #logoImg {
