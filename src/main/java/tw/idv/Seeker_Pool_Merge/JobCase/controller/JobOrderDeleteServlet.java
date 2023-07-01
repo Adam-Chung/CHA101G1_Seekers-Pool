@@ -29,8 +29,8 @@ public class JobOrderDeleteServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws SecurityException, IOException, ServletException {
 		req.setCharacterEncoding("UTF-8");
-		System.out.println("request.getContentType(): " + req.getContentType());
-		System.out.println("進入delete");
+//		System.out.println("request.getContentType(): " + req.getContentType());
+//		System.out.println("進入delete");
 
 		// Step1: 接收請求參數
 		Integer joNo = Integer.valueOf(req.getParameter("joNo"));

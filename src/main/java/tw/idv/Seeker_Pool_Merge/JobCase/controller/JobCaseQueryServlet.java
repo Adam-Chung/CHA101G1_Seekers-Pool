@@ -37,15 +37,15 @@ public class JobCaseQueryServlet extends HttpServlet {
 			throws SecurityException, IOException, ServletException {
 		resp.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-		System.out.println("request.getContentType(): " + req.getContentType());
+//		System.out.println("request.getContentType(): " + req.getContentType());
 		/***************************
 		 * 開始 查詢全部資料 轉交
 		 ****************************************/
-		System.out.println(action);
+//		System.out.println(action);
 		if ("selectAll".equals(action)) {
-			System.out.println("yes");
+//			System.out.println("yes");
 			List<JobCaseVO> list = JcDao.selectAll();
-			System.out.println(list);
+//			System.out.println(list);
 			writePojo2Json(resp, list);
 		}
 
@@ -53,7 +53,7 @@ public class JobCaseQueryServlet extends HttpServlet {
 		 * 開始 查詢單一資料 轉交
 		 ****************************************/
 		if ("selectByName".equals(action)) {
-			System.out.println("進入 selectByName");
+//			System.out.println("進入 selectByName");
 //			List<String> errorMsgs = new LinkedList<String>();
 //			req.setAttribute("errorMsgs", errorMsgs);
 
@@ -88,13 +88,13 @@ public class JobCaseQueryServlet extends HttpServlet {
 		 * 開始 查詢單一資料 轉交
 		 ****************************************/
 		if ("selectByOrderNo".equals(action)) {
-			System.out.println("進入 selectByOrderNo");
+//			System.out.println("進入 selectByOrderNo");
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 
 			/** 1.接收請求參數 - 輸入格式的錯誤處理 **/
 			String str_jcNo = req.getParameter("joNo");
-			System.out.println(str_jcNo);
+//			System.out.println(str_jcNo);
 
 			if (str_jcNo == null || str_jcNo.trim().isEmpty()) {
 				errorMsgs.add("請輸入訂單編號");
@@ -111,7 +111,7 @@ public class JobCaseQueryServlet extends HttpServlet {
 			// Convert the validated jcNo to an Integer
 			Integer joNo = Integer.valueOf(str_jcNo);
 			List<ComOrderQueryVO> list = JcDao.selectOrderNo(joNo);
-			System.out.println("list" + list);
+//			System.out.println("list" + list);
 			writePojo2Json(resp, list);
 
 		}
@@ -119,11 +119,11 @@ public class JobCaseQueryServlet extends HttpServlet {
 		 * 開始 查詢訂單資料 轉交
 		 ****************************************/
 		if ("selectByOrder".equals(action)) {
-			System.out.println("進入 selectByOrder");
-			System.out.println(action);
+//			System.out.println("進入 selectByOrder");
+//			System.out.println(action);
 			ComOrderQueryVO covo=new ComOrderQueryVO();
 			List<ComOrderQueryVO> list = JcDao.selectOrderCase(covo);
-			System.out.println("list" + list);
+//			System.out.println("list" + list);
 			writePojo2Json(resp, list);
 			
 		}
@@ -159,7 +159,7 @@ public class JobCaseQueryServlet extends HttpServlet {
 
 			/** 2.開始查詢資料 **/
 			JobCaseVO jc = JcDao.selectByCaseName(jcName);
-			System.out.println("jc : " + jc);
+//			System.out.println("jc : " + jc);
 			writePojo2Json(resp, jc);
 		}
 

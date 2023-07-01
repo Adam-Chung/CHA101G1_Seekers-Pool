@@ -31,7 +31,7 @@ public class ReportEnterpriseDao {
 			ps.setInt(7, vo.getMemId());
 			ps.setInt(8, vo.getComMemId());
 
-			int rowcount = ps.executeUpdate();
+			ps.executeUpdate();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -49,7 +49,7 @@ public class ReportEnterpriseDao {
 			ps.setInt(2, vo.getReResult());
 			ps.setInt(3, vo.getReNo());
 
-			int rowcount = ps.executeUpdate();
+			ps.executeUpdate();
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -38,7 +38,7 @@ public class ReportEdit extends HttpServlet {
 		// 將json資料傳送至前端
 		out.print(json);
 		// 這邊建議可以把json字串印出確認
-		System.out.println("json :" + json);
+//		System.out.println("json :" + json);
 		out.flush();
 
 		out.close();

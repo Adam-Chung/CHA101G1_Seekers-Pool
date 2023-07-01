@@ -15,18 +15,20 @@ public class JobVo {
 	private String jobAddress;
 	private String jobOther;
 	private int jobStatus;
-	private boolean jobUpload;
-	private boolean jobTop;
+	private int jobUpload;
+	private int jobTop;
 	private String comName;
+	private String comPicture;
 
 	public JobVo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+
 	public JobVo(int jobNo, int comMemId, int ptNo, String cityName, String districtName, int joNo, String jobName,
 			String jobContent, int jobSalary, int jobType, String jobAddress, String jobOther, int jobStatus,
-			boolean jobUpload, boolean jobTop, String comName) {
+			int jobUpload, int jobTop, String comName, String comPicture) {
 		super();
 		this.jobNo = jobNo;
 		this.comMemId = comMemId;
@@ -44,7 +46,10 @@ public class JobVo {
 		this.jobUpload = jobUpload;
 		this.jobTop = jobTop;
 		this.comName = comName;
+		this.comPicture = comPicture;
 	}
+
+
 
 	public int getJobNo() {
 		return jobNo;
@@ -150,19 +155,21 @@ public class JobVo {
 		this.jobStatus = jobStatus;
 	}
 
-	public boolean isJobUpload() {
+	
+
+	public int getJobUpload() {
 		return jobUpload;
 	}
 
-	public void setJobUpload(boolean jobUpload) {
+	public void setJobUpload(int jobUpload) {
 		this.jobUpload = jobUpload;
 	}
 
-	public boolean isJobTop() {
+	public int getJobTop() {
 		return jobTop;
 	}
 
-	public void setJobTop(boolean jobTop) {
+	public void setJobTop(int jobTop) {
 		this.jobTop = jobTop;
 	}
 
@@ -173,6 +180,18 @@ public class JobVo {
 	public void setComName(String comName) {
 		this.comName = comName;
 	}
+	
+	
+
+	public String getComPicture() {
+		return comPicture;
+	}
+
+
+	public void setComPicture(String comPicture) {
+		this.comPicture = comPicture;
+	}
+
 
 	@Override
 	public String toString() {
@@ -180,7 +199,10 @@ public class JobVo {
 				+ ", districtName=" + districtName + ", joNo=" + joNo + ", jobName=" + jobName + ", jobContent="
 				+ jobContent + ", jobSalary=" + jobSalary + ", jobType=" + jobType + ", jobAddress=" + jobAddress
 				+ ", jobOther=" + jobOther + ", jobStatus=" + jobStatus + ", jobUpload=" + jobUpload + ", jobTop="
-				+ jobTop + ", comName=" + comName + "]";
+				+ jobTop + ", comName=" + comName + ", comPicture=" + comPicture + "]";
 	}
+
+
+	
 
 }

@@ -25,11 +25,11 @@ public class PositionAdd extends HttpServlet {
 		res.setContentType("text/html;charset=utf-8");
 		
 		JobPositionDao dao  = new JobPositionDao();
-		int rowcount = dao.add(ptType, ptName);
+		dao.add(ptType, ptName);
 		
-		res.sendRedirect("http://localhost:8081/SeekerPool/yuquannpage/job/JobType.html");
+		res.sendRedirect("/SeekerPool/back-end/job/JobType.html");
 		
-		System.out.println("成功新增職務筆數 : " + rowcount);
+//		System.out.println("成功新增職務筆數 : " + rowcount);
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res)

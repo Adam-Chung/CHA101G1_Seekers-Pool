@@ -32,17 +32,17 @@ public class JobQueryStatusServlet extends HttpServlet {
 			throws SecurityException, IOException, ServletException {
 		resp.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-		System.out.println("request.getContentType(): " + req.getContentType());
+//		System.out.println("request.getContentType(): " + req.getContentType());
 
 		if ("selectJobStatus".equals(action)) {
 			System.out.println(action);
 			ComJobQueryVO vo=new ComJobQueryVO();
 			// 要改成動態企業ID
-//			int comMemId = (int) req.getSession().getAttribute("companyMember");
-			Integer comMemId=6;
+			// int comMemId = (int) req.getSession().getAttribute("companyMember");
+			Integer comMemId=1;
 			vo.setComMemId(comMemId);
 			List<ComJobQueryVO> list = JobDao.selectJobStatus(vo);
-			System.out.println("list" + list);
+//			System.out.println("list" + list);
 			writePojo2Json(resp, list);
 		}
 

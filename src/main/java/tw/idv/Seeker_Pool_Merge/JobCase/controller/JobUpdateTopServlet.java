@@ -35,7 +35,7 @@ public class JobUpdateTopServlet extends HttpServlet {
 			throws SecurityException, IOException, ServletException {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-		System.out.println("request.getContentType(): " + req.getContentType());
+//		System.out.println("request.getContentType(): " + req.getContentType());
 
 		/*****************************
 		 * 開始 新增 單一 資料            *
@@ -43,7 +43,7 @@ public class JobUpdateTopServlet extends HttpServlet {
 		
 		if ("insert".equals(action)) {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			System.out.println("VVV");
+//			System.out.println("VVV");
 
 			String comMemId = req.getParameter("comMemId");
 			String jcNo = req.getParameter("jcNo");

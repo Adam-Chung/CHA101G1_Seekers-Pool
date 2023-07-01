@@ -31,14 +31,14 @@ public class JobUpdateStatusServlet extends HttpServlet {
 			throws SecurityException, IOException, ServletException {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-		System.out.println("request.getContentType(): " + req.getContentType());
+//		System.out.println("request.getContentType(): " + req.getContentType());
 		
 		// 更新上架&狀態
 		if("updateJobUpload".equals(action)) {
 			String jobNo = req.getParameter("jobNo");
-			System.out.println(jobNo);
+//			System.out.println(jobNo);
 			String jobUpload=req.getParameter("jobUpload");
-			System.out.println(jobUpload);
+//			System.out.println(jobUpload);
 			String jobStatus=jobUpload;
 			JobVo.setJobNo(Integer.valueOf(jobNo));
 			JobVo.setJobUpload(Integer.valueOf(jobUpload));
