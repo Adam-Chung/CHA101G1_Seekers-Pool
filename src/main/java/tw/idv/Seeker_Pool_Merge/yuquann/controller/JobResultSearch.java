@@ -25,11 +25,13 @@ public class JobResultSearch extends HttpServlet {
 		req.setCharacterEncoding("utf-8");
 		res.setContentType("application/json;charset=utf-8");
 		String keyword = req.getParameter("keyword");
+		String city = req.getParameter("city");
+		String town = req.getParameter("town");
 		
 		PrintWriter out = res.getWriter();
 		
 		JobSearchDao dao = new JobSearchDao();
-		List<JobVo> list = dao.searchResult(keyword);
+		List<JobVo> list = dao.searchResult(keyword,city,town);
 //		System.out.println("JobSearch List : " + list);
 		
 		Gson gson = new Gson();

@@ -3,15 +3,12 @@ package tw.idv.Seeker_Pool_Merge.yuquann.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.google.gson.Gson;
-
 import tw.idv.Seeker_Pool_Merge.yuquann.dao.ReportEnterpriseDao;
 import tw.idv.Seeker_Pool_Merge.yuquann.vo.ReportEnterpriseVo;
 
@@ -33,7 +30,7 @@ public class ReportResultSelect extends HttpServlet {
 
 			Gson gson = new Gson();
 			String json = gson.toJson(vo);
-			System.out.println("json : " + json);
+//			System.out.println("json : " + json);
 			out.print(json);
 		} else {
 			ReportEnterpriseDao dao = new ReportEnterpriseDao();
@@ -41,7 +38,7 @@ public class ReportResultSelect extends HttpServlet {
 
 			Gson gson = new Gson();
 			String json = gson.toJson(vo);
-			System.out.println("json : " + json);
+//			System.out.println("json : " + json);
 			out.print(json);
 		}
 	}

@@ -25,7 +25,7 @@ public class JobPositionEdit extends HttpServlet {
 		PrintWriter out = res.getWriter();
 
 		String ptNoStr = req.getParameter("ptNO");
-		System.out.println("ptNoStr : " + ptNoStr);
+//		System.out.println("ptNoStr : " + ptNoStr);
 		int ptNo = Integer.parseInt(ptNoStr);
 
 		JobPositionDao dao = new JobPositionDao();

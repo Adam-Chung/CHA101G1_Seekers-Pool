@@ -44,7 +44,7 @@ public class JobCollect extends HttpServlet {
 			Boolean check = CollectJobServiceImpl.check(memId, jobNo);
 
 			if (check) {
-				int rowcount = dao.insert(memId, jobNo);
+				dao.insert(memId, jobNo);
 //			System.out.println("收藏職缺新增筆數 : " + rowcount);
 				String json = gson.toJson(true);
 				out.print(json);

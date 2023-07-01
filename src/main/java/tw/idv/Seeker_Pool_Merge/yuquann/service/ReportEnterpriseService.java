@@ -49,7 +49,7 @@ public class ReportEnterpriseService extends HttpServlet {
 		//File.separator用於在路徑中分隔目錄和文件名稱。
 		//uploadImage是自訂上傳資料夾的名稱
 		String uploadPath = getServletContext().getRealPath("") + "uploadImage";
-		System.out.println("uploadPath : " + uploadPath);
+//		System.out.println("uploadPath : " + uploadPath);
 		
 		//儲存檔案至uploadImage資料夾並判斷資料夾是否存在
 		File uploadDir = new File(uploadPath);
@@ -86,8 +86,8 @@ public class ReportEnterpriseService extends HttpServlet {
 			res.setContentType("text/html;charset=utf-8");
 			res.setCharacterEncoding("UTF-8");
 			//呼叫DAO的insert方法並檢測是否有成功新增
-			int result = dao.insert(vo);
-			System.out.println("成功新增行數 : " + result);
+			dao.insert(vo);
+
 
 		} catch (Exception e) {
 			e.printStackTrace();
