@@ -43,11 +43,14 @@ public class ComInterviewInviteServlet extends HttpServlet {
 		MemberVo member = comApplyRecordService.getMemberById(memId);
 
 		// ======之後公司會登入，所以可以獲取 但目前還沒先用假登入資料==========
-//		Integer comId = (Integer) req.getSession().getAttribute("companyLogin");
+		Integer comId = (Integer) req.getSession().getAttribute("companyMember");
+		System.out.println("comId = " + comId);
+		String comName = comApplyRecordService.getComNameBycomId(comId);
+		
 		// 然後再用comId獲取所有com訊息
 		CompanyMemberShowVo company = new CompanyMemberShowVo();
-		company.setComMemId(1);
-		company.setComName("台積電");
+		company.setComMemId(comId);
+		company.setComName(comName);
 
 		// 獲取專案名稱
 		String contextPath = req.getContextPath(); // /SeekerPool

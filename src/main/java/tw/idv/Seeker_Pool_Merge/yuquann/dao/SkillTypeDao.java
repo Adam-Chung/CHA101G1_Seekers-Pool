@@ -112,7 +112,7 @@ public class SkillTypeDao {
 
 	public List<SkillTypeVo> skillSelect(String keyword) {
 
-		String sql = "SELECT * FROM skill_type WHERE SK_TYPE LIKE CONCAT('%', ?, '%') OR SK_NAME LIKE CONCAT('%', ?, '%');";
+		String sql = "SELECT * FROM skill_type WHERE SK_TYPE LIKE CONCAT('%', ?, '%') OR SK_NAME LIKE CONCAT('%', ?, '%') OR Sk_NO LIKE CONCAT('%', ?, '%');";
 		ResultSet rs = null;
 
 		List<SkillTypeVo> list = new ArrayList<>();
@@ -121,6 +121,7 @@ public class SkillTypeDao {
 
 			ps.setString(1, keyword);
 			ps.setString(2, keyword);
+			ps.setString(3, keyword);
 
 			rs = ps.executeQuery();
 

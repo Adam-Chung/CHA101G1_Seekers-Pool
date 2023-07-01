@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -54,34 +54,37 @@
                 style=" padding: 0%; box-shadow: 2px 2px 2px gray;background-size: cover; justify-content: center;height:500px;background-image: url(./assets/img/Article_ac58020e2245a6ecc750247.jpg);background-repeat: no-repeat;background-position: 50%;">
                 <div class="align-items-center form-row" style="transform:translateY(150px)">
                     <div class="text-start d-xl-flex align-items-xl-start col-sm form-group mb-3"
-                        style="--bs-body-bg: #f5d35b;transform: translateX(30px);"><input type="text"
-                            class="form-control ps-4 pe-4 rounded-pill" name="search" placeholder="Search..."
+                        style="--bs-body-bg: #f5d35b;transform: translateX(30px);">
+                        <form  method="get" action="../job/JobSearchResultFromHome.html"  enctype="multipart/form-data"">
+                        <input id="key" type="text"
+                            class="form-control ps-4 pe-4 rounded-pill" name="keyword" placeholder="Search..."
                             style="width: 800px;">
-                        <button class="btn btn-primary ps-4 pe-4 rounded-pill" type="submit"><i
+                        <button  id="key"class="btn btn-primary ps-4 pe-4 rounded-pill" type="submit" style="transform:translate(800px,-39px);" ><i
                                 class="fa fa-search"></i></button>
+                                </form>
                     </div>
                     <div
                         class="text-center d-xl-flex justify-content-xl-center align-items-xl-center col-sm-auto text-end form-group mb-3">
                         <label class="form-label" style="color: white;font-weight: 900;">熱門關鍵字:</label>
                         <form action="">
-                            <div class="text-center" style="color: white;"><a class="bs4_modal_trigger" href="#"
+                            <div id="keyd" class="text-center" style="color: white;"><a id="keya"class="bs4_modal_trigger" href="../job/JobSearchResultFromHome.html"
                                     data-modal-id="bs4_sngl_cmrce" data-bs-toggle="modal"
-                                    style="color: white; border: 1px solid white ;padding: 5px;">台積電</a>
+                                    style="color: white; border: 1px solid white ;padding: 5px;">工程師</a>
 
                             </div>
                         </form>
                         <form>
-                            <div class="text-center"><a class="bs4_modal_trigger" href="#"
+                            <div id="keyd" class="text-center"><a id="keya"class="bs4_modal_trigger" href="../job/JobSearchResultFromHome.html"
                                     data-modal-id="bs4_sngl_cmrce" data-bs-toggle="modal"
-                                    style="color: white; border: 1px solid white ;padding: 5px;">台積電</a>
+                                    style="color: white; border: 1px solid white ;padding: 5px;">行銷專員</a>
 
 
                             </div>
                         </form>
                         <form>
-                            <div class="text-center"><a class="bs4_modal_trigger" href="#"
+                            <div id="keyd"class="text-center"><a id="keya"class="bs4_modal_trigger" href="../job/JobSearchResultFromHome.html"
                                     data-modal-id="bs4_sngl_cmrce" data-bs-toggle="modal"
-                                    style="color: white; border: 1px solid white ;padding: 5px;">台積電</a>
+                                    style="color: white; border: 1px solid white ;padding: 5px;">會計師</a>
 
 
                             </div>
@@ -90,157 +93,33 @@
                 </div>
             </div>
         </section>
-        <section class="showcase" style="margin-bottom: 50px; margin-top: 50px;">
+        <section class="showcase" style=" margin-top: 50px;">
             <div class="container py-4 py-xl-5">
                 <div class="row mb-5">
-                    <div class="col"
-                        style="background-color: #f5d35b;box-shadow: 2px 2px 2px slategray;text-align: center; vertical-align: middle;">
+                    <div id="coursego"class="col"
+                        style="cursor: pointer; background-color: #f5d35b;box-shadow: 2px 2px 2px slategray;text-align: center; vertical-align: middle;">
                         <h2 style="transform: translateY(5px); text-shadow: 0px 1px 0px  ghostwhite;">課程專區</h2>
                     </div>
                 </div>
-                <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
-                    <div class="col"
-                        style="box-shadow: 0px 0px 3px 0px gray; padding: 0%;margin-left: 50px;width: 350px;">
-                        <div class="card">
-                            <div class="card-body p-4">
-                                <p class="text-primary card-text mb-0">Course</p>
-                                <h4 class="card-title">Lorem libero donec</h4>
-                                <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo
-                                    odio,
-                                    dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at
-                                    eget
-                                    metus.</p>
-                                <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50"
-                                        height="50" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
-                                    <div>
-                                        <p class="fw-bold mb-0">John Smith</p>
-                                        <p class="text-muted mb-0">Erat netus</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col"
-                        style="box-shadow: 0px 0px 3px 0px gray; padding: 0%;margin-left: 10px;width: 350px;">
-                        <div class="card">
-                            <div class="card-body p-4">
-                                <p class="text-primary card-text mb-0">Course</p>
-                                <h4 class="card-title">Lorem libero donec</h4>
-                                <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo
-                                    odio,
-                                    dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at
-                                    eget
-                                    metus.</p>
-                                <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50"
-                                        height="50" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
-                                    <div>
-                                        <p class="fw-bold mb-0">John Smith</p>
-                                        <p class="text-muted mb-0">Erat netus</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col"
-                        style="box-shadow: 0px 0px 3px 0px gray; padding: 0%;margin-left: 10px;width: 350px;">
-                        <div class="card">
-                            <div class="card-body p-4">
-                                <p class="text-primary card-text mb-0">Course</p>
-                                <h4 class="card-title">Lorem libero donec</h4>
-                                <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo
-                                    odio,
-                                    dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at
-                                    eget
-                                    metus.</p>
-                                <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50"
-                                        height="50" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
-                                    <div>
-                                        <p class="fw-bold mb-0">John Smith</p>
-                                        <p class="text-muted mb-0">Erat netus</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div id="course"class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3"style="padding-left:90px;">
+                  </div>  
             </div>
         </section>
-        <section class="showcase" style="margin-bottom: 50px; margin-top: 50px;">
+        <section class="showcase" style=" ">
             <div class="container py-4 py-xl-5">
                 <div class="row mb-5">
-                    <div class="col"
-                        style="background-color: #f5d35b;box-shadow: 2px 2px 2px slategray;text-align: center; vertical-align: middle;">
+                    <div id="articlego"class="col"
+                        style="cursor: pointer; background-color: #f5d35b;box-shadow: 2px 2px 2px slategray;text-align: center; vertical-align: middle;">
                         <h2 style="transform: translateY(5px); text-shadow: 0px 1px 0px  ghostwhite;">文章專區</h2>
                     </div>
                 </div>
-                <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
-                    <div class="col"
-                        style="box-shadow: 0px 0px 3px 0px gray; padding: 0%;margin-left: 50px;width: 350px;">
-                        <div class="card">
-                            <div class="card-body p-4">
-                                <p class="text-primary card-text mb-0">Article</p>
-                                <h4 class="card-title">Lorem libero donec</h4>
-                                <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo
-                                    odio,
-                                    dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at
-                                    eget
-                                    metus.</p>
-                                <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50"
-                                        height="50" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
-                                    <div>
-                                        <p class="fw-bold mb-0">John Smith</p>
-                                        <p class="text-muted mb-0">Erat netus</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col"
-                        style="box-shadow: 0px 0px 3px 0px gray; padding: 0%;margin-left: 10px;width: 350px;">
-                        <div class="card">
-                            <div class="card-body p-4">
-                                <p class="text-primary card-text mb-0">Article</p>
-                                <h4 class="card-title">Lorem libero donec</h4>
-                                <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo
-                                    odio,
-                                    dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at
-                                    eget
-                                    metus.</p>
-                                <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50"
-                                        height="50" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
-                                    <div>
-                                        <p class="fw-bold mb-0">John Smith</p>
-                                        <p class="text-muted mb-0">Erat netus</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col"
-                        style="box-shadow: 0px 0px 3px 0px gray; padding: 0%;margin-left: 10px;width: 350px;">
-                        <div class="card">
-                            <div class="card-body p-4">
-                                <p class="text-primary card-text mb-0">Article</p>
-                                <h4 class="card-title">Lorem libero donec</h4>
-                                <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo
-                                    odio,
-                                    dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at
-                                    eget
-                                    metus.</p>
-                                <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50"
-                                        height="50" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
-                                    <div>
-                                        <p class="fw-bold mb-0">John Smith</p>
-                                        <p class="text-muted mb-0">Erat netus</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div id="article"class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3"style="padding-left:90px;">
+                   
+                    
                 </div>
             </div>
         </section>
-        <section class="showcase" style="margin-bottom: 50px; margin-top: 50px; ">
+        <section class="showcase" style="margin-bottom: 50px; ">
             <div class="container py-4 py-xl-5">
                 <div class="row mb-5">
                     <div id="jfago" class="col"
@@ -248,7 +127,7 @@
                         <h2 style="transform: translateY(5px); text-shadow: 0px 1px 0px  ghostwhite;">徵才博覽會文章</h2>
                     </div>
                 </div>
-                <div id="jfa"class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width:1200px;">
+                <div id="jfa"class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width:1200px;padding-left:90px;">
                    
                     
                 </div>
@@ -267,9 +146,16 @@
     <script src="assets/js/Modal-commerce-popup-button.js"></script>
     <script type="text/javascript">
     $(function(){
+    	$("button#key").on("click",function(){
+    		sessionStorage.setItem("keyword", JSON.stringify($("input#key").val()));
+    	})
+    	$("div#keyd").on("click",function(){
+    		console.log("keyword", JSON.stringify($(this).find("a#keya").text().trim()));
+    		sessionStorage.setItem("keyword", JSON.stringify($(this).find("a#keya").text().trim()));
+    	})
     	
       	 $.ajax({
-   	        url: "/Seeker_Pool_Mix/JobRecruitment",
+   	        url: "/SeekerPool/JobRecruitment",
    	        method: 'POST',
    	        datatype: "JSON",
    	        data: {action: "getAll2",jrArStatus:"上架"},
@@ -282,7 +168,7 @@
                         <div class="card" style="height:300px;">
                             <div class="card-body p-4">
                                 <p class="text-primary card-text mb-0">JobFairArticle</p>
-                                <h4 class="card-title">${res[i].jrArTitle}</h4>
+                                <h4 class="card-title" style="height:50px;">${res[i].jrArTitle}</h4>
                                 <p class="card-text"style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
 		  	                    	  -webkit-line-clamp: 3;">${res[i].jrArContent}</p>
                                 <div class="d-flex">
@@ -304,7 +190,87 @@
    	        $("div#jfago").on("click",function(){
    	        	window.location.replace('../article/jobFair/index/jobFairArticle.html');
    	        })
+   	          $("div#coursego").on("click",function(){
+   	        	window.location.replace('../course/CourseCenter.html');
+   	        })
+   	         $("div#articlego").on("click",function(){
+   	        	window.location.replace('../article/article-index.html');
+   	        })
+   	        $.ajax({
+                url: "/SeekerPool/GetAllCourseServlet",
+                method: "POST",
+                dataType: "JSON",
+                success: function (res) {
+                	for(let i=0;i<3;i++){
+                		 var onNo = res[i].onNo;  // 取得 onNo 值
+
+                         // 將 onNo 值進行 URL 編碼，並添加到 href 屬性中
+                         var href = `../course/MyCoursePage.html?onNo=${encodeURIComponent(onNo)}`;
+
+
+           	        	$("div#course").append(`
+           	        		 <div class="col"
+                                style="box-shadow: 0px 0px 3px 0px gray; padding: 0%;margin-left: 30px;width: 330px;height:300px; ">
+                                <div class="card" style="height:300px;">
+                                    <div class="card-body p-4">
+                                        <p class="text-primary card-text mb-0">Course</p>
+                                        <h4 class="card-title"><strong>課程名稱：</strong>${res[i].onTitle}</h5></h4>
+                                        <p class="card-text"style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
+        		  	                    	  -webkit-line-clamp: 3;"> ${res[i].onIndex}</p>
+                                        <div class="d-flex">
+                                            <div>
+                                           
+                                          
+                                            </div> 
+                                            <a href="${href}" class="btn btn-primary">觀看課程</a>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+           	        			 
+           	        		    `)
+                	}
+                }
+   	        })
+   	        $.ajax({
+        url: "../../../ApplyArticleServlet",
+        method: "GET",
+        dataType: "json",
+        success: function (res) {
+        	for(let i=0;i<3;i++){
+        	$("div#article").append(`
+  	        		 <div class="col"
+                       style="box-shadow: 0px 0px 3px 0px gray; padding: 0%;margin-left: 30px;width: 330px;height:300px; ">
+                       <div class="card" style="height:300px;">
+                           <div class="card-body p-4">
+                               <p class="text-primary card-text mb-0">Article</p>
+                               <h4 class="card-title"><strong></strong>${res[i].arTitle}</h5></h4>
+                               <p class="card-text"style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
+		  	                    	  -webkit-line-clamp: 3;"> ${res[i].arContent}</p>
+                               <div class="d-flex">
+                                   <div>
+                                   <form method="get" action="../article/article-page.html">
+                                   <button type="submit" id="moreBtn" name="arNo" value="${res[i].arNo}" class="action"
+                                       style="height: 40px; width: 160px; background-color: white; border: 2px solid; border-color:orange;">
+                                       <i class="fa fa-arrow-circle-right" style="font-size: 20px;"></i>
+                                       <span style="margin-right: 5px; font-size: 16px; color:#000;">閱讀更多</span>
+                                   </button>
+                                   </form>
+                                 
+                                   </div> 
+                               
+                               </div>
+                               
+                           </div>
+                       </div>
+                   </div>
+                   `)
+        	
+        }
+        }
    	})
+    })
     </script>
 </body>
 

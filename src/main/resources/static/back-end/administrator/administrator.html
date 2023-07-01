@@ -197,7 +197,7 @@
 			$("#searchAdmId").click(function () {
 				var admId = $("#inputAdmId").val().trim();
 				console.log(admId);
-				if (admId !== "" && /^[0-9]$/.test(admId)) {
+				if (admId !== "" && /^[0-9]+$/.test(admId)) {
 					$.post({
 						url: "../../AdministratorServlet",
 						datatype: "JSON",

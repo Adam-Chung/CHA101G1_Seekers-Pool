@@ -1,54 +1,89 @@
+<script>
+
+  //呼叫引入他的hmtl已經比引入他的地方先聲明過了，所以這裡直接取用projectName，如果是他先被引用才聲明，就要先聲明
+  // let projectName = window.location.pathname.split('/')[1]; // SeekerPool
+
+  $(function () {
+
+    //登入後header顯示名字，依照web開啟時的url 而不是檔案路徑去填寫
+    $.get('/' + projectName + '/headerServlet', {}, function (info) {
+      //返回data為user訊息
+      var info = JSON.parse(info);
+      // console.log(info)
+      if (info.flag == true) {
+        let msg = "歡迎您 " + info.data.memName;
+        $("#span_username").html(msg);
+        $("#logout").removeAttr("style");
+        $("#login").prop("style", "display:none;");
+      } else {
+        $("#span_username").html("");
+      }
+    });
+
+
+    $("#logout").click(function () {
+      $.post('/' + projectName + '/headerServlet', { logout: "logout" }, function () {
+        $("#login").removeAttr("style");
+        $("#logout").prop("style", "display:none;");
+        location.href = "memberlogin.html";
+      });
+    });
+  })
+
+</script>
+
 <!-- ==================================== list ============================================= -->
+
 
 <div class="list-left-side">
   <li class="list-item">
-    <a href="#">最新消息</a>
+    <a href="../../../index/index.html">首頁</a>
   </li>
   <li class="list-item">
-    <a href="#">就業博覽會</a>
+    <a href="../../../article/jobFair/index/jobFairArticle.html">就業博覽會</a>
   </li>
-  <li class="list-item">
+  <!-- <li class="list-item">
     <a href="#">電子報</a>
-  </li>
+  </li> -->
   <li class="list-item">
-    <a href="#"
-      >地圖找工作<i
-        class="fa-solid fa-map-location-dot"
-        style="margin-left: 0.2rem"
-      ></i
-    ></a>
+    <a href="../../../job/JobSearchResult.html">找工作<i class="fa-solid fa-map-location-dot"
+        style=" margin-left: 0.2rem;"></i></a>
   </li>
 </div>
-<div class="search">
-  <input type="text" placeholder="請輸入公司、職缺名" class="search-input" />
+<!-- <div class="search">
+  <input type="text" placeholder="請輸入公司、職缺名" class="search-input">
   <button type="submit" class="search-btn">
     <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-</div>
+</div> -->
 <div class="list-right-side">
   <li class="list-item username">
-    <a href="#"><span>XXX 先生/小姐</span></a>
+    <span id="span_username"></span>
   </li>
-  <li class="list-item logout">
+  <li class="list-item logout" id="logout" style="display:none;">
     <a href="#">登出</a>
+  </li>
+  <li class="list-item logout" id="login">
+    <a href="../../../member/memberlogin.html">登入</a>
   </li>
 </div>
 
 <script>
-  var list = document.querySelector(".list");
-  var input = document.querySelector(".search");
-  window.addEventListener("scroll", function () {
+  // =====================================================
+  var list = document.querySelector('.list');
+  var input = document.querySelector('.search');
+  window.addEventListener('scroll', function () {
+
     // 獲取list相對於頁面頂部的偏移量
     var listOffset = list.getBoundingClientRect().top;
 
     // 如果list的偏移量小於等於0，說明他已經停留在頁面頂部
     if (listOffset <= 0) {
-      input.style.display = "block"; // 顯示輸入框
+      input.style.display = 'block'; // 顯示輸入框
       list.style.height = "3.5rem";
-      list.style.background =
-        "linear-gradient(to right, rgb(12, 84, 117) , var(--navyblue))";
+      list.style.background = "linear-gradient(to right, rgb(12, 84, 117) , var(--navyblue))";
     } else {
-      input.style.display = "none"; // 隱藏輸入框
+      input.style.display = 'none'; // 隱藏輸入框
       list.style.height = "2.5rem";
       list.style.background = "rgb(255, 141, 41)";
       var list_a = document.querySelectorAll(".list-item a");
@@ -75,4 +110,5 @@
       }
     });
   });
+
 </script>

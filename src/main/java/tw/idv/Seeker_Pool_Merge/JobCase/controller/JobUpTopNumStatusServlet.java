@@ -33,32 +33,32 @@ public class JobUpTopNumStatusServlet extends HttpServlet {
 			throws SecurityException, IOException, ServletException {
 		resp.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-		System.out.println("request.getContentType(): " + req.getContentType());
+//		System.out.println("request.getContentType(): " + req.getContentType());
 		
 		// 更新企業已上架數量(companyjobselect.html)
 		if ("JobUploadNum".equals(action)) {
-			System.out.println(action);
+//			System.out.println(action);
 			ComOrderQueryVO coqv=new ComOrderQueryVO();
 			// 要改成動態企業ID
-			// int comMemId = (int) req.getSession().getAttribute("companyMember");
-			Integer comMemId=1;
+			int comMemId = (int) req.getSession().getAttribute("companyMember");
+			 // Integer comMemId=1;
 			coqv.setComMemId(comMemId);
 			List<ComOrderQueryVO> list = JoDao.updateJobUploadNum(coqv);
-			System.out.println("list" + list);
+//			System.out.println("list" + list);
 			writePojo2Json(resp, coqv);
 		}
 		
 		// 更新企業已置頂數量(companyjobselect.html)
 		if ("JobTopNum".equals(action)) {
-			System.out.println(action);
+//			System.out.println(action);
 			ComOrderQueryVO coqv=new ComOrderQueryVO();
 			// 要改成動態企業ID
-			// int comMemId = (int) req.getSession().getAttribute("companyMember");
-			Integer comMemId=1;
+			int comMemId = (int) req.getSession().getAttribute("companyMember");
+			// Integer comMemId=1;
 			
 			coqv.setComMemId(comMemId);
 			List<ComOrderQueryVO> list = JoDao.updateJobTopNum(coqv);
-			System.out.println("list" + list);
+//			System.out.println("list" + list);
 			writePojo2Json(resp, list);
 		}
 

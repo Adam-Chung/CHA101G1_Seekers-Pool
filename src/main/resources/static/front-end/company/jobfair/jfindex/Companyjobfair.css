@@ -1,0 +1,182 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    text-decoration: none !important;
+}
+
+section{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+}
+
+.search{
+    position: relative;
+    width: 300px;
+    margin-right:300px;
+}
+
+select{
+    position: relative;
+    width: 100%;
+    height: 35px;
+    border: transparent;
+    outline: 1px orange solid;
+    border-radius: 3px 0 0 3px;
+}
+
+select option{
+    height: 30px;
+    width: 19%;
+}
+
+#searchBtn{
+    position: absolute;
+    top: -1px;
+    right: -5px;
+    height: 37px;
+    border: 0;
+    font-size: medium;
+    color: white;
+    width: 50px;
+    border-radius: 0 3px 3px 0;
+    background-color: brown;
+    cursor: pointer;
+}
+
+.searchForRecord{
+    display: grid;
+    place-items: center;
+    margin: 0 auto;
+    color: #613b1c;
+    width: 120px;
+    height: 35px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s all;
+}
+
+.searchForRecord:hover{
+    background-color: deeppink;
+    color: antiquewhite;
+}
+
+.showInfo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 50px;
+    width: 95%;
+    height: 75vh;
+    overflow-wrap: break-word;
+}
+
+.fair{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.fair .img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 8px;
+    background-color: white;
+    border: 1px gray solid;
+    height:300px;
+    width: 100%;
+    height: 35vh;
+    z-index: 2;
+}
+.fair .intro{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    align-content: center;
+    background-color: rgba(97, 59, 28, 0.83);
+    color: white;
+    top: 29vh;
+    height: 39vh;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 0 0 8px 8px;
+}
+
+.intro h3{
+    position: absolute;
+    top: 30px;
+    margin: 10px auto;
+}
+
+.intro p{
+    position: absolute;
+    top: 75px;
+    left: 3%;
+    width: 94%;
+    overflow:hidden;
+   
+}
+.intro button{
+    position: absolute;
+    bottom: 20px;
+    background-color: rgba(250, 250, 250, 0.97);
+    width: 100px;
+    height: 30px;
+    border: 0;
+    color: #343434;
+    font-size: medium;
+    font-weight: bold;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.intro button:hover{
+    color: orange;
+    background-color: rgba(73, 73, 73, 0.97);
+}
+
+#searchBtn:hover{
+    background-color: orange;
+}
+
+#prev,#next,#seasonp,#seasonn{
+    width: 80px;
+    height: 40px;
+    border: 0;
+    background-color: orange;
+    color: white;
+    margin: -10px 0 0 20px;
+
+    font-size: medium;
+    border-radius: 5px;
+    box-shadow: 2px 2px  8px gray ;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+button#prev:hover,
+button#next:hover {
+    background-color: #462d02;
+    color: white;
+}
+
+button#seasonp:hover,
+button#seasonn:hover {
+    background-color: lightblue;
+    color: white;
+}

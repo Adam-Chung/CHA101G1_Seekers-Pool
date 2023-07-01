@@ -6,15 +6,18 @@ public class ApplyRecordShowVo implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private String comName;
+	private Integer jobNo;
 	private String jobName;
 	private Date applyDate;
 	private String interDate;
 	private String hireStatus;
 	
-	@Override
-	public String toString() {
-		return "ApplyRecordVo [comName=" + comName + ", jobName=" + jobName + ", applyDate=" + applyDate
-				+ ", interDate=" + interDate + ", hireStatus=" + hireStatus + "]";
+	
+	public Integer getJobNo() {
+		return jobNo;
+	}
+	public void setJobNo(Integer jobNo) {
+		this.jobNo = jobNo;
 	}
 	public String getComName() {
 		return comName;

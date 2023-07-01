@@ -3,7 +3,6 @@ package tw.idv.Seeker_Pool_Merge.yuquann.service;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-
 import tw.idv.Seeker_Pool_Merge.yuquann.dao.Report_EnterpriseDao;
 import tw.idv.Seeker_Pool_Merge.yuquann.vo.Report_EnterpriseVo;
 
@@ -48,17 +46,11 @@ public class Report_EnterpriseService extends HttpServlet {
 		} finally {
 			out.close();
 		}
-
 	}
-
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
 		doGet(req, res);
 	}
-
 	public Report_EnterpriseService() {
 		super();
-
 	}
-
 }

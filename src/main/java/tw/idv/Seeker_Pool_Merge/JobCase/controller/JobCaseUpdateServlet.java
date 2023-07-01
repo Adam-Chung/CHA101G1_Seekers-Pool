@@ -31,15 +31,15 @@ public class JobCaseUpdateServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws SecurityException, IOException, ServletException {
-		System.out.println("進入 JobCaseUpdateServlet 的 doPost 方法");
+//		System.out.println("進入 JobCaseUpdateServlet 的 doPost 方法");
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-		System.out.println(action);
-		System.out.println("request.getContentType(): " + req.getContentType());
+//		System.out.println(action);
+//		System.out.println("request.getContentType(): " + req.getContentType());
 		
 		//  開始 刪除 單一 資料
 		if ("delete".equals(action)) {
-			System.out.println("進入delete");
+//			System.out.println("進入delete");
 
 			/** 1.接收請求參數 **/
 			Integer jcNo = Integer.valueOf(req.getParameter("jcNo"));
@@ -55,21 +55,21 @@ public class JobCaseUpdateServlet extends HttpServlet {
 
 		// 開始 更新 單一 資料
 		if ("update".equals(action)) {
-			System.out.println("進入update");
+//			System.out.println("進入update");
 			String jcNo = req.getParameter("jcNo");
-			System.out.println("jcNo : " + jcNo);
+//			System.out.println("jcNo : " + jcNo);
 			String jcName = req.getParameter("jcName");
-			System.out.println("jcName : " + jcName);
+//			System.out.println("jcName : " + jcName);
 			String jcExpTime = req.getParameter("jcExpTime");
-			System.out.println("jcExpTime : " + jcExpTime);
+//			System.out.println("jcExpTime : " + jcExpTime);
 			String jcAvailableNum = req.getParameter("jcAvailableNum");
-			System.out.println("jcAvailableNum : " + jcAvailableNum);
+//			System.out.println("jcAvailableNum : " + jcAvailableNum);
 			String jcTop = req.getParameter("jcTop");
-			System.out.println("jcTop : " + jcTop);
+//			System.out.println("jcTop : " + jcTop);
 			String jcPrice = req.getParameter("jcPrice");
-			System.out.println("jcPrice : " + jcPrice);
+//			System.out.println("jcPrice : " + jcPrice);
 			String jcStatus = req.getParameter("jcStatus");
-			System.out.println("jcStatus : " + jcStatus);
+//			System.out.println("jcStatus : " + jcStatus);
 
 			JcVO.setJcNo(Integer.valueOf(jcNo));
 			JcVO.setJcName(jcName);
