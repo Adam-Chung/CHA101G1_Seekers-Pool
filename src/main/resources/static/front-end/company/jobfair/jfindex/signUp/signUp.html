@@ -21,21 +21,11 @@
 </head>
 
 <body style="background: var(--bs-gray-500);">
-    <div class="simple-slider">
-        <div class="swiper-container">
-            <div class="swiper-wrapper"></div>
-            <div class="swiper-pagination"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-        </div>
-    </div>
-
     <nav class="navbar navbar-dark navbar-expand-md bg-dark py-3" style="width: 100%;height: 100px;">
         <div class="container"><img src="assets/img/123%20(1).png" style="width: 150px;">
             <a class="navbar-brand d-flex align-items-center"
                 href="/SeekerPool/front-end/company/companymember/companyIndex.html">
-                <span style="font-size: 50px;transform:translateX(270px)">Seeker's
-                    pool
+                <span style="font-size: 50px;transform:translateX(270px)">徵才博覽會報名
                 </span>
             </a>
             <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-5"><span
@@ -51,7 +41,7 @@
     </nav>
 
     <div id="dd" class=" container" style="width: 700px;">
-        <p id="ddd" style="background: #ffffff;box-shadow: 2px 2px rgb(13,14,14);width: 700px;height: 1000px;word-wrap:break-word;
+        <p id="ddd" style="background: #ffffff;box-shadow: 2px 2px rgb(13,14,14);width: 700px;height: 1000px;word-wrap:break-word;padding: 20px; font-size: medium;
 	        			 "></p>
 
     </div>
@@ -125,24 +115,25 @@
 	        		    <br><label for="schemeNumber" class="form-label"style='margin-top:20px;margin-bottom:20px'><strong>報名時間:</strong></label>${res.regStartTime + "~" + res.regEndTime}
 	        		    <br>-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 	        		    `)
-                }
-            })
-            $.ajax({
-                url: "/SeekerPool/SignupRecordServlet",
-                method: 'POST',
-                datatype: "JSON",
-                data: { action: "getOne_For_Display2", comMemId: "3", jfNo: getUrlParam('jfNo') },
-                success: function (res) {
-                    console.log(res);
-                    $("p#ddd").append(`
+                    $.ajax({
+                        url: "/SeekerPool/SignupRecordServlet",
+                        method: 'POST',
+                        datatype: "JSON",
+                        data: { action: "getOne_For_Display2", comMemId: "3", jfNo: getUrlParam('jfNo') },
+                        success: function (res) {
+                            console.log(res);
+                            $("p#ddd").append(`
  	        		    <br><label for="schemeNumber" class="form-label"style='margin-top:10px;margin-bottom:10px;'><strong>企業名稱:</strong></label><input type="text" value="${res.comName}"readonly="readonly">
  	        		    <br><label for="schemeNumber" class="form-label"style='margin-top:10px;margin-bottom:10px;'><strong>企業統編:</strong></label><input type="text" value="${res.taxNum}"readonly="readonly">
  	        		    <br><label for="schemeNumber" class="form-label"style='margin-top:10px;margin-bottom:10px;'><strong>企業地址:</strong></label><input type="text" value="${res.comEmail}"readonly="readonly">
  	        		    <br><label for="schemeNumber" class="form-label"style='margin-top:10px;margin-bottom:10px;'><strong>企業電話:</strong></label><input type="text" value="${res.comAddress}"readonly="readonly">
  	        		    <br><button id="sub"class="btn btn-primary"style='margin-left:310px;margin-top:10px;'>我要報名</button>
  	        		    `)
+                        }
+                    })
                 }
             })
+
 
 
         })
