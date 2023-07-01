@@ -159,6 +159,38 @@
             $.get("../../common/buildPage/Employee_Sidebar.html", function (data) {
                 $("#sidebar1").html(data);
             });
+            
+            // ======== 權限設定 ===========
+            $.ajax({
+                url: "/SeekerPool/administrator.do",
+                method: 'POST',
+                datatype: "JSON",
+                data: { action: "getOne_For_Display3" },
+                success: function (res) {
+
+                    $("span#name").text(res.admName);
+                    $("h6#name").text(res.admName);
+                    $("input#schemeNumber2").val(res.admId);
+                }
+            })
+            $("a#out").on("click", function (e) {
+                e.preventDefault;
+            })
+            $("span#out").on("click", function () {
+                if (confirm("確定要登出?")) {
+
+                    $.ajax({
+                        url: "/SeekerPool/administrator.do",
+                        method: 'POST',
+                        datatype: "JSON",
+                        data: { action: "logout" },
+                        success: function (res) {
+                            alert(res);
+                            window.location.replace('../jobfair/jfback/EmployeeLogin.html');
+                        }
+                    })
+                }
+            })
 
 
             // ======== AJAX ===========

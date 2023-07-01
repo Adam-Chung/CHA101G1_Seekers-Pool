@@ -148,8 +148,7 @@ tbody>td {
 
 
 	<script>
-		let reqaa = [];
-		$(document).on('DOMContentLoaded', aa)
+	$(function () {
 		// ======== 引入header ===========
 		$.get("../../common/buildPage/Employee_Header.html", function (data) {
 			$("#header1").html(data);
@@ -162,28 +161,54 @@ tbody>td {
 		$.get("../../common/buildPage/Employee_Sidebar.html", function (data) {
 			$("#sidebar1").html(data);
 		});
+		
+		// ======== 權限設定 最高權限 ===========
+        $.ajax({
+            url: "/Seeker_Pool_Mix/administrator.do",
+            method: 'POST',
+            datatype: "JSON",
+            data: { action: "getOne_For_Display4" },
+            success: function (res) {
+                if (res.trim() === "您無最高權限!") {
+                    alert(res);
+                    window.location.replace("../jobfair/jfback/EmployeeLogin.html");
+                } else {
 
+                }
 
-		function aa() {
-			console.log(new Date());
-			//======= 權限設定 最高權限才能進入======//
-   
-		    $.ajax({
-		           url: "/Seeker_Pool/administrator.do",
-		           method: 'POST',
-		           datatype: "JSON",
-		           data: {action: "getOne_For_Display4"},
-		           success: function(res){
-		            if(res.trim()==="您無最高權限!"){
-		             alert(res);
-		             window.location.replace("../jobfair/jfback/EmployeeLogin.html");
-		            }else{
-		             
-		            }
-		            
-		        }
-		    })
-				
+            }
+        })
+        
+        $.ajax({
+            url: "/SeekerPool/administrator.do",
+            method: 'POST',
+            datatype: "JSON",
+            data: { action: "getOne_For_Display3" },
+            success: function (res) {
+
+                $("span#name").text(res.admName);
+                $("h6#name").text(res.admName);
+                $("input#schemeNumber2").val(res.admId);
+            }
+        })
+        $("a#out").on("click", function (e) {
+            e.preventDefault;
+        })
+        $("span#out").on("click", function () {
+            if (confirm("確定要登出?")) {
+
+                $.ajax({
+                    url: "/SeekerPool/administrator.do",
+                    method: 'POST',
+                    datatype: "JSON",
+                    data: { action: "logout" },
+                    success: function (res) {
+                        alert(res);
+                        window.location.replace('../jobfair/jfback/EmployeeLogin.html');
+                    }
+                })
+            }
+        })
 
 			// ======== AJAX ===========
 			/* ==== 登入即查詢全部 ==== */
@@ -287,7 +312,7 @@ tbody>td {
 					alert("錯誤! 員工編號請輸入數字");
 				}
 			})
-		};
+		});
 		$("button#btnQuery").click(function () {
 			console.log("重新載入");
 			location.reload();

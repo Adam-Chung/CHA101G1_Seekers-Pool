@@ -186,6 +186,54 @@
 			$.get("../../common/buildPage/Employee_Sidebar.html", function (data) {
 				$("#sidebar1").html(data);
 			});
+			
+			// ======== 權限設定 最高權限 ===========
+	        $.ajax({
+	            url: "/Seeker_Pool_Mix/administrator.do",
+	            method: 'POST',
+	            datatype: "JSON",
+	            data: { action: "getOne_For_Display4" },
+	            success: function (res) {
+	                if (res.trim() === "您無最高權限!") {
+	                    alert(res);
+	                    window.location.replace("../jobfair/jfback/EmployeeLogin.html");
+	                } else {
+
+	                }
+
+	            }
+	        })
+			
+			$.ajax({
+                url: "/SeekerPool/administrator.do",
+                method: 'POST',
+                datatype: "JSON",
+                data: { action: "getOne_For_Display3" },
+                success: function (res) {
+
+                    $("span#name").text(res.admName);
+                    $("h6#name").text(res.admName);
+                    $("input#schemeNumber2").val(res.admId);
+                }
+            })
+            $("a#out").on("click", function (e) {
+                e.preventDefault;
+            })
+            $("span#out").on("click", function () {
+                if (confirm("確定要登出?")) {
+
+                    $.ajax({
+                        url: "/SeekerPool/administrator.do",
+                        method: 'POST',
+                        datatype: "JSON",
+                        data: { action: "logout" },
+                        success: function (res) {
+                            alert(res);
+                            window.location.replace('../jobfair/jfback/EmployeeLogin.html');
+                        }
+                    })
+                }
+            })
 
 			// ======= 透過 File 取得預覽圖 =======
 			$("input#admPhoto").change(function () {
