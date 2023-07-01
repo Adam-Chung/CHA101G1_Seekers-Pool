@@ -57,6 +57,21 @@
     </style>
     <!-- jQuery -->
     <script src="../../common/js/jquery-3.6.4.min.js"></script>
+    <script>
+ // ======== 引入header ===========
+    $.get("../../common/buildPage/Employee_Header.html", function (data) {
+        $("#header1").html(data);
+
+        $.getScript("../../common/js/Employee.js", function () {
+        });
+    });
+
+    // ======== 引入sidebar ===========
+    $.get("../../common/buildPage/Employee_Sidebar.html", function (data) {
+        $("#sidebar1").html(data);
+    });
+    
+    </script>
 
 </head>
 
@@ -83,7 +98,7 @@
             <hr>
         </div>
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-4">
                 <label for="inputQuery" class="form-label" style="font-size: large;"><strong>職缺刊登方案查詢</strong></label>
                 <div class="input-group">
 <!--                     <span class="input-group-text">方案編號</span> -->
@@ -97,7 +112,7 @@
             <div class="col-sm-2 d-flex align-items-end">
                 <button type="button" class="btn btn-primary" id="btnQuery"><strong>查詢全部</strong></button>
             </div>
-            <div class="col-sm-4 d-flex align-items-end justify-content-end">
+            <div class="col-sm-6 d-flex align-items-end justify-content-end">
                 <a href="./jobcaseadd.html">
                     <button type="button" class="btn btn-primary float-end"><strong>新增刊登方案</strong></button>
                 </a>
@@ -147,18 +162,6 @@
 
     <script>
         $(function () {
-            // ======== 引入header ===========
-            $.get("../../common/buildPage/Employee_Header.html", function (data) {
-                $("#header1").html(data);
-
-                $.getScript("../../common/js/Employee.js", function () {
-                });
-            });
-
-            // ======== 引入sidebar ===========
-            $.get("../../common/buildPage/Employee_Sidebar.html", function (data) {
-                $("#sidebar1").html(data);
-            });
             
             // ======== 權限設定 ===========
             $.ajax({
@@ -173,12 +176,14 @@
                     $("input#schemeNumber2").val(res.admId);
                 }
             })
+            
             $("a#out").on("click", function (e) {
                 e.preventDefault;
             })
             $("span#out").on("click", function () {
+            	console.log("AAA");
                 if (confirm("確定要登出?")) {
-
+					
                     $.ajax({
                         url: "/SeekerPool/administrator.do",
                         method: 'POST',

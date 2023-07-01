@@ -58,6 +58,40 @@ tbody>td {
 	crossorigin="anonymous"></script>
 <!-- jQuery -->
 <script src="../../common/js/jquery-3.6.4.min.js"></script>
+ <script>
+ // ======== 引入header ===========
+    $.get("../../common/buildPage/Employee_Header.html", function (data) {
+        $("#header1").html(data);
+
+        $.getScript("../../common/js/Employee.js", function () {
+        });
+    });
+
+    // ======== 引入sidebar ===========
+    $.get("../../common/buildPage/Employee_Sidebar.html", function (data) {
+        $("#sidebar1").html(data);
+    });
+    
+    </script>
+<script>
+//======== 權限設定 最高權限 ===========
+// $(window).on("load", function(){
+	$.ajax({
+        url: "/SeekerPool/administrator.do",
+        method: 'POST',
+        datatype: "JSON",
+        data: { action: "getOne_For_Display4" },
+        success: function (res) {
+            if (res.trim() === "您無最高權限!") {
+                alert(res);
+                window.location.replace("./administratorhome.html");
+            } else {
+
+            }
+        }
+    })
+// });
+</script>
 
 </head>
 
@@ -84,7 +118,7 @@ tbody>td {
 		<hr>
 
 		<div class="row">
-			<div class="col-lg-3">
+			<div class="col-lg-4">
 				<label for="inputAdmId" class="form-label"><strong
 					style="font-size: large;">員工查詢</strong></label>
 				<div class="input-group">
@@ -101,7 +135,7 @@ tbody>td {
 					<strong>查詢全部</strong>
 				</button>
 			</div>
-			<div class="col-sm-4 d-flex align-items-end justify-content-end">
+			<div class="col-sm-6 d-flex align-items-end justify-content-end">
 				<a href="administratoradd.html">
 					<button type="button" class="btn btn-primary">
 						<strong>新增員工基本資料</strong>
@@ -148,37 +182,26 @@ tbody>td {
 
 
 	<script>
-	$(function () {
-		// ======== 引入header ===========
-		$.get("../../common/buildPage/Employee_Header.html", function (data) {
-			$("#header1").html(data);
+    $("a#out").on("click", function (e) {
+        e.preventDefault;
+    })
+    $("span#out").on("click", function () {
+        if (confirm("確定要登出?")) {
 
-			$.getScript("../../common/js/Employee.js", function () {
-			});
-		});
-
-		// ======== 引入sidebar ===========
-		$.get("../../common/buildPage/Employee_Sidebar.html", function (data) {
-			$("#sidebar1").html(data);
-		});
-		
-		// ======== 權限設定 最高權限 ===========
-        $.ajax({
-            url: "/Seeker_Pool_Mix/administrator.do",
-            method: 'POST',
-            datatype: "JSON",
-            data: { action: "getOne_For_Display4" },
-            success: function (res) {
-                if (res.trim() === "您無最高權限!") {
+            $.ajax({
+                url: "/SeekerPool/administrator.do",
+                method: 'POST',
+                datatype: "JSON",
+                data: { action: "logout" },
+                success: function (res) {
                     alert(res);
-                    window.location.replace("../jobfair/jfback/EmployeeLogin.html");
-                } else {
-
+                    window.location.replace('../jobfair/jfback/EmployeeLogin.html');
                 }
-
-            }
-        })
-        
+            })
+        }
+    })
+    
+	$(function () {
         $.ajax({
             url: "/SeekerPool/administrator.do",
             method: 'POST',
@@ -189,24 +212,6 @@ tbody>td {
                 $("span#name").text(res.admName);
                 $("h6#name").text(res.admName);
                 $("input#schemeNumber2").val(res.admId);
-            }
-        })
-        $("a#out").on("click", function (e) {
-            e.preventDefault;
-        })
-        $("span#out").on("click", function () {
-            if (confirm("確定要登出?")) {
-
-                $.ajax({
-                    url: "/SeekerPool/administrator.do",
-                    method: 'POST',
-                    datatype: "JSON",
-                    data: { action: "logout" },
-                    success: function (res) {
-                        alert(res);
-                        window.location.replace('../jobfair/jfback/EmployeeLogin.html');
-                    }
-                })
             }
         })
 
