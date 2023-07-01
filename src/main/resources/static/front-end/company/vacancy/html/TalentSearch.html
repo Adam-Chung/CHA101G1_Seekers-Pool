@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -11,269 +12,250 @@
   <link rel="stylesheet" href="../css/TalentSearch.css" />
   <script src="../js/jquery-3.4.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-          crossorigin="anonymous"
-          referrerpolicy="no-referrer"
-  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
 
 <body>
-<!-- ============================= main ======================== -->
-<main id="app">
-  <!-- ======================================================================= -->
-  <!-- =========================== 地區類別選單 =============================== -->
-  <!-- ======================================================================= -->
-  <div class="country-category-list -none">
-    <div class="country-category-container -none">
-      <div class="country-category-title">
-        <h3>地區類別選單</h3>
-        <i class="fa-solid fa-xmark" @click="goBack()"></i>
-      </div>
+  <!-- ============================= main ======================== -->
+  <main id="app">
+    <!-- ======================================================================= -->
+    <!-- =========================== 地區類別選單 =============================== -->
+    <!-- ======================================================================= -->
+    <div class="country-category-list -none">
+      <div class="country-category-container -none">
+        <div class="country-category-title">
+          <h3>地區類別選單</h3>
+          <i class="fa-solid fa-xmark" @click="goBack()"></i>
+        </div>
 
-      <!-- ===== 已選擇的放這(只能三個) ====== -->
-      <div class="chosen-category-list">
-            <span class="chosen-count">
-              <span>已選中:{{multipleChecked.length}}個</span>
-              <span class="chosen-list" v-for="(checked, index) in multipleChecked" @click="removeSelected(index)">
-                {{ checked }}
-                <i class="fa-solid fa-xmark"></i>
-              </span>
+        <!-- ===== 已選擇的放這(只能三個) ====== -->
+        <div class="chosen-category-list">
+          <span class="chosen-count">
+            <span>已選中:{{multipleChecked.length}}個</span>
+            <span class="chosen-list" v-for="(checked, index) in multipleChecked" @click="removeSelected(index)">
+              {{ checked }}
+              <i class="fa-solid fa-xmark"></i>
             </span>
-      </div>
+          </span>
+        </div>
 
-      <div class="country-category-body">
-        <!-- ==== 左半邊 ==== -->
-        <div class="country-category-left-side">
+        <div class="country-category-body">
+          <!-- ==== 左半邊 ==== -->
+          <div class="country-category-left-side">
 
-          <div class="taiwan-title ">
-            <span class="taiwan">台灣地區</span>
+            <div class="taiwan-title ">
+              <span class="taiwan">台灣地區</span>
+            </div>
+            <!-- ==== 左半邊動態生成 cities ==== -->
+            <div class="all-countries-list">
+              <label class="country-list" v-for="(city, index) in citiesData" :class="getClass(index)">
+                <input type="checkbox" class="country-name" v-on:click="fetchDistricts(city.id, city.cityName)"
+                  :value="city.cityName" />{{ city.cityName }}
+                <i class="fa-solid fa-angle-right"></i>
+              </label>
+            </div>
           </div>
-          <!-- ==== 左半邊動態生成 cities ==== -->
-          <div class="all-countries-list" >
-            <label class="country-list" v-for="(city, index) in citiesData" :class="getClass(index)"  >
-              <input type="checkbox" class="country-name" v-on:click="fetchDistricts(city.id, city.cityName)" :value="city.cityName" />{{ city.cityName }}
-              <i class="fa-solid fa-angle-right"></i>
-            </label>
+
+          <!-- ==== 右半邊 ==== -->
+          <div class="country-category-right-side">
+            <!-- 第一層代表縣市 -->
+            <div class="first-chosen-list">
+              <label for="chosen-taipei">
+                <input type="checkbox" id="chosen-taipei" class="first-list-checkbox"
+                  @click="toggleCity(selectedCityName ? selectedCityName.id : citiesData[0].cityName )"
+                  :disabled="isMaxSelectionReached"
+                  :value="selectedCityName ? selectedCityName.cityName : citiesData[0].cityName"
+                  v-model="firstLayerCity" />{{selectedCityName ? selectedCityName.cityName : citiesData[0].cityName}}
+                <!-- 勾選第一層自動勾選全部第二層 -->
+              </label>
+            </div>
+            <!-- 第一層結束 -->
+
+            <!-- 第二層鄉鎮市 -->
+            <div class="second-chosen-list">
+              <label v-for="district in defaultDistrict">
+                <input type="checkbox" class="second-list-checkbox"
+                  :disabled="isMaxSelectionReached || (isFirstLayerCityChecked && district.cityId === selectedCityId)"
+                  :value="district.districtName" v-model="multipleChecked">{{district.districtName}}
+              </label>
+            </div>
+            <!-- 第二層結束 -->
           </div>
         </div>
 
-        <!-- ==== 右半邊 ==== -->
-        <div class="country-category-right-side">
-          <!-- 第一層代表縣市 -->
-          <div class="first-chosen-list">
-            <label for="chosen-taipei" >
-              <input
-                      type="checkbox"
-                      id="chosen-taipei"
-                      class="first-list-checkbox"
-                      @click="toggleCity(selectedCityName ? selectedCityName.id : citiesData[0].cityName )"
-                      :disabled="isMaxSelectionReached"
-                      :value="selectedCityName ? selectedCityName.cityName : citiesData[0].cityName"
-                      v-model="firstLayerCity"
-              />{{selectedCityName ? selectedCityName.cityName : citiesData[0].cityName}} <!-- 勾選第一層自動勾選全部第二層 -->
-            </label>
-          </div>
-          <!-- 第一層結束 -->
+        <!-- ===== 確定按鈕 ===== -->
+        <div class="country-category-button">
+          <button class="country-category-btn c-btn" @click="sendCountryData()">確定</button>
+        </div>
+      </div>
+    </div>
 
-          <!-- 第二層鄉鎮市 -->
-          <div class="second-chosen-list" >
-            <label v-for="district in defaultDistrict" >
-              <input type="checkbox"
-                     class="second-list-checkbox"
-                     :disabled="isMaxSelectionReached || (isFirstLayerCityChecked && district.cityId === selectedCityId)"
-                     :value="district.districtName"
-                     v-model="multipleChecked">{{district.districtName}}
-            </label>
+    <!-- =========================== 地區類別選單結束 =============================== -->
+
+    <div class="container">
+      <!-- ======================= side-bar(左邊欄位) ====================== -->
+      <div class="side-bar">
+        <div class="logo">
+          <div class="img">
+            <img src="../../../company/vacancy/img/TSMC_logo.svg.png" alt="this is a logo" id="logoImg">
           </div>
-          <!-- 第二層結束 -->
+          <h3 id="brand-name">台雞電股份有限公司</h3>
+        </div>
+        <menu>
+          <ul>
+            <li class="main-list center">
+              <a href="#" draggable="false"> <!--第一個-->
+                <i class="fa-solid fa-address-card"></i>會員中心
+                <div class="caret-icon">
+                  <i class="fa-solid fa-sort-down"></i>
+                </div>
+              </a>
+
+              <!-- ======================= sub-menu ====================== -->
+              <ul class="sub-menu collapse -none">
+                <li class="sub-list">
+                  <a href="../../companymember/companyInfo.html" draggable="false">會員資料管理</a>
+                </li>
+
+                <li class="sub-list">
+                  <a href="VacancyManagement.html" draggable="false">職缺管理</a>
+                </li>
+
+                <li class="sub-list">
+                  <a href="../../companymember/interviewer_manage.html" draggable="false">應徵者管理</a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="main-list talent-search">
+              <a href="TalentSearch.html" draggable="false"> <!--第二個-->
+                <i class="fa-solid fa-user-tie"></i>人才查詢
+              </a>
+
+            </li>
+
+            <li class="main-list purchase">
+              <a href="#" draggable="false"> <!--第三個-->
+                <i class="fa-solid fa-cart-shopping"></i>刊登方案
+                <div class="caret-icon">
+                  <i class="fa-solid fa-sort-down"></i>
+                </div>
+              </a>
+              <ul class="sub-menu collapse -none">
+                <li class="sub-list">
+                  <a href="../../jobcase/companyjobselect.html" draggable="false">刊登職缺管理</a>
+                </li>
+                <li class="sub-list">
+                  <a href="../../jobcase/companyjobcase.html" draggable="false">刊登方案</a>
+                </li>
+                <li class="sub-list">
+                  <a href="../../jobcase/companyjobcaseconfirm.html" draggable="false">我要刊登</a>
+                </li>
+                <li class="sub-list">
+                  <a href="../../jobcase/companyjobordersearch.html" draggable="false">刊登訂單查詢</a>
+                </li>
+              </ul>
+            </li>
+            <li class="main-list expo">
+              <a href="#" draggable="false"> <!--第四個-->
+                <i class="fa-solid fa-house"></i></i>徵才博覽會管理
+                <div class="caret-icon">
+                  <i class="fa-solid fa-sort-down"></i>
+                  <i id="-none" class="fa-solid fa-caret-up"></i>
+                </div>
+              </a>
+              <ul class="sub-menu collapse -none">
+                <li class="sub-list">
+                  <a href="../../jobfair/jfindex/Companyjobfair.html" draggable="false">徵才博覽會一覽</a>
+                </li>
+                <li class="sub-list">
+                  <a href="../../jobfair/jfindex/signUpRecord/signUpRecord.html" draggable="false">報名紀錄</a>
+                </li>
+              </ul>
+            </li>
+            <li class="main-list logout">
+              <a href="javascript:location.href='/SeekerPool/CompanyLogout'" draggable="false"> <!--第五個-->
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>登出
+              </a>
+            </li>
+          </ul>
+        </menu>
+      </div>
+
+      <!-- ======================= main-content ====================== -->
+      <div class="main-content">
+        <!-- =========================== form =============================== -->
+        <div class="talent-search-form">
+          <form @submit.prevent="search">
+            <h1>人才查詢</h1>
+
+            <div class="list">
+              <label class="keyword" for="keyword">關鍵字</label>
+              <input type="text" id="keyword" name="keyword" :disabled="jobLocation.length > 0" @keyup.enter="search()"
+                v-model.trim="keyword" placeholder="請輸入欲工作地點、技能等搜尋人才" />
+            </div>
+
+            <div class="list list3">
+              <label for="keyword">工作地點</label>
+              <input type="text" id="job-location-input" name="job-location" :disabled="keyword.length > 0"
+                v-model="jobLocation" @click="openCountryForm()" placeholder="人才欲工作地點" readonly />
+              <i class="fa-solid fa-angle-down" @click="openCountryForm()"></i>
+            </div>
+
+            <div>
+              <p class="small">*關鍵字、工作地點擇一查詢，謝謝您!!</p>
+            </div>
+            <div>
+              <button type="submit" class="talent-search-btn">查詢</button>
+              <button type="reset" class="talent-reset-btn" @click="reset()">清空</button>
+            </div>
+
+          </form>
         </div>
       </div>
 
-      <!-- ===== 確定按鈕 ===== -->
-      <div class="country-category-button">
-        <button class="country-category-btn c-btn" @click="sendCountryData()">確定</button>
-      </div>
     </div>
-  </div>
+  </main>
 
-  <!-- =========================== 地區類別選單結束 =============================== -->
-
-  <div class="container">
-    <!-- ======================= side-bar(左邊欄位) ====================== -->
-    <div class="side-bar">
-      <div class="logo">
-        <div class="img">
-          <img src="../../../company/vacancy/img/TSMC_logo.svg.png" alt="this is a logo" id="logoImg">
-        </div>
-        <h3 id="brand-name">台雞電股份有限公司</h3>
-      </div>
-      <menu>
-        <ul>
-          <li class="main-list center">
-            <a href="#" draggable="false"> <!--第一個-->
-              <i class="fa-solid fa-address-card"></i>會員中心
-              <div class="caret-icon">
-                <i class="fa-solid fa-sort-down"></i>
-              </div>
-            </a>
-
-            <!-- ======================= sub-menu ====================== -->
-            <ul class="sub-menu collapse -none">
-              <li class="sub-list">
-                <a href="#" draggable="false">會員資料管理</a>
-              </li>
-
-              <li class="sub-list">
-                <a href="../html/VacancyManagement.html" draggable="false">職缺管理</a>
-              </li>
-
-              <li class="sub-list">
-                <a href="#" draggable="false">應徵者管理</a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="main-list talent-search">
-            <a href="../html/TalentSearch.html" draggable="false"> <!--第二個-->
-              <i class="fa-solid fa-user-tie"></i>人才查詢
-            </a>
-
-          </li>
-
-          <li class="main-list purchase">
-            <a href="#" draggable="false"> <!--第三個-->
-              <i class="fa-solid fa-cart-shopping"></i>刊登方案
-              <div class="caret-icon">
-                <i class="fa-solid fa-sort-down"></i>
-              </div>
-            </a>
-            <ul class="sub-menu collapse -none">
-              <li class="sub-list">
-                <a href="../../company/jobcase/companyjobcase.html" draggable="false">刊登職缺管理</a>
-              </li>
-              <li class="sub-list">
-                <a href="../../company/jobcase/companyjobcase.html" draggable="false">刊登方案</a>
-              </li>
-              <li class="sub-list">
-                <a href="../../company/jobcase/companyjobcaseconfirm.html" draggable="false">我要刊登</a>
-              </li>
-              <li class="sub-list">
-                <a href="../../company/jobcase/companyjobordersearch.html" draggable="false">刊登訂單查詢</a>
-              </li>
-            </ul>
-          </li>
-          <li class="main-list expo">
-            <a href="#" draggable="false"> <!--第四個-->
-              <i class="fa-solid fa-house"></i></i>徵才博覽會管理
-              <div class="caret-icon">
-                <i class="fa-solid fa-sort-down"></i>
-                <i id="-none" class="fa-solid fa-caret-up"></i>
-              </div>
-            </a>
-            <ul class="sub-menu collapse -none">
-              <li class="sub-list">
-                <a href="../../company/jobfair/jfindex/Companyjobfair.html" draggable="false">徵才博覽會一覽</a>
-              </li>
-              <li class="sub-list">
-                <a href="../../company/jobfair/jfindex/signUpRecord/signUpRecord.html" draggable="false">報名紀錄</a>
-              </li>
-            </ul>
-          </li>
-          <li class="main-list logout">
-            <a href="#" draggable="false"> <!--第五個-->
-              <i class="fa-solid fa-arrow-right-from-bracket"></i>登出
-            </a>
-          </li>
-        </ul>
-      </menu>
-    </div>
-
-    <!-- ======================= main-content ====================== -->
-    <div class="main-content">
-      <!-- =========================== form =============================== -->
-      <div class="talent-search-form">
-        <form @submit.prevent="search">
-          <h1>人才查詢</h1>
-
-          <div class="list">
-            <label class="keyword" for="keyword">關鍵字</label>
-            <input
-                    type="text"
-                    id="keyword"
-                    name="keyword"
-                    :disabled="jobLocation.length > 0"
-                    @keyup.enter="search()"
-                    v-model.trim="keyword"
-                    placeholder="請輸入欲工作地點、技能等搜尋人才"
-            />
-          </div>
-
-          <div class="list list3">
-            <label for="keyword">工作地點</label>
-            <input type="text"
-                   id="job-location-input"
-                   name="job-location"
-                   :disabled="keyword.length > 0"
-                   v-model="jobLocation"
-                   @click="openCountryForm()"
-                   placeholder="人才欲工作地點" readonly />
-            <i class="fa-solid fa-angle-down" @click="openCountryForm()"></i>
-          </div>
-
-          <div>
-            <p class="small">*關鍵字、工作地點擇一查詢，謝謝您!!</p>
-          </div>
-          <div>
-            <button type="submit" class="talent-search-btn">查詢</button>
-            <button type="reset" class="talent-reset-btn" @click="reset()">清空</button>
-          </div>
-
-        </form>
-      </div>
-    </div>
-
-  </div>
-</main>
-<script>
-  // ===================================================================================
-  // 左邊欄位打開闔起動畫 (ok)
-  $("ul").on("click", ".main-list", function () {
-    $(this).closest(".main-list").find(".sub-menu").slideToggle(400 , function(){
-      $(this).closest(".main-list").find(".sub-menu").toggleClass("-none")
+  <script>
+    // ===================================================================================
+    // 左邊欄位打開闔起動畫 (ok)
+    $("ul").on("click", ".main-list", function () {
+      $(this).closest(".main-list").find(".sub-menu").slideToggle(400, function () {
+        $(this).closest(".main-list").find(".sub-menu").toggleClass("-none")
+      });
     });
-  });
 
-  // ===================================================================================
+    // ===================================================================================
 
-  // ========================== 變數 ==========================
-  var $countryCategoryList = $(".country-category-list");
-  var $countryCategoryContainer = $(".country-category-container");
+    // ========================== 變數 ==========================
+    var $countryCategoryList = $(".country-category-list");
+    var $countryCategoryContainer = $(".country-category-container");
 
-  var $jobLocationInput = $("#job-location-input");
-  var $comfirmBtn = $(".c-btn");
-  var $xMark = $(".fa-xmark");
+    var $jobLocationInput = $("#job-location-input");
+    var $comfirmBtn = $(".c-btn");
+    var $xMark = $(".fa-xmark");
 
-  // ===================================================================================
-  function popUp(item1, item2){   //popUp 方法
-    item1.removeClass("-none");
-    item2.removeClass("-none");
-    item1.css({ zIndex: 1 });
-  }
-  // ==================================================================================
-  //  退出清單(x鍵、確定鍵) (ok)
-  // $xMark.on('click', goBack($countryCategoryList, $countryCategoryContainer) ,false)
+    // ===================================================================================
+    function popUp(item1, item2) {   //popUp 方法
+      item1.removeClass("-none");
+      item2.removeClass("-none");
+      item1.css({ zIndex: 1 });
+    }
+    // ==================================================================================
+    //  退出清單(x鍵、確定鍵) (ok)
+    // $xMark.on('click', goBack($countryCategoryList, $countryCategoryContainer) ,false)
 
 
-  function goBack(item1 , item2){   //goBack 方法
-    item1.addClass("-none");
-    item2.addClass("-none");
-    item1.css({ zIndex: -11 });
-  };
+    function goBack(item1, item2) {   //goBack 方法
+      item1.addClass("-none");
+      item2.addClass("-none");
+      item1.css({ zIndex: -11 });
+    };
 
 
   // ===================================================================================
@@ -292,7 +274,10 @@
   // ==============
   // 只能選取三個標籤 超過三個就會將其他checkbox不能被勾選
 
-</script>
-<script src="../vue/TalentSearch.vue.js"></script>
+  </script>
+  <script src="../vue/TalentSearch.vue.js"></script>
+  <!-- header 讀取企業會員資訊 -->
+  <script src="../js/readInfoHeader.js"></script>
 </body>
+
 </html>

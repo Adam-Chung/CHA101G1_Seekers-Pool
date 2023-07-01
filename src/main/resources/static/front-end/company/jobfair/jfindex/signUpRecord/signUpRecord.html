@@ -9,24 +9,26 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre&amp;display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/css/theme.bootstrap_4.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
     <link rel="stylesheet" href="assets/css/Ludens---1-Index-Table-with-Search--Sort-Filters-v20.css">
     <link rel="stylesheet" href="assets/css/styles.css">
-    
+
     <style>
-     tr#p{
-    height:50px;
-    }
-    tr#d{
-    height:100px;
-    }
-    tr:hover{
-    background-color: lightgray;
-    }
+        tr#p {
+            height: 50px;
+        }
+
+        tr#d {
+            height: 100px;
+        }
+
+        tr:hover {
+            background-color: lightgray;
+        }
     </style>
 
     <!-------------------- 引入axios -------------------->
@@ -34,124 +36,125 @@
 </head>
 
 <body>
-<main>
-    <div class="container">
+    <main>
+        <div class="container">
 
-        <!-- ======================= side-bar(左邊欄位) ====================== -->
-        <div class="side-bar">
-            <div class="logo">
-                <div class="img">
-                    <img src="../../company/vacancy/img/TSMC_logo.svg.png" alt="this is a logo" id="logoImg">
+            <!-- ======================= side-bar(左邊欄位) ====================== -->
+            <div class="side-bar">
+                <div class="logo">
+                    <div class="img">
+                        <img src="../../company/vacancy/img/TSMC_logo.svg.png" alt="this is a logo" id="logoImg">
+                    </div>
+                    <h3 id="brand-name">台雞電股份有限公司</h3>
                 </div>
-                <h3 id="brand-name">台雞電股份有限公司</h3>
+                <menu>
+                    <ul>
+                        <li class="main-list center">
+                            <a href="#" draggable="false"> <!--第一個-->
+                                <i class="fa-solid fa-address-card"></i>會員中心
+                                <div class="caret-icon">
+                                    <i class="fa-solid fa-sort-down"></i>
+                                </div>
+                            </a>
+
+                            <!-- ======================= sub-menu ====================== -->
+                            <ul class="sub-menu collapse -none">
+                                <li class="sub-list">
+                                    <a href="../../../companymember/companyInfo.html" draggable="false">會員資料管理</a>
+                                </li>
+
+                                <li class="sub-list">
+                                    <a href="../../../vacancy/html/VacancyManagement.html" draggable="false">職缺管理</a>
+                                </li>
+
+                                <li class="sub-list">
+                                    <a href="../../../companymember/interviewer_manage.html" draggable="false">應徵者管理</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="main-list talent-search">
+                            <a href="../../../vacancy/html/TalentSearch.html" draggable="false"> <!--第二個-->
+                                <i class="fa-solid fa-user-tie"></i>人才查詢
+                            </a>
+
+                        </li>
+
+                        <li class="main-list purchase">
+                            <a href="#" draggable="false"> <!--第三個-->
+                                <i class="fa-solid fa-cart-shopping"></i>刊登方案
+                                <div class="caret-icon">
+                                    <i class="fa-solid fa-sort-down"></i>
+                                </div>
+                            </a>
+                            <ul class="sub-menu collapse -none">
+                                <li class="sub-list">
+                                    <a href="../../../jobcase/companyjobselect.html" draggable="false">刊登職缺管理</a>
+                                </li>
+                                <li class="sub-list">
+                                    <a href="../../../jobcase/companyjobcase.html" draggable="false">刊登方案</a>
+                                </li>
+                                <li class="sub-list">
+                                    <a href="../../../jobcase/companyjobcaseconfirm.html" draggable="false">我要刊登</a>
+                                </li>
+                                <li class="sub-list">
+                                    <a href="../../../jobcase/companyjobordersearch.html" draggable="false">刊登訂單查詢</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="main-list expo">
+                            <a href="#" draggable="false"> <!--第四個-->
+                                <i class="fa-solid fa-house"></i>徵才博覽會管理
+                                <div class="caret-icon">
+                                    <i class="fa-solid fa-sort-down"></i>
+                                    <i id="-none" class="fa-solid fa-caret-up"></i>
+                                </div>
+                            </a>
+                            <ul class="sub-menu collapse -none">
+                                <li class="sub-list">
+                                    <a href="../Companyjobfair.html" draggable="false">徵才博覽會一覽</a>
+                                </li>
+                                <li class="sub-list">
+                                    <a href="./signUpRecord.html" draggable="false">報名紀錄</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="main-list logout">
+                            <a href="javascript:location.href='/SeekerPool/CompanyLogout'" draggable="false"> <!--第五個-->
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>登出
+                            </a>
+                        </li>
+                    </ul>
+                </menu>
             </div>
-            <menu>
-                <ul>
-                    <li class="main-list center">
-                        <a href="#" draggable="false"> <!--第一個-->
-                            <i class="fa-solid fa-address-card"></i>會員中心
-                            <div class="caret-icon">
-                                <i class="fa-solid fa-sort-down"></i>
-                            </div>
-                        </a>
-
-                        <!-- ======================= sub-menu ====================== -->
-                        <ul class="sub-menu collapse -none">
-                            <li class="sub-list">
-                                <a href="#" draggable="false">會員資料管理</a>
-                            </li>
-
-                            <li class="sub-list">
-                                <a href="../../company/vacancy/html/VacancyManagement.html" draggable="false">職缺管理</a>
-                            </li>
-
-                            <li class="sub-list">
-                                <a href="#" draggable="false">應徵者管理</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="main-list talent-search">
-                        <a href="../../company/vacancy/html/TalentSearch.html" draggable="false"> <!--第二個-->
-                            <i class="fa-solid fa-user-tie"></i>人才查詢
-                        </a>
-
-                    </li>
-
-                    <li class="main-list purchase">
-                        <a href="#" draggable="false"> <!--第三個-->
-                            <i class="fa-solid fa-cart-shopping"></i>刊登方案
-                            <div class="caret-icon">
-                                <i class="fa-solid fa-sort-down"></i>
-                            </div>
-                        </a>
-                        <ul class="sub-menu collapse -none">
-                            <li class="sub-list">
-                                <a href="../../company/jobcase/companyjobcase.html" draggable="false">刊登職缺管理</a>
-                            </li>
-                            <li class="sub-list">
-                                <a href="../../company/jobcase/companyjobcase.html" draggable="false">刊登方案</a>
-                            </li>
-                            <li class="sub-list">
-                                <a href="../../company/jobcase/companyjobcaseconfirm.html" draggable="false">我要刊登</a>
-                            </li>
-                            <li class="sub-list">
-                                <a href="../../company/jobcase/companyjobordersearch.html" draggable="false">刊登訂單查詢</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="main-list expo">
-                        <a href="#" draggable="false"> <!--第四個-->
-                            <i class="fa-solid fa-house"></i>徵才博覽會管理
-                            <div class="caret-icon">
-                                <i class="fa-solid fa-sort-down"></i>
-                                <i id="-none" class="fa-solid fa-caret-up"></i>
-                            </div>
-                        </a>
-                        <ul class="sub-menu collapse -none">
-                            <li class="sub-list">
-                                <a href="../Companyjobfair.html" draggable="false">徵才博覽會一覽</a>
-                            </li>
-                            <li class="sub-list">
-                                <a href="./signUpRecord.html" draggable="false">報名紀錄</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="main-list logout">
-                        <a href="#" draggable="false"> <!--第五個-->
-                            <i class="fa-solid fa-arrow-right-from-bracket"></i>登出
-                        </a>
-                    </li>
-                </ul>
-            </menu>
-        </div>
-        <!-- ======================= main-content ====================== -->
-        <div class="main-content">
-            <div class="container-fluid" >
-                <div class="row" style="display: flex; justify-content: center; background: #4b4b4b; padding: 15px 0 ">
-                    <p style="font-size: xx-large; font-weight: bold; color: white;">我的報名</p>
-                </div>
-                <div class="card" id="TableSorterCard">
-                    <div class="col-12">
-                        <table class="table table-striped table tablesorter" id="ipi-table"
-                               style="width:100%; box-shadow:0 0 5px 0 gray;">
-                            <thead class="thead-dark">
-                            <tr id="p"style="font-size: larger">
-                                <th class="text-center" >活動圖片</th>
-                                <th class="text-center">活動名稱</th>
-                                <th class="text-center">活動報名時間</th>
-                                <th class="text-center filter-false sorter-false">取消報名</th>
-                            </tr>
-                            </thead>
-                            <tbody style="text-align:center;"class="text-center">
-                            </tbody>
-                        </table>
+            <!-- ======================= main-content ====================== -->
+            <div class="main-content">
+                <div class="container-fluid">
+                    <div class="row"
+                        style="display: flex; justify-content: center; background: #4b4b4b; padding: 15px 0 ">
+                        <p style="font-size: xx-large; font-weight: bold; color: white;">我的報名</p>
+                    </div>
+                    <div class="card" id="TableSorterCard">
+                        <div class="col-12">
+                            <table class="table table-striped table tablesorter" id="ipi-table"
+                                style="width:100%; box-shadow:0 0 5px 0 gray;">
+                                <thead class="thead-dark">
+                                    <tr id="p" style="font-size: larger">
+                                        <th class="text-center">活動圖片</th>
+                                        <th class="text-center">活動名稱</th>
+                                        <th class="text-center">活動報名時間</th>
+                                        <th class="text-center filter-false sorter-false">取消報名</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="text-align:center;" class="text-center">
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</main>
+    </main>
 
 
     <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
@@ -164,7 +167,7 @@
             // ===================================================================================
             // 左邊欄位打開闔起動畫 (ok)
             $("ul").on("click", ".main-list", function () {
-                $(this).closest(".main-list").find(".sub-menu").slideToggle(400 , function(){
+                $(this).closest(".main-list").find(".sub-menu").slideToggle(400, function () {
                     $(this).closest(".main-list").find(".sub-menu").toggleClass("-none")
                 });
             });
@@ -211,7 +214,7 @@
 
     </script>
     <!-- header 讀取企業會員名稱 -->
-    <script src="../js/readCompanyName.js"></script>
+    <script src="../js/readInfoHeader.js"></script>
 </body>
 
 </html>

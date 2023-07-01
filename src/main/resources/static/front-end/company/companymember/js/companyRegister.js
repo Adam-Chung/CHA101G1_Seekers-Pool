@@ -39,12 +39,12 @@ $(function () {
                 } else {
                     // 註冊失敗，給error_msg添加錯誤訊息
                     // alert(data.errorMsg)
-                    swal("更新失敗", `${data.errorMsg}`, "error");
+                    swal("註冊失敗", `${data.errorMsg}`, "error");
                 }
             },
             error: function (data) {
                 // alert(data.errorMsg)
-                swal("更新失敗", `${data.errorMsg}`, "error");
+                swal("註冊失敗", `${data.errorMsg}`, "error");
             }
         });
 

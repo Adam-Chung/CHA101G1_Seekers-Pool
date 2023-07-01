@@ -27,7 +27,7 @@ public class ApplyRecordServiceImpl implements ApplyRecordService {
 		String email = applyRecordDao.findMemberById(memId).getMemEmail();
 		String comName = companyMemberDao.getComMemById(comMemId).getComName();
 		String jobName = jobDao.findJobName(jobNo, comMemId).getJobName();
-		String subject = "【Seeker's Pool】驗證碼通知";
+		String subject = "【Seeker's Pool】取消面試通知";
 		
 		String emailText = "親愛的 " + memName + "，您好：\n\n您所應徵的職缺 " + comName + " " + jobName +
 				"\n該面試已取消，\n請至 Seeker's Pool 網站確認，謝謝您！";

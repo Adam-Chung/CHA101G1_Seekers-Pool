@@ -10,12 +10,12 @@
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<link rel="stylesheet"
 		href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic&amp;display=swap">
-<!--	<link rel="stylesheet" href="assets/css/Carousel-Hero.css">-->
+	<!--	<link rel="stylesheet" href="assets/css/Carousel-Hero.css">-->
 	<link rel="stylesheet" href="../../companyHomePage/CompanyHomePage.css" />
 	<link rel="stylesheet" href="./Companyjobfair.css" />
 	<script src="./js/jquery-3.4.1.min.js"></script>
-<!--	<link rel="stylesheet" href="assets/css/Testimonials-Centered.css">-->
-<!--	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">-->
+	<!--	<link rel="stylesheet" href="assets/css/Testimonials-Centered.css">-->
+	<!--	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">-->
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 		integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
@@ -51,15 +51,16 @@
 							<!-- ======================= sub-menu ====================== -->
 							<ul class="sub-menu collapse -none">
 								<li class="sub-list">
-									<a href="#" draggable="false">會員資料管理</a>
+									<a href="../../companymember/companyInfo.html" draggable="false">會員資料管理</a>
 								</li>
 
 								<li class="sub-list">
-									<a href="../../../company/vacancy/html/VacancyManagement.html" draggable="false">職缺管理</a>
+									<a href="../../../company/vacancy/html/VacancyManagement.html"
+										draggable="false">職缺管理</a>
 								</li>
 
 								<li class="sub-list">
-									<a href="#" draggable="false">應徵者管理</a>
+									<a href="../../companymember/interviewer_manage.html" draggable="false">應徵者管理</a>
 								</li>
 							</ul>
 						</li>
@@ -80,16 +81,19 @@
 							</a>
 							<ul class="sub-menu collapse -none">
 								<li class="sub-list">
-									<a href="../../../company/jobcase/companyjobcase.html" draggable="false">刊登職缺管理</a>
+									<a href="../../../company/jobcase/companyjobselect.html"
+										draggable="false">刊登職缺管理</a>
 								</li>
 								<li class="sub-list">
 									<a href="../../../company/jobcase/companyjobcase.html" draggable="false">刊登方案</a>
 								</li>
 								<li class="sub-list">
-									<a href="../../../company/jobcase/companyjobcaseconfirm.html" draggable="false">我要刊登</a>
+									<a href="../../../company/jobcase/companyjobcaseconfirm.html"
+										draggable="false">我要刊登</a>
 								</li>
 								<li class="sub-list">
-									<a href="../../../company/jobcase/companyjobordersearch.html" draggable="false">刊登訂單查詢</a>
+									<a href="../../../company/jobcase/companyjobordersearch.html"
+										draggable="false">刊登訂單查詢</a>
 								</li>
 							</ul>
 						</li>
@@ -111,7 +115,7 @@
 							</ul>
 						</li>
 						<li class="main-list logout">
-							<a href="#" draggable="false"> <!--第五個-->
+							<a href="javascript:location.href='/SeekerPool/CompanyLogout'" draggable="false"> <!--第五個-->
 								<i class="fa-solid fa-arrow-right-from-bracket"></i>登出
 							</a>
 						</li>
@@ -121,33 +125,32 @@
 
 			<!-- ======================= main-content ====================== -->
 			<div class="main-content">
-					<section>
-							<div class="row">
-								<div class="search">
-									<select id="season">
+				<section>
+					<div class="row">
+						<div class="search">
+							<select id="season">
 
-										<option disabled="disabled" selected>請選擇期間</option>
+								<option disabled="disabled" selected>請選擇期間</option>
 
-										<option>夏季</option>
-										<option>秋季</option>
-										<option>冬季</option>
-									</select>
-									<button type="submit" id="searchBtn">搜尋</button>
-								</div>
-								<div style="border:1px solid orange;" class="searchForRecord">
-									查看報名紀錄
-								</div>
-							</div>
+								<option>夏季</option>
+								<option>秋季</option>
+								<option>冬季</option>
+							</select>
+							<button type="submit" id="searchBtn">搜尋</button>
+						</div>
+						<div style="border:1px solid orange;" class="searchForRecord">
+							查看報名紀錄
+						</div>
+					</div>
 
-							<div id="jf"class="showInfo">
-								
-								
-							</div>
-							<div id="button">
-								<button id="prev">上一頁</button>
-								<button id="next">下一頁</button>
-							</div>
-					</section>
+					<div id="jf" class="showInfo">
+
+					</div>
+					<div id="button">
+						<button id="prev">上一頁</button>
+						<button id="next">下一頁</button>
+					</div>
+				</section>
 			</div>
 		</div>
 	</main>
@@ -167,7 +170,7 @@
 	<script>
 		var a = 0;
 		$(function () {
-			$("div.searchForRecord").on("click",function(){
+			$("div.searchForRecord").on("click", function () {
 				window.location.replace('./signUpRecord/signUpRecord.html');
 			})
 			$("button#prev").on("click", function () {
@@ -214,9 +217,8 @@
 				})
 
 			})
+
 			$("button#next").on("click", function () {
-
-
 				$.ajax({
 					url: "/SeekerPool/JobFair",
 					method: 'POST',
@@ -226,7 +228,7 @@
 						a += 3;
 						if ((a + 3) > (res.length + 2)) {
 							alert("已經是最後一頁了")
-							a=(res.length-1);
+							a = (res.length - 1);
 							return;
 						} else {
 							$("div#all").remove();
@@ -292,7 +294,7 @@
 			if ($("select#season").val().trim() === "請選擇期間") {
 				location.reload();
 			} else {
-				
+
 				$.ajax({
 					url: "/SeekerPool/JobFair",
 					method: 'GET',
@@ -386,10 +388,10 @@
 				data: { action: "getSeason_For_Display", season: $("select#season").val() },
 				success: function (res) {
 					a += 3;
-					
+
 					if ((3 + a) > (res.length + 2)) {
 						alert("已經是最後一頁了")
-						a=(res.length-1);
+						a = (res.length - 1);
 						return;
 					} else {
 						console.log($("select#season").val());
@@ -423,7 +425,7 @@
 		})
 
 	</script>
-	<!-- header 讀取企業會員名稱 -->
+	<!-- header 讀取企業會員資訊 -->
 	<script src="./js/readInfoHeader.js"></script>
 </body>
 

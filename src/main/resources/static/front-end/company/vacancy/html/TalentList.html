@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,14 +13,11 @@
     <link rel="stylesheet" href="../css/TalentList.css" />
     <script src="../js/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
     <main id="app">
 
@@ -101,21 +99,21 @@
                             <!-- ======================= sub-menu ====================== -->
                             <ul class="sub-menu collapse -none">
                                 <li class="sub-list">
-                                    <a href="#" draggable="false">會員資料管理</a>
+                                    <a href="../../companymember/companyInfo.html" draggable="false">會員資料管理</a>
                                 </li>
 
                                 <li class="sub-list">
-                                    <a href="../html/VacancyManagement.html" draggable="false">職缺管理</a>
+                                    <a href="VacancyManagement.html" draggable="false">職缺管理</a>
                                 </li>
 
                                 <li class="sub-list">
-                                    <a href="#" draggable="false">應徵者管理</a>
+                                    <a href="../../companymember/interviewer_manage.html" draggable="false">應徵者管理</a>
                                 </li>
                             </ul>
                         </li>
 
                         <li class="main-list talent-search">
-                            <a href="../html/TalentSearch.html" draggable="false"> <!--第二個-->
+                            <a href="TalentSearch.html" draggable="false"> <!--第二個-->
                                 <i class="fa-solid fa-user-tie"></i>人才查詢
                             </a>
 
@@ -130,16 +128,16 @@
                             </a>
                             <ul class="sub-menu collapse -none">
                                 <li class="sub-list">
-                                    <a href="../../company/jobcase/companyjobcase.html" draggable="false">刊登職缺管理</a>
+                                    <a href="../../jobcase/companyjobselect.html" draggable="false">刊登職缺管理</a>
                                 </li>
                                 <li class="sub-list">
-                                    <a href="../../company/jobcase/companyjobcase.html" draggable="false">刊登方案</a>
+                                    <a href="../../jobcase/companyjobcase.html" draggable="false">刊登方案</a>
                                 </li>
                                 <li class="sub-list">
-                                    <a href="../../company/jobcase/companyjobcaseconfirm.html" draggable="false">我要刊登</a>
+                                    <a href="../../jobcase/companyjobcaseconfirm.html" draggable="false">我要刊登</a>
                                 </li>
                                 <li class="sub-list">
-                                    <a href="../../company/jobcase/companyjobordersearch.html" draggable="false">刊登訂單查詢</a>
+                                    <a href="../../jobcase/companyjobordersearch.html" draggable="false">刊登訂單查詢</a>
                                 </li>
                             </ul>
                         </li>
@@ -153,15 +151,16 @@
                             </a>
                             <ul class="sub-menu collapse -none">
                                 <li class="sub-list">
-                                    <a href="../../company/jobfair/jfindex/Companyjobfair.html" draggable="false">徵才博覽會一覽</a>
+                                    <a href="../../jobfair/jfindex/Companyjobfair.html" draggable="false">徵才博覽會一覽</a>
                                 </li>
                                 <li class="sub-list">
-                                    <a href="../../company/jobfair/jfindex/signUpRecord/signUpRecord.html" draggable="false">報名紀錄</a>
+                                    <a href="../../jobfair/jfindex/signUpRecord/signUpRecord.html"
+                                        draggable="false">報名紀錄</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="main-list logout">
-                            <a href="#" draggable="false"> <!--第五個-->
+                            <a href="javascript:location.href='/SeekerPool/CompanyLogout'" draggable="false"> <!--第五個-->
                                 <i class="fa-solid fa-arrow-right-from-bracket"></i>登出
                             </a>
                         </li>
@@ -174,11 +173,8 @@
                 <!-- -===================== search框 ================== -->
                 <div class="search">
                     <form @submit.prevent="search">
-                        <input type="text"
-                               class="search-bar"
-                               @keyup.enter="search()"
-                               v-model.trim="keyword"
-                               placeholder="請輸入欲工作地點、技能搜尋人才">
+                        <input type="text" class="search-bar" @keyup.enter="search()" v-model.trim="keyword"
+                            placeholder="請輸入欲工作地點、技能搜尋人才">
                         <button type="submit" class="search-btn">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
@@ -201,18 +197,21 @@
                                 <span class="gender man" v-if="info.memGender === '男'">{{info.memGender}}</span>
                                 <span class="gender woman" v-if="info.memGender === '女'">{{info.memGender}}</span>
                             </span>
-                    
+
                             <ul class="talent-info-bottom">
-                                <li>欲工作地點:  <span class="talent-address">{{ info.memAddress }}</span></li>
-                                <li>學歷:  <span class="graduation">{{ info.memCollege }}</span><span class="department">{{ info.memDepartment }}</span></li>
-                                <li>語言能力:  <span class="langAbility">{{info.memLang}}</span></li>
-                                <li>技術:  <span class="job-experience">{{ info.skNo }}</span></li>
+                                <li>欲工作地點: <span class="talent-address">{{ info.memAddress }}</span></li>
+                                <li>學歷: <span class="graduation">{{ info.memCollege }}</span><span class="department">{{
+                                        info.memDepartment }}</span></li>
+                                <li>語言能力: <span class="langAbility">{{info.memLang}}</span></li>
+                                <li>技術: <span class="job-experience">{{ info.skNo }}</span></li>
                             </ul>
                         </div>
 
                         <div class="talent-btn-container">
-                            <button class="check-bio-btn" @click="openResume(info.memId)"><i class="fa-solid fa-eye"></i>查看詳細履歷</button>
-                            <button class="interview-invitation-btn" @click="sendInvitation(info.memId)"><i class="fa-regular fa-envelope"></i>邀約面試</button>
+                            <button class="check-bio-btn" @click="openResume(info.memId)"><i
+                                    class="fa-solid fa-eye"></i>查看詳細履歷</button>
+                            <button class="interview-invitation-btn" @click="sendInvitation(info.memId)"><i
+                                    class="fa-regular fa-envelope"></i>邀約面試</button>
                         </div>
                     </div>
                 </div>
@@ -220,70 +219,71 @@
                 <!--  pagination       -->
                 <div class="pagination-container">
                     <ul class="page">
-                        <li class="page__btn"><span class="pre" @click="goPrePage()"><i class="fa-solid fa-angle-left"></i></span></li>
-                        <li class="page__numbers"
-                            v-for="(num, index) in generatedNumber"
-                            :key="index"
-                            :class="{ active: activeIndex === index }"
-                            @click="setActive(index)"
-                        >{{num}}</li>
-                        <li class="page__btn"><span class="next" @click="goNextPage()"><i class="fa-solid fa-angle-right"></i></span></li>
+                        <li class="page__btn"><span class="pre" @click="goPrePage()"><i
+                                    class="fa-solid fa-angle-left"></i></span></li>
+                        <li class="page__numbers" v-for="(num, index) in generatedNumber" :key="index"
+                            :class="{ active: activeIndex === index }" @click="setActive(index)">{{num}}</li>
+                        <li class="page__btn"><span class="next" @click="goNextPage()"><i
+                                    class="fa-solid fa-angle-right"></i></span></li>
                     </ul>
                 </div>
                 <!--  pagination       -->
             </div>
             <!--================================ 中間頁面結束 ============================-->
 
-        </div>    
+        </div>
     </main>
 
     <script>
         // ===================================================================================
         // 左邊欄位打開闔起動畫 (ok)
-      $("ul").on("click", ".main-list", function () {
-        $(this).closest(".main-list").find(".sub-menu").slideToggle(400 , function(){
-            $(this).closest(".main-list").find(".sub-menu").toggleClass("-none")
+        $("ul").on("click", ".main-list", function () {
+            $(this).closest(".main-list").find(".sub-menu").slideToggle(400, function () {
+                $(this).closest(".main-list").find(".sub-menu").toggleClass("-none")
+            });
         });
-      });
 
 
-       // 彈出職缺清單 (ok)
-       $(".interview-invitation-btn").on("click", function(){
-              $(".invite-container").removeClass("-none");
-              $(".invite-form").removeClass("-none");
-              $(".invite-formt").css({ zIndex: 30 });
-              $(".invite-container").css({ zIndex: 30 });
-            })
+        // 彈出職缺清單 (ok)
+        $(".interview-invitation-btn").on("click", function () {
+            $(".invite-container").removeClass("-none");
+            $(".invite-form").removeClass("-none");
+            $(".invite-formt").css({ zIndex: 30 });
+            $(".invite-container").css({ zIndex: 30 });
+        })
 
         // 彈出人才履歷 
-        $(document).on("click", ".check-bio-btn", function(){
+        $(document).on("click", ".check-bio-btn", function () {
             $(".talent-bio").removeClass("-none");
             $(".taletn-bio-container").removeClass("-none");
             // $(".talent-bio").css({ zIndex: 30 });
         })
 
-            // ===================================================================================
-    //   退出職缺清單(x鍵、確定鍵) (ok)
-      $(".invite-title i").on("click",  function(){
-        $(".invite-container").addClass("-none");
-        $(".invite-form").addClass("-none");
-        $(".invite-formt").css({ zIndex: -11 });
-        $(".invite-container").css({ zIndex: -11 });
-      });
-      $(".invite-btn").on("click",  function(){
-        $(".invite-container").addClass("-none");
-        $(".invite-form").addClass("-none");
-        $(".invite-formt").css({ zIndex: -11 });
-        $(".invite-container").css({ zIndex: -11 });
-      });
+        // ===================================================================================
+        //   退出職缺清單(x鍵、確定鍵) (ok)
+        $(".invite-title i").on("click", function () {
+            $(".invite-container").addClass("-none");
+            $(".invite-form").addClass("-none");
+            $(".invite-formt").css({ zIndex: -11 });
+            $(".invite-container").css({ zIndex: -11 });
+        });
+        $(".invite-btn").on("click", function () {
+            $(".invite-container").addClass("-none");
+            $(".invite-form").addClass("-none");
+            $(".invite-formt").css({ zIndex: -11 });
+            $(".invite-container").css({ zIndex: -11 });
+        });
 
-      //   退出人才履歷(x鍵) (ok)
-      $(".bio-info > i").on("click", function(){
-        $(".talent-bio").addClass("-none");
-        $(".taletn-bio-container").addClass("-none");
-      })
+        //   退出人才履歷(x鍵) (ok)
+        $(".bio-info > i").on("click", function () {
+            $(".talent-bio").addClass("-none");
+            $(".taletn-bio-container").addClass("-none");
+        })
     </script>
     <script src="../vue/TalentList.vue.js"></script>
-<!--    <script src="../vue/TalentResume.vue.js"></script>-->
+    <!--    <script src="../vue/TalentResume.vue.js"></script>-->
+    <!-- header 讀取企業會員資訊 -->
+    <script src="../js/readInfoHeader.js"></script>
 </body>
+
 </html>
