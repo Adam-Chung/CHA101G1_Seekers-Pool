@@ -13,7 +13,7 @@ axios.post('/SeekerPool/ShowCompanyInfoAndJoblist', {
         console.log("Received data of companyInfo: ", companyInfo);
         console.log("Received data of jobList: ", jobList);
 
-        // document.getElementById('logoImg').src = companyInfo.comPicture;
+        document.getElementById('comPicture').src = companyInfo.comPicture;
         document.getElementById('companyName').textContent = companyInfo.comName;
         document.getElementById('address').textContent = companyInfo.comAddress;
         document.getElementById('phone').textContent = companyInfo.comTel;

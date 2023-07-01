@@ -17,7 +17,7 @@ $(function () {
             url: '/SeekerPool/RegisterVertification',
             data: $("#checkCodeForm").serialize(),
             success: function (data) {
-                console.log(data);  // 印出從後端回傳的數據
+                // console.log(data);  // 印出從後端回傳的數據
                 if (data.flag) {
                     Swal.fire({
                         title: '恭喜註冊成功!!',

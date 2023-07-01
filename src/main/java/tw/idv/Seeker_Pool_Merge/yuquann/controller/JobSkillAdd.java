@@ -24,9 +24,9 @@ public class JobSkillAdd extends HttpServlet {
 
 		SkillTypeDao dao = new SkillTypeDao();
 
-		int rowcount = dao.skillAdd(skType, skName);
+		dao.skillAdd(skType, skName);
 		
-		res.sendRedirect("http://localhost:8081/SeekerPool/yuquannpage/job/JobSkill.html");
+		res.sendRedirect("/SeekerPool/back-end/job/JobSkill.html");
 
 	}
 

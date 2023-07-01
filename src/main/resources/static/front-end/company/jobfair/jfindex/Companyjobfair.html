@@ -10,11 +10,12 @@
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<link rel="stylesheet"
 		href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic&amp;display=swap">
-	<link rel="stylesheet" href="assets/css/Carousel-Hero.css">
-	<link rel="stylesheet" href="./css/CompanyHomePage.css" />
+	<!--	<link rel="stylesheet" href="assets/css/Carousel-Hero.css">-->
+	<link rel="stylesheet" href="../../companyHomePage/CompanyHomePage.css" />
+	<link rel="stylesheet" href="./Companyjobfair.css" />
 	<script src="./js/jquery-3.4.1.min.js"></script>
-	<link rel="stylesheet" href="assets/css/Testimonials-Centered.css">
-	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+	<!--	<link rel="stylesheet" href="assets/css/Testimonials-Centered.css">-->
+	<!--	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">-->
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 		integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
@@ -22,141 +23,136 @@
 
 	<!-------------------- 引入axios -------------------->
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-	<style>
-		body {
-			width: 1800px;
-		}
 
-		button#prev:hover,
-		button#next:hover {
-			background-color: lightblue;
-			border: 1px solid gray;
-			color: white;
-		}
-
-		button#seasonp:hover,
-		button#seasonn:hover {
-			background-color: lightblue;
-			border: 1px solid gray;
-			color: white;
-		}
-	</style>
 </head>
 
 <body>
-	<main style="width: 100vw;">
+	<main>
 		<div class="container">
 
-			<!-- ======================= side-bar ====================== -->
+			<!-- ======================= side-bar(左邊欄位) ====================== -->
 			<div class="side-bar">
 				<div class="logo">
 					<div class="img">
-						<img src="./img/TSMC_logo.svg.png" alt="this is a logo" id="logoImg">
+						<img src="../../../company/vacancy/img/TSMC_logo.svg.png" alt="this is a logo" id="logoImg">
 					</div>
 					<h3 id="brand-name">台雞電股份有限公司</h3>
 				</div>
 				<menu>
 					<ul>
-						<li class="main-list center"><a href="#" draggable="false">
-								<!--第一個--> <i class="fa-solid fa-address-card"></i>會員中心
+						<li class="main-list center">
+							<a href="#" draggable="false"> <!--第一個-->
+								<i class="fa-solid fa-address-card"></i>會員中心
 								<div class="caret-icon">
-									<i class="fa-solid fa-sort-down"></i> <i id="-none"
-										class="fa-solid fa-caret-up"></i>
+									<i class="fa-solid fa-sort-down"></i>
 								</div>
-							</a> <!-- ======================= sub-menu ====================== -->
+							</a>
+
+							<!-- ======================= sub-menu ====================== -->
 							<ul class="sub-menu collapse -none">
-								<li class="sub-list"><a href="#" draggable="false">會員資料管理</a>
+								<li class="sub-list">
+									<a href="../../companymember/companyInfo.html" draggable="false">會員資料管理</a>
 								</li>
 
-								<li class="sub-list"><a href="../html/VacancyManagement.html" draggable="false">職缺管理</a>
+								<li class="sub-list">
+									<a href="../../../company/vacancy/html/VacancyManagement.html"
+										draggable="false">職缺管理</a>
 								</li>
 
-								<li class="sub-list"><a href="#" draggable="false">應徵者管理</a>
-								</li>
-
-								<li class="sub-list"><a href="#" draggable="false">面試排程管理</a>
-								</li>
-
-								<li class="sub-list"><a href="#" draggable="false">聯絡訊息</a>
-								</li>
-
-								<li class="sub-list"><a href="#" draggable="false">徵才博覽會</a>
+								<li class="sub-list">
+									<a href="../../companymember/interviewer_manage.html" draggable="false">應徵者管理</a>
 								</li>
 							</ul>
 						</li>
 
-						<li class="main-list talent-search"><a href="../html/TalentSearch.html" draggable="false">
-								<!--第二個-->
+						<li class="main-list talent-search">
+							<a href="../../../company/vacancy/html/TalentSearch.html" draggable="false"> <!--第二個-->
 								<i class="fa-solid fa-user-tie"></i>人才查詢
-							</a></li>
+							</a>
 
-						<li class="main-list purchase"><a href="#" draggable="false">
-								<!--第三個--> <i class="fa-solid fa-cart-shopping"></i>購買
-								<div class="caret-icon">
-									<i class="fa-solid fa-sort-down"></i> <i id="-none"
-										class="fa-solid fa-caret-up"></i>
-								</div>
-							</a></li>
+						</li>
 
-						<li class="main-list customer-service"><a href="#" draggable="false"> <!--第四個--> <i
-									class="fa-solid fa-headset"></i>徵才博覽會管理
+						<li class="main-list purchase">
+							<a href="#" draggable="false"> <!--第三個-->
+								<i class="fa-solid fa-cart-shopping"></i>刊登方案
 								<div class="caret-icon">
-									<i class="fa-solid fa-sort-down"></i> <i id="-none"
-										class="fa-solid fa-caret-up"></i>
+									<i class="fa-solid fa-sort-down"></i>
 								</div>
-							</a></li>
-						<li class="main-list logout"><a href="javascript:location.href='/SeekerPool/CompanyLogout'"
-								draggable="false">
-								<!--第五個--> <i class="fa-solid fa-arrow-right-from-bracket"></i>登出
-							</a></li>
+							</a>
+							<ul class="sub-menu collapse -none">
+								<li class="sub-list">
+									<a href="../../../company/jobcase/companyjobselect.html"
+										draggable="false">刊登職缺管理</a>
+								</li>
+								<li class="sub-list">
+									<a href="../../../company/jobcase/companyjobcase.html" draggable="false">刊登方案</a>
+								</li>
+								<li class="sub-list">
+									<a href="../../../company/jobcase/companyjobcaseconfirm.html"
+										draggable="false">我要刊登</a>
+								</li>
+								<li class="sub-list">
+									<a href="../../../company/jobcase/companyjobordersearch.html"
+										draggable="false">刊登訂單查詢</a>
+								</li>
+							</ul>
+						</li>
+						<li class="main-list expo">
+							<a href="#" draggable="false"> <!--第四個-->
+								<i class="fa-solid fa-house"></i>徵才博覽會管理
+								<div class="caret-icon">
+									<i class="fa-solid fa-sort-down"></i>
+									<i id="-none" class="fa-solid fa-caret-up"></i>
+								</div>
+							</a>
+							<ul class="sub-menu collapse -none">
+								<li class="sub-list">
+									<a href="../jfindex/Companyjobfair.html" draggable="false">徵才博覽會一覽</a>
+								</li>
+								<li class="sub-list">
+									<a href="./signUpRecord/signUpRecord.html" draggable="false">報名紀錄</a>
+								</li>
+							</ul>
+						</li>
+						<li class="main-list logout">
+							<a href="javascript:location.href='/SeekerPool/CompanyLogout'" draggable="false"> <!--第五個-->
+								<i class="fa-solid fa-arrow-right-from-bracket"></i>登出
+							</a>
+						</li>
 					</ul>
 				</menu>
 			</div>
 
 			<!-- ======================= main-content ====================== -->
 			<div class="main-content">
+				<section>
+					<div class="row">
+						<div class="search">
+							<select id="season">
 
-				<div class="container py-4 py-xl-5" style="border: 2px solid var(--bs-gray-900); border-radius: 4px;">
-					<section class="text-center bg-light features-icons" style="padding: 0px;">
+								<option disabled="disabled" selected>請選擇期間</option>
 
-						<div class="container" style="width: 900px;">
-							<div class="row">
-								<div class="col-md-6"
-									style="padding: 0px; text-align: left; transform: translateY(-40px);">
-									<select id="season"
-										style="height: 32.7px; width: 300px; margin: 0px; box-shadow: 5px 5px 4px; transform: translate(50px, -10px);">
-
-										<option>請選擇期間</option>
-
-										<option>夏季</option>
-										<option>秋季</option>
-										<option>冬季</option>
-									</select>
-									<button class="btn btn-primary btn-lg text-center" type="submit" id="search"
-										style="background: var(--bs-gray-900); height: 33px; padding: 5px; margin: 50px 0px 0px 0px; box-shadow: 5px 5px 4px rgb(8, 8, 8); transform: translate(47px, -38px);">搜尋</button>
-								</div>
-								<div class="col-md-6"
-									style="text-align: left; padding: 0px; transform: translate(30px, -25px) !important; width: 150px;">
-									<a href="./signUpRecord/signUpRecord.html"
-										style="font-size: 21px; color: rgb(251, 249, 249); border-radius: 4px; background: #121212; box-shadow: 5px 5px 4px rgb(14, 14, 14); border: 2px solid rgb(11, 11, 11);">查看報名紀錄</a>
-								</div>
-								<div class="" id="jf"
-									style="box-shadow: 0px 0px; display: -webkit-inline-box; transform: translateY(-40px)">
-
-								</div>
-								<div id="button">
-									<button id="prev">上一頁</button>
-									<button id="next" style="margin-left: 20px;">下一頁</button>
-								</div>
-							</div>
+								<option>夏季</option>
+								<option>秋季</option>
+								<option>冬季</option>
+							</select>
+							<button type="submit" id="searchBtn">搜尋</button>
 						</div>
+						<div style="border:1px solid orange;" class="searchForRecord">
+							查看報名紀錄
+						</div>
+					</div>
 
-					</section>
+					<div id="jf" class="showInfo">
 
-				</div>
-
-
+					</div>
+					<div id="button">
+						<button id="prev">上一頁</button>
+						<button id="next">下一頁</button>
+					</div>
+				</section>
 			</div>
+		</div>
 	</main>
 	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.7.0.js"
@@ -174,6 +170,9 @@
 	<script>
 		var a = 0;
 		$(function () {
+			$("div.searchForRecord").on("click", function () {
+				window.location.replace('./signUpRecord/signUpRecord.html');
+			})
 			$("button#prev").on("click", function () {
 
 
@@ -195,23 +194,21 @@
 								console.log("iiii" + i);
 								console.log(res[i]);
 								$("div#jf").append(`
-   		                    <div class="card" id="all" style="height: auto;width:300px;position: relative; margin-right:30px;padding-bottom:20px;"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;"
-   		                            src="${res[i].jrArImg}">
-   		                        <div class="card-body p-4">
-									<span syle="display:grid;place-items:center;height:100px;"><h4 class="card-title">${res[i].jfName}</h4></span>
-   		                            <p class="card-text"style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
-   		  	                    	  -webkit-line-clamp: 3; height:100px;
-   				                    ">${res[i].jfActivity}</p>
-   				                    <form method="get" action="./signUp/signUp.html">
-   		        				     
-   		        					<button type="submit" class="btn btn-primary"  name="jfNo" value="${res[i].jfNo}"
-   		        						>
-   		        						<strong>查詢詳情</strong>
-   		        					</button>
-   		        				
-   		        			</form>
-   		                        </div>
-   		                    </div>
+										<div id="all"class="fair fair1">
+										<div class="img">
+											<img style="width:100%;height:225px;"src="${res[i].jrArImg}" alt="this is a photo">
+										</div>
+										<div class="intro">
+											<h3>${res[i].jfName}</h3>
+											<p style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
+					  	                    	  -webkit-line-clamp: 4;">${res[i].jfActivity}</p>
+											<form method="get" action="./signUp/signUp.html" >
+											<button type="submit" name="jfNo" value="${res[i].jfNo}">了解詳情</button>
+											</form>
+										</div>
+									</div>
+   		                    
+   		                        
    		                `)
 
 							}
@@ -220,9 +217,8 @@
 				})
 
 			})
+
 			$("button#next").on("click", function () {
-
-
 				$.ajax({
 					url: "/SeekerPool/JobFair",
 					method: 'POST',
@@ -232,6 +228,7 @@
 						a += 3;
 						if ((a + 3) > (res.length + 2)) {
 							alert("已經是最後一頁了")
+							a = (res.length - 1);
 							return;
 						} else {
 							$("div#all").remove();
@@ -239,23 +236,19 @@
 							for (let i = 0 + a; i < (3 + a); i++) {
 								console.log(res[i]);
 								$("div#jf").append(`
-   		                    <div class="card" id="all" style="height: auto;width:300px;position: relative; margin-right:30px;padding-bottom:20px;"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;"
-   		                            src="${res[i].jrArImg}">
-   		                        <div class="card-body p-4">
-									<span><h4 class="card-title">${res[i].jfName}</h4></span>
-   		                            <p class="card-text"style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
-   		  	                    	  -webkit-line-clamp: 3;
-   				                    ">${res[i].jfActivity}</p>
-   				                    <form method="get" action="./signUp/signUp.html">
-   		        				     
-   		        					<button type="submit" class="btn btn-primary"  name="jfNo" value="${res[i].jfNo}"
-   		        					>
-   		        						<strong>查詢詳情</strong>
-   		        					</button>
-   		        				
-   		        			</form>
-   		                        </div>
-   		                    </div>
+										<div id="all"class="fair fair1">
+										<div class="img">
+											<img style="width:100%;height:225px;"src="${res[i].jrArImg}" alt="this is a photo">
+										</div>
+										<div class="intro">
+											<h3>${res[i].jfName}</h3>
+											<p style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
+					  	                    	  -webkit-line-clamp: 4;">${res[i].jfActivity}</p>
+											<form method="get" action="./signUp/signUp.html" >
+											<button type="submit" name="jfNo" value="${res[i].jfNo}">了解詳情</button>
+											</form>
+										</div>
+									</div>
    		                `)
 
 							}
@@ -277,34 +270,31 @@
 					for (let i = 0; i < 3; i++) {
 						console.log(res[i]);
 						$("div#jf").append(`
-	                    <div class="card" id="all" style="height: auto;width:300px;position: relative; margin-right:30px;padding-bottom:20px;"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;"
-	                            src="${res[i].jrArImg}">
-	                        <div class="card-body p-4">
-	                            <span><h4 class="card-title">${res[i].jfName}</h4></span>
-	                            <p class="card-text"style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
-	  	                    	  -webkit-line-clamp: 3;
-			                    ">${res[i].jfActivity}</p>
-			                    <form method="get" action="./signUp/signUp.html">
-	        				     
-	        					<button type="submit" class="btn btn-primary"  name="jfNo" value="${res[i].jfNo}"
-	        						>
-	        						<strong>查詢詳情</strong>
-	        					</button>
-	        				
-	        			</form>
-	                        </div>
-	                    </div>
+								<div id="all"class="fair fair1">
+								<div class="img">
+									<img style="width:100%;height:225px;"src="${res[i].jrArImg}" alt="this is a photo">
+								</div>
+								<div class="intro">
+									<h3>${res[i].jfName}</h3>
+									<p style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
+			  	                    	  -webkit-line-clamp: 4;">${res[i].jfActivity}</p>
+									<form method="get" action="./signUp/signUp.html" >
+									<button type="submit" name="jfNo" value="${res[i].jfNo}">了解詳情</button>
+									</form>
+								</div>
+							</div>
 	                `)
 
 					}
 				}
 			})
 		})
-		$("button#search").on("click", function () {
+		$("button#searchBtn").on("click", function () {
 			$("div#all").remove();
 			if ($("select#season").val().trim() === "請選擇期間") {
 				location.reload();
 			} else {
+
 				$.ajax({
 					url: "/SeekerPool/JobFair",
 					method: 'GET',
@@ -319,23 +309,19 @@
 						for (let i = 0; i < 3; i++) {
 							console.log(res[i]);
 							$("div#jf").append(`
-	                    <div id="all" class="card" style="height: auto;width:300px;position: relative; margin-right:30px;padding-bottom:20px;"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;"
-	                            src="${res[i].jrArImg}">
-	                        <div class="card-body p-4">
-	                            <span><h4 class="card-title">${res[i].jfName}</h4></span>
-	                            <p class="card-text"style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
-	  	                    	  -webkit-line-clamp: 4;
-			                    ">${res[i].jfActivity}</p>
-			                    <form method="get" action="./signUp/signUp.html">
-	        				     
-	        					<button type="submit" class="btn btn-primary"  name="jfNo" value="${res[i].jfNo}"
-	        						>
-	        						<strong>查詢詳情</strong>
-	        					</button>
-	        				
-	        			</form>
-	                        </div>
-	                    </div>
+									<div id="all"class="fair fair1">
+									<div class="img">
+										<img style="width:100%;height:225px;"src="${res[i].jrArImg}" alt="this is a photo">
+									</div>
+									<div class="intro">
+										<h3>${res[i].jfName}</h3>
+										<p style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
+				  	                    	  -webkit-line-clamp: 4;">${res[i].jfActivity}</p>
+										<form method="get" action="./signUp/signUp.html" >
+										<button type="submit" name="jfNo" value="${res[i].jfNo}">了解詳情</button>
+										</form>
+									</div>
+								</div>
 	                `)
 
 
@@ -371,23 +357,19 @@
 						for (let i = a; i < 3 + a; i++) {
 							console.log(res[i]);
 							$("div#jf").append(`
-          	                    <div id="all" class="card" style="height: auto;width:300px;position: relative; margin-right:30px;padding-bottom:20px;"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;"
-          	                            src="${res[i].jrArImg}">
-          	                        <div class="card-body p-4">
-										<span><h4 class="card-title">${res[i].jfName}</h4></span>
-          	                            <p class="card-text"style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
-          	  	                    	  -webkit-line-clamp: 4;
-          			                    ">${res[i].jfActivity}</p>
-          			                    <form method="get" action="./signUp/signUp.html">
-          	        				     
-          	        					<button type="submit" class="btn btn-primary"  name="jfNo" value="${res[i].jfNo}"
-          	        						>
-          	        						<strong>查詢詳情</strong>
-          	        					</button>
-          	        				
-          	        			</form>
-          	                        </div>
-          	                    </div>
+									<div id="all"class="fair fair1">
+									<div class="img">
+										<img style="width:100%;height:225px;"src="${res[i].jrArImg}" alt="this is a photo">
+									</div>
+									<div class="intro">
+										<h3>${res[i].jfName}</h3>
+										<p style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
+				  	                    	  -webkit-line-clamp: 4;">${res[i].jfActivity}</p>
+										<form method="get" action="./signUp/signUp.html" >
+										<button type="submit" name="jfNo" value="${res[i].jfNo}">了解詳情</button>
+										</form>
+									</div>
+								</div>
           	                `)
 
 						}
@@ -406,8 +388,10 @@
 				data: { action: "getSeason_For_Display", season: $("select#season").val() },
 				success: function (res) {
 					a += 3;
+
 					if ((3 + a) > (res.length + 2)) {
 						alert("已經是最後一頁了")
+						a = (res.length - 1);
 						return;
 					} else {
 						console.log($("select#season").val());
@@ -416,23 +400,19 @@
 						for (let i = 0 + a; i < 3 + a; i++) {
 							console.log(res[i]);
 							$("div#jf").append(`
-                     	                    <div id="all" class="card" style="height: auto;width:300px;position: relative; margin-right:30px;padding-bottom:20px;"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;"
-                     	                            src="${res[i].jrArImg}">
-                     	                        <div class="card-body p-4">
-													<span><h4 class="card-title">${res[i].jfName}</h4></span>
-                     	                            <p class="card-text"style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
-                     	  	                    	  -webkit-line-clamp: 4;
-                     			                    ">${res[i].jfActivity}</p>
-                     			                    <form method="get" action="./signUp/signUp.html">
-                     	        				     
-                     	        					<button type="submit" class="btn btn-primary"  name="jfNo" value="${res[i].jfNo}"
-                     	        						>
-                     	        						<strong>查詢詳情</strong>
-                     	        					</button>
-                     	        				
-                     	        			</form>
-                     	                        </div>
-                     	                    </div>
+									<div id="all"class="fair fair1">
+									<div class="img">
+										<img style="width:100%;height:225px;"src="${res[i].jrArImg}" alt="this is a photo">
+									</div>
+									<div class="intro">
+										<h3>${res[i].jfName}</h3>
+										<p style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
+				  	                    	  -webkit-line-clamp: 4;">${res[i].jfActivity}</p>
+										<form method="get" action="./signUp/signUp.html" >
+										<button type="submit" name="jfNo" value="${res[i].jfNo}">了解詳情</button>
+										</form>
+									</div>
+								</div>
                      	                `)
 
 
@@ -445,7 +425,7 @@
 		})
 
 	</script>
-	<!-- header 讀取企業會員名稱 -->
+	<!-- header 讀取企業會員資訊 -->
 	<script src="./js/readInfoHeader.js"></script>
 </body>
 

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>blank</title>
+    <title>Seeker's Pool 職缺搜尋</title>
 
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -14,12 +14,15 @@
 
     <!-- jQuery -->
     <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="./js/jquery.twzipcode.min.js"></script>
     <!-- 引入header、footer的JS -->
     <script type="text/javascript" src="js/include.js"></script>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Krona+One|Quicksand:300,400,700&amp;display=swap">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/5.0.7/sweetalert2.min.css">
+
+
 
     <style>
         @import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
@@ -30,6 +33,39 @@
             color: red;
             font-size: larger;
         }
+
+        .job-icon {
+            width: 35px;
+            height: 35px;
+            margin-right: 0px;
+            margin-bottom: -5px;
+        }
+
+        .topjob {
+            margin-right: 50px;
+        }
+
+        a {
+            font-weight: bolder;
+        }
+
+        a:hover {
+            color: lightblue;
+        }
+
+        #twzipcode {
+            margin-right: 20px;
+        }
+
+        .comPicture {
+            height: 60px;
+            width: 120px;
+        }
+
+        .img-container {
+            margin-right: -100px;
+        }
+
 
         /* general styling */
 
@@ -337,13 +373,7 @@
                     <form class="flex-row center searchingbar" action="../JobResultSearch" method="POST">
                         <input class="input-lg mr-1 keyword" name="keyword" type="text"
                             placeholder="Job Title, Keywords or Company">
-                        <select class="input-sm mr-1" name="information-type" id="">
-                            <option class="input" value="jobs"> Jobs</option>
-                            <option class="input" value="companies"> Companies</option>
-                            <option class="input" value="salaries"> Salaries</option>
-                            <option class="input" value="interviews"> Interviews</option>
-                        </select>
-                        <input class="input-md mr-1" type="text" name="location" placeholder="Location">
+                        <div id="twzipcode"></div>
                         <input class="input-md submitbutton" type="submit" value="Search">
                     </form>
                 </div>
@@ -366,11 +396,14 @@
             event.preventDefault();
 
             var keyword = $('.keyword').val();
-            console.log('keyword : ' + keyword);
+            var city = $('.city').val();
+            var town = $('.town').val();
 
             // 建立要傳送的資料物件
             var data = {
-                keyword: keyword
+                keyword: keyword,
+                city: city,
+                town: town
             };
 
             $.ajax({
@@ -389,17 +422,25 @@
 
                         var imgContainer = $("<div>", { class: "img-container center padding-half-1" }).appendTo(jobItem);
                         $("<div>", { class: "img" }).appendTo(imgContainer)
-                            .append($("<img>", { src: "https://upload.wikimedia.org/wikipedia/commons/7/7b/Honda_Logo.svg", alt: "我是logo" }));
+                            .append($("<img>", { src: item.comPicture, alt: "我是logo", class: "comPicture" }));
 
                         var infoContainer = $("<div>", { class: "information-container padding-half-0" }).appendTo(jobItem);
 
                         var companyNameContainer = $("<div>", { class: "company-name-container padding-half-0" }).appendTo(infoContainer);
-                        $("<a>", { href: "JobDetail.html?comMemId=" + item.comMemId, name: "comName", text: item.comName }).appendTo(companyNameContainer);
+                        $("<a>", { href: "companyProfile.html?comMemId=" + item.comMemId, name: "comName", text: item.comName }).appendTo(companyNameContainer);
 
+                        if (item.jobTop === 0) {
+                            var jobTitleContainer = $("<div>", { class: "job-title-container padding-half-0 jobName" }).appendTo(infoContainer);
+                            $("<strong>").appendTo(jobTitleContainer)
+                                .append($("<a>", { href: "JobContent.html?jobNo=" + item.jobNo + "&comMemId=" + item.comMemId, text: item.jobName }));
+                        } else {
+                            var jobTitleContainer = $("<div>", { class: "job-title-container padding-half-0 jobName" }).appendTo(infoContainer);
+                            var jobTitleContent = $("<span>", { class: "job-title-content topjob" }).appendTo(jobTitleContainer);
+                            $("<img>", { src: "./images/gold-crown.svg", alt: "我是至頂的圖", class: "job-icon" }).appendTo(jobTitleContent);
+                            $("<a>", { href: "JobContent.html?jobNo=" + item.jobNo + "&comMemId=" + item.comMemId, text: item.jobName }).appendTo(jobTitleContent);
 
-                        var jobTitleContainer = $("<div>", { class: "job-title-container padding-half-0 jobName" }).appendTo(infoContainer);
-                        $("<strong>").appendTo(jobTitleContainer)
-                            .append($("<a>", { href: "JobContent.html?jobNo=" + item.jobNo + "&comMemId=" + item.comMemId, text: item.jobName }));
+                        }
+
 
 
                         var locationContainer = $("<div>", { class: "location-container padding-half-0" }).appendTo(infoContainer);
@@ -429,61 +470,86 @@
 
     <script>
         $(document).on("click", ".resume", function () {
+            var self = this; // 保存當前上下文
 
-            var jobItem = $(this).closest('.job-item');
-            var comMemId = $(this).attr('data-comMemId');
-            var jobNo = $(this).attr('data-jobNo');
+            let jobItem = $(this).closest('.job-item');
+            let comMemId = $(this).attr('data-comMemId');
+            let jobNo = $(this).attr('data-jobNo');
 
+            let datafirst = {
+                test: "登入確認"
+            }
 
-            swal({
-                title: '您確定嗎?',
-                text: "此舉將送出您的履歷 !",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'YES !'
-            }).then(function (result) {
-                if (result === true) {
-                    // 使用者點擊了確認按鈕
-                    console.log("判斷為true");
-
-                    let data = {
-                        comMemId: comMemId,
-                        jobNo: jobNo
+            $.ajax({
+                url: '/' + projectName + "/JobApply",
+                method: "POST",
+                dataType: "json",
+                data: datafirst,
+                success: function (data) {
+                    if (data === "notlogin") {
+                        location.href = "../member/memberlogin.html";
                     }
-
-                    console.log("comMemId : " + data.comMemId);
-                    console.log("jobNo : " + data.jobNo);
-
-                    $.ajax({
-                        url: '/' + projectName + "/JobApply",
-                        method: "POST",
-                        data: data,
-                        dataType: "json",
-                        success: function (data) {
-                            if (data === false) {
-                                swal(
-                                    '已取消',
-                                    '您已投過該職缺履歷',
-                                    'info'
-                                );
-                            }
-                        }, error: function (xhr, status, error) {
-                            console.error(error);
-                        }
-                    });
-                    swal(
-                        '已成功!',
-                        '您的履歷已送出',
-                        'success'
-                    );
-                } else {
-                    // 使用者點擊了取消按鈕
-
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
                 }
             });
+
+
+
+            // 延遲0.15秒執行swal
+            setTimeout(function () {
+                swal({
+                    title: '您確定嗎?',
+                    text: "此舉將送出您的履歷 !",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'YES !'
+                }).then(function (result) {
+                    if (result === true) {
+                        // 使用者點擊了確認按鈕
+                        console.log("判斷為true");
+
+                        let data = {
+                            comMemId: comMemId,
+                            jobNo: jobNo
+                        }
+
+                        console.log("comMemId : " + data.comMemId);
+                        console.log("jobNo : " + data.jobNo);
+
+                        $.ajax({
+                            url: '/' + projectName + "/JobApply",
+                            method: "POST",
+                            data: data,
+                            dataType: "json",
+                            success: function (data) {
+                                if (data === false) {
+                                    swal(
+                                        '已取消',
+                                        '您已投過該職缺履歷',
+                                        'info'
+                                    );
+                                }
+                            },
+                            error: function (xhr, status, error) {
+                                console.error(error);
+                            }
+                        });
+                        swal(
+                            '已成功!',
+                            '您的履歷已送出',
+                            'success'
+                        );
+                    } else {
+                        // 使用者點擊了取消按鈕
+                    }
+                });
+            }, 150); // 延遲0.15秒
         });
+
 
 
     </script>
@@ -509,6 +575,11 @@
                 data: data,
                 dataType: "json",
                 success: function (data) {
+
+                    if (data === "notlogin") {
+                        location.href = "../member/memberlogin.html";
+                    }
+
                     if (data === false) {
                         console.log('data : ' + data);
                         console.log('判斷為false');
@@ -530,6 +601,21 @@
                 }
             })
         });
+    </script>
+
+    <script>
+        $("#twzipcode").twzipcode({
+            countySel: "", // 城市預設值, 字串一定要用繁體的 "臺", 否則抓不到資料
+            districtSel: "", // 地區預設值
+            zipcodeIntoDistrict: false, // 郵遞區號自動顯示在地區
+            css: ["city form-control", "town form-control"], // 自訂 "城市"、"地區" class 名稱
+            countyName: "city", // 自訂城市 select 標籤的 name 值
+            districtName: "town" // 自訂地區 select 標籤的 name 值
+        });
+    </script>
+
+    <script>
+        $('[name="zipcode"]').hide();
     </script>
 
     <!--引入footer頁面-->

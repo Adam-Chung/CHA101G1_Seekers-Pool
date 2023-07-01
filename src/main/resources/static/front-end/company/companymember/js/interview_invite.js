@@ -1,4 +1,7 @@
 let projectName = window.location.pathname.split('/')[1]; // SeekerPool
+// 讀取URL中的參數
+let urlParams = new URLSearchParams(window.location.search);
+let id = urlParams.get('memId');
 
 // ========================== 初始化日期為當天 ==========================
 $(function () {
@@ -37,6 +40,7 @@ if (jobTitle) {
     axios.post('/SeekerPool/FrontEnd/InterviewInvite')
         .then(function (response) {
             const jobs = response.data;
+            console.log(jobs)
             const select = document.getElementById('job-title');
             select.innerHTML = '';  // 清空元素內容
 
@@ -104,17 +108,16 @@ function interviewSubmit() {
         let date3 = $(".date-3").html();
 
         // 人才的ID
-        const memId = localStorage.getItem('memId');
+        let memId = localStorage.getItem('memId');
         // 選擇哪一職缺"id"
-        const jobId = localStorage.getItem('jobId');
+        let jobId = localStorage.getItem('jobId');
 
-        // If memId or jobId are not found in localStorage, take the jobId from the first option of the select list
         if (!jobId) {
+            // = Sam的查詢人才
             let select = document.getElementById('job-title');
             jobId = select.options[select.selectedIndex].value;  // 獲得當前選擇的選項的 jobId
-            // memId要接Sam的
+            memId = id;  // 最上面第3行讀的參數
         } else {
-            // If memId and jobId are found, remove them from localStorage
             localStorage.removeItem('jobId');
         }
         localStorage.removeItem('memId');

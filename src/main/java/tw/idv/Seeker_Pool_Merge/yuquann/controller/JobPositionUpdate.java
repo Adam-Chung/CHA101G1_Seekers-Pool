@@ -25,8 +25,8 @@ public class JobPositionUpdate extends HttpServlet {
 
 		JobPositionDao dao = new JobPositionDao();
 
-		int rowcount = dao.update(ptType, ptName, ptNO);
-		System.out.println("成功更改職務規格行數 : " + rowcount);
+		dao.update(ptType, ptName, ptNO);
+//		System.out.println("成功更改職務規格行數 : " + rowcount);
 
 		res.sendRedirect("http://localhost:8081/SeekerPool/yuquannpage/job/JobType.html");
 	}

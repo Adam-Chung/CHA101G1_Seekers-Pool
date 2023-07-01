@@ -28,5 +28,12 @@ public interface ComApplyRecordService {
 	 */
 	MemberVo getMemberById(Integer memId);
 
+	/**
+	 * 透過comId獲取公司名稱
+	 * @param memId
+	 * @return
+	 */
+	String getComNameBycomId(Integer comId);
+
 	
 }

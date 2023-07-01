@@ -37,7 +37,7 @@ public class BackEndShowInfoServlet extends HttpServlet {
 	        sb.append(str);
 	    }	    
 	    String requestBody = sb.toString();
-	    System.out.println("收到的請求參數ID是: " + requestBody);
+//	    System.out.println("收到的請求參數ID是: " + requestBody);
 	    
 	    if (requestBody == null || !requestBody.startsWith("{") || !requestBody.endsWith("}")) {
 	        throw new ServletException("Invalid JSON request");

@@ -64,5 +64,17 @@ public class CompanyDaoImpl implements CompanyDao {
 		String sql2 = "DELETE FROM block_company WHERE mem_id = ? and COM_MEM_ID = ?;";
 		template.update(sql2, memId, comMemId);
 	}
+
+
+	@Override
+	public String getComNameBycomId(Integer comId) {
+		String sql = "select com_name from company_member where com_mem_id = ?";
+		try {
+			String comName = template.queryForObject(sql, String.class, comId);
+			return comName;
+		} catch (Exception e) {
+			return null;
+		}
+	}
 	
 }

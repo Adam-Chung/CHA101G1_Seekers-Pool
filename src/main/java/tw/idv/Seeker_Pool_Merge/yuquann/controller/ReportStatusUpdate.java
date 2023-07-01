@@ -44,10 +44,10 @@ public class ReportStatusUpdate extends HttpServlet {
 			// 把respones的編碼設定好
 			res.setContentType("text/html;charset=utf-8");
 			// 呼叫update方法並回傳修改行數
-			int result = dao.update(vo);
-			System.out.println("成功修改行數 : " + result);
+			dao.update(vo);
+//			System.out.println("成功修改行數 : " + result);
 			// 重新導向到指定的URL
-			res.sendRedirect("http://localhost:8081/SeekerPool/yuquannpage/report/JobReportShow.html");
+			res.sendRedirect("/SeekerPool/back-end/report/JobReportShow.html");
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -38,14 +38,13 @@ public class CompanyMemberLoginFilter extends HttpFilter {
 
 		} else {
 			// 沒有登入，排除註冊和登入相關的資源
-			if (uri.contains("/companyRegister.html") || uri.contains("/companyRegisterOK.html")
-					|| uri.contains("/companyLogin.html") || uri.contains("/company_send_email.html")
-					|| uri.contains("/css/") || uri.contains("/js/")) {
+			if (uri.contains("/companyRegister.html") || uri.contains("/companyLogin.html") ||
+				uri.contains("/company_send_email.html") || uri.contains("/css/") || uri.contains("/js/")) {
 
 				chain.doFilter(req, resp);
 
 			} else {
-				System.out.println("測試有沒有來這裡");
+//				System.out.println("測試有沒有來這裡");
 				resp.setHeader("Cache-Control", "no-store, no-cache, must-revalidate"); // HTTP 1.1
 				resp.setHeader("Pragma", "no-cache"); // HTTP 1.0
 				resp.setDateHeader("Expires", 0); // Proxies

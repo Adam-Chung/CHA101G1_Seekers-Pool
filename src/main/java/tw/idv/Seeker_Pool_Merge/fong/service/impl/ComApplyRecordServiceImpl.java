@@ -2,9 +2,11 @@ package tw.idv.Seeker_Pool_Merge.fong.service.impl;
 
 import tw.idv.Seeker_Pool_Merge.common.util.SendEmailLinkTextUtil;
 import tw.idv.Seeker_Pool_Merge.fong.dao.ComApplyRecordDao;
+import tw.idv.Seeker_Pool_Merge.fong.dao.CompanyDao;
 import tw.idv.Seeker_Pool_Merge.fong.dao.JobDao;
 import tw.idv.Seeker_Pool_Merge.fong.dao.MemberDao;
 import tw.idv.Seeker_Pool_Merge.fong.dao.impl.ComApplyRecordDaoImpl;
+import tw.idv.Seeker_Pool_Merge.fong.dao.impl.CompanyDaoImpl;
 import tw.idv.Seeker_Pool_Merge.fong.dao.impl.JobDaoImpl;
 import tw.idv.Seeker_Pool_Merge.fong.dao.impl.MemberDaoImpl;
 import tw.idv.Seeker_Pool_Merge.fong.service.ComApplyRecordService;
@@ -16,6 +18,7 @@ public class ComApplyRecordServiceImpl implements ComApplyRecordService {
 	private ComApplyRecordDao comApplyRecordDao = new ComApplyRecordDaoImpl();
 	private MemberDao memberDao = new MemberDaoImpl();
 	private JobDao jobDao = new JobDaoImpl();
+	private CompanyDao companyDao = new CompanyDaoImpl();
 
 	private String emailTo;
 	private String emailSubject;
@@ -89,6 +92,11 @@ public class ComApplyRecordServiceImpl implements ComApplyRecordService {
 	@Override
 	public MemberVo getMemberById(Integer memId) {
 		return memberDao.getMemberById(memId);
+	}
+
+	@Override
+	public String getComNameBycomId(Integer comId) {
+		return companyDao.getComNameBycomId(comId);
 	}
 
 }

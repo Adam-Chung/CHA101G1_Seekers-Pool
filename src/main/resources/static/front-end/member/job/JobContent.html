@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>blank</title>
+    <title>Seeker's Pool 職缺內容</title>
 
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -33,6 +33,59 @@
 
         p {
             font-weight: bolder;
+        }
+
+        .map-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .comPicture {
+            height: 100px;
+            width: 250px;
+        }
+
+        .lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* background-color: rgba(0, 0, 0, 0.8); */
+        }
+
+        .lightbox-content {
+            position: absolute;
+            height: 50%;
+            width: 50%;
+            max-height: 600px;
+            max-width: 600px;
+            background-color: white;
+            padding: 20px;
+            text-align: center;
+            transform: translate(-50%, -50%);
+            /* 水平垂直居中 */
+            top: 50%;
+            left: 50%;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        .map-iframe {
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
@@ -108,10 +161,19 @@
                                             style="color: orange;">（固定或變動薪資因個人資歷或績效而異）</span></strong></p>
                                 <p class="job-location"><strong>上班地點 : <span class="comAddress"
                                             name="comAddress">桃園市中壢區復興路46號9樓</span></strong></p>
+
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="map-container">
+            <div class="lightbox-overlay"></div>
+            <div class="lightbox-content">
+                <iframe class="map-iframe" width="800" height="600" frameborder="0" scrolling="no" marginheight="0"
+                    marginwidth="0"></iframe>
+                <div class="close-button">Close</div>
             </div>
         </div>
 
@@ -165,6 +227,7 @@
                     $("<h1>", { class: "jobName", name: "jobName", text: data.jobName }).appendTo(jobTitle);
                     $("<a>", { href: "companyProfile.html?comMemId=" + item.comMemId, class: "company comName", name: "comName", text: data.comName }).appendTo(jobTitle);
 
+
                     // var jobBody = $("<div>", { class: "job-body" }).appendTo(container);
                     var jobContent = $("<div>", { class: "job-content", text: "工作要求" }).appendTo(jobBody);
                     $("<pre>", { class: "jobOther", name: "jobOther", text: data.jobOther }).appendTo(jobBody);
@@ -175,8 +238,13 @@
                     $("<p>", { class: "job-payrange" }).append($("<strong>").text("薪資待遇 : "))
                         .append($("<span>", { class: "jobSalary", name: "jobSalary", text: data.jobSalary })).append("元")
                         .append($("<span>", { style: "color: orange;" }).text("（固定或變動薪資因個人資歷或績效而異）")).appendTo(details);
-                    $("<p>", { class: "job-location" }).append($("<strong>").text("上班地點 : "))
-                        .append($("<span>", { class: "comAddress", name: "comAddress", text: data.jobAddress })).appendTo(details);
+                    $("<p>", { class: "job-location" })
+                        .append($("<strong>").text("上班地點 : "))
+                        .append($("<span>", { class: "comAddress", name: "comAddress", text: data.jobAddress }))
+                        .append($("<span>", { class: "icon", 'data-jobAddresss': data.jobAddress })
+                            .append($("<img>", { src: "images/geo-alt.svg", alt: "Location", class: "icon-img", 'data-jobAddresss': data.jobAddress }))
+                        )
+                        .appendTo(details);
                 });
             }
         });
@@ -185,10 +253,10 @@
     <script>
 
         let projectName = window.location.pathname.split('/')[1]; //SeekerPool
-        // 获取当前页面的URL参数
+        // 獲取當前頁面的URL参數
         var urlParams = new URLSearchParams(window.location.search);
 
-        // 从URL参数中获取jobNo和comMemId的值
+        // 從URL参数得到jobNo和comMemId的值
         var jobNo = urlParams.get('jobNo');
         var comMemId = urlParams.get('comMemId');
 
@@ -196,6 +264,27 @@
             comMemId: comMemId,
             jobNo: jobNo
         }
+
+        $('.resume').on('click', function () {
+
+            $.ajax({
+                url: '/' + projectName + "/JobApply",
+                method: "POST",
+                dataType: "json",
+                success: function (data) {
+                    if (data === "notlogin") {
+                        location.href = "../member/memberlogin.html";
+                        return; //中斷下面的sweetalert演出
+                    }
+                }, error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            })
+        })
+
+    </script>
+
+    <script>
 
         $('.resume').on('click', function () {
             Swal.fire({
@@ -207,40 +296,47 @@
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes'
             }).then((result) => {
-                $.ajax({
-                    url: '/' + projectName + "/JobApply",
-                    method: "POST",
-                    data: data,
-                    dataType: "json",
-                    success: function (data) {
-                        if (data === false) {
-                            swal.fire(
-                                '已取消',
-                                '您已投過該職缺履歷',
-                                'info'
-                            );
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '/' + projectName + "/JobApply",
+                        method: "POST",
+                        data: data,
+                        dataType: "json",
+                        success: function (data) {
+                            if (data === false) {
+                                swal.fire(
+                                    '已取消',
+                                    '您已投過該職缺履歷',
+                                    'info'
+                                );
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.error(error);
                         }
-                    }, error: function (xhr, status, error) {
-                        console.error(error);
-                    }
-                })
-                Swal.fire(
-                    'Success!',
-                    '您的應徵履歷已送出',
-                    'success'
-                )
-            })
-        })
+                    });
+                    Swal.fire(
+                        'Success!',
+                        '您的應徵履歷已送出',
+                        'success'
+                    );
+                } else {
+                    Swal.close(); // 關閉彈跳式視窗
+                }
+            });
+            // 防止表單資料噴出
+            event.preventDefault();
+        });
 
     </script>
 
     <script>
         function executeExample() {
 
-            // 获取当前页面的URL参数
+            // 獲取當前頁面的URL参數
             var urlParams = new URLSearchParams(window.location.search);
 
-            // 从URL参数中获取jobNo和comMemId的值
+            // 從URL参数得到jobNo和comMemId的值
             var jobNo = urlParams.get('jobNo');
 
             let data = {
@@ -253,9 +349,9 @@
                 data: data,
                 dataType: "json",
                 success: function (data) {
-                	if(data === "notlogin"){
-                		location.href = "../member/memberlogin.html";
-                	}
+                    if (data === "notlogin") {
+                        location.href = "../member/memberlogin.html";
+                    }
                     if (data === false) {
                         console.log('data : ' + data);
                         console.log('判斷為false');
@@ -296,17 +392,51 @@
     <script>
         $('.report-button').on('click', function () {
 
-            // 获取当前页面的URL参数
+            // 獲取當前頁面的URL参數
             var urlParams = new URLSearchParams(window.location.search);
 
-            // 从URL参数中获取jobNo和comMemId的值
+            // 從URL参数得到jobNo和comMemId的值
             var jobNo = urlParams.get('jobNo');
             var comMemId = urlParams.get('comMemId');
-            var newPageUrl = 'http://localhost:8081/SeekerPool/yuquannpage/member/report/ReportForm.html' + '?comMemId=' + comMemId + "&jobNo=" + jobNo;
+            var newPageUrl = '/SeekerPool/front-end/member/report/Reportform.html' + '?comMemId=' + comMemId + "&jobNo=" + jobNo;
 
+            $.ajax({
+                url: '/' + projectName + "/CheckLogin",
+                method: "GET",
+                dataType: "json",
+                success: function (data) {
+                    if (data === "notlogin") {
+                        location.href = "../member/memberlogin.html";
+                    }
+                }, error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            })
             window.location.href = newPageUrl;
-
         })
+
+    </script>
+
+    <script>
+
+        $(document).on('click', '.icon', function () {
+            var jobAddress = $(this).find('.icon-img').attr('data-jobaddresss');
+            console.log("Google Map區塊 點擊測試，上班地點: " + jobAddress);
+
+            var iframeSrc = "https://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=" + jobAddress + "&z=16&output=embed&t=";
+
+            // 更新燈箱中的 iframe 的 src 屬性
+            $(".map-iframe").attr("src", iframeSrc);
+
+            // 顯示燈箱
+            $(".map-container").fadeIn();
+        });
+
+        $(document).on('click', '.close-button, .lightbox-overlay', function () {
+            // 隐藏燈箱
+            $(".map-container").fadeOut();
+        });
+
 
     </script>
 

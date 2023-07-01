@@ -50,18 +50,18 @@ public class InterviewCompleteServlet extends HttpServlet {
 		Integer memId = ((Double) map.get("memId")).intValue();
 		Integer jobNo = ((Double) map.get("jobNo")).intValue();
 
-		System.out.println("要修改的會員ID是: " + memId);
-		System.out.println("該會員應徵的工作是: " + jobNo);
+//		System.out.println("要修改的會員ID是: " + memId);
+//		System.out.println("該會員應徵的工作是: " + jobNo);
 		int updateRows = dao.updateHireStatus(memId, comMemId, jobNo);
 
 		String jsonStr;
 
 		if (updateRows == 1) {
 			resultInfo.setFlag(true);
-			System.out.println("更新面試狀態 = 完成 : 成功");
+//			System.out.println("更新面試狀態 = 完成 : 成功");
 		} else {
 			resultInfo.setFlag(false);
-			System.out.println("更新面試狀態 = 完成 : 失敗");
+//			System.out.println("更新面試狀態 = 完成 : 失敗");
 		}
 
 		jsonStr = gson.toJson(resultInfo);

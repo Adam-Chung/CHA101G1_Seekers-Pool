@@ -56,7 +56,7 @@ public class RegisterServlet extends HttpServlet {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss");
 		String formatDateTime = now.format(formatter);
 		String fileName = formatDateTime + "-" + part.getSubmittedFileName();
-		System.out.println("File name: " + fileName);
+//		System.out.println("File name: " + fileName);
 
 		if ("comPicture".equals(fieldName)) {
 			String saveDirectory = "/uploads/comPicture";
@@ -82,13 +82,13 @@ public class RegisterServlet extends HttpServlet {
 			CompanyMemberVo loginComMem = service.login(companyMember);
 			int comMemId = loginComMem.getComMemId();
 			req.getSession().setAttribute("companyMember", comMemId);
-			System.out.println("========================");
-			System.out.println("註冊成功，會員為：" + comMemId);
+//			System.out.println("========================");
+//			System.out.println("註冊成功，會員為：" + comMemId);
 		} else {
 			// 註冊失敗
 			resultInfo.setFlag(false);
 			resultInfo.setErrorMsg("您的帳號名稱已被使用");
-			System.out.println("註冊失敗");
+//			System.out.println("註冊失敗");
 		}
 
 		// 5. 將info物件序列化為JSON傳到前端

@@ -29,7 +29,7 @@ public class JobPositionDelete extends HttpServlet {
 
 		JobPositionDao dao = new JobPositionDao();
 
-		int rowcount = dao.delete(ptNO);
+		dao.delete(ptNO);
 		
 		//因收到請求時需要回應前端的AJAX以即時刪除前端的行 故多做回應的部分
 		Gson gson = new Gson();

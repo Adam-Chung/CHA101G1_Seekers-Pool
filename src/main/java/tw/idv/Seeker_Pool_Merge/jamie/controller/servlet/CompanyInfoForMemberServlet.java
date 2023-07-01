@@ -51,12 +51,12 @@ public class CompanyInfoForMemberServlet extends HttpServlet {
 		JSONObject jObj = new JSONObject(requestBody);
 		
 		int id = jObj.getInt("id");
-		System.out.println("要顯示的企業會員ID = " + id);
+//		System.out.println("要顯示的企業會員ID = " + id);
 		
 		CompanyMemberVo companyInfo = service.getInfoForApplicants(id);
 		List<JobVo> jobList = dao.findJobsByComMemId(id);
-		System.out.println(companyInfo);
-		System.out.println(jobList);
+//		System.out.println(companyInfo);
+//		System.out.println(jobList);
 		
 		// 創建結果物件
 		Map<String, Object> resultMap = new HashMap<>();

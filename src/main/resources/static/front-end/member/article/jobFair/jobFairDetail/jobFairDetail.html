@@ -63,7 +63,7 @@
 		        if (r != null) return unescape(r[2]); return null; //返回参数值
 		    }
       	 $.ajax({
-   	        url: "/Seeker_Pool_Mix/JobRecruitment",
+   	        url: "/SeekerPool/JobRecruitment",
    	        method: 'POST',
    	        datatype: "JSON",
    	        data: {action: "getOne_For_Display" ,jrArNo: getUrlParam('jrArNo')},
@@ -78,22 +78,22 @@
    	                 <div class="col-md-12" style="margin-bottom: 20px;">
    	                     <div
    	                         class="text-center text-md-start d-flex flex-column align-items-center align-items-md-start mb-5" >
-   	                         <div style="margin-top:20px" style="word-wrap:break-word;">
+   	                         <div style="margin-top:20px width:100%;" style="word-wrap:break-word;">
    	                      
-   	                         <h4 style="margin-left:70px;margin-top:40px;margin-bottom:40px;font-weight: 900;font-size:48px;">${res.jrArTitle}</h4>
-   	                         <label style="margin-left:30px;">---------------------------------------------- <Strong>活動時間:</Strong> ---------------------------------------------</label>
+   	                         <h4 style="margin-top:40px;margin-bottom:40px;font-weight: 900;font-size:48px;text-align:center;width:100%;color:#cf6b23;">${res.jrArTitle}</h4>
+   	                         <label style="margin-left:30px;color:burlywood;">---------------------------------------------- <Strong>活動時間:</Strong> ---------------------------------------------</label>
    	                          
-   	                             <p style="margin-left:215px;margin-top:20px;margin-bottom:40px;">${res.jrArStartTime+" ~ " +res.jrArEndTime}</p>
-   	                          <label style="margin-left:30px;">---------------------------------------------- <Strong>參展企業:</Strong> ---------------------------------------------</label>
+   	                             <p style="margin-top:20px;margin-bottom:40px;text-align:center;color:#cf6b23;">${res.jrArStartTime+" ~ " +res.jrArEndTime}</p>
+   	                          <label style="margin-left:30px;color:burlywood;">---------------------------------------------- <Strong>參展企業:</Strong> ---------------------------------------------</label>
    	                          
-   	                             <p style="margin-left:250px;margin-top:20px;margin-bottom:40px;">${res.jrArCom}</p>
-   	                          <label style="margin-left:30px;">---------------------------------------------- <Strong>活動內容:</Strong> ---------------------------------------------</label>
+   	                             <p style="margin-top:20px;margin-bottom:40px;text-align:center;color:#cf6b23;">${res.jrArCom}</p>
+   	                          <label style="margin-left:30px;color:burlywood;">---------------------------------------------- <Strong>活動內容:</Strong> ---------------------------------------------</label>
    	                          
-   	                             <p style="margin-left:90px;margin-top:20px;width:530px;word-wrap:break-word;">${res.jrArContent}</p>
+   	                             <p style="margin-left:90px;margin-top:20px;width:530px;word-wrap:break-word;color:#cf6b23;">${res.jrArContent}</p>
    	                          </div>
    	                             <p style="margin-top:20px">
-   	                             <a href="../index/jobFairArticle.html">
-   	                         <button class="btn btn-link border-pretty" style="color:#ce9c95;" type="button">返回徵才文章列表
+   	                             <a href="../index/jobFairArticle.html"style="color:#77c6d8;" >
+   	                         <button class="btn btn-link border-pretty" style="color:#77c6d8; border:0;" type="button">返回徵才文章列表
    	                             <i class="icon ion-android-arrow-forward"></i></button></p></a>
    	                          
 

@@ -64,9 +64,9 @@
 
 .rg_form>.rg_form_center table .error-tr {
 	height: 10px;
-
 }
-.rg_form>.rg_form_center table .error-tr td{
+
+.rg_form>.rg_form_center table .error-tr td {
 	transform: translateX(145px);
 }
 

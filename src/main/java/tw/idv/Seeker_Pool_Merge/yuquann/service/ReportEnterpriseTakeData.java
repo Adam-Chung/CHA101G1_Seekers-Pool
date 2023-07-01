@@ -34,7 +34,7 @@ public class ReportEnterpriseTakeData extends HttpServlet {
 
 		// 將 JSON 資料回傳給前端
 		out.print(json);
-//			System.out.println("json : " + json);
+			
 
 	}
 
