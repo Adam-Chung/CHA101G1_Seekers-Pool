@@ -161,8 +161,7 @@
           if (job.interDate === undefined) {  //沒有面試日期
             var li = `<tr>
                         <td class="text-truncate" style="max-width: 200px;">${job.comName}</td>
-                        <td class="text-truncate" style="max-width: 200px;"><a href="javascript:void(0)"
-                            style="color: blue;"> ${job.jobName} </a> </td>
+                        <td class="text-truncate" style="max-width: 200px;"><a href="/${projectName}/front-end/member/job/JobContent.html?jobNo=${job.jobNo}" style="color: blue;"> ${job.jobName} </a> </td>
                         <td class="text-truncate" style="max-width: 200px;">${job.applyDate}</td>
                         <td class="text-truncate" style="max-width: 200px;"></td>
                         <td class="text-truncate" style="max-width: 200px;" id="situation" >${job.hireStatus}</td>
@@ -174,8 +173,7 @@
           } else {  //有面試日期
             var li = `<tr>
                         <td class="text-truncate" style="max-width: 200px;">${job.comName}</td>
-                        <td class="text-truncate" style="max-width: 200px;"><a href="javascript:void(0)"
-                            style="color: blue;"> ${job.jobName} </a> </td>
+                        <td class="text-truncate" style="max-width: 200px;"><a href="/${projectName}/front-end/member/job/JobContent.html?jobNo=${job.jobNo}" style="color: blue;"> ${job.jobName} </a> </td>
                         <td class="text-truncate" style="max-width: 200px;">${job.applyDate}</td>
                         <td class="text-truncate" style="max-width: 200px;">${job.interDate}</td>
                         <td class="text-truncate" style="max-width: 200px;" id="situation" >${job.hireStatus}</td>
