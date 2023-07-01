@@ -16,6 +16,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
     <link rel="stylesheet" href="assets/css/Ludens---1-Index-Table-with-Search--Sort-Filters-v20.css">
     <link rel="stylesheet" href="assets/css/styles.css">
+    
+    <style>
+     tr#p{
+    height:50px;
+    }
+    tr#d{
+    height:100px;
+    }
+    tr:hover{
+    background-color: lightgray;
+    }
+    </style>
 
     <!-------------------- 引入axios -------------------->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -98,10 +110,10 @@
                         </a>
                         <ul class="sub-menu collapse -none">
                             <li class="sub-list">
-                                <a href="../../company/jobfair/jfindex/Companyjobfair.html" draggable="false">徵才博覽會一覽</a>
+                                <a href="../Companyjobfair.html" draggable="false">徵才博覽會一覽</a>
                             </li>
                             <li class="sub-list">
-                                <a href="../../company/jobfair/jfindex/signUpRecord/signUpRecord.html" draggable="false">報名紀錄</a>
+                                <a href="./signUpRecord.html" draggable="false">報名紀錄</a>
                             </li>
                         </ul>
                     </li>
@@ -124,14 +136,14 @@
                         <table class="table table-striped table tablesorter" id="ipi-table"
                                style="width:100%; box-shadow:0 0 5px 0 gray;">
                             <thead class="thead-dark">
-                            <tr style="font-size: larger">
+                            <tr id="p"style="font-size: larger">
                                 <th class="text-center" >活動圖片</th>
                                 <th class="text-center">活動名稱</th>
-                                <th class="text-center">報名時間</th>
+                                <th class="text-center">活動報名時間</th>
                                 <th class="text-center filter-false sorter-false">取消報名</th>
                             </tr>
                             </thead>
-                            <tbody class="text-center">
+                            <tbody style="text-align:center;"class="text-center">
                             </tbody>
                         </table>
                     </div>
@@ -165,7 +177,7 @@
                 success: function (res) {
                     for (let i = 0; i < res.length; i++) {
                         console.log(res[i]);
-                        $("tbody").append(`<tr>
+                        $("tbody").append(`<tr id="d"style="margin-bottom:20px">
                             <td ><img src="${res[i].jrArImg}" style="hight:150px;width:200px"></img></td>
                             <td>${res[i].jfName}</td>
                             <td>${res[i].regStartTime + "~" + res[i].regEndTime}</td>

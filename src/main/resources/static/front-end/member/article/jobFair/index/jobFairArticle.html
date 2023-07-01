@@ -61,7 +61,7 @@
                             <option >秋季</option>
                             <option >冬季</option>
                         
-                    </select><label class="form-label mb-0" for="float-input" style="margin-left: 150px;">Select</label>
+                    </select><label class="form-label mb-0" for="float-input" style="margin-left: 150px;"></label>
                 </div>
             </form>  
         </div>
@@ -95,11 +95,11 @@
 	                                style="vertical-align: middle; margin-top: 40px; margin-left: 50px;background-color: white;">
 	                        </div>
 	                        <div class="col-9 news-bg" style="background-color: white;">
-	                            <h1 class="newsblock-title-under" style="margin-top: 20px;background-color: white;">${res[i].jrArTitle}</h1>
+	                            <h1 class="newsblock-title-under" style="margin-top: 20px;background-color: white;color: #e08a1c;">${res[i].jrArTitle}</h1>
 	                            <p style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
-		  	                    	  -webkit-line-clamp: 3;">${res[i].jrArContent}</p>
+		  	                    	  -webkit-line-clamp: 3;color: #9e7575;">${res[i].jrArContent}</p>
 	                            <form  method="get" action="../jobFairDetail/jobFairDetail.html">
-	                            <button class="btn btn-link border-pretty" style="color:cadetblue;" type="submit"  name="jrArNo"value="${res[i].jrArNo}">查看詳情<i
+	                            <button class="btn btn-link border-pretty" style="transform: translate(-14px, 6px);color:#95b6b7;" type="submit"  name="jrArNo"value="${res[i].jrArNo}">查看詳情<i
 	                                    class="icon ion-android-arrow-forward"></i></button>
 	                                    </form>
 	                        </div>
@@ -130,17 +130,17 @@
 		   
 		        	$("div#ar").append(`
 		        			<div class="col" id="all" style="padding: 0%; margin-bottom: 20px;margin-left:150px;width:1000px;" >
-		                    <div class="row" style="vertical-align: middle;padding: 0%;box-shadow:0px 0px 4px 1px lightgray;height:250px;">
+		                    <div class="row" style="vertical-align: middle;padding: 0%; box-shadow:0px 0px 4px 1px lightgray;height:250px;">
 		                        <div class="col-3 news-bg" style="vertical-align: middle;background-color: white;margin:0px ">
 		                            <img src="${res[i].jrArImg}" width="156px"
-		                                style="vertical-align: middle; margin-top: 40px; margin-left: 50px;">
+		                                style="vertical-align: middle; margin-top: 40px; margin-left: 50px;background-color: white;">
 		                        </div>
-		                        <div class="col-9 news-bg" style="background-color: white;" >
-		                            <h1 class="newsblock-title-under" style="margin-top: 20px;background-color: white;">${res[i].jrArTitle}</h1>
+		                        <div class="col-9 news-bg" style="background-color: white;">
+		                            <h1 class="newsblock-title-under" style="margin-top: 20px;background-color: white;color: #e08a1c;">${res[i].jrArTitle}</h1>
 		                            <p style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
-		  	                    	  -webkit-line-clamp: 3;">${res[i].jrArContent}</p>
+			  	                    	  -webkit-line-clamp: 3;color: #9e7575;">${res[i].jrArContent}</p>
 		                            <form  method="get" action="../jobFairDetail/jobFairDetail.html">
-		                            <button class="btn btn-link border-pretty" style="color:cadetblue;" type="submit"  name="jrArNo"value="${res[i].jrArNo}">查看詳情<i
+		                            <button class="btn btn-link border-pretty" style="color:#95b6b7;transform: translate(-14px, 6px)" type="submit"  name="jrArNo"value="${res[i].jrArNo}">查看詳情<i
 		                                    class="icon ion-android-arrow-forward"></i></button>
 		                                    </form>
 		                        </div>

@@ -134,42 +134,14 @@
 									</select>
 									<button type="submit" id="searchBtn">搜尋</button>
 								</div>
-								<div  class="searchForRecord">
+								<div style="border:1px solid orange;" class="searchForRecord">
 									查看報名紀錄
 								</div>
 							</div>
 
-							<div class="showInfo">
-								<div class="fair fair1">
-									<div class="img">
-										<img href="#" alt="this is a photo">
-									</div>
-									<div class="intro">
-										<h3>新竹市秋季徵才博覽會</h3>
-										<p>safssafsafssfsaffsfsafsa12wfwefwewefewfewfewfweewwefewfewfewfewfwefewfewfwefewfewfewfewfewfewfewfewfewfewfefwfewfewfewfewfwefewfwefewfewfewfwfwefwefewfewfewfewfwfweewfewfewfewfew3456789123456789</p>
-										<button>了解詳情</button>
-									</div>
-								</div>
-								<div class="fair fair2">
-									<div class="img">
-										<img href="#" alt="this is a photo">
-									</div>
-									<div class="intro">
-										<h3>新竹市秋季徵才博覽會</h3>
-										<p>safsafsafsfsfsafsfsafsafsafasfsafsafsafssfsaffsfsafsa</p>
-										<button>了解詳情</button>
-									</div>
-								</div>
-								<div class="fair fair3">
-									<div class="img">
-										<img href="#" alt="this is a photo">
-									</div>
-									<div class="intro">
-										<h3>新竹市秋季徵才博覽會</h3>
-										<p>safsafsafsfsfsafsfsafsafsafasfsafsafsafssfsaffsfsafsa</p>
-										<button>了解詳情</button>
-									</div>
-								</div>
+							<div id="jf"class="showInfo">
+								
+								
 							</div>
 							<div id="button">
 								<button id="prev">上一頁</button>
@@ -195,6 +167,9 @@
 	<script>
 		var a = 0;
 		$(function () {
+			$("div.searchForRecord").on("click",function(){
+				window.location.replace('./signUpRecord/signUpRecord.html');
+			})
 			$("button#prev").on("click", function () {
 
 
@@ -216,23 +191,21 @@
 								console.log("iiii" + i);
 								console.log(res[i]);
 								$("div#jf").append(`
-   		                    <div class="card" id="all" style="height: auto;width:300px;position: relative; margin-right:30px;padding-bottom:20px;"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;"
-   		                            src="${res[i].jrArImg}">
-   		                        <div class="card-body p-4">
-									<span syle="display:grid;place-items:center;height:100px;"><h4 class="card-title">${res[i].jfName}</h4></span>
-   		                            <p class="card-text"style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
-   		  	                    	  -webkit-line-clamp: 3; height:100px;
-   				                    ">${res[i].jfActivity}</p>
-   				                    <form method="get" action="./signUp/signUp.html">
-   		        				     
-   		        					<button type="submit" class="btn btn-primary"  name="jfNo" value="${res[i].jfNo}"
-   		        						>
-   		        						<strong>查詢詳情</strong>
-   		        					</button>
-   		        				
-   		        			</form>
-   		                        </div>
-   		                    </div>
+										<div id="all"class="fair fair1">
+										<div class="img">
+											<img style="width:100%;height:225px;"src="${res[i].jrArImg}" alt="this is a photo">
+										</div>
+										<div class="intro">
+											<h3>${res[i].jfName}</h3>
+											<p style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
+					  	                    	  -webkit-line-clamp: 4;">${res[i].jfActivity}</p>
+											<form method="get" action="./signUp/signUp.html" >
+											<button type="submit" name="jfNo" value="${res[i].jfNo}">了解詳情</button>
+											</form>
+										</div>
+									</div>
+   		                    
+   		                        
    		                `)
 
 							}
@@ -253,6 +226,7 @@
 						a += 3;
 						if ((a + 3) > (res.length + 2)) {
 							alert("已經是最後一頁了")
+							a=(res.length-1);
 							return;
 						} else {
 							$("div#all").remove();
@@ -260,23 +234,19 @@
 							for (let i = 0 + a; i < (3 + a); i++) {
 								console.log(res[i]);
 								$("div#jf").append(`
-   		                    <div class="card" id="all" style="height: auto;width:300px;position: relative; margin-right:30px;padding-bottom:20px;"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;"
-   		                            src="${res[i].jrArImg}">
-   		                        <div class="card-body p-4">
-									<span><h4 class="card-title">${res[i].jfName}</h4></span>
-   		                            <p class="card-text"style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
-   		  	                    	  -webkit-line-clamp: 3;
-   				                    ">${res[i].jfActivity}</p>
-   				                    <form method="get" action="./signUp/signUp.html">
-   		        				     
-   		        					<button type="submit" class="btn btn-primary"  name="jfNo" value="${res[i].jfNo}"
-   		        					>
-   		        						<strong>查詢詳情</strong>
-   		        					</button>
-   		        				
-   		        			</form>
-   		                        </div>
-   		                    </div>
+										<div id="all"class="fair fair1">
+										<div class="img">
+											<img style="width:100%;height:225px;"src="${res[i].jrArImg}" alt="this is a photo">
+										</div>
+										<div class="intro">
+											<h3>${res[i].jfName}</h3>
+											<p style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
+					  	                    	  -webkit-line-clamp: 4;">${res[i].jfActivity}</p>
+											<form method="get" action="./signUp/signUp.html" >
+											<button type="submit" name="jfNo" value="${res[i].jfNo}">了解詳情</button>
+											</form>
+										</div>
+									</div>
    		                `)
 
 							}
@@ -298,34 +268,31 @@
 					for (let i = 0; i < 3; i++) {
 						console.log(res[i]);
 						$("div#jf").append(`
-	                    <div class="card" id="all" style="height: auto;width:300px;position: relative; margin-right:30px;padding-bottom:20px;"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;"
-	                            src="${res[i].jrArImg}">
-	                        <div class="card-body p-4">
-	                            <span><h4 class="card-title">${res[i].jfName}</h4></span>
-	                            <p class="card-text"style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
-	  	                    	  -webkit-line-clamp: 3;
-			                    ">${res[i].jfActivity}</p>
-			                    <form method="get" action="./signUp/signUp.html">
-	        				     
-	        					<button type="submit" class="btn btn-primary"  name="jfNo" value="${res[i].jfNo}"
-	        						>
-	        						<strong>查詢詳情</strong>
-	        					</button>
-	        				
-	        			</form>
-	                        </div>
-	                    </div>
+								<div id="all"class="fair fair1">
+								<div class="img">
+									<img style="width:100%;height:225px;"src="${res[i].jrArImg}" alt="this is a photo">
+								</div>
+								<div class="intro">
+									<h3>${res[i].jfName}</h3>
+									<p style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
+			  	                    	  -webkit-line-clamp: 4;">${res[i].jfActivity}</p>
+									<form method="get" action="./signUp/signUp.html" >
+									<button type="submit" name="jfNo" value="${res[i].jfNo}">了解詳情</button>
+									</form>
+								</div>
+							</div>
 	                `)
 
 					}
 				}
 			})
 		})
-		$("button#search").on("click", function () {
+		$("button#searchBtn").on("click", function () {
 			$("div#all").remove();
 			if ($("select#season").val().trim() === "請選擇期間") {
 				location.reload();
 			} else {
+				
 				$.ajax({
 					url: "/SeekerPool/JobFair",
 					method: 'GET',
@@ -340,23 +307,19 @@
 						for (let i = 0; i < 3; i++) {
 							console.log(res[i]);
 							$("div#jf").append(`
-	                    <div id="all" class="card" style="height: auto;width:300px;position: relative; margin-right:30px;padding-bottom:20px;"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;"
-	                            src="${res[i].jrArImg}">
-	                        <div class="card-body p-4">
-	                            <span><h4 class="card-title">${res[i].jfName}</h4></span>
-	                            <p class="card-text"style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
-	  	                    	  -webkit-line-clamp: 4;
-			                    ">${res[i].jfActivity}</p>
-			                    <form method="get" action="./signUp/signUp.html">
-	        				     
-	        					<button type="submit" class="btn btn-primary"  name="jfNo" value="${res[i].jfNo}"
-	        						>
-	        						<strong>查詢詳情</strong>
-	        					</button>
-	        				
-	        			</form>
-	                        </div>
-	                    </div>
+									<div id="all"class="fair fair1">
+									<div class="img">
+										<img style="width:100%;height:225px;"src="${res[i].jrArImg}" alt="this is a photo">
+									</div>
+									<div class="intro">
+										<h3>${res[i].jfName}</h3>
+										<p style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
+				  	                    	  -webkit-line-clamp: 4;">${res[i].jfActivity}</p>
+										<form method="get" action="./signUp/signUp.html" >
+										<button type="submit" name="jfNo" value="${res[i].jfNo}">了解詳情</button>
+										</form>
+									</div>
+								</div>
 	                `)
 
 
@@ -392,23 +355,19 @@
 						for (let i = a; i < 3 + a; i++) {
 							console.log(res[i]);
 							$("div#jf").append(`
-          	                    <div id="all" class="card" style="height: auto;width:300px;position: relative; margin-right:30px;padding-bottom:20px;"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;"
-          	                            src="${res[i].jrArImg}">
-          	                        <div class="card-body p-4">
-										<span><h4 class="card-title">${res[i].jfName}</h4></span>
-          	                            <p class="card-text"style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
-          	  	                    	  -webkit-line-clamp: 4;
-          			                    ">${res[i].jfActivity}</p>
-          			                    <form method="get" action="./signUp/signUp.html">
-          	        				     
-          	        					<button type="submit" class="btn btn-primary"  name="jfNo" value="${res[i].jfNo}"
-          	        						>
-          	        						<strong>查詢詳情</strong>
-          	        					</button>
-          	        				
-          	        			</form>
-          	                        </div>
-          	                    </div>
+									<div id="all"class="fair fair1">
+									<div class="img">
+										<img style="width:100%;height:225px;"src="${res[i].jrArImg}" alt="this is a photo">
+									</div>
+									<div class="intro">
+										<h3>${res[i].jfName}</h3>
+										<p style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
+				  	                    	  -webkit-line-clamp: 4;">${res[i].jfActivity}</p>
+										<form method="get" action="./signUp/signUp.html" >
+										<button type="submit" name="jfNo" value="${res[i].jfNo}">了解詳情</button>
+										</form>
+									</div>
+								</div>
           	                `)
 
 						}
@@ -427,8 +386,10 @@
 				data: { action: "getSeason_For_Display", season: $("select#season").val() },
 				success: function (res) {
 					a += 3;
+					
 					if ((3 + a) > (res.length + 2)) {
 						alert("已經是最後一頁了")
+						a=(res.length-1);
 						return;
 					} else {
 						console.log($("select#season").val());
@@ -437,23 +398,19 @@
 						for (let i = 0 + a; i < 3 + a; i++) {
 							console.log(res[i]);
 							$("div#jf").append(`
-                     	                    <div id="all" class="card" style="height: auto;width:300px;position: relative; margin-right:30px;padding-bottom:20px;"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;"
-                     	                            src="${res[i].jrArImg}">
-                     	                        <div class="card-body p-4">
-													<span><h4 class="card-title">${res[i].jfName}</h4></span>
-                     	                            <p class="card-text"style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
-                     	  	                    	  -webkit-line-clamp: 4;
-                     			                    ">${res[i].jfActivity}</p>
-                     			                    <form method="get" action="./signUp/signUp.html">
-                     	        				     
-                     	        					<button type="submit" class="btn btn-primary"  name="jfNo" value="${res[i].jfNo}"
-                     	        						>
-                     	        						<strong>查詢詳情</strong>
-                     	        					</button>
-                     	        				
-                     	        			</form>
-                     	                        </div>
-                     	                    </div>
+									<div id="all"class="fair fair1">
+									<div class="img">
+										<img style="width:100%;height:225px;"src="${res[i].jrArImg}" alt="this is a photo">
+									</div>
+									<div class="intro">
+										<h3>${res[i].jfName}</h3>
+										<p style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
+				  	                    	  -webkit-line-clamp: 4;">${res[i].jfActivity}</p>
+										<form method="get" action="./signUp/signUp.html" >
+										<button type="submit" name="jfNo" value="${res[i].jfNo}">了解詳情</button>
+										</form>
+									</div>
+								</div>
                      	                `)
 
 
