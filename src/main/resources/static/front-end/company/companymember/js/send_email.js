@@ -1,51 +1,104 @@
 $(function () {
     // 寄驗證信
-    $.ajax({
-        type: 'POST',
-        url: '/SeekerPool/RegisterVertification',
-        success: function (data) {
-            console.log(data);  // 印出從後端回傳的數據("驗證碼已發送")
-        },
-        dataType: 'json'
-    });
+    axios.post('/SeekerPool/RegisterVertification')
+        .then(function (response) {
+            console.log(response.data);  // 印出從後端回傳的數據("驗證碼已發送")
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 
     $("#confirmBtn").click(function (e) {
         e.preventDefault();
-        console.log($("#checkCodeForm").serialize());  // 印出表單數據
-        $.ajax({
-            type: 'POST',
-            url: '/SeekerPool/RegisterVertification',
-            data: $("#checkCodeForm").serialize(),
-            success: function (data) {
-                // console.log(data);  // 印出從後端回傳的數據
+        let formData = $("#checkCodeForm").serialize();  // 收集表單數據
+        console.log(formData);  // 印出表單數據
+        axios.post('/SeekerPool/RegisterVertification', formData)
+            .then(function (response) {
+                // console.log(response.data);  // 印出從後端回傳的數據
+                let data = response.data;
                 if (data.flag) {
                     Swal.fire({
                         title: '恭喜註冊成功!!',
-                        timer: 1000,
+                        timer: 2000,
                         icon: 'success',
                         width: 400,
                         padding: '3em',
                         color: '#817be0',
                         background: '#fff',
                         backdrop: `
-                                    rgba(0,0,023,0.3)
-                                    url(https://sweetalert2.github.io/images/nyan-cat.gif)
-                                    right bottom
-                                    repeat
-                                  `
+                                rgba(0,0,023,0.3)
+                                url(https://sweetalert2.github.io/images/nyan-cat.gif)
+                                right bottom
+                                repeat
+                              `
                     }).then(() => {
                         setTimeout(() => {
                             location.href = "companyIndex.html";
-                        }, 1000)
+                        }, 2000)
                     })
                 } else {
-                    alert(data.errorMsg);
+                    Swal.fire(
+                        '驗證碼錯誤',
+                        `${data.errorMsg}`,
+                        'error'
+                    )
                 }
-            },
-            dataType: 'json'
-        });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     });
 });
+
+
+// $(function () {
+//     // 寄驗證信
+//     $.ajax({
+//         type: 'POST',
+//         url: '/SeekerPool/RegisterVertification',
+//         success: function (data) {
+//             console.log(data);  // 印出從後端回傳的數據("驗證碼已發送")
+//         },
+//         dataType: 'json'
+//     });
+
+//     $("#confirmBtn").click(function (e) {
+//         e.preventDefault();
+//         console.log($("#checkCodeForm").serialize());  // 印出表單數據
+//         $.ajax({
+//             type: 'POST',
+//             url: '/SeekerPool/RegisterVertification',
+//             data: $("#checkCodeForm").serialize(),
+//             success: function (data) {
+//                 // console.log(data);  // 印出從後端回傳的數據
+//                 if (data.flag) {
+//                     Swal.fire({
+//                         title: '恭喜註冊成功!!',
+//                         timer: 1000,
+//                         icon: 'success',
+//                         width: 400,
+//                         padding: '3em',
+//                         color: '#817be0',
+//                         background: '#fff',
+//                         backdrop: `
+//                                     rgba(0,0,023,0.3)
+//                                     url(https://sweetalert2.github.io/images/nyan-cat.gif)
+//                                     right bottom
+//                                     repeat
+//                                   `
+//                     }).then(() => {
+//                         setTimeout(() => {
+//                             location.href = "companyIndex.html";
+//                         }, 1000)
+//                     })
+//                 } else {
+//                     alert(data.errorMsg);
+//                 }
+//             },
+//             dataType: 'json'
+//         });
+//     });
+// });
 
 // 重新寄驗證碼設定
 function startCountdown() {

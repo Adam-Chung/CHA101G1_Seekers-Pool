@@ -60,7 +60,10 @@ public class CompanyMemberServiceImpl implements CompanyMemberService {
 		String name = companyMember.getComName();
 		String emailText = name + "，您好！\n您的驗證碼是：" + randomCode + "\n請於5分鐘內驗證完成！";
 		
-		SendEmailUtil.sendMail(email, subject, emailText);
+//		SendEmailUtil.sendMail(email, subject, emailText);
+		// 開立多執行緒寄信(邊跳轉頁面邊寄信 效率更快)
+		Thread t1 = new Thread(() -> SendEmailUtil.sendMail(email, subject, emailText));
+		t1.start();
 		
 		return randomCode;
 	}
