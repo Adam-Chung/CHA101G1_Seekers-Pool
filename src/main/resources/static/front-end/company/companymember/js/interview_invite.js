@@ -49,7 +49,7 @@ if (jobTitle) {
             // 動態生成選單
             jobs.forEach(function (job) {
                 let option = document.createElement('option');
-                option.value = job.jobId;
+                option.value = job.jobNo;
                 option.text = job.jobName;
 
                 select.appendChild(option);
