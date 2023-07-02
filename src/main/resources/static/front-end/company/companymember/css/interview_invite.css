@@ -135,3 +135,7 @@ button:hover {
     border: 1px solid blue;
     margin-left: 40px;
 }
+
+#job-title {
+    display: none;
+}
