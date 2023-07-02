@@ -45,7 +45,7 @@ public class VertificationServlet extends HttpServlet {
 //				System.out.println("寄信囉");
 				validCode = service.sendValidCode(companyMember);
 				// 開啟Redis來儲存key
-				jedis.setex(key, 20, validCode);
+				jedis.setex(key, 15, validCode);
 //				System.out.println("驗證碼為: " + key + ", 郵件寄出驗證碼: " + jedis.get(key));
 				
 			} else {
@@ -66,7 +66,7 @@ public class VertificationServlet extends HttpServlet {
 				} else {
 					// 驗證錯誤
 					resultInfo.setFlag(false);
-					resultInfo.setErrorMsg("驗證碼錯誤，請重新確認一次");
+					resultInfo.setErrorMsg("請重新確認一次");
 //					System.out.println("驗證失敗!");
 				}
 				
