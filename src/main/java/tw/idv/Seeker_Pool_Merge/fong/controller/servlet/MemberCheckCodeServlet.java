@@ -53,7 +53,7 @@ public class MemberCheckCodeServlet extends HttpServlet {
 			
 //			req.getSession().setAttribute("checkCode", checkCode);
 			//儲存信箱驗證碼到Redis中，定時20秒銷毀，記得先開啟redis_startup.bat - 捷徑
-			jedis.setex(key, 20L, checkCode);
+			jedis.setex(key, 60L, checkCode);
 //			jedis.expire(key, 20L);
 
 			System.out.println(key + "郵件驗證--" + jedis.get(key));
