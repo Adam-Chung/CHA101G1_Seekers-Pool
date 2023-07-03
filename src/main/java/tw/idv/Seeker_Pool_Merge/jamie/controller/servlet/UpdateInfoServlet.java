@@ -86,7 +86,7 @@ public class UpdateInfoServlet extends HttpServlet {
 				
 				resultInfo.setFlag(true);
 				out.write(new JSONObject(resultInfo).toString());
-				System.out.println("含照片 更新成功");
+//				System.out.println("含照片 更新成功");
 				
 			} else {  // 沒更新照片
 				Map<String, String[]> map = req.getParameterMap();
@@ -99,7 +99,7 @@ public class UpdateInfoServlet extends HttpServlet {
 				
 				resultInfo.setFlag(true);
 				out.write(new JSONObject(resultInfo).toString());
-				System.out.println("不含照片 更新成功");
+//				System.out.println("不含照片 更新成功");
 			}			
 			out.flush();
             

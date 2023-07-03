@@ -44,10 +44,10 @@ public class CancelInterviewServlet extends HttpServlet {
 		
 		if (updateRows == 1) {
 			resultInfo.setFlag(true);
-			System.out.println("取消面試成功");
+//			System.out.println("取消面試成功");
 		} else {
 			resultInfo.setFlag(false);
-			System.out.println("取消面試失敗");
+//			System.out.println("取消面試失敗");
 		}
 		
 	}

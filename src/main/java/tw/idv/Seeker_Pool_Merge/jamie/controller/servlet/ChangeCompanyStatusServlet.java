@@ -34,14 +34,14 @@ public class ChangeCompanyStatusServlet extends HttpServlet {
 			try {
 				int id = Integer.parseInt(idStr);
 				int status = Integer.parseInt(statusStr);
-				System.out.println("現在的企業ID是: " + id);
-				System.out.println("現在的企業帳號狀態是: " + status);
+//				System.out.println("現在的企業ID是: " + id);
+//				System.out.println("現在的企業帳號狀態是: " + status);
 				
 				CompanyMemberVo companyMember = service.getCompanyMemberById(id);
 				companyMember.setComStatus(status);
 				service.updateCompanyStatus(companyMember);
 				System.out.println(companyMember);
-				System.out.println("更新成功");
+//				System.out.println("更新成功");
 
 				resultInfo.setFlag(true);
 				String jsonStr = new JSONObject(resultInfo).toString();

@@ -33,7 +33,6 @@ public class InterviewInviteServlet extends HttpServlet {
 		
 		int comMemId = (int) req.getSession().getAttribute("companyMember");
 		List<JobVo> jobList = dao.findJobsByComMemId(comMemId);
-		System.out.println(jobList);
 		
 		String jsonStr =  new JSONArray(jobList).toString();
 		resp.setContentType("application/json; charset=UTF-8");

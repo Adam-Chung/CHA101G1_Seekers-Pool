@@ -52,7 +52,7 @@ public class TalentSearchController {
                                       @RequestParam(defaultValue = "1") Integer page,
                                       @RequestParam(defaultValue = "5") Integer pageSize,
                                       @PathVariable String keyword){
-        log.info("分頁關鍵字查詢, 參數:{}, {}, {}", page, pageSize, keyword);
+//        log.info("分頁關鍵字查詢, 參數:{}, {}, {}", page, pageSize, keyword);
         //調用service分頁查詢
         PageBean pageBean = talentSearchService.page( page,pageSize, keyword);
         return Result.success(pageBean);
@@ -64,7 +64,7 @@ public class TalentSearchController {
             @RequestParam(defaultValue = "1") Integer page,
             @RequestParam(defaultValue = "5") Integer pageSize,
             @PathVariable String[] areas){
-        log.info("用地區查詢人才");
+//        log.info("用地區查詢人才");
 
         PageBean pageBean = talentSearchService.page2( page,pageSize, areas);
         return Result.success(pageBean);
@@ -73,7 +73,7 @@ public class TalentSearchController {
     //    透過memId查詢人才
     @GetMapping("/id/{memId}")
     public Result findTalentById(@PathVariable Integer memId){
-        log.info("用id查詢人才:{}", memId);
+//        log.info("用id查詢人才:{}", memId);
 
         List<Member> talentList = talentSearchService.list(memId);
         return Result.success(talentList);

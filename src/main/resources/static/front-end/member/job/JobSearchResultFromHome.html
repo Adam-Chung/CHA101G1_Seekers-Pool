@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seeker's Pool 職缺搜尋</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- jQuery -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="./js/jquery.twzipcode.min.js"></script>
+    <!-- 引入header、footer的JS -->
+    <script type="text/javascript" src="js/include.js"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Krona+One|Quicksand:300,400,700&amp;display=swap">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/5.0.7/sweetalert2.min.css">
+
+
+
+    <style>
+        @import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
+
+        .display {
+            font-family: 'Noto Sans TC', sans-serif !important;
+            text-align: center;
+            color: red;
+            font-size: larger;
+        }
+
+        .job-icon {
+            width: 35px;
+            height: 35px;
+            margin-right: 0px;
+            margin-bottom: -5px;
+        }
+
+        .topjob {
+            margin-right: 50px;
+        }
+
+        a {
+            font-weight: bolder;
+        }
+
+        a:hover {
+            color: lightblue;
+        }
+
+        #twzipcode {
+            margin-right: 20px;
+        }
+
+        .comPicture {
+            height: 60px;
+            width: 120px;
+        }
+
+        .img-container {
+            margin-right: -100px;
+        }
+
+
+        /* general styling */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        *:before,
+        *:after {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f9f7f3;
+            color: #272727;
+            font-family: 'Quicksand', sans-serif;
+            min-height: 100vh;
+            min-width: 625px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        h4 {
+            font-size: 0.9rem;
+        }
+
+        .job-title {
+            font-size: 2.0rem;
+        }
+
+        .input-lg {
+            width: 16rem;
+        }
+
+        .input-md {
+            width: 10rem;
+        }
+
+        .input-sm {
+            width: 8rem;
+        }
+
+        input,
+        select,
+        button,
+        .input {
+            border: 1px solid #2f2f2f;
+            color: #272727;
+            font-family: 'Quicksand', sans-serif;
+            padding: 0.5rem;
+        }
+
+        input[type='submit']:hover {
+            background-color: #d9d9d9;
+        }
+
+
+        main p {
+            line-height: 1.5;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        .job-description-container p {
+            margin: 0.5rem 0;
+        }
+
+
+        /* utility */
+
+        .logo {
+            color: #ff7847;
+            font-family: 'Krona One', sans-serif;
+            font-size: 2rem;
+        }
+
+        .flex-row {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .center {
+            align-items: center;
+            justify-content: center;
+        }
+
+        .center-x {
+            justify-content: center;
+        }
+
+
+        .mt-1 {
+            margin-top: 1rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 4rem;
+        }
+
+        .mr-auto {
+            margin-right: auto;
+        }
+
+        .mr-1 {
+            margin-right: 1rem;
+        }
+
+        .padding-half {
+            padding: 0.5rem;
+        }
+
+        .padding-half-0 {
+            padding: 0.5rem 0;
+        }
+
+        .padding-half-1 {
+            padding: 0.5rem 1rem;
+        }
+
+        .padding-1 {
+            padding: 1rem;
+        }
+
+        .padding-1-0 {
+            padding: 1rem 0;
+        }
+
+        .padding-2 {
+            padding: 2rem;
+        }
+
+
+        .font-light-sm {
+            font-size: 125%;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: bold;
+        }
+
+        /* structure */
+
+        .search-bar {
+            border: 1px solid #2f2f2f;
+            margin-top: 20px;
+        }
+
+        .job-main {
+            overflow-y: scroll;
+            height: 100%;
+            max-height: 75vh;
+        }
+
+        .max-1200 {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        main {
+            /* background-color: #f9f7f3; */
+            box-shadow: 0 0 3px #333;
+        }
+
+        .job-listing-container {
+            height: 125px;
+            border-top: 1px solid #2f2f2f;
+            border-bottom: 1px solid #2f2f2f;
+            margin-bottom: 1rem;
+        }
+
+        .job-listing-container:hover {
+            box-shadow: 0px 0px 5px #ff632b;
+        }
+
+        .job-listing-container:last-child {
+            margin-bottom: 0;
+        }
+
+        .img {
+            height: 100px;
+            width: 100 px;
+            /* background-color: #d9d9d9; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .img-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        /* 自造 */
+
+        .job-item {
+            border: 1px solid black;
+            margin-top: 10px;
+            width: 750px;
+            background-color: wheat;
+            box-shadow: 0 0 3px #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+        }
+
+        .job-container {
+            margin-top: 10px;
+            width: 750px;
+        }
+
+        .salary {
+            padding: 0.5rem 0;
+            margin-left: 10px;
+
+        }
+
+        .information-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button {
+            width: 100px;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .company-name-container {
+            font-size: 125%;
+            font-weight: bold;
+        }
+
+        .salary-block {
+            font-size: 125%;
+            font-weight: bold;
+        }
+
+        .jobName {
+            font-size: 26px;
+        }
+
+        /* 按鈕特效 */
+
+
+        .animate {
+            transition: all 0.1s;
+            -webkit-transition: all 0.1s;
+        }
+
+        .action-button {
+            position: relative;
+            padding: 10px 40px;
+            margin: 0px 10px 10px 0px;
+            float: left;
+            border-radius: 3px;
+            font-family: 'Lato', sans-serif;
+            font-size: 18px;
+            color: #FFF;
+            text-decoration: none;
+        }
+
+        .blue {
+            background-color: orangered;
+            border-bottom: 5px solid orangered;
+            text-shadow: 0px -2px black;
+        }
+
+
+        .action-button:active {
+            transform: translate(0px, 5px);
+            -webkit-transform: translate(0px, 5px);
+            border-bottom: 1px solid;
+        }
+    </style>
+</head>
+
+<body>
+    <!--引入heaer頁面-->
+    <div id="header"></div>
+
+
+    <!--引入heaer頁面-->
+    <div class="list"></div>
+
+    <main>
+        <!--引入QandTop按鈕-->
+        <div id="QandTop"></div>
+        <div class="main-content">
+            <div class="center-x flex-row">
+                <div class="search-bar padding-1 max-1200 flex-row center-x ">
+                    <form class="flex-row center searchingbar" action="../JobResultSearch" method="POST">
+                        <input class="input-lg mr-1 keyword" name="keyword" type="text"
+                            placeholder="Job Title, Keywords or Company">
+                        <div id="twzipcode"></div>
+                        <input class="input-md submitbutton" type="submit" value="Search">
+                    </form>
+                </div>
+            </div>
+            <div class="job-container">
+
+                <div class="display">
+                    請輸入關鍵字來獲取職缺搜尋結果 ！！
+                </div>
+
+            </div>
+        </div>
+    </main>
+    <script type="text/javascript">
+    $(function(){
+    	let keywordName =JSON.parse(sessionStorage.getItem("keyword"));
+    	
+        let projectName = window.location.pathname.split('/')[1]; //SeekerPool
+        
+        var data = {
+                keyword: keywordName,
+                city: "",
+                town: ""
+            };
+    	 
+    	
+        $.ajax({
+            url: '/' + projectName + "/JobResultSearch",
+            method: "POST",
+            data: data,
+            dataType: "json",
+            success: function (data) {
+
+                $(".job-container").empty();
+
+                $.each(data, function (index, item) {
+                    var jobItem = $("<div>", { class: "job-item padding-1" });
+
+                    var imgContainer = $("<div>", { class: "img-container center padding-half-1" }).appendTo(jobItem);
+                    $("<div>", { class: "img" }).appendTo(imgContainer)
+                        .append($("<img>", { src: "https://upload.wikimedia.org/wikipedia/commons/7/7b/Honda_Logo.svg", alt: "?logo" }));
+
+                    var infoContainer = $("<div>", { class: "information-container padding-half-0" }).appendTo(jobItem);
+
+                    var companyNameContainer = $("<div>", { class: "company-name-container padding-half-0" }).appendTo(infoContainer);
+                    $("<a>", { href: "JobDetail.html?comMemId=" + item.comMemId, name: "comName", text: item.comName }).appendTo(companyNameContainer);
+
+
+                    var jobTitleContainer = $("<div>", { class: "job-title-container padding-half-0 jobName" }).appendTo(infoContainer);
+                    $("<strong>").appendTo(jobTitleContainer)
+                        .append($("<a>", { href: "JobContent.html?jobNo=" + item.jobNo + "&comMemId=" + item.comMemId, text: item.jobName }));
+
+
+                    var locationContainer = $("<div>", { class: "location-container padding-half-0" }).appendTo(infoContainer);
+                    $("<span>", { class: "font-light-sm", name: "cityName", text: item.cityName }).appendTo(locationContainer);
+                    $("<span>", { class: "font-light-sm", name: "districtName", text: item.districtName }).appendTo(locationContainer);
+
+                    var buttonSection = $("<div>", { class: "button_section" }).appendTo(jobItem);
+                    $("<div>", { style: "text-align:center;" }).appendTo(buttonSection)
+                        .append($("<button>", { href: "#", class: "action-button shadow animate blue favorite", text: "收藏" }).attr("data-jobNo", item.jobNo))
+                        .append($("<button>", { href: "#", class: "action-button shadow animate blue resume", text: "應徵" }).attr("data-comMemId", item.comMemId).attr("data-jobNo", item.jobNo));
+
+
+
+
+
+                    jobItem.appendTo(".job-container");
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+
+        });
+        sessionStorage.removeItem("keyword")
+
+    })
+    </script>
+
+    <script>
+
+        let projectName = window.location.pathname.split('/')[1]; //SeekerPool
+
+        $('.submitbutton').on('click', function (event) {
+            event.preventDefault();
+
+            var keyword = $('.keyword').val();
+            var city = $('.city').val();
+            var town = $('.town').val();
+
+            // 建立要傳送的資料物件
+            var data = {
+                keyword: keyword,
+                city: city,
+                town: town
+            };
+
+            $.ajax({
+                url: '/' + projectName + "/JobResultSearch",
+                method: "POST",
+                data: data,
+                dataType: "json",
+                success: function (data) {
+
+                    // 清空现有内容
+                    $(".job-container").empty();
+
+                    // 遍历数据并生成job-item
+                    $.each(data, function (index, item) {
+                        var jobItem = $("<div>", { class: "job-item padding-1" });
+
+                        var imgContainer = $("<div>", { class: "img-container center padding-half-1" }).appendTo(jobItem);
+                        $("<div>", { class: "img" }).appendTo(imgContainer)
+                            .append($("<img>", { src: item.comPicture, alt: "我是logo", class: "comPicture" }));
+
+                        var infoContainer = $("<div>", { class: "information-container padding-half-0" }).appendTo(jobItem);
+
+                        var companyNameContainer = $("<div>", { class: "company-name-container padding-half-0" }).appendTo(infoContainer);
+                        $("<a>", { href: "companyProfile.html?comMemId=" + item.comMemId, name: "comName", text: item.comName }).appendTo(companyNameContainer);
+
+                        if (item.jobTop === 0) {
+                            var jobTitleContainer = $("<div>", { class: "job-title-container padding-half-0 jobName" }).appendTo(infoContainer);
+                            $("<strong>").appendTo(jobTitleContainer)
+                                .append($("<a>", { href: "JobContent.html?jobNo=" + item.jobNo + "&comMemId=" + item.comMemId, text: item.jobName }));
+                        } else {
+                            var jobTitleContainer = $("<div>", { class: "job-title-container padding-half-0 jobName" }).appendTo(infoContainer);
+                            var jobTitleContent = $("<span>", { class: "job-title-content topjob" }).appendTo(jobTitleContainer);
+                            $("<img>", { src: "./images/gold-crown.svg", alt: "我是至頂的圖", class: "job-icon" }).appendTo(jobTitleContent);
+                            $("<a>", { href: "JobContent.html?jobNo=" + item.jobNo + "&comMemId=" + item.comMemId, text: item.jobName }).appendTo(jobTitleContent);
+
+                        }
+
+
+
+                        var locationContainer = $("<div>", { class: "location-container padding-half-0" }).appendTo(infoContainer);
+                        $("<span>", { class: "font-light-sm", name: "cityName", text: item.cityName }).appendTo(locationContainer);
+                        $("<span>", { class: "font-light-sm", name: "districtName", text: item.districtName }).appendTo(locationContainer);
+
+                        var buttonSection = $("<div>", { class: "button_section" }).appendTo(jobItem);
+                        $("<div>", { style: "text-align:center;" }).appendTo(buttonSection)
+                            .append($("<button>", { href: "#", class: "action-button shadow animate blue favorite", text: "收藏" }).attr("data-jobNo", item.jobNo))
+                            .append($("<button>", { href: "#", class: "action-button shadow animate blue resume", text: "應徵" }).attr("data-comMemId", item.comMemId).attr("data-jobNo", item.jobNo));
+
+
+
+
+
+                        jobItem.appendTo(".job-container");
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+
+            });
+
+        })
+    </script>
+
+    <script>
+        $(document).on("click", ".resume", function () {
+            var self = this; // 保存當前上下文
+
+            let jobItem = $(this).closest('.job-item');
+            let comMemId = $(this).attr('data-comMemId');
+            let jobNo = $(this).attr('data-jobNo');
+
+            let datafirst = {
+                test: "登入確認"
+            }
+
+            $.ajax({
+                url: '/' + projectName + "/JobApply",
+                method: "POST",
+                dataType: "json",
+                data: datafirst,
+                success: function (data) {
+                    if (data === "notlogin") {
+                        location.href = "../member/memberlogin.html";
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+
+
+
+            // 延遲0.15秒執行swal
+            setTimeout(function () {
+                swal({
+                    title: '您確定嗎?',
+                    text: "此舉將送出您的履歷 !",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'YES !'
+                }).then(function (result) {
+                    if (result === true) {
+                        // 使用者點擊了確認按鈕
+                        console.log("判斷為true");
+
+                        let data = {
+                            comMemId: comMemId,
+                            jobNo: jobNo
+                        }
+
+                        console.log("comMemId : " + data.comMemId);
+                        console.log("jobNo : " + data.jobNo);
+
+                        $.ajax({
+                            url: '/' + projectName + "/JobApply",
+                            method: "POST",
+                            data: data,
+                            dataType: "json",
+                            success: function (data) {
+                                if (data === false) {
+                                    swal(
+                                        '已取消',
+                                        '您已投過該職缺履歷',
+                                        'info'
+                                    );
+                                }
+                            },
+                            error: function (xhr, status, error) {
+                                console.error(error);
+                            }
+                        });
+                        swal(
+                            '已成功!',
+                            '您的履歷已送出',
+                            'success'
+                        );
+                    } else {
+                        // 使用者點擊了取消按鈕
+                    }
+                });
+            }, 150); // 延遲0.15秒
+        });
+
+
+
+    </script>
+
+    <script>
+
+        $(document).on("click", ".favorite", function () {
+
+            var jobItem = $(this).closest('.job-item');
+            var jobNo = $(this).attr('data-jobNo');
+
+
+
+            let data = {
+                jobNo: jobNo
+            }
+
+            console.log("jobNo : " + data.jobNo);
+
+            $.ajax({
+                url: '/' + projectName + "/JobCollect",
+                method: "POST",
+                data: data,
+                dataType: "json",
+                success: function (data) {
+
+                    if (data === "notlogin") {
+                        location.href = "../member/memberlogin.html";
+                    }
+
+                    if (data === false) {
+                        console.log('data : ' + data);
+                        console.log('判斷為false');
+                        swal({
+                            title: '您已收藏該職缺至清單中 !',
+                            text: '建議去清單觀看',
+                            type: 'info'
+                        });
+                    } else if (data === true) {
+                        swal({
+                            title: '已成功收藏至您的清單中 !',
+                            text: '每一份工作都會很美好 !',
+                            type: 'success'
+                        });
+                    }
+
+                }, error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            })
+        });
+    </script>
+
+    <script>
+        $("#twzipcode").twzipcode({
+            countySel: "", // 城市預設值, 字串一定要用繁體的 "臺", 否則抓不到資料
+            districtSel: "", // 地區預設值
+            zipcodeIntoDistrict: false, // 郵遞區號自動顯示在地區
+            css: ["city form-control", "town form-control"], // 自訂 "城市"、"地區" class 名稱
+            countyName: "city", // 自訂城市 select 標籤的 name 值
+            districtName: "town" // 自訂地區 select 標籤的 name 值
+        });
+    </script>
+
+    <script>
+        $('[name="zipcode"]').hide();
+    </script>
+
+    <!--引入footer頁面-->
+    <div id="footer"></div>
+    <!-- bootstraps -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/5.0.7/sweetalert2.min.js"></script>
+
+
+
+</body>
+
+</html>

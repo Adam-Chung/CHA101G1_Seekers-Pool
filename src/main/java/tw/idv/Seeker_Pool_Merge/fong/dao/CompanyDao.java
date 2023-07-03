@@ -40,4 +40,10 @@ public interface CompanyDao {
 	 * @param deleteBlockCom
 	 */
 	void deletBlockComByName(Integer memId, String deleteBlockCom);
+
+	/**
+	 * 用企業id找企業名稱
+	 * @param deleteBlockCom
+	 */
+	String getComNameBycomId(Integer comId);
 }

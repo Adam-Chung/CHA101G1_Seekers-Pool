@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InterviewerManage</title>
-<!--    <link rel="stylesheet" href="./css/Interviewer2Manage.css">-->
-    <link rel="stylesheet" href="../../company/companyHomePage/CompanyHomePage.css"/>
+    <!--    <link rel="stylesheet" href="./css/Interviewer2Manage.css">-->
+    <link rel="stylesheet" href="../../company/companyHomePage/CompanyHomePage.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -49,15 +49,16 @@
                             <!-- ======================= sub-menu ====================== -->
                             <ul class="sub-menu collapse -none">
                                 <li class="sub-list">
-                                    <a href="#" draggable="false">會員資料管理</a>
+                                    <a href="companyInfo.html" draggable="false">會員資料管理</a>
                                 </li>
 
                                 <li class="sub-list">
-                                    <a href="../../company/vacancy/html/VacancyManagement.html" draggable="false">職缺管理</a>
+                                    <a href="../../company/vacancy/html/VacancyManagement.html"
+                                        draggable="false">職缺管理</a>
                                 </li>
 
                                 <li class="sub-list">
-                                    <a href="#" draggable="false">應徵者管理</a>
+                                    <a href="interviewer_manage.html" draggable="false">應徵者管理</a>
                                 </li>
                             </ul>
                         </li>
@@ -78,16 +79,18 @@
                             </a>
                             <ul class="sub-menu collapse -none">
                                 <li class="sub-list">
-                                    <a href="../../company/jobcase/companyjobcase.html" draggable="false">刊登職缺管理</a>
+                                    <a href="../../company/jobcase/companyjobselect.html" draggable="false">刊登職缺管理</a>
                                 </li>
                                 <li class="sub-list">
                                     <a href="../../company/jobcase/companyjobcase.html" draggable="false">刊登方案</a>
                                 </li>
                                 <li class="sub-list">
-                                    <a href="../../company/jobcase/companyjobcaseconfirm.html" draggable="false">我要刊登</a>
+                                    <a href="../../company/jobcase/companyjobcaseconfirm.html"
+                                        draggable="false">我要刊登</a>
                                 </li>
                                 <li class="sub-list">
-                                    <a href="../../company/jobcase/companyjobordersearch.html" draggable="false">刊登訂單查詢</a>
+                                    <a href="../../company/jobcase/companyjobordersearch.html"
+                                        draggable="false">刊登訂單查詢</a>
                                 </li>
                             </ul>
                         </li>
@@ -101,15 +104,17 @@
                             </a>
                             <ul class="sub-menu collapse -none">
                                 <li class="sub-list">
-                                    <a href="../../company/jobfair/jfindex/Companyjobfair.html" draggable="false">徵才博覽會一覽</a>
+                                    <a href="../../company/jobfair/jfindex/Companyjobfair.html"
+                                        draggable="false">徵才博覽會一覽</a>
                                 </li>
                                 <li class="sub-list">
-                                    <a href="../../company/jobfair/jfindex/signUpRecord/signUpRecord.html" draggable="false">報名紀錄</a>
+                                    <a href="../../company/jobfair/jfindex/signUpRecord/signUpRecord.html"
+                                        draggable="false">報名紀錄</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="main-list logout">
-                            <a href="#" draggable="false"> <!--第五個-->
+                            <a href="javascript:location.href='/SeekerPool/CompanyLogout'" draggable="false"> <!--第五個-->
                                 <i class="fa-solid fa-arrow-right-from-bracket"></i>登出
                             </a>
                         </li>
@@ -131,10 +136,10 @@
                         </div> -->
                         <div class="job">
                             <p>應徵職缺：</p>
-                            <!-- <select id="job-title">
-                                <option value="">前端工程師</option>
-                                <option value="">後端工程師</option>
-                            </select> -->
+                            <select id="job-title">
+                                <!-- <option value="">前端工程師</option>
+                                <option value="">後端工程師</option> -->
+                            </select>
                         </div>
                         <div class="time-picker">
                             <label for="datetime" class="datetime">面試日期</label>

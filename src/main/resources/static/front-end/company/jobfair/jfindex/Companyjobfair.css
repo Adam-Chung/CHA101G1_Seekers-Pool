@@ -97,6 +97,7 @@ select option{
     border-radius: 8px;
     background-color: white;
     border: 1px gray solid;
+    height:300px;
     width: 100%;
     height: 35vh;
     z-index: 2;
@@ -128,7 +129,7 @@ select option{
     left: 3%;
     width: 94%;
     overflow:hidden;
-    height: 18vh;
+   
 }
 .intro button{
     position: absolute;
@@ -153,7 +154,7 @@ select option{
     background-color: orange;
 }
 
-#prev,#next{
+#prev,#next,#seasonp,#seasonn{
     width: 80px;
     height: 40px;
     border: 0;

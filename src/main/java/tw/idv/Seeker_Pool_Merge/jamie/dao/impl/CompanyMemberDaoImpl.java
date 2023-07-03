@@ -1,5 +1,9 @@
 package tw.idv.Seeker_Pool_Merge.jamie.dao.impl;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -58,14 +62,14 @@ public class CompanyMemberDaoImpl implements CompanyMemberDao {
 	// 登入功能：根據帳號和密碼查詢用戶是否存在
 	@Override
 	public CompanyMemberVo findByAccountAndPassword(String comMemAccount, String comMemPassword) {
-		String sql = "select * from company_member where COM_MEM_ACCOUNT = ? and COM_MEM_PASSWORD = ?";
-		
-		CompanyMemberVo companyMember = template.queryForObject(sql,
-	            new BeanPropertyRowMapper<CompanyMemberVo>(CompanyMemberVo.class), comMemAccount, comMemPassword);
-		
 		try {
+			String sql = "select * from company_member where COM_MEM_ACCOUNT = ? and COM_MEM_PASSWORD = ?";
+//			System.out.println("Starting query for account: " + comMemAccount + ", password: " + comMemPassword);
+			CompanyMemberVo companyMember = template.queryForObject(sql,
+					new BeanPropertyRowMapper<CompanyMemberVo>(CompanyMemberVo.class), comMemAccount, comMemPassword);
 	        return companyMember;
 	    } catch (EmptyResultDataAccessException e) {
+	    	System.out.println("EmptyResultDataAccessException caught: " + e.getMessage());
 	        return null;
 	    }
 	}

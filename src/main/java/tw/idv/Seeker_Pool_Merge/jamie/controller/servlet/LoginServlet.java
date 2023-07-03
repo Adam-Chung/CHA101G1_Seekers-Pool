@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
 		try {
 			BeanUtils.populate(companyMember, map);
 		} catch (Exception e) {
-			System.out.println("登入 - 裝資料失敗");
+//			System.out.println("登入 - 裝資料失敗");
 			e.printStackTrace();
 		}
 		
@@ -49,18 +49,20 @@ public class LoginServlet extends HttpServlet {
 		// 4. 判斷帳號是否為null
 		if (loginComMem == null) {
 			// 帳號或密碼錯誤
+//			System.out.println("沒有這個帳號");
 			resultInfo.setFlag(false);
-			resultInfo.setErrorMsg("您輸入的帳號或密碼錯誤，請稍後再試");
-			System.out.println("登入失敗");
+			resultInfo.setErrorMsg("您輸入的帳號或密碼錯誤，請重新確認");
+//			System.out.println("登入失敗");
 		} else {
 			// 登入成功
 			resultInfo.setFlag(true);
 			int comMemId = loginComMem.getComMemId();
 			req.getSession().setAttribute("companyMember", comMemId);
-			System.out.println("登入成功");
+//			System.out.println("登入成功");
 		}
 		
 		// 回應數據
+//		System.out.println("Response: " + new JSONObject(resultInfo).toString()); // 加入這行來檢查後端返回的數據
 		String jsonStr =  new JSONObject(resultInfo).toString();
 		resp.setContentType("application/json; charset=UTF-8");
 		PrintWriter out = resp.getWriter();
