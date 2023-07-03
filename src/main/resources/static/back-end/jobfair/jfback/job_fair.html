@@ -130,7 +130,7 @@
 `				
                 <a class="profile-photo nav-profile d-flex align-items-center" href="#" style=" transform: translate(-100px, -15px);">
 <!--                     <img src="../../common/img/happy-quokka.jpg" alt="Profile" class="rounded-circle"> -->
-                    <span id="name"class="d-none d-md-block ps-2"></span>
+                    <span id="name"class="d-none d-md-block ps-2" style="transform:translateX(-20px);"></span>
                 </a>
                 
                 <!-- End 員工頭像 -->
@@ -534,7 +534,7 @@
 			data: { action: "getOne_For_Display3" },
 			success: function (res) {
 
-				$("span#name").text(res.admName);
+				$("span#name").text("Hi "+res.admName);
 				$("h6#name").text(res.admName);
 				$("table").attr("id", res.admId);
 			}

@@ -70,7 +70,7 @@
 `				
                 <a class="profile-photo nav-profile d-flex align-items-center" href="#" style=" transform: translate(-100px, -15px);">
 <!--                     <img src="../../common/img/happy-quokka.jpg" alt="Profile" class="rounded-circle"> -->
-                    <span id="name"class="d-none d-md-block ps-2"></span>
+                    <span id="name"class="d-none d-md-block ps-2" style="transform:translateX(-20px);"></span>
                 </a>
                 
                 <!-- End 員工頭像 -->
@@ -344,6 +344,9 @@
                     <input type="text" class="form-control" id="formInputQuery" placeholder="Search by typing here...">
                     <button id="search" type="button" class="btn btn-primary"><strong>查詢</strong></button>
                 </div>
+                <div class="input-group" style="transform:translate(350px,-39px);">
+                 <button id="sea" type="button" class="btn btn-primary"><strong>所有報名</strong></button>
+                </div>
             </div>
 
         </div>
@@ -383,7 +386,7 @@
                     data: { action: "getOne_For_Display3" },
                     success: function (res) {
                         $("table").attr("id", res.admId);
-                        $("span#name").text(res.admName);
+                        $("span#name").text("Hi "+res.admName);
                         $("h6#name").text(res.admName);
                     }
                 })
@@ -462,6 +465,9 @@
 
                 })
 
+            })
+            $("button#sea").on("click",function(){
+            	location.reload();
             })
 
             //點擊按鈕後會儲存到徵才活動文章table

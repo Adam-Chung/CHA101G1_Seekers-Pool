@@ -138,7 +138,10 @@
 							</select>
 							<button type="submit" id="searchBtn">搜尋</button>
 						</div>
-						<div style="border:1px solid orange;" class="searchForRecord">
+						<div style="border:1px solid orange;transform:translateX(-30px);" class="searchForRecord" id="divall" >
+							查看全部
+						</div>
+						<div style="border:1px solid orange;" class="searchForRecord" id="record">
 							查看報名紀錄
 						</div>
 					</div>
@@ -170,8 +173,11 @@
 	<script>
 		var a = 0;
 		$(function () {
-			$("div.searchForRecord").on("click", function () {
+			$("div#record").on("click", function () {
 				window.location.replace('./signUpRecord/signUpRecord.html');
+			})
+			$("div#divall").on("click",function(){
+				location.reload();
 			})
 			$("button#prev").on("click", function () {
 
@@ -193,23 +199,43 @@
 							for (let i = 0 + a; i < (3 + a); i++) {
 								console.log("iiii" + i);
 								console.log(res[i]);
+								if(res[i]===undefined){
+									$("div#jf").append(`
+											<div id="all"class="fair fair1">
+											<div class="img"style="overflow:hidden;height:210px;contain:content;">
+												<img style="width:100%;height:225px;" alt="this is a photo">
+											</div>
+											<div class="intro"style="margin-top:20px;">
+											<h3 style="height:50px">查無資料</h3>
+											<p style="margin-top:20px;overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
+					  	                    	  -webkit-line-clamp: 3;">查無資料</p>
+												<form method="get" action="./signUp/signUp.html" >
+												<button type="button" name="jfNo" style="margin-top:20px;">了解詳情</button>
+												</form>
+											</div>
+										</div>
+			                `)
+									
+								}else{
+								
 								$("div#jf").append(`
 										<div id="all"class="fair fair1">
-										<div class="img">
+										<div class="img"style="overflow:hidden;height:210px;contain:content;">
 											<img style="width:100%;height:225px;"src="${res[i].jrArImg}" alt="this is a photo">
 										</div>
-										<div class="intro">
-											<h3>${res[i].jfName}</h3>
-											<p style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
-					  	                    	  -webkit-line-clamp: 4;">${res[i].jfActivity}</p>
+										<div class="intro"style="margin-top:20px;">
+										<h3 style="height:50px">${res[i].jfName}</h3>
+										<p style="margin-top:20px;overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
+				  	                    	  -webkit-line-clamp: 3;">${res[i].jfActivity}</p>
 											<form method="get" action="./signUp/signUp.html" >
-											<button type="submit" name="jfNo" value="${res[i].jfNo}">了解詳情</button>
+											<button type="submit" name="jfNo" value="${res[i].jfNo}"style="margin-top:20px;">了解詳情</button>
 											</form>
 										</div>
 									</div>
    		                    
    		                        
    		                `)
+								}
 
 							}
 						}
@@ -235,21 +261,40 @@
 
 							for (let i = 0 + a; i < (3 + a); i++) {
 								console.log(res[i]);
+								if(res[i]===undefined){
+									$("div#jf").append(`
+											<div id="all"class="fair fair1">
+											<div class="img"style="overflow:hidden;height:210px;contain:content;">
+												<img style="width:100%;height:225px;" alt="this is a photo">
+											</div>
+											<div class="intro"style="margin-top:20px;">
+											<h3 style="height:50px">查無資料</h3>
+											<p style="margin-top:20px;overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
+					  	                    	  -webkit-line-clamp: 3;">查無資料</p>
+												<form method="get" action="./signUp/signUp.html" >
+												<button type="button" name="jfNo" style="margin-top:20px;">了解詳情</button>
+												</form>
+											</div>
+										</div>
+			                `)
+									
+								}else{
 								$("div#jf").append(`
 										<div id="all"class="fair fair1">
-										<div class="img">
+										<div class="img"style="overflow:hidden;height:210px;contain:content;">
 											<img style="width:100%;height:225px;"src="${res[i].jrArImg}" alt="this is a photo">
 										</div>
-										<div class="intro">
-											<h3>${res[i].jfName}</h3>
-											<p style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
-					  	                    	  -webkit-line-clamp: 4;">${res[i].jfActivity}</p>
+										<div class="intro"style="margin-top:20px;">
+										<h3 style="height:50px">${res[i].jfName}</h3>
+										<p style="margin-top:20px;overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
+				  	                    	  -webkit-line-clamp: 3;">${res[i].jfActivity}</p>
 											<form method="get" action="./signUp/signUp.html" >
-											<button type="submit" name="jfNo" value="${res[i].jfNo}">了解詳情</button>
+											<button type="submit" name="jfNo" value="${res[i].jfNo}"style="margin-top:20px;">了解詳情</button>
 											</form>
 										</div>
 									</div>
    		                `)
+								}
 
 							}
 						}
@@ -269,21 +314,40 @@
 
 					for (let i = 0; i < 3; i++) {
 						console.log(res[i]);
+						if(res[i]===undefined){
+							$("div#jf").append(`
+									<div id="all"class="fair fair1">
+									<div class="img"style="overflow:hidden;height:210px;contain:content;">
+										<img style="width:100%;height:225px;" alt="this is a photo">
+									</div>
+									<div class="intro"style="margin-top:20px;">
+									<h3 style="height:50px">查無資料</h3>
+									<p style="margin-top:20px;overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
+			  	                    	  -webkit-line-clamp: 3;">查無資料</p>
+										<form method="get" action="./signUp/signUp.html" >
+										<button type="button" name="jfNo" style="margin-top:20px;">了解詳情</button>
+										</form>
+									</div>
+								</div>
+	                `)
+							
+						}else{
 						$("div#jf").append(`
 								<div id="all"class="fair fair1">
-								<div class="img">
+								<div class="img"style="overflow:hidden;height:210px;contain:content;">
 									<img style="width:100%;height:225px;"src="${res[i].jrArImg}" alt="this is a photo">
 								</div>
-								<div class="intro">
-									<h3>${res[i].jfName}</h3>
-									<p style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
-			  	                    	  -webkit-line-clamp: 4;">${res[i].jfActivity}</p>
+								<div class="intro"style="margin-top:20px;">
+								<h3 style="height:50px">${res[i].jfName}</h3>
+								<p style="margin-top:20px;overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
+		  	                    	  -webkit-line-clamp: 3;">${res[i].jfActivity}</p>
 									<form method="get" action="./signUp/signUp.html" >
-									<button type="submit" name="jfNo" value="${res[i].jfNo}">了解詳情</button>
+									<button type="submit" name="jfNo" value="${res[i].jfNo}"style="margin-top:20px;">了解詳情</button>
 									</form>
 								</div>
 							</div>
 	                `)
+						}
 
 					}
 				}
@@ -308,21 +372,42 @@
 						var a = 0;
 						for (let i = 0; i < 3; i++) {
 							console.log(res[i]);
-							$("div#jf").append(`
-									<div id="all"class="fair fair1">
-									<div class="img">
-										<img style="width:100%;height:225px;"src="${res[i].jrArImg}" alt="this is a photo">
+							if(res[i]===undefined){
+								$("div#jf").append(`
+										<div id="all"class="fair fair1">
+										<div class="img"style="overflow:hidden;height:210px;contain:content;">
+											<img style="width:100%;height:225px;" alt="this is a photo">
+										</div>
+										<div class="intro"style="margin-top:20px;">
+										<h3 style="height:50px">查無資料</h3>
+										<p style="margin-top:20px;overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
+				  	                    	  -webkit-line-clamp: 3;">查無資料</p>
+											<form method="get" action="./signUp/signUp.html" >
+											<button type="button" name="jfNo" style="margin-top:20px;">了解詳情</button>
+											</form>
+										</div>
 									</div>
-									<div class="intro">
-										<h3>${res[i].jfName}</h3>
-										<p style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
-				  	                    	  -webkit-line-clamp: 4;">${res[i].jfActivity}</p>
-										<form method="get" action="./signUp/signUp.html" >
-										<button type="submit" name="jfNo" value="${res[i].jfNo}">了解詳情</button>
-										</form>
+		                `)
+								
+							}else{
+								$("div#jf").append(`
+										<div id="all"class="fair fair1">
+										<div class="img"style="overflow:hidden;height:210px;contain:content;">
+											<img style="width:100%;height:225px;"src="${res[i].jrArImg}" alt="this is a photo">
+										</div>
+										<div class="intro"style="margin-top:20px;">
+										<h3 style="height:50px">${res[i].jfName}</h3>
+										<p style="margin-top:20px;overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
+				  	                    	  -webkit-line-clamp: 3;">${res[i].jfActivity}</p>
+											<form method="get" action="./signUp/signUp.html" >
+											<button type="submit" name="jfNo" value="${res[i].jfNo}"style="margin-top:20px;">了解詳情</button>
+											</form>
+										</div>
 									</div>
-								</div>
-	                `)
+		                `)
+								
+							}
+							
 
 
 						}
@@ -356,21 +441,40 @@
 
 						for (let i = a; i < 3 + a; i++) {
 							console.log(res[i]);
+							if(res[i]===undefined){
+								$("div#jf").append(`
+										<div id="all"class="fair fair1">
+										<div class="img"style="overflow:hidden;height:210px;contain:content;">
+											<img style="width:100%;height:225px;" alt="this is a photo">
+										</div>
+										<div class="intro"style="margin-top:20px;">
+										<h3 style="height:50px">查無資料</h3>
+										<p style="margin-top:20px;overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
+				  	                    	  -webkit-line-clamp: 3;">查無資料</p>
+											<form method="get" action="./signUp/signUp.html" >
+											<button type="button" name="jfNo" style="margin-top:20px;">了解詳情</button>
+											</form>
+										</div>
+									</div>
+		                `)
+								
+							}else{
 							$("div#jf").append(`
 									<div id="all"class="fair fair1">
-									<div class="img">
+									<div class="img"style="overflow:hidden;height:210px;contain:content;">
 										<img style="width:100%;height:225px;"src="${res[i].jrArImg}" alt="this is a photo">
 									</div>
-									<div class="intro">
-										<h3>${res[i].jfName}</h3>
-										<p style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
-				  	                    	  -webkit-line-clamp: 4;">${res[i].jfActivity}</p>
+									<div class="intro"style="margin-top:20px;">
+									<h3 style="height:50px">${res[i].jfName}</h3>
+									<p style="margin-top:20px;overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
+			  	                    	  -webkit-line-clamp: 3;">${res[i].jfActivity}</p>
 										<form method="get" action="./signUp/signUp.html" >
-										<button type="submit" name="jfNo" value="${res[i].jfNo}">了解詳情</button>
+										<button type="submit" name="jfNo" value="${res[i].jfNo}"style="margin-top:20px;">了解詳情</button>
 										</form>
 									</div>
 								</div>
           	                `)
+							}
 
 						}
 					}
@@ -399,21 +503,40 @@
 
 						for (let i = 0 + a; i < 3 + a; i++) {
 							console.log(res[i]);
+							if(res[i]===undefined){
+								$("div#jf").append(`
+										<div id="all"class="fair fair1">
+										<div class="img"style="overflow:hidden;height:210px;contain:content;">
+											<img style="width:100%;height:225px;" alt="this is a photo">
+										</div>
+										<div class="intro"style="margin-top:20px;">
+										<h3 style="height:50px">查無資料</h3>
+										<p style="margin-top:20px;overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
+				  	                    	  -webkit-line-clamp: 3;">查無資料</p>
+											<form method="get" action="./signUp/signUp.html" >
+											<button type="button" name="jfNo" style="margin-top:20px;">了解詳情</button>
+											</form>
+										</div>
+									</div>
+		                `)
+								
+							}else{
 							$("div#jf").append(`
 									<div id="all"class="fair fair1">
-									<div class="img">
+									<div class="img"style="overflow:hidden;height:210px;contain:content;">
 										<img style="width:100%;height:225px;"src="${res[i].jrArImg}" alt="this is a photo">
 									</div>
-									<div class="intro">
-										<h3>${res[i].jfName}</h3>
-										<p style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
-				  	                    	  -webkit-line-clamp: 4;">${res[i].jfActivity}</p>
+									<div class="intro"style="margin-top:20px;">
+									<h3 style="height:50px">${res[i].jfName}</h3>
+									<p style="margin-top:20px;overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;
+			  	                    	  -webkit-line-clamp: 3;">${res[i].jfActivity}</p>
 										<form method="get" action="./signUp/signUp.html" >
-										<button type="submit" name="jfNo" value="${res[i].jfNo}">了解詳情</button>
+										<button type="submit" name="jfNo" value="${res[i].jfNo}"style="margin-top:20px;">了解詳情</button>
 										</form>
 									</div>
 								</div>
                      	                `)
+							}
 
 
 						}
