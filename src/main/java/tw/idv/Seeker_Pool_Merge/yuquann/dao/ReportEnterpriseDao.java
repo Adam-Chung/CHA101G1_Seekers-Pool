@@ -18,8 +18,9 @@ public class ReportEnterpriseDao {
 
 	public int insert(ReportEnterpriseVo vo) {
 
-		String sql = "INSERT INTO report_enterprise (rjt_no,RE_CONTENT,RE_END_TIME,re_status,re_result,re_upload,MEM_ID,COM_MEM_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-
+		String sql = "INSERT INTO report_enterprise (rjt_no,RE_CONTENT,RE_END_TIME,re_status,re_result,re_upload,MEM_ID,COM_MEM_ID,JOB_NO) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		int rowcount = 0;
+		
 		try (Connection conn = dataSource.getConnection(); PreparedStatement ps = conn.prepareStatement(sql);) {
 
 			ps.setInt(1, vo.getRjtNo());
@@ -30,13 +31,14 @@ public class ReportEnterpriseDao {
 			ps.setString(6, vo.getReUpload());
 			ps.setInt(7, vo.getMemId());
 			ps.setInt(8, vo.getComMemId());
+			ps.setInt(9, vo.getJobNo());
 
-			ps.executeUpdate();
+			rowcount = ps.executeUpdate();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return 1;
+		return rowcount;
 	}
 
 	public int update(ReportEnterpriseVo vo) {
@@ -60,7 +62,11 @@ public class ReportEnterpriseDao {
 
 	public ReportEnterpriseVo selectNumber(int reNo) {
 
-		String sql = "select RE_NO,MEM_ID,COM_MEM_ID,RE_START_TIME,RE_STATUS,RE_RESULT from report_enterprise where re_no = ? ;";
+		String sql = "SELECT * FROM REPORT_ENTERPRISE "
+				+ "LEFT JOIN MEMBER ON REPORT_ENTERPRISE.MEM_ID = MEMBER.MEM_ID  "
+				+ "LEFT JOIN COMPANY_MEMBER ON REPORT_ENTERPRISE.COM_MEM_ID = COMPANY_MEMBER.COM_MEM_ID  "
+				+ "WHERE RE_NO = ?;";
+		
 		ReportEnterpriseVo vo = new ReportEnterpriseVo();
 		try (Connection conn = dataSource.getConnection(); PreparedStatement ps = conn.prepareStatement(sql);) {
 			ResultSet rs = null;
@@ -77,6 +83,8 @@ public class ReportEnterpriseDao {
 				vo.setReStartTime(rs.getDate("RE_START_TIME"));
 				vo.setReStatus(rs.getInt("RE_STATUS"));
 				vo.setReResult(rs.getInt("RE_RESULT"));
+				vo.setMemAccount(rs.getString("MEM_ACCOUNT"));
+				vo.setComName(rs.getString("COM_NAME"));
 			}
 
 		} catch (Exception e) {
@@ -87,7 +95,10 @@ public class ReportEnterpriseDao {
 
 	public List<ReportEnterpriseVo> selectResult(int reResult) {
 
-		String sql = "select RE_NO,MEM_ID,COM_MEM_ID,RE_START_TIME,RE_STATUS,RE_RESULT from report_enterprise where re_result = ? ;";
+		String sql = "SELECT * FROM REPORT_ENTERPRISE "
+				+ "LEFT JOIN MEMBER ON REPORT_ENTERPRISE.MEM_ID = MEMBER.MEM_ID  "
+				+ "LEFT JOIN COMPANY_MEMBER ON REPORT_ENTERPRISE.COM_MEM_ID = COMPANY_MEMBER.COM_MEM_ID  "
+				+ "WHERE RE_RESULT = ?;";
 
 		// 建立包裝資料的實體List容器
 		List<ReportEnterpriseVo> list = new ArrayList<ReportEnterpriseVo>();
@@ -107,6 +118,8 @@ public class ReportEnterpriseDao {
 				vo.setReStartTime(rs.getDate("RE_START_TIME"));
 				vo.setReStatus(rs.getInt("RE_STATUS"));
 				vo.setReResult(rs.getInt("RE_RESULT"));
+				vo.setMemAccount(rs.getString("MEM_ACCOUNT"));
+				vo.setComName(rs.getString("COM_NAME"));
 
 				list.add(vo);
 //				System.out.println("list : " + list);
@@ -121,7 +134,9 @@ public class ReportEnterpriseDao {
 
 	public List<ReportEnterpriseVo> selectAll() {
 
-		String sql = "SELECT * FROM REPORT_ENTERPRISE LEFT JOIN MEMBER ON MEMBER.MEM_ID = REPORT_ENTERPRISE.MEM_ID LEFT JOIN COMPANY_MEMBER ON COMPANY_MEMBER.COM_MEM_ID = REPORT_ENTERPRISE.COM_MEM_ID ;";
+		String sql = "SELECT * FROM REPORT_ENTERPRISE "
+				+ "LEFT JOIN MEMBER ON MEMBER.MEM_ID = REPORT_ENTERPRISE.MEM_ID LEFT JOIN "
+				+ "COMPANY_MEMBER ON COMPANY_MEMBER.COM_MEM_ID = REPORT_ENTERPRISE.COM_MEM_ID ;";
 
 		// 建立包裝資料的實體List容器
 		List<ReportEnterpriseVo> list = new ArrayList<ReportEnterpriseVo>();

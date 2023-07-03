@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
- 	<meta http-equiv="Pragma" content="no-cache">
- 	<meta http-equiv="Expires" content="0">
-    
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
     <title>Seeker's Pool 檢舉頁面</title>
 
     <link rel="stylesheet" href="./css/style.css">
@@ -20,6 +20,8 @@
     <script src="js/jquery-3.4.1.min.js"></script>
     <!-- 引入header、footer的JS -->
     <script type="text/javascript" src="js/include.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <style>
         @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600);
 
@@ -50,6 +52,7 @@
             width: 100%;
             margin: 0 auto;
             position: relative;
+            margin-top: -45px;
         }
 
         #contact input[type="text"],
@@ -279,7 +282,7 @@
 </head>
 
 <body>
-    <!--引入heaer頁面--> 
+    <!--引入heaer頁面-->
     <div id="header"></div>
 
 
@@ -291,11 +294,12 @@
         <div id="QandTop"></div>
         <div class="main-content">
             <div class="container">
-                <form id="contact" action="/SeekerPool/ReportEnterpriseService" method="post" enctype="multipart/form-data">
+                <form id="contact" action="/SeekerPool/ReportEnterpriseService" method="post"
+                    enctype="multipart/form-data">
                     <h3>公司 / 職缺 檢舉頁面</h3>
                     <h4>送出資料後敝單位將盡快給您回覆</h4>
                     <fieldset>
-                        <select tabindex="1"  NAME="rjtNo" required>
+                        <select tabindex="1" class="rjtNo" NAME="rjtNo" required>
                             <option value="0" selected disabled>請選擇</option>
                             <option value="1">網路相關問題</option>
                             <option value="2">公司面試、職場相關問題</option>
@@ -311,15 +315,17 @@
                         <input placeholder="Reported Company Name" type="text" tabindex="4" required>
                     </fieldset> -->
                     <fieldset>
-                        <textarea placeholder="請把您寶貴的意見與想法寫上" tabindex="2" required NAME="reContent"></textarea>
+                        <textarea placeholder="請把您寶貴的意見與想法寫上" tabindex="2" class="reContent" required
+                            NAME="reContent"></textarea>
                     </fieldset>
                     <div class="file-wrapper">
-                        <input type="file" NAME="reUpload" accept="image/*" />
+                        <input type="file" NAME="reUpload" class="reUpload" accept="image/*" />
                         <div class="close-btn">×</div>
                     </div>
 
                     <fieldset>
-                        <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+                        <button name="submit" type="submit" class="submit-button" id="contact-submit"
+                            data-submit="...Sending">Submit</button>
                     </fieldset>
                 </form>
 
@@ -355,6 +361,76 @@
                 reader.readAsDataURL(input.files[0]);
             }
         };
+    </script>
+
+    <script>
+
+        let projectName = window.location.pathname.split('/')[1]; //SeekerPool
+
+        // 獲取當前頁面的URL参數
+        let urlParams = new URLSearchParams(window.location.search);
+        // 從URL参数得到jobNo和comMemId的值
+        let jobNo = urlParams.get('jobNo');
+        let comMemId = urlParams.get('comMemId');
+        let reContent = $('.reContent').val();
+        let rjtNo = $('.rjtNo').val();
+        let reUpload = $('.reUpload').val();
+
+        console.log('comMemId : ' + comMemId);
+        console.log('jobNo : ' + jobNo);
+        console.log('reContent : ' + reContent);
+        console.log('rjtNo : ' + rjtNo);
+        console.log('reUpload : ' + reUpload);
+
+
+        $('.submit-button').on('click', function () {
+            event.preventDefault();
+            let formData = new FormData();  // 建立 FormData 物件
+
+            // 取得使用者選擇的圖片檔案
+            let fileInput = $('input[name="reUpload"]')[0];
+            let file = fileInput.files[0];
+            formData.append('reUpload', file);  // 將圖片檔案加入 FormData
+
+            // 其他欄位的值
+            let jobNo = urlParams.get('jobNo');
+            let comMemId = urlParams.get('comMemId');
+            let reContent = $('.reContent').val();
+            let rjtNo = $('.rjtNo').val();
+
+            // 加入其他欄位的值到 FormData
+            formData.append('jobNo', jobNo);
+            formData.append('comMemId', comMemId);
+            formData.append('reContent', reContent);
+            formData.append('rjtNo', rjtNo);
+
+            $.ajax({
+                url: '/' + projectName + '/ReportEnterpriseService',
+                type: 'POST',
+                processData: false,  // 不處理 FormData
+                contentType: false,  // 不設置 content type
+                data: formData,  // 傳送 FormData 物件
+                success: function () {
+                    // 成功處理回應
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: '檢舉表單已送出！',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    setTimeout(function () {
+                        window.location.href = '../index/index.html';
+                    }, 1500)
+
+                },
+                error: function (xhr, status, error) {
+                    console.log("傳送失敗");
+                    console.log('AJAX Error:', status, error);
+                }
+            });
+
+        });
     </script>
 </body>
 
