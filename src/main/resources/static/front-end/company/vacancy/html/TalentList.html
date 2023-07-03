@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="bio-img">
-                        <img src="../img/bio-img.png" alt="selfie">
+                        <img :src="info.memPic" alt="selfie">
                     </div>
 
                     <i class="fa-solid fa-xmark" @click.stop="goBack()"></i>
@@ -182,14 +182,14 @@
                 </div>
 
                 <!-- 這裡以後要用下面程式碼動態生成數字並append在talent-count後 -->
-                <span class="talent-number">一共搜尋到{{this.talentListData.length}}位人才!</span>
+                <span class="talent-number">一共搜尋到{{this.total}}位人才!</span>
 
                 <!-- 這裡以後要用下面程式碼動態生成人才清單並append在container後 -->
                 <div class="talent-list-container">
                     <div class="talent-list" v-for="info in talentListData"> <!--第一個人選-->
 
                         <div class="talent-img">
-                            <img src="../img/bio-img.png" alt="this is a talent img">
+                            <img :src="info.memPic" alt="this is a talent img">
                         </div>
                         <div class="talent-full-info">
                             <span class="talent-info-top">

@@ -86,9 +86,10 @@
             <!-- 第二層結束 -->
           </div>
         </div>
-
+        <span style="margin-top: 5px; color:darkred ">*一次最多能選4個區域哦!</span>
         <!-- ===== 確定按鈕 ===== -->
         <div class="country-category-button">
+
           <button class="country-category-btn c-btn" @click="sendCountryData()">確定</button>
         </div>
       </div>
@@ -217,7 +218,6 @@
           </form>
         </div>
       </div>
-
     </div>
   </main>
 
@@ -228,7 +228,8 @@
       $(this).closest(".main-list").find(".sub-menu").slideToggle(400, function () {
         $(this).closest(".main-list").find(".sub-menu").toggleClass("-none")
       });
-    });
+    })
+
 
     // ===================================================================================
 
@@ -255,24 +256,8 @@
       item1.addClass("-none");
       item2.addClass("-none");
       item1.css({ zIndex: -11 });
-    };
+    }
 
-
-  // ===================================================================================
-  // 勾第一層的checkbox的話 會將all checkboxes全選
-
-
-  // 在删除已生成的 .chosen-list 元素這步驟前，
-  // 可以先判斷已動態生成的.chosen-list的.text()是不是跟.second-chosen-list的text()是一樣的，
-  // 如果一樣的話就不要刪除這個.chosen-list
-
-
-  // ===================================================================================
-  // 當按下確定清單裡的確定鍵時， 把已選擇的標籤存在 職務類別的input上 (ok)
-
-
-  // ==============
-  // 只能選取三個標籤 超過三個就會將其他checkbox不能被勾選
 
   </script>
   <script src="../vue/TalentSearch.vue.js"></script>

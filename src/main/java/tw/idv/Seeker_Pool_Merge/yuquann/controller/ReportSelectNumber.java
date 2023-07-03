@@ -25,16 +25,22 @@ public class ReportSelectNumber extends HttpServlet {
 		PrintWriter out = res.getWriter();
 
 		String reNoStr = req.getParameter("reNoStr");
+		
+		if(reNoStr != "") {
+			
+			int reNo = Integer.parseInt(reNoStr);
 
-		int reNo = Integer.parseInt(reNoStr);
+			ReportEnterpriseDao dao = new ReportEnterpriseDao();
 
-		ReportEnterpriseDao dao = new ReportEnterpriseDao();
+			Gson gson = new Gson();
+			String json = gson.toJson(dao.selectNumber(reNo));
+//			System.out.println("json : " + json);
+			out.print(json);
 
-		Gson gson = new Gson();
-		String json = gson.toJson(dao.selectNumber(reNo));
-//		System.out.println("json : " + json);
-		out.print(json);
-
+		}else {
+			System.out.println("檢舉單號輸入為空值");
+		}
+		
 	}
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		doGet(req, res);

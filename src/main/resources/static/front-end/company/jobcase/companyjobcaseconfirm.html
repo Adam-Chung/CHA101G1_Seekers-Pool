@@ -249,8 +249,8 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <a href="companyjobordersearch.html" type="button"
-                                                    class="btn btn-secondary">明細查詢</a>
+<!--                                                 <a href="companyjobordersearch.html" type="button" -->
+<!--                                                     class="btn btn-secondary">明細查詢</a> -->
                                                 <a href="companyjobselect.html" type="button"
                                                     class="btn btn-primary">立即刊登</a>
                                             </div>
@@ -352,7 +352,7 @@
                             $("tr#trLightBox").prevAll().remove();
                         })
                     } else {
-                        console.log(r.jcNo + "false");
+//                         console.log(r.jcNo + "false");
                     }
                 }
             }
@@ -361,10 +361,10 @@
         $("#btnOrder").on('click', function () {
             var jcDeadline = $("td#jcDeadline").text();
             var jcNo = parseInt(getParameter("id"));
-            console.log("jcNo : " + jcNo);
-            console.log(typeof jcNo);
-            console.log("jcDeadline : " + jcDeadline);
-            console.log("type : " + typeof jcDeadline);
+//             console.log("jcNo : " + jcNo);
+//             console.log(typeof jcNo);
+//             console.log("jcDeadline : " + jcDeadline);
+//             console.log("type : " + typeof jcDeadline);
             $.post({
                 url: "../../../JobOrderInsertServlet",
                 dataType: "JSON",
@@ -372,7 +372,7 @@
                 async: false,
                 cache: false,
                 success: function (r) {
-                    console.log("JobOrderInsertServlet r: " + r);
+//                     console.log("JobOrderInsertServlet r: " + r);
                 }
             })
         })

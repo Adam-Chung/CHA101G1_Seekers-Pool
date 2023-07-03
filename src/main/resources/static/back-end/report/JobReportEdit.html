@@ -46,13 +46,27 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 
+    <link href="css/lightbox.css" rel="stylesheet" />
+
+
     <style>
         .report-img {
-            height: 720px;
-            width: 1080px;
             border: 1px solid black;
             margin-top: 10px;
             margin-bottom: 10px;
+        }
+
+        .report-img-file {
+            max-width: 450px;
+            max-height: 450px;
+            overflow: auto;
+        }
+
+        .report-img-file img {
+            width: 100%;
+            /* 圖片寬度為父容器的的百分之百 */
+            height: auto;
+            /* 根據比例自動計算圖片高度 */
         }
 
         .mb-3 {
@@ -386,8 +400,10 @@
                     <label for="schemeNumber" class="form-label">檢舉佐證</label>
                 </div>
                 <div class="col-lg-4 report-img-file">
+                    <a href="" class="reUpload-a" data-lightbox="*">
+                        <img src="" alt="" class="report-img reUpload" name="reUpload">
+                    </a>
 
-                    <img src="" alt="" class="report-img reUpload" name="reUpload">
 
                 </div>
             </div>
@@ -435,6 +451,7 @@
     <!-- Template Main JS File -->
     <script src="./js/Employee.js"></script>
     <script src="./vendors/jquery/jquery-3.6.4.min.js"></script>
+    <script src="js/lightbox.js"></script>
     <!--fontawesome-->
     <script src="https://kit.fontawesome.com/244879c400.js" crossorigin="anonymous"></script>
 
@@ -458,15 +475,15 @@
                     data: { reNo: reNoValue },  // 替換為要查詢的reNo值
                     success: function (data) {
                         // 將資料填入網頁的input和textarea欄位
-                        console.log("測試開始");
-                        console.log("data : " + data);
-                        console.log("reno : " + data.reNo);
-                        console.log("memId : " + data.memId);
-                        console.log("comMemId : " + data.comMemId);
-                        console.log("rjtNo : " + data.rjtNo);
-                        console.log("reContent : " + data.reContent);
-                        console.log("reUpload : " + data.reUpload);
-                        console.log("測試結束");
+                        // console.log("測試開始");
+                        // console.log("data : " + data);
+                        // console.log("reno : " + data.reNo);
+                        // console.log("memId : " + data.memId);
+                        // console.log("comMemId : " + data.comMemId);
+                        // console.log("rjtNo : " + data.rjtNo);
+                        // console.log("reContent : " + data.reContent);
+                        // console.log("reUpload : " + data.reUpload);
+                        // console.log("測試結束");
 
                         let rjtNoStr;
 
@@ -477,12 +494,12 @@
                         }
 
                         $('.reNo').val(data.reNo);
-                        $('.memId').val(data.memId);
-                        $('.comMemId').val(data.comMemId);
+                        $('.memId').val(data.memAccount);
+                        $('.comMemId').val(data.comName);
                         $('.rjtNo').val(rjtNoStr);
                         $('.reContent').val(data.reContent);
                         $('.reUpload').attr('src', '/SeekerPool/' + data.reUpload);
-
+                        $('.reUpload-a').attr('href', '/SeekerPool/' + data.reUpload);
 
                     },
                     error: function (xhr, status, error) {
@@ -519,6 +536,17 @@
                 alert('請選擇處理結果');
             }
         });
+
+
+    </script>
+
+    <script>
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true
+        })
+
+
 
 
     </script>

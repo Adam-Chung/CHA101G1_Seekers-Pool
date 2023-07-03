@@ -197,8 +197,8 @@
 				cache: false,
 				success: function (res) {
 					$("tbody").empty();
-					console.log("sucess............");
-					console.log("res : " + res);
+// 					console.log("sucess............");
+// 					console.log("res : " + res);
 
 					for (let r of res) {
 						// 假設r.jcDeadline為「Oct 10, 2023, 12:00:00 AM」格式的日期字串
@@ -224,7 +224,7 @@
 			// 查單一訂單(待增查無此訂單)
 			$("button#searchJcNo").click(function () {
 				var joNo = $("input#inputQueryNo").val().trim();
-				console.log("joNo : " + joNo);
+// 				console.log("joNo : " + joNo);
 				var rules = new RegExp('\\d');
 
 				// if (joNo !== "" && isNaN(Number(joNo, 10))) {
@@ -236,10 +236,9 @@
 						async: false,
 						cache: false,
 						success: function (res) {
-							// var res = JSON.parse(res) 
 							$("tbody").empty();
-							console.log("sucess............");
-							console.log("res[0] : " + res[0].jcNo);
+// 							console.log("sucess............");
+// 							console.log("res[0] : " + res[0].jcNo);
 							if (res) {
 								$("tr#all").remove();
 								for (let r of res) {
@@ -279,7 +278,7 @@
 						}
 					})
 				} else {
-					console.log("請輸入數字");
+// 					console.log("請輸入數字");
 					alert("錯誤! 請輸入數字");
 				}
 			})

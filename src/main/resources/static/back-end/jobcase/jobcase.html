@@ -57,6 +57,21 @@
     </style>
     <!-- jQuery -->
     <script src="../../common/js/jquery-3.6.4.min.js"></script>
+    <script>
+ // ======== 引入header ===========
+    $.get("../../common/buildPage/Employee_Header.html", function (data) {
+        $("#header1").html(data);
+
+        $.getScript("../../common/js/Employee.js", function () {
+        });
+    });
+
+    // ======== 引入sidebar ===========
+    $.get("../../common/buildPage/Employee_Sidebar.html", function (data) {
+        $("#sidebar1").html(data);
+    });
+    
+    </script>
 
 </head>
 
@@ -83,7 +98,7 @@
             <hr>
         </div>
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-4">
                 <label for="inputQuery" class="form-label" style="font-size: large;"><strong>職缺刊登方案查詢</strong></label>
                 <div class="input-group">
 <!--                     <span class="input-group-text">方案編號</span> -->
@@ -97,7 +112,7 @@
             <div class="col-sm-2 d-flex align-items-end">
                 <button type="button" class="btn btn-primary" id="btnQuery"><strong>查詢全部</strong></button>
             </div>
-            <div class="col-sm-4 d-flex align-items-end justify-content-end">
+            <div class="col-sm-6 d-flex align-items-end justify-content-end">
                 <a href="./jobcaseadd.html">
                     <button type="button" class="btn btn-primary float-end"><strong>新增刊登方案</strong></button>
                 </a>
@@ -126,19 +141,19 @@
         </div>
 
         <!-- 底部分頁 -->
-        <nav aria-label="Page navigation">
-            <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                </li>
-            </ul>
-        </nav>
+<!--         <nav aria-label="Page navigation"> -->
+<!--             <ul class="pagination justify-content-center"> -->
+<!--                 <li class="page-item disabled"> -->
+<!--                     <a class="page-link" href="#" tabindex="-1">Previous</a> -->
+<!--                 </li> -->
+<!--                 <li class="page-item"><a class="page-link" href="#">1</a></li> -->
+<!--                 <li class="page-item"><a class="page-link" href="#">2</a></li> -->
+<!--                 <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+<!--                 <li class="page-item"> -->
+<!--                     <a class="page-link" href="#">Next</a> -->
+<!--                 </li> -->
+<!--             </ul> -->
+<!--         </nav> -->
     </main>
     <!-- End #main -->
 
@@ -147,18 +162,40 @@
 
     <script>
         $(function () {
-            // ======== 引入header ===========
-            $.get("../../common/buildPage/Employee_Header.html", function (data) {
-                $("#header1").html(data);
+            
+            // ======== 權限設定 ===========
+            $.ajax({
+                url: "/SeekerPool/administrator.do",
+                method: 'POST',
+                datatype: "JSON",
+                data: { action: "getOne_For_Display3" },
+                success: function (res) {
 
-                $.getScript("../../common/js/Employee.js", function () {
-                });
-            });
-
-            // ======== 引入sidebar ===========
-            $.get("../../common/buildPage/Employee_Sidebar.html", function (data) {
-                $("#sidebar1").html(data);
-            });
+                    $("span#name").text(res.admName);
+                    $("h6#name").text(res.admName);
+                    $("input#schemeNumber2").val(res.admId);
+                }
+            })
+            
+            $("a#out").on("click", function (e) {
+                e.preventDefault;
+            })
+            $("span#out").on("click", function () {
+            	console.log("AAA");
+                if (confirm("確定要登出?")) {
+					
+                    $.ajax({
+                        url: "/SeekerPool/administrator.do",
+                        method: 'POST',
+                        datatype: "JSON",
+                        data: { action: "logout" },
+                        success: function (res) {
+                            alert(res);
+                            window.location.replace('../jobfair/jfback/EmployeeLogin.html');
+                        }
+                    })
+                }
+            })
 
 
             // ======== AJAX ===========
@@ -166,7 +203,7 @@
             queryAll("selectAll");
 
             $("button#btnQuery").click(function () {
-                console.log("AAA");
+//                 console.log("AAA");
                 $("tr#trContext").prevAll().remove();
                 queryAll("selectAll");
             });
@@ -212,7 +249,6 @@
 
             /* ==== 查單一 編號 ==== */
             $("#searchJcNo").click(function () {
-                // Get the values from both input fields
 //                 var queryNo = $("#inputQueryNo").val().trim();
                 var queryName = $("#inputQueryName").val().trim();
 
@@ -228,8 +264,8 @@
 //                             console.log("Response for jcNo query: " + JSON.stringify(res));
                             if (res) {
                                 $("tr#trContext").remove();
-                                console.log("res : " + res);
-                                console.log("OO");
+//                                 console.log("res : " + res);
+//                                 console.log("OO");
                                 $("tbody").append(`<tr id="trContext">
 										<td class="jcNo" name="jcNo">${res.jcNo}</td>
 										<td class="jcName" name="jcName">${res.jcName}</td>
@@ -251,10 +287,10 @@
 									</tr>`);
                                 $("tr#trContext").prevAll().remove();
                                 $("#inputQueryNo").val("");
-                                console.log("AA");
+//                                 console.log("AA");
                             } else {
                                 $("tr#trNO").remove();
-                                console.log("else res : " + res);
+//                                 console.log("else res : " + res);
                                 $("tbody").append(`<tr id="trNO">
 										<td style='color: red; font-weight: bold;'>查無此方案!!!</td>
 										<td></td>
@@ -271,7 +307,6 @@
                     });
                 } else {
 //                     console.log("請輸入方案名稱");
-//                     alert("錯誤! 請輸入方案名稱");
                     alert("錯誤! 方案名稱請輸入文字(ex:方案一)");
                 }
             });
@@ -280,7 +315,7 @@
             /* ==== 更新 編輯 ==== */
 
             $(document).on("click", ".btnEdit", function () {
-                console.log("EDIT");
+//                 console.log("EDIT");
                 var $row = $(this).parents("tr");
                 var jcName = $row.find("td.jcName").text();
                 var jcExpTime = $row.find("td.jcExpTime").text();
@@ -315,12 +350,12 @@
                 var jcPrice = $row.find("input[name='edit_jcPrice']").val();
                 var jcStatus = $row.find("select[name='edit_jcStatus']").val(); // 取得選中的選項值
 
-                console.log("jcName" + jcName);
-                console.log("jcExpTime" + jcExpTime);
-                console.log("jcAvailableNum" + jcAvailableNum);
-                console.log("jcTop" + jcTop);
-                console.log("jcPrice" + jcPrice);
-                console.log("jcStatus" + jcStatus);
+//                 console.log("jcName" + jcName);
+//                 console.log("jcExpTime" + jcExpTime);
+//                 console.log("jcAvailableNum" + jcAvailableNum);
+//                 console.log("jcTop" + jcTop);
+//                 console.log("jcPrice" + jcPrice);
+//                 console.log("jcStatus" + jcStatus);
 
 
                 $.ajax({
@@ -349,7 +384,7 @@
                             "</select>";
 
                         $row.find("td:eq(7)").html(selectElement);
-                        console.log("res :" + res);
+//                         console.log("res :" + res);
                         $(".btnSave").hide();
                         $(".btnEdit").show();
                     },

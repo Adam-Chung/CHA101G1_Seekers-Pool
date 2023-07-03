@@ -38,8 +38,8 @@ public class JobQueryStatusServlet extends HttpServlet {
 			System.out.println(action);
 			ComJobQueryVO vo=new ComJobQueryVO();
 			// 要改成動態企業ID
-			// int comMemId = (int) req.getSession().getAttribute("companyMember");
-			Integer comMemId=1;
+			int comMemId = (int) req.getSession().getAttribute("companyMember");
+			// Integer comMemId=1;
 			vo.setComMemId(comMemId);
 			List<ComJobQueryVO> list = JobDao.selectJobStatus(vo);
 //			System.out.println("list" + list);

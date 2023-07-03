@@ -1,7 +1,7 @@
 <script>
 
   //呼叫引入他的hmtl已經比引入他的地方先聲明過了，所以這裡直接取用projectName，如果是他先被引用才聲明，就要先聲明
-  // let projectName = window.location.pathname.split('/')[1]; // SeekerPool
+  let projectName = window.location.pathname.split('/')[1]; // SeekerPool
 
   $(function () {
 
@@ -18,14 +18,14 @@
       } else {
         $("#span_username").html("");
       }
-    });
+    }); 
 
 
     $("#logout").click(function () {
       $.post('/' + projectName + '/headerServlet', { logout: "logout" }, function () {
         $("#login").removeAttr("style");
         $("#logout").prop("style", "display:none;");
-        location.href = "memberlogin.html";
+        location.href = "../member/memberlogin.html";
       });
     });
   })

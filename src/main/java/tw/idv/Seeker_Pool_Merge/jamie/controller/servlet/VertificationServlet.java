@@ -66,7 +66,7 @@ public class VertificationServlet extends HttpServlet {
 				} else {
 					// 驗證錯誤
 					resultInfo.setFlag(false);
-					resultInfo.setErrorMsg("驗證碼錯誤，請重新確認一次");
+					resultInfo.setErrorMsg("請重新確認一次");
 //					System.out.println("驗證失敗!");
 				}
 				
