@@ -238,6 +238,7 @@
       </div>
     </div>
 
+<<<<<<< Updated upstream
   </div>
 </main>
 <script>
@@ -246,6 +247,150 @@
   $("ul").on("click", ".main-list", function () {
     $(this).closest(".main-list").find(".sub-menu").slideToggle(400 , function(){
       $(this).closest(".main-list").find(".sub-menu").toggleClass("-none")
+=======
+    <!-- =========================== 地區類別選單結束 =============================== -->
+
+    <div class="container">
+      <!-- ======================= side-bar(左邊欄位) ====================== -->
+      <div class="side-bar">
+        <div class="logo">
+          <div class="img">
+            <img src="../../../company/vacancy/img/TSMC_logo.svg.png" alt="this is a logo" id="logoImg">
+          </div>
+          <h3 id="brand-name">台雞電股份有限公司</h3>
+        </div>
+        <menu>
+          <ul>
+            <li class="main-list center">
+              <a href="#" draggable="false"> <!--第一個-->
+                <i class="fa-solid fa-address-card"></i>會員中心
+                <div class="caret-icon">
+                  <i class="fa-solid fa-sort-down"></i>
+                </div>
+              </a>
+
+              <!-- ======================= sub-menu ====================== -->
+              <ul class="sub-menu collapse -none">
+                <li class="sub-list">
+                  <a href="../../companymember/companyInfo.html" draggable="false">會員資料管理</a>
+                </li>
+
+                <li class="sub-list">
+                  <a href="VacancyManagement.html" draggable="false">職缺管理</a>
+                </li>
+
+                <li class="sub-list">
+                  <a href="../../companymember/interviewer_manage.html" draggable="false">應徵者管理</a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="main-list talent-search">
+              <a href="TalentSearch.html" draggable="false"> <!--第二個-->
+                <i class="fa-solid fa-user-tie"></i>人才查詢
+              </a>
+
+            </li>
+
+            <li class="main-list purchase">
+              <a href="#" draggable="false"> <!--第三個-->
+                <i class="fa-solid fa-cart-shopping"></i>刊登方案
+                <div class="caret-icon">
+                  <i class="fa-solid fa-sort-down"></i>
+                </div>
+              </a>
+              <ul class="sub-menu collapse -none">
+                <li class="sub-list">
+                  <a href="../../jobcase/companyjobselect.html" draggable="false">刊登職缺管理</a>
+                </li>
+                <li class="sub-list">
+                  <a href="../../jobcase/companyjobcase.html" draggable="false">刊登方案</a>
+                </li>
+                <li class="sub-list">
+                  <a href="../../jobcase/companyjobcaseconfirm.html" draggable="false">我要刊登</a>
+                </li>
+                <li class="sub-list">
+                  <a href="../../jobcase/companyjobordersearch.html" draggable="false">刊登訂單查詢</a>
+                </li>
+              </ul>
+            </li>
+            <li class="main-list expo">
+              <a href="#" draggable="false"> <!--第四個-->
+                <i class="fa-solid fa-house"></i></i>徵才博覽會管理
+                <div class="caret-icon">
+                  <i class="fa-solid fa-sort-down"></i>
+                  <i id="-none" class="fa-solid fa-caret-up"></i>
+                </div>
+              </a>
+              <ul class="sub-menu collapse -none">
+                <li class="sub-list">
+                  <a href="../../jobfair/jfindex/Companyjobfair.html" draggable="false">徵才博覽會一覽</a>
+                </li>
+                <li class="sub-list">
+                  <a href="../../jobfair/jfindex/signUpRecord/signUpRecord.html" draggable="false">報名紀錄</a>
+                </li>
+              </ul>
+            </li>
+            <li class="main-list logout">
+              <a href="javascript:location.href='/SeekerPool/CompanyLogout'" draggable="false"> <!--第五個-->
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>登出
+              </a>
+            </li>
+          </ul>
+        </menu>
+      </div>
+
+      <!-- ======================= main-content ====================== -->
+      <div class="main-content">
+        <!-- =========================== form =============================== -->
+        <div class="talent-search-form">
+          <form @submit.prevent="search">
+            <h1>人才查詢</h1>
+
+            <div class="list">
+              <label class="keyword" for="keyword">關鍵字</label>
+              <input type="text" id="keyword" name="keyword" :disabled="jobLocation.length > 0" @keyup.enter="search()"
+                v-model.trim="keyword" placeholder="請輸入欲工作地點、技能等搜尋人才" />
+            </div>
+
+            <div class="list list3">
+              <label for="keyword">工作地點</label>
+              <input type="text" id="job-location-input" name="job-location" :disabled="keyword.length > 0"
+                v-model="jobLocation" @click="openCountryForm()" placeholder="人才欲工作地點" readonly />
+              <i class="fa-solid fa-angle-down" @click="openCountryForm()"></i>
+            </div>
+
+            <div>
+              <p class="small">*關鍵字、工作地點擇一查詢，謝謝您!!</p>
+            </div>
+            <div>
+              <button type="submit" class="talent-search-btn">查詢</button>
+              <button type="reset" class="talent-reset-btn" @click="reset()">清空</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+<<<<<<< HEAD
+=======
+      <!-- ===== 確定按鈕 ===== -->
+      <span style="margin-top: 5px; color:darkred ">*一次最多能選4個區域哦!</span>
+      <div class="country-category-button">
+        <button class="country-category-btn c-btn" @click="sendCountryData()">確定</button>
+      </div>
+>>>>>>> Sam
+    </div>
+  </main>
+
+  <script>
+    // ===================================================================================
+    // 左邊欄位打開闔起動畫 (ok)
+    $("ul").on("click", ".main-list", function () {
+      $(this).closest(".main-list").find(".sub-menu").slideToggle(400, function () {
+        $(this).closest(".main-list").find(".sub-menu").toggleClass("-none")
+      });
+>>>>>>> Stashed changes
     });
   });
 
