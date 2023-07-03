@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>客服聊天室-後台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+    <!-- bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      .send-box button:hover {
+        filter: drop-shadow(2px 2px 2px #060c3c);
+      }
+
+      a:hover {
+        border: 1px solid #cccccc;
+        border-radius: 0.25rem;
+      }
+
+      .message-area {
+        margin-left: 350px;
+      }
+    </style>
+  </head>
+  <body onload="connect();" onunload="disconnect();">
+    <!-- char-area -->
+    <section class="message-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="chat-area border rounded-3" style="border: #f1f1f1">
+              <!-- chatlist -->
+              <div class="chatlist">
+                <div class="modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="chat-header">
+                      <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link active" id="Open-tab" data-bs-toggle="tab" data-bs-target="#Open" type="button" role="tab">上線</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="Closed-tab" data-bs-toggle="tab" data-bs-target="#Closed" type="button" role="tab">離線</button>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div class="modal-body">
+                      <!-- users -->
+                      <div class="chat-lists">
+                        <div class="tab-content" id="myTabContent">
+                          <!-- online-users -->
+                          <div class="tab-pane fade show active" id="Open" role="tabpanel" aria-labelledby="Open-tab">
+                            <div class="chat-list" id="online-list"></div>
+                          </div>
+
+                          <!-- offline-users -->
+                          <div class="tab-pane fade" id="Closed" role="tabpanel" aria-labelledby="Closed-tab">
+                            <div class="chat-list" id="offline-list"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- users -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- chatlist -->
+
+              <!-- chatbox -->
+              <div class="chatbox">
+                <div class="modal-dialog-scrollable">
+                  <div class="modal-content" id="chatbox">
+                    <!--  style="display: none;"-->
+                    <div class="msg-head">
+                      <div class="row">
+                        <div class="col-8">
+                          <div class="d-flex align-items-center">
+                            <div class="flex-shrink-0" id="userImg"></div>
+                            <div class="flex-grow-1 ms-3">
+                              <h3 id="userName">會員姓名</h3>
+                              <div id="userId" style="display: none"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-4"></div>
+                      </div>
+                    </div>
+
+                    <div class="modal-body" id="modal-body">
+                      <div class="msg-body" id="msg-body">
+                        <ul id="message-list"></ul>
+                      </div>
+                    </div>
+
+                    <div class="send-box">
+                      <form action="" autocomplete="off">
+                        <input type="text" class="form-control" id="btn-input" />
+
+                        <button type="button" onclick="sendMessage();"><i class="fa fa-paper-plane"></i> 送出</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- chatbox -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      let employee;
+
+      $.ajax({
+        url: "/SeekerPool/administrator.do",
+        method: "POST",
+        dataType: "JSON",
+        data: { action: "getOne_For_Display3" },
+        success: function (res) {
+          employee = res.admName;
+          if (employee !== null) {
+            connect();
+            console.log(employee);
+          } else {
+            window.location.href = "../EmployeeLogin.html";
+          }
+        },
+      });
+
+      let userName;
+      $.ajax({
+        url: "/SeekerPool/MemberShowInfoServlet",
+        type: "POST",
+        data: {},
+        success: function (data) {
+          data = JSON.parse(data);
+          userName = data.memName;
+          console.log(userName);
+
+          localStorage.setItem("userName", userName);
+        },
+      });
+    </script>
+
+    <!-- char-area -->
+    <script>
+      const ServerPoint = `/CustomerService/employee`;
+      const host = window.location.host; //localhost:8080
+      const path = window.location.pathname;
+      const webCtx = path.substring(0, path.indexOf("/", 1));
+      const endPointURL = "ws://" + host + webCtx + ServerPoint;
+
+      const msgContainer = document.querySelector("#msg-body");
+      const msgBody = document.querySelector("#modal-body");
+      const self = employee;
+      let webSocket;
+
+      function connect() {
+        // create a websocket
+        webSocket = new WebSocket(endPointURL);
+        webSocket.onopen = function (event) {
+          console.log("Connect Success!");
+          //   trigderRefreshUserList();
+          initChatRoom();
+        };
+
+        function initChatRoom() {
+          let jsonObj = {
+            type: "userList",
+            sender: employee,
+          };
+          if (webSocket.readyState === WebSocket.OPEN) {
+            // 確保 WebSocket 已經連接成功
+            webSocket.send(JSON.stringify(jsonObj));
+          }
+        }
+
+        webSocket.onmessage = function (event) {
+          let data = JSON.parse(event.data);
+          console.log(data);
+
+          // 一般訊息
+          if (data.type === 0) {
+            buildMessage(data.data);
+          }
+
+          // 建立聊天室清單
+          if (data.type === 1) {
+            buildChatRoomList(data.data);
+          }
+
+          // 歷史訊息
+          if (data.type === 2) {
+            buildHisMessage(data.data);
+          }
+        };
+      }
+
+      // 建立聊天室清單
+      function buildChatRoomList(data) {
+        let userList = data;
+        let onLineList = document.getElementById("online-list");
+        let offLineList = document.getElementById("offline-list");
+        onLineList.innerHTML = "";
+        offLineList.innerHTML = "";
+        for (let user of userList) {
+          let userRow = "";
+          if (user.status) {
+            userRow =
+              '<a href="#" class="d-flex align-items-center a target-member" id="user' +
+              user.userName +
+              '" onclick="showUserChatBox(event);">' +
+              '<div class="flex-shrink-0">' +
+              '<img class="img-fluid ps-1" src="./images/user.png">' +
+              '<img class="d-flex align-items-center" src="./images/profile.png" style="position: absolute; bottom: 0px; left: 34px; width: 15px;">' +
+              '</div><div class="flex-grow-1 ms-3">' +
+              "<h3>" +
+              user.userName +
+              "</h3>" +
+              "<p>" +
+              user.lastMessage.message +
+              "</p></div></a>";
+          } else {
+            userRow =
+              '<a href="#" class="d-flex align-items-center a target-member" id="user' +
+              user.userId +
+              '" onclick="showUserChatBox();">' +
+              '<div class="flex-shrink-0">' +
+              '<img class="img-fluid ps-1" src="./images/user.png">' +
+              '</div><div class="flex-grow-1 ms-3">' +
+              "<h3>" +
+              user.userName +
+              "</h3>" +
+              "<p>" +
+              user.lastMessage.message +
+              "</p></div></a>";
+          }
+          if (user.isOnline) {
+            onLineList.innerHTML += userRow;
+          } else {
+            offLineList.innerHTML += userRow;
+          }
+        }
+      }
+
+      function buildHisMessage(data) {
+        // 歷史訊息時
+        document.querySelector("#userName").innerText = currentMember; // jsonObj.receiver
+        document.querySelector("#userImg").innerHTML = '<img style="width: 50px;" src="./images/profile.png">';
+        document.querySelector("#userId").innerText = "u" + JSON.parse(data[0]).receiver;
+        // 這行的jsonObj.message是從redis撈出跟客服的歷史訊息，再parse成JSON格式處理
+        let ul = $("#message-list");
+        ul.html("");
+        for (let i = 0; i < data.length; i++) {
+          let historyData = JSON.parse(data[i]);
+          let className = historyData.sender === "employee" ? "repaly" : "sender";
+          let showMsg = "<li class='" + className + "'><p>" + historyData.message + "</p>" + '<span class="time">' + historyData.time + "</span></li>";
+          // 根據發送者是自己還是對方來給予不同的class名, 以達到訊息左右區分
+          ul.append(showMsg);
+        }
+        document.querySelector("#chatbox").style.display = "flex";
+        msgBody.scrollTop = msgBody.scrollHeight;
+      }
+
+      let currentMember = "";
+      function showUserChatBox(e) {
+        // 被觸擊的元素
+        let triggerEl = $(e.target);
+        // 找出共同父層且轉為jQuery Object
+        let targetParent = $(triggerEl.parents(".target-member")[0]);
+        // 找出目標img且轉為jQuery Object
+        let alertImg = $(targetParent.find(".flex-shrink-0").find("img")[1]);
+        // 移除img
+        alertImg.remove();
+
+        // 找出userName
+        let userName = $(targetParent.find("h3")).text();
+
+        let jsonObj = {
+          type: "openChatRoom",
+          sender: "employee",
+          receiver: userName,
+        };
+        currentMember = userName;
+        webSocket.send(JSON.stringify(jsonObj));
+      }
+
+      function sendMessage() {
+        let inputMessage = document.getElementById("btn-input");
+        let message = inputMessage.value.trim();
+
+        if (message === "") {
+          alert("您未輸入訊息");
+          inputMessage.focus();
+        } else {
+          let userIds = document.querySelector("#userName").innerText.substring(1);
+          let now = new Date();
+          let nowStr = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + " " + now.getHours() + ":" + now.getMinutes();
+          let jsonObj = {
+            type: "message",
+            sender: "employee",
+            receiver: currentMember,
+            message: message,
+            time: nowStr,
+          };
+          webSocket.send(JSON.stringify(jsonObj));
+          inputMessage.value = "";
+          inputMessage.focus();
+          buildMessage(jsonObj);
+        }
+      }
+
+      function buildMessage(data) {
+        if (currentMember) {
+          let ul = $("#message-list");
+          let historyData = data;
+          let className = historyData.sender === "employee" ? "repaly" : "sender";
+          let showMsg = "<li class='" + className + "'><p>" + historyData.message + "</p>" + '<span class="time">' + historyData.time + "</span></li>";
+          // 根據發送者是自己還是對方來給予不同的class名, 以達到訊息左右區分
+          ul.append(showMsg);
+          document.querySelector("#chatbox").style.display = "flex";
+          msgBody.scrollTop = msgBody.scrollHeight;
+        }
+      }
+
+      function disconnect() {
+        webSocket.close();
+      }
+    </script>
+  </body>
+</html>

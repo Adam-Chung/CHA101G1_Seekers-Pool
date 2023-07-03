@@ -1,6 +1,7 @@
 package tw.idv.Seeker_Pool_Merge.collect.controller;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,6 +26,18 @@ public class CollectServlet extends HttpServlet {
 
 		// 接收參數
 		Integer arNo = Integer.valueOf(req.getParameter("arNo"));
+		Optional<Integer> arNoOptional = Optional.ofNullable(Integer.valueOf(req.getParameter("arNo")));
+
+		arNoOptional.ifPresent(arNo2 -> {
+		    // 如果不是空值
+		    System.out.println(arNo2);
+		});
+
+		if (!arNoOptional.isPresent()) {
+		    // 如果是空值
+		    System.out.println("arNo是空值");
+		}
+
 		
 		// 儲存登錄狀態
 
@@ -40,8 +53,7 @@ public class CollectServlet extends HttpServlet {
 				// 建立 CollectVo 物件
 		        CollectVo collectVo = new CollectVo();
 		        collectVo.setArNo(arNo);
-		        collectVo.setMemId(memId1);  // 先寫死，合併後更改      
-
+		        collectVo.setMemId(memId1); 
 		        // 呼叫 service 的 addCollect 方法，將 collectVo 傳遞給該方法
 		        CollectVo collect = collectService.addCollect(collectVo);
 //		        System.out.println(collect);

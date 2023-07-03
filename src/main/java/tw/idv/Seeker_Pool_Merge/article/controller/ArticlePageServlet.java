@@ -2,6 +2,7 @@ package tw.idv.Seeker_Pool_Merge.article.controller;
 
 import java.io.IOException;
 import java.util.Base64;
+import java.util.Optional;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,6 +30,15 @@ public class ArticlePageServlet extends HttpServlet {
 			
 		// 接收arNo
 		String arNo = req.getParameter("arNo");
+		Optional<String> arOptional = Optional.ofNullable(req.getParameter("arNo"));
+		
+		arOptional.ifPresent(arNo2 -> {
+		System.out.println("arNo2");
+		});
+		
+		if (!arOptional.isPresent()) {
+			System.out.println("這是空值");
+		}
 		
 		// 調用service查詢ArticleVo對象
 		ArticleVo page = articleService.getArticleById(arNo);
