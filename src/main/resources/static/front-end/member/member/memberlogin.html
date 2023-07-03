@@ -34,7 +34,7 @@
 //                     	console.log(document.referrer); //上一頁來自哪裡
 //                     	console.log("includes =" + document.referrer.includes("SeekerPool"));
                     	
-                    	if(document.referrer.includes("SeekerPool")){
+                    	if(document.referrer.includes("SeekerPool") && !document.referrer.includes("checkinterviewtime.html")){
                     		///登入成功，如果是此網站來的就跳轉到上一頁
                     		history.back();
                     	}else{
