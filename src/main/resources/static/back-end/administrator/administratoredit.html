@@ -187,58 +187,62 @@
 	<script src="../../common/js/packageJS/bootstrap.bundle.min.js"></script>
 
 	<script>
+	
+	// ======== 權限設定 最高權限 ===========
+	$.ajax({
+        url: "/SeekerPool/administrator.do",
+        method: 'POST',
+        datatype: "JSON",
+        data: { action: "getOne_For_Display4" },
+        success: function (res) {
+//         	console.log("res : "+ res);
+            if (res.trim() === "您無最高權限!") {
+                alert(res);
+                window.location.replace("./administratorhome.html");
+            } else {
+
+            }
+        }
+    })
 		$(function () {
-			// ======== 權限設定 最高權限 ===========
-	        $.ajax({
-	            url: "/Seeker_Pool_Mix/administrator.do",
-	            method: 'POST',
-	            datatype: "JSON",
-	            data: { action: "getOne_For_Display4" },
-	            success: function (res) {
-	                if (res.trim() === "您無最高權限!") {
-	                    alert(res);
-	                    window.location.replace("../jobfair/jfback/EmployeeLogin.html");
-	                } else {
+				
+			// 登出
+	         $("a#out").on("click", function (e) {
+		        e.preventDefault;
+		    })
+		    $("span#out").on("click", function () {
+		        if (confirm("確定要登出?")) {
+		            $.ajax({
+		                url: "/SeekerPool/administrator.do",
+		                method: 'POST',
+		                datatype: "JSON",
+		                data: { action: "logout" },
+		                success: function (res) {
+		                    alert(res);
+		                    window.location.replace('../jobfair/jfback/EmployeeLogin.html');
+		                }
+		            })
+		        }
+		    })
+		
+		
+	    // 顯示登入者
+        $.ajax({
+            url: "/SeekerPool/administrator.do",
+            method: 'POST',
+            datatype: "JSON",
+            data: { action: "getOne_For_Display3" },
+            success: function (res) {
+                $("span#name").text(res.admName);
+                $("h6#name").text(res.admName);
+                $("input#schemeNumber2").val(res.admId);
+            }
+        })
 
-	                }
-
-	            }
-	        })
-	        
-			$.ajax({
-                url: "/SeekerPool/administrator.do",
-                method: 'POST',
-                datatype: "JSON",
-                data: { action: "getOne_For_Display3" },
-                success: function (res) {
-
-                    $("span#name").text(res.admName);
-                    $("h6#name").text(res.admName);
-                    $("input#schemeNumber2").val(res.admId);
-                }
-            })
-            $("a#out").on("click", function (e) {
-                e.preventDefault;
-            })
-            $("span#out").on("click", function () {
-                if (confirm("確定要登出?")) {
-
-                    $.ajax({
-                        url: "/SeekerPool/administrator.do",
-                        method: 'POST',
-                        datatype: "JSON",
-                        data: { action: "logout" },
-                        success: function (res) {
-                            alert(res);
-                            window.location.replace('../jobfair/jfback/EmployeeLogin.html');
-                        }
-                    })
-                }
-            })
 			
 			// ======= 透過 File 取得預覽圖 =======
 			$("input#admPhoto").change(function () {
-				console.log("AAA");
+// 				console.log("AAA");
 				var reader = new FileReader(); // 用來讀取檔案
 				if (this.files.length > 0) {
 					reader.addEventListener("load", function () {
@@ -261,13 +265,13 @@
 				var admPassword = $("#admPassword").val();
 				var admStatus = $("#admStatus").val();
 				var admPhoto = $("img.preview_img").attr("src");
-				console.log("id : " + parseInt(getParameter("id")));
-				console.log("admName :" + admName);
-				console.log("admPosition :" + admPosition);
-				console.log("admAccount :" + admAccount);
-				console.log("admPassword :" + admPassword);
-				console.log("admStatus :" + admStatus);
-				console.log("Photo :" + admPhoto);
+// 				console.log("id : " + parseInt(getParameter("id")));
+// 				console.log("admName :" + admName);
+// 				console.log("admPosition :" + admPosition);
+// 				console.log("admAccount :" + admAccount);
+// 				console.log("admPassword :" + admPassword);
+// 				console.log("admStatus :" + admStatus);
+// 				console.log("Photo :" + admPhoto);
 				var formData = new FormData($("#editAdminForm")[0]);
 				formData.append("admId", parseInt(getParameter("id")));
 				$.ajax({
@@ -305,9 +309,9 @@
 				cache: false,
 				success: function (res) {
 					for (let i = 0; i < res.length; i++) {
-						console.log("${res[i].admPosition}: " + res[i].admPosition);
-						console.log("${res[i].admAccount}: " + res[i].admAccount);
-						console.log("${res[i].admPhoto}: " + res[i].admPhoto);
+// 						console.log("${res[i].admPosition}: " + res[i].admPosition);
+// 						console.log("${res[i].admAccount}: " + res[i].admAccount);
+// 						console.log("${res[i].admPhoto}: " + res[i].admPhoto);
 						if (res[i].admId === parseInt(getParameter("id"))) {
 							console.log("True -------- admID");
 							$("input#admName").val(res[i].admName);
