@@ -15,7 +15,8 @@ new Vue({
 
         page:1, // 存當前的頁數
         pageSize: 5,
-        totalDataNumber: null,
+        total: '', // 給前端show 出共找到total位人才
+        totalDataNumber: '', // 給pagination去算要有幾頁
         generatedNumber:[],
         activeIndex: 0, // 初始激活的索引
     },
@@ -33,7 +34,9 @@ new Vue({
                 .then(res => {
                     if (res.data.code){
                         this.tempKeyword = this.keyword;
+                        this.total = res.data.data.total;
                         this.totalDataNumber = res.data.data.total;
+                        console.log("res.data.data.total: " + res.data.data.total + "page: " + this.page + "pageSize: " + this.pageSize + "total: " + this.totalDataNumber)
                         this.talentListData = res.data.data.rows;
                         this.keyword =''; //將keyword清空讓給關鍵字搜尋使用
                         this.roundNumber;
@@ -50,6 +53,7 @@ new Vue({
                     if (res.data.code){
 
                         this.talentListData = res.data.data.rows;
+                        this.total = res.data.data.total;
                         this.totalDataNumber = res.data.data.total;
                         this.keyword =''; //將keyword清空讓給關鍵字搜尋使用
                         this.roundNumber;
@@ -98,6 +102,7 @@ new Vue({
                         if (res.data.data.rows.length >0){ // 用length來判斷是否有資料回傳
 
                             this.roundNumber;
+                            this.total = res.data.data.total;
                             this.totalDataNumber = res.data.data.total;
                             this.talentListData = res.data.data.rows;
                         }else {
@@ -166,6 +171,7 @@ new Vue({
                 .then(response => {
                     // 请求成功，处理响应数据
                     this.talentListData = response.data.data.rows; // 他回傳那包的結構裡面data裡面又有rows
+                    this.total = res.data.data.total;
                     this.totalDataNumber = response.data.data.total;
                     this.roundNumber;
                     console.log(response.data);
