@@ -37,9 +37,8 @@ main{
 }
 .edit-vacancy{
     position: absolute;
-    top: 67vh;
-    left: 37%;
-    transform: translate(-50%, -50%);
+    top: -19vh;
+    left: -30%;
     width: 100vw;
     min-height: 1100px;
     height: auto;
@@ -464,7 +463,7 @@ menu ul li a:hover{
     margin-left: 10px;
 }
 .job-title{
-    width: 50%;
+    width: 51%;
 }
  .on-post, .on-top{
     width: 15%;

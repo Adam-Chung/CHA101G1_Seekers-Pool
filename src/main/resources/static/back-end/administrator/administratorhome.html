@@ -83,20 +83,9 @@
      <script>
      
      $(function () {
-			$.ajax({
-				url: "/SeekerPool/administrator.do",
-				method: 'POST',
-				datatype: "JSON",
-				data: { action: "getOne_For_Display3" },
-				success: function (res) {
-
-					$("span#name").text(res.admName);
-					$("h4#name").text("歡迎 " + res.admName + "登入!");
-				}
-			})
-		})
-		
-		$("a#out").on("click", function (e) {
+    	 
+    	 // 登出
+ 		$("a#out").on("click", function (e) {
 			e.preventDefault;
 		})
 		$("span#out").on("click", function () {
@@ -114,7 +103,21 @@
 				})
 			}
 		})
+    	
+		// 歡迎進入
+		$.ajax({
+			url: "/SeekerPool/administrator.do",
+			method: 'POST',
+			datatype: "JSON",
+			data: { action: "getOne_For_Display3" },
+			success: function (res) {
 
+				$("span#name").text(res.admName);
+				$("h4#name").text("歡迎 " + res.admName + "登入!");
+			}
+		})
+	})
+		
      </script>
 </body>
 

@@ -12,7 +12,7 @@ new Vue({
             defaultDistrict : [],
             selectedCityId: null, // 當被city點擊時，保存對應的ID
             maxSelection: 4, // 最大選擇數量
-            previousCitySelection: [], // 用于存储上一次的城市选择状态
+            previousCitySelection: [], // 用於儲存上一次的城市選擇狀態
         }
     },
     mounted(){
@@ -32,7 +32,7 @@ new Vue({
             let index = this.citiesData.find(item => item.id === id)
             index = index.id;
             const selectDistrict = this.districtsData.filter(item => item.cityId === index); //要回傳整個districts資料要用filter
-            // 检查已存在的区域名称并移除
+            // 检查已存在的區域名稱并移除
             this.multipleChecked = this.multipleChecked.filter(item => !selectDistrict.some(district => district.districtName === item));
             this.selectedCityId = index; // update the selected city ID
 
@@ -67,9 +67,9 @@ new Vue({
             const cityName = this.multipleChecked[index];
             const cityIndex = this.firstLayerCity.indexOf(cityName);
             if (cityIndex > -1) {
-                this.firstLayerCity.splice(cityIndex, 1); // 从 firstLayerCity 中移除对应的城市
+                this.firstLayerCity.splice(cityIndex, 1); // 從 firstLayerCity 中移除對應的城市
             }
-            this.multipleChecked.splice(index, 1); // 从 multipleChecked 中移除对应的城市
+            this.multipleChecked.splice(index, 1); // 從 multipleChecked 中移除對應的城市
         },
         goBack(){ // yes
             var $countryCategoryList = $(".country-category-list");
@@ -86,10 +86,7 @@ new Vue({
         },
         isDistrictRelatedToSelectedCity() {
             return (district) => {
-                // 首先确保有一个被选中的城市
-                // if (!this.firstLayerCity.length) return false;
-
-                // 检查区域是否与任一选中的城市相相关
+                // 檢查區域是否與任一選中的城市相關
                 return this.firstLayerCity.some(cityName => {
                     const cityId = this.citiesData.find(city => city.cityName === cityName).id;
                     return district.cityId === cityId;
@@ -105,13 +102,13 @@ new Vue({
             // 判断是添加城市還是取消城市
             const isAddingCity = !this.previousCitySelection.includes(newVal);
 
-            // 移除旧的城市名称
+            // 移除舊的城市名稱
             this.multipleChecked = this.multipleChecked.filter(item => !this.previousCitySelection.includes(item));
 
             if (isAddingCity) {
                 // 添加城市
                 if (this.multipleChecked.length < this.maxSelection) {
-                    // 添加新的城市名称
+                    // 添加新的城市名稱
                     this.multipleChecked = [...this.multipleChecked, ...this.firstLayerCity];
 
                 }
@@ -123,7 +120,7 @@ new Vue({
                 }
             }
 
-            // 更新上一次的城市选择状态
+            // 更新上一次的城市選擇狀態
             this.previousCitySelection = [...this.firstLayerCity];
         },
     }
@@ -132,60 +129,6 @@ new Vue({
 })
 // ====================================================================================
 // ====================================================================================
-// ====================================================================================
-// new Vue({
-//     el:'.job-category-body',
-//     data() {
-//         return{
-//             positionTypeData: [],
-//             namesData:[],
-//             selected: null,
-//             chosenType: '',  // 將選中的category.name 渲染給右邊第一層中
-//         }
-//     },
-//     mounted(){
-//         axios.get('/SeekerPool/positionType')
-//             .then(res => {
-//                 if(res.data.code){
-//                     this.positionTypeData = res.data.data;
-//                     this.selected = 0;
-//                     this.fetchName(this.positionTypeData[0].ptNo) //查第一個來顯示右邊那排對應的職務名稱
-//                 }
-//             } )
-//     },
-//     methods:{
-//         fetchName: function (id) {
-//             axios.get(`/SeekerPool/positionType/${id}`)
-//                 .then(response => {
-//                     console.log(response);
-//                     this.namesData = response.data.data;
-//                 }).catch(error => {
-//                 console.error(error);
-//             });
-//         },
-//         getClass(index) {
-//             return {
-//                 '-chosen': this.selected === index,
-//                 'original-class': true
-//             };
-//         },
-//         selectType(index) { // 將選中的city.name 渲染給右邊第一層中
-//             this.selected = index;
-//             this.chosenType = this.positionTypeData[index];
-//         },
-//     },
-//     computed:{
-//         // 讓從後端傳到這裡的position 的 ptType 裡的資料不重複
-//         uniqueTypes() {
-//             const typesSet = new Set();
-//             this.positionTypeData.forEach(job => {
-//                 typesSet.add(job.ptType);
-//             });
-//             return Array.from(typesSet);
-//         },
-//     },
-//
-// })
 
 new Vue({
     el:'.talent-search-form',

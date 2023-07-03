@@ -212,7 +212,6 @@
                             </tr>`
                         )
 
-
                         // console.log("res.jobUpload type: " + typeof res.jobUpload); // type Number
                         // console.log("res.jobTop type: " + typeof res.jobTop); // type Number
 
@@ -223,13 +222,6 @@
                             $("input#onPost" + res.jobNo + "_1").prop("checked", true);
                             upNum++;
                             $(".JC_NUM").html(`刊登狀態 (<span style="color:red">${upNum}</span><span>/</span><span style="color:blue">${res.jcAvailableNum}</span>)`);
-                            // console.log("upNum:" + upNum);
-                            // if (upNum > res.jcAvailableNum) {
-                            //     $("input#onPost" + res.jobNo + "_0").prop("checked", true);
-                            //     alert("超出該數量");
-                            //     upNum--;
-                            //     $(".JC_NUM").html(`刊登狀態 (<span style="color:red">${upNum}</span><span>/</span><span style="color:blue">${res.jcAvailableNum}</span>)`);
-                            // }
                         }
 
                         jcAvailableNum = res.jcAvailableNum;
@@ -242,7 +234,7 @@
                         } else if (res.jobTop === 1) {
                             $("input#onTop" + res.jobNo + "_1").prop("checked", true);
                             topNum++;
-                            console.log("topNum:" + topNum);
+//                             console.log("topNum:" + topNum);
                             $(".JC_TOP").html(`置頂狀態 (<span style="color:red">${topNum}</span><span>/</span><span style="color:blue">${res.jcTop}</span>)`);
 
                         }
@@ -275,11 +267,11 @@
                         async: false,
                         cache: false,
                         success: function (response) {
-                            console.log("JobUP status updated successfully");
+//                             console.log("JobUP status updated successfully");
                         }
                     });
                 } else {
-                    alert("超出該數量!!!");
+                    alert("上架數量不得大於 "+jcAvailableNum+" !!!");
                 }
 
             });
@@ -304,10 +296,10 @@
                         async: false,
                         cache: false,
                         success: function (response) {
-                            console.log("JobTop status updated successfully");
+//                             console.log("JobTop status updated successfully");
                         },
                         error: function (xhr, status, error) {
-                            console.error("Error updating job status: " + error);
+//                             console.error("Error updating job status: " + error);
                         }
                     });
                 } else {
@@ -318,7 +310,7 @@
                         confirmButtonText: 'OK',
                         timer: 5000
                     });
-                    alert("超出該數量!!!");
+                    alert("置頂數量不得大於 "+jcTop+" !!!");
                 }
             })
 
@@ -331,7 +323,7 @@
                     dataType: "JSON",
                     data: { action: "JobUploadNum" },
                     success: function (res) {
-                        console.log("成功進入 JobUploadNum");
+//                         console.log("成功進入 JobUploadNum");
                     },
                 })
 
@@ -340,10 +332,10 @@
                     dataType: "JSON",
                     data: { action: "JobTopNum" },
                     success: function (res) {
-                        console.log("成功進入 JobTopNum");
+//                         console.log("成功進入 JobTopNum");
                         // alert("更新成功");
                         Swal.fire({
-                            title: '恭喜',
+                            title: '職缺上架/置頂',
                             text: '更新成功!!!',
                             icon: 'success',
                             confirmButtonText: 'OK',

@@ -314,6 +314,7 @@ menu ul li a:hover{
     padding: 10px;
     margin-top: 10px;
     width: 90%;
+    min-width: 700px;
     height: auto;
     border-radius: 5px;
     box-shadow: 2px 2px 4px rgba(99, 98, 98, 0.546);
@@ -333,8 +334,10 @@ menu ul li a:hover{
 }
 
 .talent-full-info{
-    margin-left: -150px;
     letter-spacing: 2px;
+    width: 40%;
+    min-width: 300px;
+    flex-wrap: nowrap;
 }
 .talent-info-top{
     margin-left: -22px;    
