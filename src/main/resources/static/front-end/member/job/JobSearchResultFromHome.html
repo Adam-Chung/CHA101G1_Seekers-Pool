@@ -27,7 +27,7 @@
     <style>
         @import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
 
-        .display {
+         .display {
             font-family: 'Noto Sans TC', sans-serif !important;
             text-align: center;
             color: red;
@@ -414,7 +414,7 @@
 
                     var imgContainer = $("<div>", { class: "img-container center padding-half-1" }).appendTo(jobItem);
                     $("<div>", { class: "img" }).appendTo(imgContainer)
-                        .append($("<img>", { src: "https://upload.wikimedia.org/wikipedia/commons/7/7b/Honda_Logo.svg", alt: "?logo" }));
+                        .append($("<img>", { src: item.comPicture, alt: "logo",class: "comPicture" }));
 
                     var infoContainer = $("<div>", { class: "information-container padding-half-0" }).appendTo(jobItem);
 
@@ -422,10 +422,17 @@
                     $("<a>", { href: "JobDetail.html?comMemId=" + item.comMemId, name: "comName", text: item.comName }).appendTo(companyNameContainer);
 
 
-                    var jobTitleContainer = $("<div>", { class: "job-title-container padding-half-0 jobName" }).appendTo(infoContainer);
-                    $("<strong>").appendTo(jobTitleContainer)
-                        .append($("<a>", { href: "JobContent.html?jobNo=" + item.jobNo + "&comMemId=" + item.comMemId, text: item.jobName }));
+                    if (item.jobTop === 0) {
+                        var jobTitleContainer = $("<div>", { class: "job-title-container padding-half-0 jobName" }).appendTo(infoContainer);
+                        $("<strong>").appendTo(jobTitleContainer)
+                            .append($("<a>", { href: "JobContent.html?jobNo=" + item.jobNo + "&comMemId=" + item.comMemId, text: item.jobName }));
+                    } else {
+                        var jobTitleContainer = $("<div>", { class: "job-title-container padding-half-0 jobName" }).appendTo(infoContainer);
+                        var jobTitleContent = $("<span>", { class: "job-title-content topjob" }).appendTo(jobTitleContainer);
+                        $("<img>", { src: "./images/gold-crown.svg", alt: "我是至頂的圖", class: "job-icon" }).appendTo(jobTitleContent);
+                        $("<a>", { href: "JobContent.html?jobNo=" + item.jobNo + "&comMemId=" + item.comMemId, text: item.jobName }).appendTo(jobTitleContent);
 
+                    }
 
                     var locationContainer = $("<div>", { class: "location-container padding-half-0" }).appendTo(infoContainer);
                     $("<span>", { class: "font-light-sm", name: "cityName", text: item.cityName }).appendTo(locationContainer);
