@@ -1,8 +1,8 @@
-package xuan.dao;
+package tw.idv.Seeker_Pool_Merge.xuan.dao;
 
 import java.util.List;
 
-import xuan.vo.OnlineCourseVo;
+import tw.idv.Seeker_Pool_Merge.xuan.vo.OnlineCourseVo;
 
 
 public interface OnlineCourseDao {

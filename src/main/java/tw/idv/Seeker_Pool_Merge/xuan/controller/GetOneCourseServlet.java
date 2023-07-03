@@ -1,8 +1,7 @@
-package xuan.controller;
+package tw.idv.Seeker_Pool_Merge.xuan.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import xuan.dao.impl.OnlineCourseDaoImpl;
-import xuan.vo.OnlineCourseVo;
+import tw.idv.Seeker_Pool_Merge.xuan.dao.impl.OnlineCourseDaoImpl;
+import tw.idv.Seeker_Pool_Merge.xuan.vo.OnlineCourseVo;
 
 @WebServlet("/GetOneCourseServlet")
 public class GetOneCourseServlet extends HttpServlet {

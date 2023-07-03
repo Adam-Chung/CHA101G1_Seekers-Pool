@@ -1,4 +1,4 @@
-package xuan.controller;
+package tw.idv.Seeker_Pool_Merge.xuan.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import xuan.dao.impl.OnlineCourseDaoImpl;
-import xuan.vo.OnlineCourseVo;
+import tw.idv.Seeker_Pool_Merge.xuan.dao.impl.OnlineCourseDaoImpl;
+import tw.idv.Seeker_Pool_Merge.xuan.vo.OnlineCourseVo;
 
 @WebServlet("/CourseAddServlet")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB

@@ -1,9 +1,5 @@
-package xuan.dao.impl;
+package tw.idv.Seeker_Pool_Merge.xuan.dao.impl;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,24 +7,36 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import xuan.dao.OnlineCourseDao;
-import xuan.vo.OnlineCourseVo;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
+import tw.idv.Seeker_Pool_Merge.common.util.HikariCPUtil;
+import tw.idv.Seeker_Pool_Merge.xuan.dao.OnlineCourseDao;
+import tw.idv.Seeker_Pool_Merge.xuan.vo.OnlineCourseVo;
 
 public class OnlineCourseDaoImpl implements OnlineCourseDao {
-	private DataSource dataSource;
-
-	public OnlineCourseDaoImpl() {
-		try {
-			Context ctx = new InitialContext();
-			dataSource = (DataSource) ctx.lookup("java:comp/env/jdbc/datasource");
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}
-	}
+//	private DataSource dataSource;
+//
+//	public OnlineCourseDaoImpl() {
+//		try {
+//			Context ctx = new InitialContext();
+//			dataSource = (DataSource) ctx.lookup("java:comp/env/jdbc/datasource");
+//		} catch (NamingException e) {
+//			e.printStackTrace();
+//		}
+//	}
+//	
+//	public void setDataSource(DataSource dataSource) {
+//        this.dataSource = dataSource;
+//    }
 	
-	public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
+	private DataSource dataSource = HikariCPUtil.getDataSource();
+	
+	
+	
+	
 	//	新增課程
 	@Override
 	public void createOnlineCourse(OnlineCourseVo onlineCourse) {
