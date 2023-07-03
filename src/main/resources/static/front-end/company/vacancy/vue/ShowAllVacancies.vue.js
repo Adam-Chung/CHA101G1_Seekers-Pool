@@ -74,7 +74,6 @@ new Vue({
                     console.error(error);
                 });
         },
-
         // 保存編輯後的表單資料
         submitEditForm(){
             this.transformTypeNameToPtNo();
@@ -137,7 +136,7 @@ new Vue({
             }else if(this.editedVacancy.jobContent === '' || this.editedVacancy.jobContent === null){
                 this.sweetalert('注意!', '方便幫我介紹一下工作內容嗎?', 'warning', '關閉');
                 return false;
-            }else if(this.editedVacancy.jobSalary === 0 || this.editedVacancy.jobSalary === null){
+            }else if(this.editedVacancy.jobSalary === '' ||this.editedVacancy.jobSalary === 0 || this.editedVacancy.jobSalary === null){
                 this.sweetalert('注意!', '請填入給付薪水金額!', 'warning', '關閉');
                 return false;
             }else if(this.editedVacancy.jobOther === '' || this.editedVacancy.jobOther === null){
@@ -172,7 +171,6 @@ new Vue({
                     this.editedVacancy.jobContent = this.editData[0].jobContent;
                     this.editedVacancy.jobOther = this.editData[0].jobOther;
                     this.editedVacancy.jobSalary = this.editData[0].jobSalary;
-                    console.log(this.editData);
                 }
             })
         },
@@ -213,6 +211,7 @@ new Vue({
                 }
             });
         },
+
 
         // 用來將前端的職務名稱轉換成對應的id(job這table只能存id)
         editedVacancyPtNo() {
@@ -277,13 +276,7 @@ new Vue({
             if(this.editedVacancy.ptName){
 
             }
-        },
-        test(){
-            alert("edit.ptName: " + this.editedVacancy.ptName)
-            alert("initialPtName: " + this.initialPtName)
-            alert("selectedName: " + this.selectedName)
         }
-
     },
 
     computed:{
@@ -322,7 +315,6 @@ new Vue({
         selectedName(value) {
             // 根據選擇的產業類別值發起請求或處理相應邏輯，並更新職務類別數據
             this.editedVacancy.ptName = value;
-            alert("watch: " + this.editedVacancy.ptName)
             console.log("最後看一下selectedName" + this.selectedName)
         },
         'editedVacancy.cityName'(cityName) {

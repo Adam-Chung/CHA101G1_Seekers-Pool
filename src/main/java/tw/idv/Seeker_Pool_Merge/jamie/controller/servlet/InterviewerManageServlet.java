@@ -48,20 +48,20 @@ public class InterviewerManageServlet extends HttpServlet {
 
 				if (companyMember != null) {
 					List<ApplyRecordVo> applyRecords = dao.findApplicantsByComMemId(comMemId);
-					System.out.println("印出應徵者列表: " + applyRecords);
+//					System.out.println("印出應徵者列表: " + applyRecords);
 					
 					String jsonStr =  new JSONArray(applyRecords).toString();		
 					out.write(jsonStr);
 					out.flush();
 				} else {
-					System.out.println("查無此企業會員");
+//					System.out.println("查無此企業會員");
 				}
 
 			} else {  // 點擊「詳情」並顯示履歷內容
 				try {
 					int memId = Integer.parseInt(idStr);
 					ApplyRecordVo member = dao.findMemberById(memId);
-					System.out.println("印出該名會員: " + member);
+//					System.out.println("印出該名會員: " + member);
 					
 //					String jobTitle = member.getJobName();
 //					req.getSession().setAttribute("member", member);
@@ -70,7 +70,7 @@ public class InterviewerManageServlet extends HttpServlet {
 					out.write(new JSONObject(member).toString());
 				} catch (NumberFormatException e) {
 					e.printStackTrace();
-					System.out.println("id參數沒有成功轉換");
+//					System.out.println("id參數沒有成功轉換");
 				}
 			}		
 		}

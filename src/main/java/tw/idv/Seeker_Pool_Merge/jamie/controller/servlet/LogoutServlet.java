@@ -18,7 +18,7 @@ public class LogoutServlet extends HttpServlet {
 		
 		req.getSession().invalidate();
 		resp.sendRedirect("/SeekerPool/front-end/company/companymember/companyLogin.html");
-		System.out.println("登出成功!");
+//		System.out.println("登出成功!");
 		
 	}
 	

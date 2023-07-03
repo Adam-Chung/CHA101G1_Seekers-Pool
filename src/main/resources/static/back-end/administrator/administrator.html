@@ -2,57 +2,102 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
-	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-	<title>Seeker's Pool</title>
-	<meta content="" name="description">
-	<meta content="" name="keywords">
+<title>Seeker's Pool</title>
+<meta content="" name="description">
+<meta content="" name="keywords">
 
-	<!-- Favicons -->
-	<link href="../../common/img/handshake-regular.svg" rel="icon">
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Favicons -->
+<link href="../../common/img/handshake-regular.svg" rel="icon">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-	<!-- Google Fonts -->
-	<link href="https://fonts.gstatic.com" rel="preconnect">
-	<link
-		href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-		rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.gstatic.com" rel="preconnect">
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+	rel="stylesheet">
+	
+<!--    sweetalert2   -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-	<!-- Vendor CSS Files -->
-	<link href="../../common/css/packageCSS/bootstrap.min.css" rel="stylesheet">
-	<link href="../../common/css/packageCSS/bootstrap-icons.css" rel="stylesheet">
-	<link href="../../common/css/packageCSS/boxicons.min.css" rel="stylesheet">
-	<link href="../../common/css/packageCSS/quill.snow.css" rel="stylesheet">
-	<link href="../../common/css/packageCSS/quill.bubble.css" rel="stylesheet">
-	<link href="../../common/css/packageCSS/remixicon.css" rel="stylesheet">
-	<link href="../../common/css/packageCSS/style.css" rel="stylesheet">
+<!-- Vendor CSS Files -->
+<link href="../../common/css/packageCSS/bootstrap.min.css"
+	rel="stylesheet">
+<link href="../../common/css/packageCSS/bootstrap-icons.css"
+	rel="stylesheet">
+<link href="../../common/css/packageCSS/boxicons.min.css"
+	rel="stylesheet">
+<link href="../../common/css/packageCSS/quill.snow.css" rel="stylesheet">
+<link href="../../common/css/packageCSS/quill.bubble.css"
+	rel="stylesheet">
+<link href="../../common/css/packageCSS/remixicon.css" rel="stylesheet">
+<link href="../../common/css/packageCSS/style.css" rel="stylesheet">
 
-	<!-- Template Main CSS File -->
-	<link href="../../common/css/Employee.css" rel="stylesheet">
-	<style>
-		td>input {
-			width: 70%;
-			border: 2px solid #a5c5fe;
-			border-radius: 5px;
-			box-sizing: border-box;
-		}
+<!-- Template Main CSS File -->
+<link href="../../common/css/Employee.css" rel="stylesheet">
+<style>
+td>input {
+	width: 70%;
+	border: 2px solid #a5c5fe;
+	border-radius: 5px;
+	box-sizing: border-box;
+}
 
-		td>img {
-			max-width: 100px;
-			max-height: 50%;
-		}
+td>img {
+	max-width: 100px;
+	max-height: 50%;
+}
 
-		tbody>td {
-			max-width: 100px;
-			max-height: 60px;
-		}
-	</style>
+tbody>td {
+	max-width: 100px;
+	max-height: 60px;
+}
+</style>
 
-	<!-- Font Awesome-->
-	<script src="https://kit.fontawesome.com/244879c400.js" crossorigin="anonymous"></script>
-	<!-- jQuery -->
-	<script src="../../common/js/jquery-3.6.4.min.js"></script>
+<!-- Font Awesome-->
+<script src="https://kit.fontawesome.com/244879c400.js"
+	crossorigin="anonymous"></script>
+<!-- jQuery -->
+<script src="../../common/js/jquery-3.6.4.min.js"></script>
+<script>
+//======== 權限設定 最高權限 ===========
+$(window).on("load", function(){
+		$.ajax({
+	        url: "/SeekerPool/administrator.do",
+	        method: 'POST',
+	        datatype: "JSON",
+	        data: { action: "getOne_For_Display4" },
+	        success: function (res) {
+	        	console.log("res : "+ res);
+	            if (res.trim() === "您無最高權限!") {
+	                alert(res);
+	                window.location.replace("./administratorhome.html");
+	            } else {
+
+	            }
+	        }
+	    })
+	})
+</script>
+
+<script>
+// ======== 引入header ===========
+   $.get("../../common/buildPage/Employee_Header.html", function (data) {
+       $("#header1").html(data);
+
+       $.getScript("../../common/js/Employee.js", function () {
+       });
+   });
+
+   // ======== 引入sidebar ===========
+   $.get("../../common/buildPage/Employee_Sidebar.html", function (data) {
+       $("#sidebar1").html(data);
+   });
+   
+   </script>
+
 
 </head>
 
@@ -70,7 +115,8 @@
 			<nav>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="Employee.html">Home</a></li>
-					<li class="breadcrumb-item active"><a href="Administrator1.html">員工管理</a></li>
+					<li class="breadcrumb-item active"><a
+						href="Administrator1.html">員工管理</a></li>
 					<li class="breadcrumb-item active">員工總覽</li>
 				</ol>
 			</nav>
@@ -79,19 +125,23 @@
 
 		<div class="row">
 			<div class="col-lg-3">
-				<label for="inputAdmId" class="form-label"><strong style="font-size: large;">員工查詢</strong></label>
+				<label for="inputAdmId" class="form-label"><strong
+					style="font-size: large;">員工查詢</strong></label>
 				<div class="input-group">
-					<input type="text" class="form-control" id="inputAdmId" placeholder="輸入員工編號">
+					<input type="text" class="form-control" id="inputAdmId"
+						placeholder="輸入員工編號">
 					<button type="button" class="btn btn-primary" id="searchAdmId">
 						<strong>查詢</strong>
 					</button>
 				</div>
 			</div>
 
-			<div class="col-sm-2 d-flex align-items-end">
-				<button type="button" class="btn btn-primary" id="btnQuery"><strong>查詢全部</strong></button>
+			<div class="col-sm-3 d-flex align-items-end">
+				<button type="button" class="btn btn-primary" id="btnQuery">
+					<strong>查詢全部</strong>
+				</button>
 			</div>
-			<div class="col-sm-4 d-flex align-items-end justify-content-end">
+			<div class="col-sm-6 d-flex align-items-end justify-content-end">
 				<a href="administratoradd.html">
 					<button type="button" class="btn btn-primary">
 						<strong>新增員工基本資料</strong>
@@ -121,15 +171,16 @@
 			</table>
 		</div>
 		<!-- 底部分頁 -->
-		<nav aria-label="Page navigation">
-			<ul class="pagination justify-content-center">
-				<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Previous</a></li>
-				<li class="page-item"><a class="page-link" href="#">1</a></li>
-				<li class="page-item"><a class="page-link" href="#">2</a></li>
-				<li class="page-item"><a class="page-link" href="#">3</a></li>
-				<li class="page-item"><a class="page-link" href="#">Next</a></li>
-			</ul>
-		</nav>
+<!-- 		<nav aria-label="Page navigation"> -->
+<!-- 			<ul class="pagination justify-content-center"> -->
+<!-- 				<li class="page-item disabled"><a class="page-link" href="#" -->
+<!-- 					tabindex="-1">Previous</a></li> -->
+<!-- 				<li class="page-item"><a class="page-link" href="#">1</a></li> -->
+<!-- 				<li class="page-item"><a class="page-link" href="#">2</a></li> -->
+<!-- 				<li class="page-item"><a class="page-link" href="#">3</a></li> -->
+<!-- 				<li class="page-item"><a class="page-link" href="#">Next</a></li> -->
+<!-- 			</ul> -->
+<!-- 		</nav> -->
 	</main>
 
 	<!-- 首頁sidebar下拉 -->
@@ -137,24 +188,43 @@
 
 
 	<script>
-		let reqaa = [];
-		$(document).on('DOMContentLoaded', aa)
-		$.get("../../common/buildPage/Employee_Header.html", function (data) {
-			$("#header1").html(data);
+	
 
-			$.getScript("../../common/js/Employee.js", function () {
-			});
-		});
-
-		// ======== 引入sidebar ===========
-		$.get("../../common/buildPage/Employee_Sidebar.html", function (data) {
-			$("#sidebar1").html(data);
-		});
-
-
-		function aa() {
-			console.log(new Date());
-			// ======== 引入header ===========
+    
+	$(function () {
+		
+		 // 登出
+		 $("a#out").on("click", function (e) {
+		        e.preventDefault;
+		    })
+		    $("span#out").on("click", function () {
+		        if (confirm("確定要登出?")) {
+		            $.ajax({
+		                url: "/SeekerPool/administrator.do",
+		                method: 'POST',
+		                datatype: "JSON",
+		                data: { action: "logout" },
+		                success: function (res) {
+		                    alert(res);
+		                    window.location.replace('../jobfair/jfback/EmployeeLogin.html');
+		                }
+		            })
+		        }
+		    })
+		
+		
+	    // 顯示登入者
+        $.ajax({
+            url: "/SeekerPool/administrator.do",
+            method: 'POST',
+            datatype: "JSON",
+            data: { action: "getOne_For_Display3" },
+            success: function (res) {
+                $("span#name").text(res.admName);
+                $("h6#name").text(res.admName);
+                $("input#schemeNumber2").val(res.admId);
+            }
+        })
 
 			// ======== AJAX ===========
 			/* ==== 登入即查詢全部 ==== */
@@ -168,35 +238,36 @@
 				success: function (res) {
 					reqaa = res;
 					for (let i = 0; i < res.length; i++) {
+						let admPositionText = res[i].admPosition === 0 ? "最高權限" : "一般權限";
+						let admStatusText = res[i].admStatus === 0 ? "離職" : "在職";
 						// console.log("${res[i].admId}: " + res[i].admId);
 						// console.log("${res[i].admPhoto}: " + res[i].admPhoto);
 						$("tbody").append(`<tr id="all">
 								<td style='text-align: center' class="admId" name="admId">${res[i].admId}</td>
 								<td style='text-align: center' class="admName" name="admName">${res[i].admName}</td>
-								<td style='text-align: center' class="admPosition" name="admPosition">${res[i].admPosition}</td>
+								<td style='text-align: center' class="admPosition" name="admPosition">${admPositionText}</td>
 								<td style='text-align: center' class="admAccount" name="admAccount">${res[i].admAccount}</td>
 								<td style='text-align: center' class="admPassword" name="admPassword">${res[i].admPassword}</td>
-								<td style='text-align: center' class="admStatus" name="admStatus">${res[i].admStatus}</td>
+								<td style='text-align: center' class="admStatus" name="admStatus">${admStatusText}</td>
 								<td style='text-align: center' class="admPhoto" name="admPhoto" ></td>
 								<td class='no-border' style='vertical-align: middle; text-align: center;'>
 										<a href="./administratoredit.html?id=${res[i].admId}">
 											<button class='btn btn-outline-secondary btn-sm btnEdit'
 											style='margin-left: 5px; vertical-align: auto;' type="submit">
-											<strong>Edit</strong>
+											<strong>編輯</strong>
 											</button>
 										</a>
 									</td>
 							</tr>`);
 						$("tbody tr:last-child td:eq(-2)").html(`<img src="${res[i].admPhoto}" id="imgId" alt="圖片">`);
 					}
-					console.log(new Date());
 				}
 			})
 
 			/* ==== 查單一 ==== */
 			$("#searchAdmId").click(function () {
 				var admId = $("#inputAdmId").val().trim();
-				console.log(admId);
+// 				console.log(admId);
 				if (admId !== "" && /^[0-9]+$/.test(admId)) {
 					$.post({
 						url: "../../AdministratorServlet",
@@ -208,23 +279,25 @@
 							admId: admId,
 						},
 						success: function (res) {
-							console.log("res :" + res);
+// 							console.log("res :" + res);
 							if (res) {
 								$("tr#trContext").remove();
-								console.log(res);
+// 								console.log(res);
+								let admPositionText = res.admPosition === 0 ? "最高權限" : "一般權限";
+								let admStatusText = res.admStatus === 0 ? "離職" : "在職";
 								$("tbody").append(`<tr id="trContext">
 									<td style='text-align: center' class="admId" name="admId">${res.admId}</td>
 									<td style='text-align: center' class="admName" name="admName">${res.admName}</td>
-									<td style='text-align: center' class="admPosition" name="admPosition">${res.admPosition}</td>
+									<td style='text-align: center' class="admPosition" name="admPosition">${admPositionText}</td>
 									<td style='text-align: center' class="admAccount" name="admAccount">${res.admAccount}</td>
 									<td style='text-align: center' class="admPassword" name="admPassword">${res.admPassword}</td>
-									<td style='text-align: center' class="admStatus" name="admStatus">${res.admStatus}</td>
+									<td style='text-align: center' class="admStatus" name="admStatus">${admStatusText}</td>
 									<td style='text-align: center' class="admPhoto" name="admPhoto"></td>
 									<td class='no-border' style='vertical-align: middle; text-align: center;'>
 										<a href="./administratoredit.html?id=${res.admId}">
 											<button class='btn btn-outline-secondary btn-sm btnEdit'
 											style='margin-left: 5px; vertical-align: auto;' type="submit">
-											<strong>Edit</strong>
+											<strong>編輯</strong>
 											</button>
 										</a>
 									</td>
@@ -233,7 +306,7 @@
 								$("tr#trContext").prevAll().remove();
 							} else {
 								$("tr#trNO").remove();
-								console.log(res);
+// 								console.log(res);
 								$("tbody").append(`<tr id="trNO">
 									<td style='text-align: center; color: red; font-weight: bold;'>查無此編號!!!</td>
 									<td style='text-align: center'></td>
@@ -249,13 +322,13 @@
 						}
 					});
 				} else {
-					console.log("請輸入數字");
+// 					console.log("請輸入數字");
 					alert("錯誤! 員工編號請輸入數字");
 				}
 			})
-		};
+		});
 		$("button#btnQuery").click(function () {
-			console.log("重新載入");
+// 			console.log("重新載入");
 			location.reload();
 		})
 	</script>

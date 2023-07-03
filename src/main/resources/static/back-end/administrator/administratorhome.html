@@ -35,7 +35,21 @@
 	<script src="https://kit.fontawesome.com/244879c400.js" crossorigin="anonymous"></script>
 	<!-- jQuery -->
 	<script src="../../common/js/jquery-3.6.4.min.js"></script>
+	<script>
+ 	// ======== 引入header ===========
+    $.get("../../common/buildPage/Employee_Header.html", function (data) {
+        $("#header1").html(data);
 
+        $.getScript("../../common/js/Employee.js", function () {
+        });
+    });
+
+    // ======== 引入sidebar ===========
+    $.get("../../common/buildPage/Employee_Sidebar.html", function (data) {
+        $("#sidebar1").html(data);
+    });
+    
+    </script>
 </head>
 
 <body>
@@ -69,57 +83,42 @@
      <script>
      
      $(function () {
-			$.ajax({
-				url: "/SeekerPool/administrator.do",
-				method: 'POST',
-				datatype: "JSON",
-				data: { action: "getOne_For_Display3" },
-				success: function (res) {
-
-					$("span#name").text(res.admName);
-					$("h4#name").text("歡迎 " + res.admName + "登入!");
-					
-				}
-			})
-			$("a#out").on("click", function (e) {
-				e.preventDefault;
-			})
-			$("span#out").on("click", function () {
-				if (confirm("確定要登出?")) {
-
-					$.ajax({
-						url: "/SeekerPool/administrator.do",
-						method: 'POST',
-						datatype: "JSON",
-						data: { action: "logout" },
-						success: function (res) {
-							alert(res);
-							window.location.replace('../jobfair/jfback/EmployeeLogin.html');
-						}
-					})
-				}
-			})
+    	 
+    	 // 登出
+ 		$("a#out").on("click", function (e) {
+			e.preventDefault;
 		})
+		$("span#out").on("click", function () {
+			if (confirm("確定要登出?")) {
+				console.log("AAA");
+				$.ajax({
+					url: "/SeekerPool/administrator.do",
+					method: 'POST',
+					datatype: "JSON",
+					data: { action: "logout" },
+					success: function (res) {
+						alert(res);
+						window.location.replace('../jobfair/jfback/EmployeeLogin.html');
+					}
+				})
+			}
+		})
+    	
+		// 歡迎進入
+		$.ajax({
+			url: "/SeekerPool/administrator.do",
+			method: 'POST',
+			datatype: "JSON",
+			data: { action: "getOne_For_Display3" },
+			success: function (res) {
 
+				$("span#name").text(res.admName);
+				$("h4#name").text("歡迎 " + res.admName + "登入!");
+			}
+		})
+	})
+		
      </script>
-	<script>
-	
-	
-	// ======== 引入header ===========
-	$.get("../../common/buildPage/Employee_Header.html", function (data) {
-		$("#header1").html(data);
-
-		$.getScript("../../common/js/Employee.js", function () {
-		});
-	});
-
-	// ======== 引入sidebar ===========
-	$.get("../../common/buildPage/Employee_Sidebar.html", function (data) {
-		$("#sidebar1").html(data);
-	});
-
-	</script>
-
 </body>
 
 </html>

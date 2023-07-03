@@ -18,7 +18,7 @@
     margin: 10px;
 }
 
-i {
+.heading-icon-block i {
     color: #93bfcf;
 }
 
@@ -134,4 +134,8 @@ button:hover {
 #applicant-name {
     border: 1px solid blue;
     margin-left: 40px;
+}
+
+#job-title {
+    display: none;
 }

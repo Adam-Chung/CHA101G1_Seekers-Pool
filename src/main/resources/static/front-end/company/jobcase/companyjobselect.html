@@ -6,17 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SEEKER'S POOL 招募管理</title>
-<!--    sweetalert2   -->
+    <!--    sweetalert2   -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="./css/vacancyjobcase.css">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
-            crossorigin="anonymous"></script>
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+        crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-------------------- 引入axios -------------------->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <!-- jQuery -->
     <script src="./js/jquery-3.6.4.min.js"></script>
@@ -24,164 +27,167 @@
 
 <body>
 
-<!-- ======================= side-bar main ====================== -->
-<main>
+    <!-- ======================= side-bar main ====================== -->
+    <main>
 
-    <div class="container">
-        <aside id="sidebar" class="sidebar">
-            <div class="logo">
-                <div class="img">
-                    <img src="./img/TSMC_logo.svg.png" alt="this is a logo" id="logoImg">
+        <div class="container">
+            <aside id="sidebar" class="sidebar">
+                <div class="logo">
+                    <div class="img">
+                        <img src="./img/TSMC_logo.svg.png" alt="this is a logo" id="logoImg">
+                    </div>
+                    <h3 id="brand-name">台雞電股份有限公司</h3>
                 </div>
-                <h3 id="brand-name">台雞電股份有限公司</h3>
-            </div>
-            <menu>
-                <ul>
-                    <li class="main-list center">
-                        <a href="#" draggable="false"> <!--第一個-->
-                            <i class="fa-solid fa-address-card"></i>會員中心
-                            <div class="caret-icon">
-                                <i class="fa-solid fa-sort-down"></i>
-                            </div>
-                        </a>
+                <menu>
+                    <ul>
+                        <li class="main-list center">
+                            <a href="#" draggable="false"> <!--第一個-->
+                                <i class="fa-solid fa-address-card"></i>會員中心
+                                <div class="caret-icon">
+                                    <i class="fa-solid fa-sort-down"></i>
+                                </div>
+                            </a>
 
-                        <!-- ======================= sub-menu ====================== -->
-                        <ul class="sub-menu collapse -none">
-                            <li class="sub-list">
-                                <a href="#" draggable="false">會員資料管理</a>
-                            </li>
+                            <!-- ======================= sub-menu ====================== -->
+                            <ul class="sub-menu collapse -none">
+                                <li class="sub-list">
+                                    <a href="../companymember/companyInfo.html" draggable="false">會員資料管理</a>
+                                </li>
 
-                            <li class="sub-list">
-                                <a href="../html/VacancyManagement.html" draggable="false">職缺管理</a>
-                            </li>
+                                <li class="sub-list">
+                                    <a href="../vacancy/html/VacancyManagement.html" draggable="false">職缺管理</a>
+                                </li>
 
-                            <li class="sub-list">
-                                <a href="#" draggable="false">應徵者管理</a>
-                            </li>
-                        </ul>
-                    </li>
+                                <li class="sub-list">
+                                    <a href="../companymember/interviewer_manage.html" draggable="false">應徵者管理</a>
+                                </li>
+                            </ul>
+                        </li>
 
-                    <li class="main-list talent-search">
-                        <a href="../html/TalentSearch.html" draggable="false"> <!--第二個-->
-                            <i class="fa-solid fa-user-tie"></i>人才查詢
-                        </a>
+                        <li class="main-list talent-search">
+                            <a href="../vacancy/html/TalentSearch.html" draggable="false"> <!--第二個-->
+                                <i class="fa-solid fa-user-tie"></i>人才查詢
+                            </a>
 
-                    </li>
+                        </li>
 
-                    <li class="main-list purchase">
-                        <a href="#" draggable="false"> <!--第三個-->
-                            <i class="fa-solid fa-cart-shopping"></i>刊登方案
-                            <div class="caret-icon">
-                                <i class="fa-solid fa-sort-down"></i>
-                            </div>
-                        </a>
-                        <ul class="sub-menu collapse -none">
-                            <li class="sub-list">
-                                <a href="../../company/jobcase/companyjobselect.html" draggable="false">刊登職缺管理</a>
-                            </li>
-                            <li class="sub-list">
-                                <a href="../../company/jobcase/companyjobcase.html" draggable="false">刊登方案</a>
-                            </li>
-                            <li class="sub-list">
-                                <a href="../../company/jobcase/companyjobcaseconfirm.html" draggable="false">我要刊登</a>
-                            </li>
-                            <li class="sub-list">
-                                <a href="../../company/jobcase/companyjobordersearch.html" draggable="false">刊登訂單查詢</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="main-list expo">
-                        <a href="#" draggable="false"> <!--第四個-->
-                            <i class="fa-solid fa-house"></i></i>徵才博覽會管理
-                            <div class="caret-icon">
-                                <i class="fa-solid fa-sort-down"></i>
-                                <i id="-none" class="fa-solid fa-caret-up"></i>
-                            </div>
-                        </a>
-                        <ul class="sub-menu collapse -none">
-                            <li class="sub-list">
-                                <a href="../../company/jobfair/jfindex/Companyjobfair.html" draggable="false">徵才博覽會一覽</a>
-                            </li>
-                            <li class="sub-list">
-                                <a href="../../company/jobfair/jfindex/signUpRecord/signUpRecord.html" draggable="false">報名紀錄</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="main-list logout">
-                        <a href="#" draggable="false"> <!--第五個-->
-                            <i class="fa-solid fa-arrow-right-from-bracket"></i>登出
-                        </a>
-                    </li>
-                </ul>
-            </menu>
-        </aside>
-    </div>
-</main>
-
-<main>
-
-    <!-- ======================= main-content ====================== -->
-    <div class="main-content">
-
-        <table class="table table-hover" style="text-align: center; margin-top: 10px;">
-            <thead class="thead-Dark">
-            <tr class="trHead">
-                <th id="JOB_NO" class="JOB_NO">編號</th>
-                <th id="JOB_NAME" class="JOB_NAME">職務名稱</th>
-                <th id="JC_NUM" class="JC_NUM">刊登狀態</th>
-                <th id="JC_TOP" class="JC_TOP">置頂狀態</th>
-                <th id="JC_DEADLINE" class="JC_DEADLINE">截止日</th>
-            </tr>
-            </thead>
-            <tbody>
-            <!-- 動態產生 -->
-            </tbody>
-        </table>
-        <div>
-            <button type="button" class="btn btn-primary" id="btnSave"
-                    style="float: right; margin-right:50px">儲存</button>
+                        <li class="main-list purchase">
+                            <a href="#" draggable="false"> <!--第三個-->
+                                <i class="fa-solid fa-cart-shopping"></i>刊登方案
+                                <div class="caret-icon">
+                                    <i class="fa-solid fa-sort-down"></i>
+                                </div>
+                            </a>
+                            <ul class="sub-menu collapse -none">
+                                <li class="sub-list">
+                                    <a href="companyjobselect.html" draggable="false">刊登職缺管理</a>
+                                </li>
+                                <li class="sub-list">
+                                    <a href="companyjobcase.html" draggable="false">刊登方案</a>
+                                </li>
+                                <li class="sub-list">
+                                    <a href="companyjobcaseconfirm.html" draggable="false">我要刊登</a>
+                                </li>
+                                <li class="sub-list">
+                                    <a href="companyjobordersearch.html" draggable="false">刊登訂單查詢</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="main-list expo">
+                            <a href="#" draggable="false"> <!--第四個-->
+                                <i class="fa-solid fa-house"></i></i>徵才博覽會管理
+                                <div class="caret-icon">
+                                    <i class="fa-solid fa-sort-down"></i>
+                                    <i id="-none" class="fa-solid fa-caret-up"></i>
+                                </div>
+                            </a>
+                            <ul class="sub-menu collapse -none">
+                                <li class="sub-list">
+                                    <a href="../../company/jobfair/jfindex/Companyjobfair.html"
+                                        draggable="false">徵才博覽會一覽</a>
+                                </li>
+                                <li class="sub-list">
+                                    <a href="../../company/jobfair/jfindex/signUpRecord/signUpRecord.html"
+                                        draggable="false">報名紀錄</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="main-list logout">
+                            <a href="javascript:location.href='/SeekerPool/CompanyLogout'" draggable="false"> <!--第五個-->
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>登出
+                            </a>
+                        </li>
+                    </ul>
+                </menu>
+            </aside>
         </div>
-    </div>
+    </main>
 
-</main>
+    <main>
 
-<script src="./js/jquery-3.6.4.min.js"></script>
-<script>
-    // ===================================================================================
+        <!-- ======================= main-content ====================== -->
+        <div class="main-content">
 
-    $(function () {
-        // 左邊欄位打開闔起動畫 (ok)
-        $("ul").on("click", ".main-list", function () {
-            $(this).closest(".main-list").find(".sub-menu").slideToggle(400, function () {
-                $(this).closest(".main-list").find(".sub-menu").toggleClass("-none")
+            <table class="table table-hover" style="text-align: center; margin-top: 10px;">
+                <thead class="thead-Dark">
+                    <tr class="trHead">
+                        <th id="JOB_NO" class="JOB_NO">編號</th>
+                        <th id="JOB_NAME" class="JOB_NAME">職務名稱</th>
+                        <th id="JC_NUM" class="JC_NUM">刊登狀態</th>
+                        <th id="JC_TOP" class="JC_TOP">置頂狀態</th>
+                        <th id="JC_DEADLINE" class="JC_DEADLINE">截止日</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 動態產生 -->
+                </tbody>
+            </table>
+            <div>
+                <button type="button" class="btn btn-primary" id="btnSave"
+                    style="float: right; margin-right:50px">儲存</button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- 讀取sidebar企業會員資訊 -->
+    <script src="./js/readInfoHeader.js"></script>
+    <script>
+        // ===================================================================================
+
+        $(function () {
+            // 左邊欄位打開闔起動畫 (ok)
+            $("ul").on("click", ".main-list", function () {
+                $(this).closest(".main-list").find(".sub-menu").slideToggle(400, function () {
+                    $(this).closest(".main-list").find(".sub-menu").toggleClass("-none")
+                });
             });
-        });
 
-        let upNum;
-        let topNum;
-        let jcAvailableNum;
-        let jcTop;
+            let upNum;
+            let topNum;
+            let jcAvailableNum;
+            let jcTop;
 
-        // 列表(顯示上架置頂數量)
-        $.post({
-            url: "../../../JobQueryStatusServlet",
-            dataType: "JSON",
-            data: { action: "selectJobStatus" },
-            async: false,
-            cache: false,
-            success: function (r) {
-                $("tbody").empty();
-                upNum = 0;
-                topNum = 0;
-                for (let res of r) {
-                    // 假設r.jcDeadline為「Oct 10, 2023, 12:00:00 AM」格式的日期字串
-                    let originalDate = new Date(res.jcDeadline);
-                    let year = originalDate.getFullYear();
-                    let month = ("0" + (originalDate.getMonth() + 1)).slice(-2); // 月份需加1，並在前面補0
-                    let day = ("0" + originalDate.getDate()).slice(-2); // 日需在前面補0
-                    let formattedDate = year + "-" + month + "-" + day;
-                    $("tbody").append(
-                        `<tr>
+            // 列表(顯示上架置頂數量)
+            $.post({
+                url: "../../../JobQueryStatusServlet",
+                dataType: "JSON",
+                data: { action: "selectJobStatus" },
+                async: false,
+                cache: false,
+                success: function (r) {
+                    $("tbody").empty();
+                    upNum = 0;
+                    topNum = 0;
+                    for (let res of r) {
+                        // 假設r.jcDeadline為「Oct 10, 2023, 12:00:00 AM」格式的日期字串
+                        let originalDate = new Date(res.jcDeadline);
+                        let year = originalDate.getFullYear();
+                        let month = ("0" + (originalDate.getMonth() + 1)).slice(-2); // 月份需加1，並在前面補0
+                        let day = ("0" + originalDate.getDate()).slice(-2); // 日需在前面補0
+                        let formattedDate = year + "-" + month + "-" + day;
+                        $("tbody").append(
+                            `<tr>
                                 <td class="jobNo" name="jobNo">${res.jobNo}</td>
                                 <td class="jobName" name="jobName">
                                     <a href="#">${res.jobName}</a>
@@ -204,158 +210,147 @@
                                 </td>
                                 <td class="jcDeadline" name="jcDeadline">${formattedDate}</td>
                             </tr>`
-                    )
+                        )
 
+                        // console.log("res.jobUpload type: " + typeof res.jobUpload); // type Number
+                        // console.log("res.jobTop type: " + typeof res.jobTop); // type Number
 
-                    // console.log("res.jobUpload type: " + typeof res.jobUpload); // type Number
-                    // console.log("res.jobTop type: " + typeof res.jobTop); // type Number
+                        if (res.jobUpload === 0) {
+                            $("input#onPost" + res.jobNo + "_0").prop("checked", true);
+                            $(".JC_NUM").html(`刊登狀態 (<span style="color:red">${upNum}</span><span>/</span><span style="color:blue">${res.jcAvailableNum}</span>)`);
+                        } else if (res.jobUpload === 1) {
+                            $("input#onPost" + res.jobNo + "_1").prop("checked", true);
+                            upNum++;
+                            $(".JC_NUM").html(`刊登狀態 (<span style="color:red">${upNum}</span><span>/</span><span style="color:blue">${res.jcAvailableNum}</span>)`);
+                        }
 
-                    if (res.jobUpload === 0) {
-                        $("input#onPost" + res.jobNo + "_0").prop("checked", true);
-                        $(".JC_NUM").html(`刊登狀態 (<span style="color:red">${upNum}</span><span>/</span><span style="color:blue">${res.jcAvailableNum}</span>)`);
-                    } else if (res.jobUpload === 1) {
-                        $("input#onPost" + res.jobNo + "_1").prop("checked", true);
-                        upNum++;
-                        $(".JC_NUM").html(`刊登狀態 (<span style="color:red">${upNum}</span><span>/</span><span style="color:blue">${res.jcAvailableNum}</span>)`);
-                        // console.log("upNum:" + upNum);
-                        // if (upNum > res.jcAvailableNum) {
-                        //     $("input#onPost" + res.jobNo + "_0").prop("checked", true);
-                        //     alert("超出該數量");
-                        //     upNum--;
-                        //     $(".JC_NUM").html(`刊登狀態 (<span style="color:red">${upNum}</span><span>/</span><span style="color:blue">${res.jcAvailableNum}</span>)`);
-                        // }
-                    }
+                        jcAvailableNum = res.jcAvailableNum;
+                        jcTop = res.jcTop;
 
-                    jcAvailableNum = res.jcAvailableNum;
-                    jcTop = res.jcTop;
+                        if (res.jobTop === 0) {
+                            $("input#onTop" + res.jobNo + "_0").prop("checked", true);
+                            $(".JC_TOP").html(`置頂狀態 (<span style="color:red">${topNum}</span><span>/</span><span style="color:blue">${res.jcTop}</span>)`);
 
-                    if (res.jobTop === 0) {
-                        $("input#onTop" + res.jobNo + "_0").prop("checked", true);
-                        $(".JC_TOP").html(`置頂狀態 (<span style="color:red">${topNum}</span><span>/</span><span style="color:blue">${res.jcTop}</span>)`);
+                        } else if (res.jobTop === 1) {
+                            $("input#onTop" + res.jobNo + "_1").prop("checked", true);
+                            topNum++;
+//                             console.log("topNum:" + topNum);
+                            $(".JC_TOP").html(`置頂狀態 (<span style="color:red">${topNum}</span><span>/</span><span style="color:blue">${res.jcTop}</span>)`);
 
-                    } else if (res.jobTop === 1) {
-                        $("input#onTop" + res.jobNo + "_1").prop("checked", true);
-                        topNum++;
-                        console.log("topNum:" + topNum);
-                        $(".JC_TOP").html(`置頂狀態 (<span style="color:red">${topNum}</span><span>/</span><span style="color:blue">${res.jcTop}</span>)`);
+                        }
 
                     }
-
                 }
-            }
-        })
-
-        // let upNum;
-        // let topNum;
-        // let jcAvailableNum;
-        // let jcTop;
-
-        // 上下架綁定 更新job
-        $(".onpost").on("click", function () {
-            var jobNo = $(this).attr("name").substring(6);
-            var jobUpload = $(this).val();
-            // console.log(jobNo);
-            // console.log(jobUpload);
-
-            if (jobUpload == 0) {
-                upNum--;
-            }
-
-            if (upNum < jcAvailableNum) {
-                $.post({
-                    url: "../../../JobUpdateStatusServlet",
-                    dataType: "JSON",
-                    data: { action: "updateJobUpload", jobNo: jobNo, jobUpload: jobUpload },
-                    async: false,
-                    cache: false,
-                    success: function (response) {
-
-                        console.log("JobUP status updated successfully");
-                    }
-                });
-            } else {
-                alert("超出該數量!!!");
-            }
-
-        });
-
-        // 置頂綁定
-        $(".ontop").on('click', function () {
-            var jobNo = $(this).attr("name").substring(5);
-            var jobTop = $(this).val();
-            console.log(jobNo);
-            console.log(jobTop);
-
-            if (jobTop == 0) {
-                topNum--;
-            }
-
-            if (topNum < jcTop) {
-
-                $.post({
-                    url: "../../../JobUpdateStatusServlet",
-                    dataType: "JSON",
-                    data: { action: "updateJobTopload", jobNo: jobNo, jobTop: jobTop },
-                    async: false,
-                    cache: false,
-                    success: function (response) {
-                        console.log("JobTop status updated successfully");
-                    },
-                    error: function (xhr, status, error) {
-                        console.error("Error updating job status: " + error);
-                    }
-                });
-            } else {
-                Swal.fire({
-                    title: '警告',
-                    text: '超出該數量!!!',
-                    icon: 'warning',
-                    confirmButtonText: 'OK',
-                    timer: 5000
-                });
-                alert("超出該數量!!!");
-            }
-        })
-
-        // 更新已上架/已置頂數量
-
-        $("#btnSave").click(function () {
-            console.log("AAA");
-            $.post({
-                url: "../../../JobUpTopNumStatusServlet",
-                dataType: "JSON",
-                data: { action: "JobUploadNum" },
-                success: function (res) {
-                    console.log("成功進入 JobUploadNum");
-                },
             })
 
-            $.post({
-                url: "../../../JobUpTopNumStatusServlet",
-                dataType: "JSON",
-                data: { action: "JobTopNum" },
-                success: function (res) {
-                    console.log("成功進入 JobTopNum");
-                    // alert("更新成功");
-                    Swal.fire({
-                        title: '恭喜',
-                        text: '更新成功!!!',
-                        icon: 'success',
-                        confirmButtonText: 'OK',
+            // let upNum;
+            // let topNum;
+            // let jcAvailableNum;
+            // let jcTop;
+
+            // 上下架綁定 更新job
+            $(".onpost").on("click", function () {
+                var jobNo = $(this).attr("name").substring(6);
+                var jobUpload = $(this).val();
+                // console.log(jobNo);
+                // console.log(jobUpload);
+
+                if (jobUpload == 0) {
+                    upNum--;
+                }
+
+                if (upNum < jcAvailableNum) {
+                    $.post({
+                        url: "../../../JobUpdateStatusServlet",
+                        dataType: "JSON",
+                        data: { action: "updateJobUpload", jobNo: jobNo, jobUpload: jobUpload },
+                        async: false,
+                        cache: false,
+                        success: function (response) {
+//                             console.log("JobUP status updated successfully");
+                        }
                     });
-                },
+                } else {
+                    alert("上架數量不得大於 "+jcAvailableNum+" !!!");
+                }
 
+            });
+
+            // 置頂綁定
+            $(".ontop").on('click', function () {
+                var jobNo = $(this).attr("name").substring(5);
+                var jobTop = $(this).val();
+                console.log(jobNo);
+                console.log(jobTop);
+
+                if (jobTop == 0) {
+                    topNum--;
+                }
+
+                if (topNum < jcTop) {
+
+                    $.post({
+                        url: "../../../JobUpdateStatusServlet",
+                        dataType: "JSON",
+                        data: { action: "updateJobTopload", jobNo: jobNo, jobTop: jobTop },
+                        async: false,
+                        cache: false,
+                        success: function (response) {
+//                             console.log("JobTop status updated successfully");
+                        },
+                        error: function (xhr, status, error) {
+//                             console.error("Error updating job status: " + error);
+                        }
+                    });
+                } else {
+                    Swal.fire({
+                        title: '警告',
+                        text: '超出該數量!!!',
+                        icon: 'warning',
+                        confirmButtonText: 'OK',
+                        timer: 5000
+                    });
+                    alert("置頂數量不得大於 "+jcTop+" !!!");
+                }
+            })
+
+            // 更新已上架/已置頂數量
+
+            $("#btnSave").click(function () {
+                console.log("AAA");
+                $.post({
+                    url: "../../../JobUpTopNumStatusServlet",
+                    dataType: "JSON",
+                    data: { action: "JobUploadNum" },
+                    success: function (res) {
+//                         console.log("成功進入 JobUploadNum");
+                    },
+                })
+
+                $.post({
+                    url: "../../../JobUpTopNumStatusServlet",
+                    dataType: "JSON",
+                    data: { action: "JobTopNum" },
+                    success: function (res) {
+//                         console.log("成功進入 JobTopNum");
+                        // alert("更新成功");
+                        Swal.fire({
+                            title: '職缺上架/置頂',
+                            text: '更新成功!!!',
+                            icon: 'success',
+                            confirmButtonText: 'OK',
+                        });
+                    },
+
+                })
+            })
+
+            $("input.btn-check").click(function () {
+                // console.log("AAAAAA");
+                location.reload();
             })
         })
-
-        $("input.btn-check").click(function () {
-            // console.log("AAAAAA");
-            location.reload();
-        })
-    })
-
-
-</script>
+    </script>
 </body>
 
 </html>

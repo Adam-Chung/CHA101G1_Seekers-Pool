@@ -261,11 +261,6 @@ sup {
     top: -0.5em
 }
 
-a {
-    color: #007bff;
-    text-decoration: underline
-}
-
 a:hover {
     color: #0062cc
 }
@@ -675,8 +670,6 @@ progress {
     width: 100%;
     padding-right: var(--bs-gutter-x, 0.75rem);
     padding-left: var(--bs-gutter-x, 0.75rem);
-    margin-right: auto;
-    margin-left: auto
 }
 
 @media(min-width: 576px) {

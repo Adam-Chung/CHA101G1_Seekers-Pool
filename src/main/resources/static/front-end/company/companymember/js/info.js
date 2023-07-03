@@ -53,7 +53,7 @@ const submitForm = () => {
         .then(response => {
             let resultInfo = response.data;
             if (resultInfo.flag) {
-                alert('更新成功');
+                swal("更新成功！", "", "success");
                 // 更新頁面
                 initMemberData();
                 // 清空預覽圖
@@ -61,7 +61,8 @@ const submitForm = () => {
 
                 resetForm();
             } else {
-                alert('更新失敗: ' + resultInfo.errorMsg);
+                // alert('更新失敗: ' + resultInfo.errorMsg);
+                swal("更新失敗", `${data.errorMsg}`, "error");
             }
         })
         .catch(error => {

@@ -1,4 +1,7 @@
 let projectName = window.location.pathname.split('/')[1]; // SeekerPool
+// 讀取URL中的參數
+let urlParams = new URLSearchParams(window.location.search);
+let id = urlParams.get('memId');
 
 // ========================== 初始化日期為當天 ==========================
 $(function () {
@@ -15,13 +18,14 @@ $(function () {
 // ========================== 取出localStorage的東東 ==========================
 // let memName = localStorage.getItem('memName');
 let jobTitle = localStorage.getItem('jobTitle');
+console.log(jobTitle);
 
 // ========================== 企業方找應徵者面試 ==========================
 // 如果jobTitle存在，則顯示這些資料
 if (jobTitle) {
     // 創建span元素，並設置其ID和innerText
     let jobTitleSpan = document.createElement('span');
-    jobTitleSpan.id = 'job-title';
+    // jobTitleSpan.id = 'job-title';
     jobTitleSpan.innerText = jobTitle;
 
     // 獲取p元素，並插入新創建的span元素
@@ -37,13 +41,15 @@ if (jobTitle) {
     axios.post('/SeekerPool/FrontEnd/InterviewInvite')
         .then(function (response) {
             const jobs = response.data;
+            console.log(jobs)
             const select = document.getElementById('job-title');
+            select.style.display = "block";  // 讓 select 選單顯示出來
             select.innerHTML = '';  // 清空元素內容
 
             // 動態生成選單
             jobs.forEach(function (job) {
                 let option = document.createElement('option');
-                option.value = job.jobId;
+                option.value = job.jobNo;
                 option.text = job.jobName;
 
                 select.appendChild(option);
@@ -104,17 +110,16 @@ function interviewSubmit() {
         let date3 = $(".date-3").html();
 
         // 人才的ID
-        const memId = localStorage.getItem('memId');
+        let memId = localStorage.getItem('memId');
         // 選擇哪一職缺"id"
-        const jobId = localStorage.getItem('jobId');
+        let jobId = localStorage.getItem('jobId');
 
-        // If memId or jobId are not found in localStorage, take the jobId from the first option of the select list
         if (!jobId) {
+            // = Sam的查詢人才
             let select = document.getElementById('job-title');
             jobId = select.options[select.selectedIndex].value;  // 獲得當前選擇的選項的 jobId
-            // memId要接Sam的
+            memId = id;  // 最上面第3行讀的參數
         } else {
-            // If memId and jobId are found, remove them from localStorage
             localStorage.removeItem('jobId');
         }
         localStorage.removeItem('memId');
@@ -134,12 +139,10 @@ function interviewSubmit() {
                 var data = JSON.parse(data);
                 if (data.flag) {
                     //郵件寄送成功
-                    // alert("已郵件通知該位人才");
-                    swal("已郵件通知該位人才", "", "success");
+                    alert("已郵件通知該位人才");
                 } else {
                     //郵件寄送失敗
-                    // alert("郵件寄送失敗，請稍後再試");
-                    swal("郵件寄送失敗", "請稍後再試", "error");
+                    alert("郵件寄送失敗，請稍後再試");
                 }
             },
             error: function () {
@@ -148,7 +151,6 @@ function interviewSubmit() {
         });
 
     } else {
-        // alert("請至少選擇一個時段");
-        swal("最多可選擇三個時段", "", "warning");
+        alert("請至少選擇一個時段");
     }
 }

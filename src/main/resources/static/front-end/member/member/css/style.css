@@ -208,7 +208,7 @@ main .gotop{
     right: 3%;
     bottom: 8%;
     width: 4rem;
-    height: 8rem;
+    height: 4rem;
     border-radius: 1rem;
     background: linear-gradient(145deg, #d6dce7da, #fdffffd8);
     box-shadow:  4px 4px 10px #dbdfe86b,
@@ -222,7 +222,7 @@ main .gotop{
     display: grid;
     place-items: center;
     width: 70%;
-    height: 35%;
+    height: 70%;
     border-radius: 15px;
     box-shadow: 5px 5px 10px #b3b3b3,
     -5px -5px 10px #ffffff;

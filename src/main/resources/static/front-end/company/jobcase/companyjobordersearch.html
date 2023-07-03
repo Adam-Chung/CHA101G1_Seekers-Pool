@@ -2,27 +2,24 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SEEKER'S POOL 招募管理</title>
-<link rel="stylesheet" href="./css/vacancyjobcase.css">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
-	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
-	crossorigin="anonymous"></script>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-	integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-	crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>SEEKER'S POOL 招募管理</title>
+	<link rel="stylesheet" href="./css/vacancyjobcase.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+		crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+		integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<!-------------------- 引入axios -------------------->
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-<!-- jQuery -->
-<script src="./js/jquery-3.6.4.min.js"></script>
+	<!-- jQuery -->
+	<script src="./js/jquery-3.6.4.min.js"></script>
 </head>
 
 <body>
@@ -32,8 +29,7 @@
 			<aside id="sidebar" class="sidebar">
 				<div class="logo">
 					<div class="img">
-						<img src="./img/TSMC_logo.svg.png" alt="this is a logo"
-							id="logoImg">
+						<img src="./img/TSMC_logo.svg.png" alt="this is a logo" id="logoImg">
 					</div>
 					<h3 id="brand-name">台雞電股份有限公司</h3>
 				</div>
@@ -44,62 +40,77 @@
 								<div class="caret-icon">
 									<i class="fa-solid fa-sort-down"></i>
 								</div>
-						</a> <!-- ======================= sub-menu ====================== -->
+							</a> <!-- ======================= sub-menu ====================== -->
 							<ul class="sub-menu collapse -none">
-								<li class="sub-list"><a href="#" draggable="false">會員資料管理</a>
+								<li class="sub-list">
+									<a href="../companymember/companyInfo.html" draggable="false">會員資料管理</a>
 								</li>
 
-								<li class="sub-list"><a
-									href="../html/VacancyManagement.html" draggable="false">職缺管理</a>
+								<li class="sub-list">
+									<a href="../vacancy/html/VacancyManagement.html" draggable="false">職缺管理</a>
 								</li>
 
-								<li class="sub-list"><a href="#" draggable="false">應徵者管理</a>
+								<li class="sub-list">
+									<a href="../companymember/interviewer_manage.html" draggable="false">應徵者管理</a>
 								</li>
-							</ul></li>
+							</ul>
+						</li>
 
-						<li class="main-list talent-search"><a
-							href="../html/TalentSearch.html" draggable="false"> <!--第二個-->
+						<li class="main-list talent-search">
+							<a href="../vacancy/html/TalentSearch.html" draggable="false">
+								<!--第二個-->
 								<i class="fa-solid fa-user-tie"></i>人才查詢
-						</a></li>
+							</a>
+						</li>
 
-						<li class="main-list purchase"><a href="#" draggable="false">
+						<li class="main-list purchase">
+							<a href="#" draggable="false">
 								<!--第三個--> <i class="fa-solid fa-cart-shopping"></i>刊登方案
 								<div class="caret-icon">
 									<i class="fa-solid fa-sort-down"></i>
 								</div>
-						</a>
+							</a>
 							<ul class="sub-menu collapse -none">
-								<li class="sub-list"><a
-									href="../../company/jobcase/companyjobcase.html"
-									draggable="false">刊登職缺管理</a></li>
-								<li class="sub-list"><a
-									href="../../company/jobcase/companyjobcase.html"
-									draggable="false">刊登方案</a></li>
-								<li class="sub-list"><a
-									href="../../company/jobcase/companyjobcaseconfirm.html"
-									draggable="false">我要刊登</a></li>
-								<li class="sub-list"><a
-									href="../../company/jobcase/companyjobordersearch.html"
-									draggable="false">刊登訂單查詢</a></li>
-							</ul></li>
-						<li class="main-list expo"><a href="#" draggable="false">
-								<!--第四個--> <i class="fa-solid fa-house"></i></i>徵才博覽會管理
+								<li class="sub-list">
+									<a href="companyjobselect.html" draggable="false">刊登職缺管理</a>
+								</li>
+								<li class="sub-list">
+									<a href="companyjobcase.html" draggable="false">刊登方案</a>
+								</li>
+								<li class="sub-list">
+									<a href="companyjobcaseconfirm.html" draggable="false">我要刊登</a>
+								</li>
+								<li class="sub-list">
+									<a href="companyjobordersearch.html" draggable="false">刊登訂單查詢</a>
+								</li>
+							</ul>
+						</li>
+						<li class="main-list expo">
+							<a href="#" draggable="false">
+								<!--第四個-->
+								<i class="fa-solid fa-house"></i></i>徵才博覽會管理
 								<div class="caret-icon">
-									<i class="fa-solid fa-sort-down"></i> <i id="-none"
-										class="fa-solid fa-caret-up"></i>
+									<i class="fa-solid fa-sort-down"></i>
+									<i id="-none" class="fa-solid fa-caret-up"></i>
 								</div>
-						</a>
+							</a>
 							<ul class="sub-menu collapse -none">
-								<li class="sub-list"><a
-									href="../../company/jobfair/jfindex/Companyjobfair.html"
-									draggable="false">徵才博覽會一覽</a></li>
-								<li class="sub-list"><a
-									href="../../company/jobfair/jfindex/signUpRecord/signUpRecord.html"
-									draggable="false">報名紀錄</a></li>
-							</ul></li>
-						<li class="main-list logout"><a href="#" draggable="false">
-								<!--第五個--> <i class="fa-solid fa-arrow-right-from-bracket"></i>登出
-						</a></li>
+								<li class="sub-list">
+									<a href="../../company/jobfair/jfindex/Companyjobfair.html"
+										draggable="false">徵才博覽會一覽</a>
+								</li>
+								<li class="sub-list">
+									<a href="../../company/jobfair/jfindex/signUpRecord/signUpRecord.html"
+										draggable="false">報名紀錄</a>
+								</li>
+							</ul>
+						</li>
+						<li class="main-list logout">
+							<a href="javascript:location.href='/SeekerPool/CompanyLogout'" draggable="false">
+								<!--第五個-->
+								<i class="fa-solid fa-arrow-right-from-bracket"></i>登出
+							</a>
+						</li>
 					</ul>
 				</menu>
 			</aside>
@@ -129,8 +140,8 @@
 			<div class="row">
 				<div class="col-lg-4">
 					<div class="input-group">
-						<span class="input-group-text">方案編號</span> <input type="text"
-							aria-label="First name" class="form-control" id="inputQueryNo">
+						<span class="input-group-text">方案編號</span> <input type="text" aria-label="First name"
+							class="form-control" id="inputQueryNo">
 						<button type="button" class="btn btn-primary" id="searchJcNo">
 							<strong>查詢</strong>
 						</button>
@@ -144,8 +155,7 @@
 				</div>
 			</div>
 
-			<table class="table table-hover"
-				style="text-align: center; margin-top: 10px;">
+			<table class="table table-hover" style="text-align: center; margin-top: 10px;">
 				<thead class="thead-Dark">
 					<tr class="trHead">
 						<th id="JO_NO" class="JO_NO">訂單編號</th>
@@ -165,37 +175,39 @@
 		<!-- </div> -->
 	</main>
 
+	<!-- 讀取sidebar企業會員資訊 -->
+	<script src="./js/readInfoHeader.js"></script>
 	<script src="./js/jquery-3.6.4.min.js"></script>
 	<script>
-        // ===================================================================================
-        // 左邊欄位打開闔起動畫 (ok)
-        $(function () {
-            $("ul").on("click", ".main-list", function () {
-                $(this).closest(".main-list").find(".sub-menu").slideToggle(400, function () {
-                    $(this).closest(".main-list").find(".sub-menu").toggleClass("-none")
-                });
-            });
+		// ===================================================================================
+		// 左邊欄位打開闔起動畫 (ok)
+		$(function () {
+			$("ul").on("click", ".main-list", function () {
+				$(this).closest(".main-list").find(".sub-menu").slideToggle(400, function () {
+					$(this).closest(".main-list").find(".sub-menu").toggleClass("-none")
+				});
+			});
 
-            // 查訂單全部
-            $.post({
-                url: "../../../JobOrderQueryServlet",
-                dataType: "JSON",
-                data: { action: "selectComOrderAll" },
-                async: false,
-                cache: false,
-                success: function (res) {
-                    $("tbody").empty();
-                    console.log("sucess............");
-                    console.log("res : " + res);
+			// 查訂單全部
+			$.post({
+				url: "../../../JobOrderQueryServlet",
+				dataType: "JSON",
+				data: { action: "selectComOrderAll" },
+				async: false,
+				cache: false,
+				success: function (res) {
+					$("tbody").empty();
+// 					console.log("sucess............");
+// 					console.log("res : " + res);
 
-                    for (let r of res) {
-                        // 假設r.jcDeadline為「Oct 10, 2023, 12:00:00 AM」格式的日期字串
-                        let originalDate = new Date(r.jcDeadline);
-                        let year = originalDate.getFullYear();
-                        let month = ("0" + (originalDate.getMonth() + 1)).slice(-2); // 月份需加1，並在前面補0
-                        let day = ("0" + originalDate.getDate()).slice(-2); // 日需在前面補0
-                        let formattedDate = year + "-" + month + "-" + day;
-                        $("tbody").append(`
+					for (let r of res) {
+						// 假設r.jcDeadline為「Oct 10, 2023, 12:00:00 AM」格式的日期字串
+						let originalDate = new Date(r.jcDeadline);
+						let year = originalDate.getFullYear();
+						let month = ("0" + (originalDate.getMonth() + 1)).slice(-2); // 月份需加1，並在前面補0
+						let day = ("0" + originalDate.getDate()).slice(-2); // 日需在前面補0
+						let formattedDate = year + "-" + month + "-" + day;
+						$("tbody").append(`
                             <tr id="all">
                                 <td class="joNo" name="joNo">${r.joNo}</td>
                                 <td class="jcName" name="jcName">${r.jcName}</td>
@@ -205,40 +217,39 @@
                                 <td class="jcDeadline" name="jcDeadline">${formattedDate}</td>
                                 <td class="jcPrice" name="jcPrice">${r.jcPrice}</td>
                             </tr> `
-                        )
-                    }
-                }
-            })
-            // 查單一訂單(待增查無此訂單)
-            $("button#searchJcNo").click(function () {
-                var joNo = $("input#inputQueryNo").val().trim();
-                console.log("joNo : " + joNo);
-                var rules = new RegExp('\\d');
+						)
+					}
+				}
+			})
+			// 查單一訂單(待增查無此訂單)
+			$("button#searchJcNo").click(function () {
+				var joNo = $("input#inputQueryNo").val().trim();
+// 				console.log("joNo : " + joNo);
+				var rules = new RegExp('\\d');
 
-                // if (joNo !== "" && isNaN(Number(joNo, 10))) {
-              if (joNo !== "" && /^[0-9]+$/.test(joNo)) {
-                $.post({
-                    url: "../../../JobOrderQueryServlet",
-                    dataType: "JSON",
-                    data: { action: "selectComOrderOne", joNo: joNo },
-                    async: false,
-                    cache: false,
-                    success: function (res) {
-                        // var res = JSON.parse(res) 
-                        $("tbody").empty();
-                        console.log("sucess............");
-                        console.log("res[0] : " + res[0].jcNo);
-                        if (res) {
-                            $("tr#all").remove();
-                            for (let r of res) {
+				// if (joNo !== "" && isNaN(Number(joNo, 10))) {
+				if (joNo !== "" && /^[0-9]+$/.test(joNo)) {
+					$.post({
+						url: "../../../JobOrderQueryServlet",
+						dataType: "JSON",
+						data: { action: "selectComOrderOne", joNo: joNo },
+						async: false,
+						cache: false,
+						success: function (res) {
+							$("tbody").empty();
+// 							console.log("sucess............");
+// 							console.log("res[0] : " + res[0].jcNo);
+							if (res) {
+								$("tr#all").remove();
+								for (let r of res) {
 
-                                // 假設r.jcDeadline為「Oct 10, 2023, 12:00:00 AM」格式的日期字串
-                                let originalDate = new Date(r.jcDeadline);
-                                let year = originalDate.getFullYear();
-                                let month = ("0" + (originalDate.getMonth() + 1)).slice(-2); // 月份需加1，並在前面補0
-                                let day = ("0" + originalDate.getDate()).slice(-2); // 日需在前面補0
-                                let formattedDate = year + "-" + month + "-" + day;
-                                $("tbody").append(`
+									// 假設r.jcDeadline為「Oct 10, 2023, 12:00:00 AM」格式的日期字串
+									let originalDate = new Date(r.jcDeadline);
+									let year = originalDate.getFullYear();
+									let month = ("0" + (originalDate.getMonth() + 1)).slice(-2); // 月份需加1，並在前面補0
+									let day = ("0" + originalDate.getDate()).slice(-2); // 日需在前面補0
+									let formattedDate = year + "-" + month + "-" + day;
+									$("tbody").append(`
                                         <tr id="all">
                                             <td class="joNo" name="joNo">${r.joNo}</td>
                                             <td class="jcName" name="jcName">${r.jcName}</td>
@@ -248,12 +259,12 @@
                                             <td class="jcDeadline" name="jcDeadline">${formattedDate}</td>
                                             <td class="jcPrice" name="jcPrice">${r.jcPrice}</td>
                                              </tr> `
-                                )
-                            }
-                        } else {
-                            $("tr#trNO").remove();
-                            console.log("else res : " + res);
-                            $("tbody").append(`<tr id="trNO">
+									)
+								}
+							} else {
+								$("tr#trNO").remove();
+								console.log("else res : " + res);
+								$("tbody").append(`<tr id="trNO">
 										<td style='color: red; font-weight: bold;'>查無此訂單!!!</td>
 										<td></td>
 										<td></td>
@@ -262,24 +273,24 @@
 										<td></td>
 										<td></td>
 									</tr>`);
-                            $("tr#trNO").prevAll().remove();
-                        }
-                    }
-                })
-                } else {
-                    console.log("請輸入數字");
-                    alert("錯誤! 請輸入數字");
-                }
-            })
-        })
+								$("tr#trNO").prevAll().remove();
+							}
+						}
+					})
+				} else {
+// 					console.log("請輸入數字");
+					alert("錯誤! 請輸入數字");
+				}
+			})
+		})
 
 
-        // 查訂單全部按鈕
-        $(document).on('click', '#btnQuery', function () {
-            location.reload();
-        });
+		// 查訂單全部按鈕
+		$(document).on('click', '#btnQuery', function () {
+			location.reload();
+		});
 
-    </script>
+	</script>
 </body>
 
 </html>
