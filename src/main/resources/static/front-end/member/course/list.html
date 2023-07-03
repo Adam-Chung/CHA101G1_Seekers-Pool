@@ -25,7 +25,7 @@
       $.post('/' + projectName + '/headerServlet', { logout: "logout" }, function () {
         $("#login").removeAttr("style");
         $("#logout").prop("style", "display:none;");
-        location.href = "../member/memberlogin.html";
+        location.href = "memberlogin.html";
       });
     });
   })
@@ -37,16 +37,16 @@
 
 <div class="list-left-side">
   <li class="list-item">
-    <a href="#">首頁</a>
+    <a href="../index/index.html">首頁</a>
   </li>
   <li class="list-item">
-    <a href="#">就業博覽會</a>
+    <a href="../article/jobFair/index/jobFairArticle.html">就業博覽會</a>
   </li>
   <!-- <li class="list-item">
     <a href="#">電子報</a>
   </li> -->
   <li class="list-item">
-    <a href="#">找工作<i class="fa-solid fa-map-location-dot" style=" margin-left: 0.2rem;"></i></a>
+    <a href="../job/JobSearchResult.html">找工作<i class="fa-solid fa-map-location-dot" style=" margin-left: 0.2rem;"></i></a>
   </li>
 </div>
 <!-- <div class="search">

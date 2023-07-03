@@ -1,4 +1,4 @@
-package tw.idv.Seeker_Pool_Merge.xuan.controller;
+package xuan.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import tw.idv.Seeker_Pool_Merge.xuan.dao.impl.OnlineCourseDaoImpl;
-import tw.idv.Seeker_Pool_Merge.xuan.vo.OnlineCourseVo;
+import xuan.dao.impl.OnlineCourseDaoImpl;
+import xuan.vo.OnlineCourseVo;
 
 @WebServlet("/CourseSearchServlet")
 public class CourseSearchServlet extends HttpServlet {
@@ -27,7 +27,7 @@ public class CourseSearchServlet extends HttpServlet {
 		
 		// 獲取使用者輸入的關鍵字
 		String keyword = req.getParameter("keyword");
-//		System.out.println(keyword);
+		System.out.println(keyword);
 		//比對關鍵字
 		List<OnlineCourseVo> courses = onlineCourseDaoImpl.searchOnlineCoursesByTitle(keyword);
 		
@@ -36,7 +36,7 @@ public class CourseSearchServlet extends HttpServlet {
 		resp.setContentType("application/json;charset=utf-8");
 
 		PrintWriter out = resp.getWriter();
-//		System.out.println(jsonString);
+		System.out.println(jsonString);
 
 		out.write(jsonString);
 		out.close();

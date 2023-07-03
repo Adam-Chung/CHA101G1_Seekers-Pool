@@ -1,4 +1,4 @@
-package tw.idv.Seeker_Pool_Merge.xuan.controller;
+package xuan.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import tw.idv.Seeker_Pool_Merge.xuan.dao.impl.OnlineCourseDaoImpl;
-import tw.idv.Seeker_Pool_Merge.xuan.vo.OnlineCourseVo;
+import xuan.dao.impl.OnlineCourseDaoImpl;
+import xuan.vo.OnlineCourseVo;
 
 @WebServlet("/GetAllCourseServlet")
 public class GetAllCourseServlet extends HttpServlet {
@@ -31,7 +31,7 @@ public class GetAllCourseServlet extends HttpServlet {
 		resp.setContentType("application/json;charset=utf-8");
 
 		PrintWriter out = resp.getWriter();
-//		System.out.println(jsonString);
+		System.out.println(jsonString);
 
 		out.write(jsonString);
 		out.close();

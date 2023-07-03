@@ -1,0 +1,273 @@
+    /*--------- 評價星等 ---------*/
+    .rating {
+        margin-top: 50px;
+    }
+
+    .stars {
+        font-size: 24px;
+    }
+
+    .star {
+        color: #FFD700;
+        cursor: pointer;
+    }
+
+    .rating-info,
+    .purchase-info {
+        margin-top: 10px;
+        font-size: 14px;
+    }
+
+    .rating-count,
+    .purchase-count {
+        font-weight: bold;
+    }
+
+    body {
+        padding-top: 30px;
+    }
+
+    .product {
+        margin-bottom: 30px;
+    }
+
+    .product-inner {
+        box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+        padding: 10px;
+    }
+
+    .product img {
+        margin-bottom: 10px;
+    }
+
+    /* 付款方式 */
+    form {
+        width: 400px;
+        margin: 0 auto;
+        font-family: Arial, sans-serif;
+    }
+
+    h2 {
+        margin-top: 20px;
+    }
+
+    div {
+        margin-bottom: 10px;
+    }
+
+    label {
+        display: inline-block;
+        width: 150px;
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"] {
+        width: 200px;
+        padding: 5px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+    }
+
+    input[type="radio"] {
+        margin-right: 5px;
+    }
+
+    #bank-account {
+        display: none;
+    }
+
+    button[type="submit"] {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #45a049;
+    }
+
+    /* 客戶訂單明細 */
+    .order-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .order-item {
+        margin-bottom: 20px;
+        padding: 10px;
+        background-color: #f7f7f7;
+        border-radius: 4px;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .order-item strong {
+        font-weight: bold;
+    }
+
+    .order-item .delete-order {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 8px 12px;
+        cursor: pointer;
+    }
+
+    /* 標題樣式 */
+    h1 {
+        font-size: 24px;
+        color: #333;
+    }
+
+    h2 {
+        font-size: 18px;
+        color: #333;
+    }
+
+    /* 搜尋表單樣式 */
+    form {
+        margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+        padding: 6px;
+        width: 200px;
+    }
+
+    input[type="submit"] {
+        padding: 6px 12px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+
+
+    /* 搜尋結果項目樣式 */
+    .search-result {
+        margin-bottom: 10px;
+        padding: 10px;
+        background-color: #f7f7f7;
+        border: 1px solid #ddd;
+    }
+
+    .search-result h3 {
+        font-size: 16px;
+        color: #333;
+        margin-top: 0;
+    }
+
+    .search-result p {
+        font-size: 14px;
+        color: #666;
+    }
+
+    /* ============討論區============ */
+    #comment-area {
+        left: 0;
+        bottom: 0px;
+        width: 100%;
+        background: white;
+        overflow-y: auto;
+        padding: 5px;
+        /*     display: none; */
+    }
+
+    #comment-area .comment-line {
+        border-bottom: 1px #ccc solid;
+    }
+
+    #comment-area .comment-post {
+        margin-top: 10px;
+        height: 180px;
+        padding-left: 10px;
+    }
+
+    #comment-area .comment-post button {
+        padding: 4px 18px;
+        float: right;
+        background: rgb(102, 102, 102);
+        border-radius: 2px;
+        border-width: 1px;
+        border-color: rgb(102, 102, 102);
+        color: #EEE;
+        margin-top: 6px;
+    }
+
+    #comment-area .comment-post button:hover {
+        padding: 4px 18px;
+        float: right;
+        background: #343436;
+        border-radius: 2px;
+        border-width: 1px;
+        border-color: #343436;
+        color: #EEE;
+        margin-top: 6px;
+    }
+
+    .comment-title {
+        font-size: large;
+        font-weight: 800;
+        margin-bottom: 10px;
+    }
+
+    #comment-text {
+        border-radius: 2px;
+        border-color: #ECECEC;
+        background: #F4F4F4;
+        padding: 9px;
+        width: 800px;
+    }
+
+    ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    ol li {
+        float: none;
+        width: auto;
+        margin: 20px 0 20px 0;
+        padding-top: 20px;
+        font-size: 15px;
+        line-height: 1.4em;
+        color: #555;
+        border-top: 1px solid #ddd;
+    }
+
+    ol li {
+        position: relative;
+    }
+
+    ol li h2 {
+        margin: 0 0 2px 0;
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    ol li div.comment-body {
+        width: 230px;
+        padding-left: 42px;
+    }
+
+    ol li div.comment-body p {
+        margin: 0 0 10px 0;
+        padding: 0;
+    }
+
+
+    ol li h2 a {
+        color: #444;
+    }
+
+    a:link,
+    a:visited {
+        color: #3a8bbb;
+        text-decoration: none;
+    }
