@@ -200,25 +200,16 @@ body {
 			
 			// ======== AJAX ===========
 			$("#addJobCaseForm").submit(function() {
-// 				console.log("AAA");
-// 				console.log("jcName : " + $("input#jcName").val());
-// 				console.log("jcExpTime : " + $("input#jcExpTime").val());
-// 				console.log("jcAvailableNum : " + $("input#jcAvailableNum").val());
-// 				console.log("jcTop : " + $("input#jcTop").val());
-// 				console.log("jcPrice : " + $("input#jcPrice").val());
-// 				console.log("inputRadio : " + $(".inputRadio").val());
-// 				console.log("btn-check : " + $(".btn-check").val());
 				
 				var jcName = $("input#jcName").val();
 			    var jcExpTime = $("input#jcExpTime").val();
 			    var jcAvailableNum = $("input#jcAvailableNum").val();
 			    var jcTop = $("input#jcTop").val();
 			    var jcPrice = $("input#jcPrice").val();
-			    var inputRadio = $(".inputRadio:checked").val();
 			    var btnCheck = $(".btn-check:checked").val();
 
 			  	// 檢查是否為空
-			  	if (jcName === '' || jcExpTime === '' || jcAvailableNum === '' || jcTop === '' || jcPrice === '' || inputRadio === undefined || btnCheck === undefined) {
+			  	if (jcName === '' || jcExpTime === '' || jcAvailableNum === '' || jcTop === '' || jcPrice === '' || btnCheck === undefined) {
 			      alert('請填寫完整!!!!!');
 			      return false; // 中止表單提交
 			  	}
