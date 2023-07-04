@@ -31,7 +31,7 @@ public class GetAllCourseServlet extends HttpServlet {
 		resp.setContentType("application/json;charset=utf-8");
 
 		PrintWriter out = resp.getWriter();
-//		System.out.println(jsonString);
+		System.out.println(jsonString);
 
 		out.write(jsonString);
 		out.close();

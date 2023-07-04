@@ -136,32 +136,36 @@
                 method: "POST",
                 dataType: "JSON",
                 success: function (res) {
+
                     for (var i = 0; i < res.length; i++) {
-                        if (i % 5 === 0) {
-                            $("div#listcontainer").append(`<ul class="list-group list-group-horizontal" id="courselist"> `);
-                        }
+                        if (res[i].onStatus === 1) { // 只顯示上架的課程
+                            if (i % 5 === 0) {
+                                $("div#listcontainer").append(`<ul class="list-group list-group-horizontal" id="courselist"> `);
+                            }
 
-                        var onNo = res[i].onNo;  // 取得 onNo 值
+                            var onNo = res[i].onNo;  // 取得 onNo 值
 
-                        // 將 onNo 值進行 URL 編碼，並添加到 href 屬性中
-                        var href = `./MyCoursePage.html?onNo=${encodeURIComponent(onNo)}`;
+                            // 將 onNo 值進行 URL 編碼，並添加到 href 屬性中
+                            var href = `./MyCoursePage.html?onNo=${encodeURIComponent(onNo)}`;
 
-                        $("ul#courselist").append(`
-                        <li class="list-group-item">
-                        <div class="card">
-                        <img src="./${res[i].onPic}" class="img-fluid" style="height: 220px;margin: 0%;" alt="...">
-                        <div class="card-body">
+                            $("ul#courselist").append(`
+                            <li class="list-group-item">
+                            <div class="card">
+                            <img src="${res[i].onPic}" class="img-fluid" style="height: 220px;margin: 0%;" alt="...">
+                            <div class="card-body">
                             <h5 class="card-title"><strong>課程名稱：</strong>${res[i].onTitle}</h5>
                             <p style="max-width:600px;max-height: 500px;" class="card-text" >
                              ${res[i].onIndex}
                             </p>
                             <a href="${href}" class="btn btn-primary">觀看課程</a>
-                        </div>
-                        </div>
-                        </li>
-                        `)
-                        if (i % 5 === 0) {
-                            $("div#listcontainer").append(`</ul>`);
+                            </div>
+                            </div>
+                            </li>
+                            `)
+                            if (i % 5 === 0) {
+                                $("div#listcontainer").append(`</ul>`);
+                            }
+
                         }
                     }
                 }
@@ -172,43 +176,44 @@
 
         // search by title
 
-        // $("button#search").on("click", function () {
-        //     // $("input#keyword").on("change", function () {
-        //     $("div#listcontainer").empty();
-        //     $.ajax({
-        //         url: "/SeekerPool/CourseSearchServlet",
-        //         method: "POST",
-        //         dataType: "JSON",
-        //         async: false,//同步請求
-        //         cache: false,//不快取頁面
-        //         data: { keyword: $("input#keyword").val() },
-        //         success: function (res) {
-        //             for (let i = 0; i < res.length; i++) {
-        //                 console.log(res[i]);
-        //                 if (i % 5 === 0) {
-        //                     $("div#listcontainer").append(`<ul class="list-group list-group-horizontal" id="courselist"> `);
-        //                 }
-        //                 $("div#listcontainer").append(`
-        //                 <li class="list-group-item">
-        //                 <div class="card">
-        //                 <img src="./${res[i].onPic}" class="img-fluid" alt="...">
-        //                 <div class="card-body">
-        //                 <h5 class="card-title"><strong>課程名稱：</strong>${res[i].onTitle}</h5>
-        //                      <p style="max-width:600px;max-height: 500px;" class="card-text" >
-        //                      ${res[i].onIndex}
-        //                      </p>
-        //                     <a href="./MyCoursePage.html" class="btn btn-primary">觀看課程</a>
-        //                 </div>
-        //                 </div>
-        //                 </li>
-        //                 `)
-        //                 if (i % 5 === 0) {
-        //                     $("div#listcontainer").append(`</ul>`);
-        //                 }
-        //             }
-        //         }
-        //     })
-        // })
+        $("button#search").on("click", function (e) {
+            e.preventDefault();
+
+            $("div#listcontainer").empty();
+            $.ajax({
+                url: "/SeekerPool/CourseSearchServlet",
+                method: "POST",
+                dataType: "JSON",
+                async: false,//同步請求
+                cache: false,//不快取頁面
+                data: { keyword: $("input#keyword").val() },
+                success: function (res) {
+                    for (let i = 0; i < res.length; i++) {
+                        console.log(res[i]);
+                        if (i % 5 === 0) {
+                            $("div#listcontainer").append(`<ul class="list-group list-group-horizontal" id="courselist"> `);
+                        }
+                        $("div#listcontainer").append(`
+                        <li class="list-group-item">
+                        <div class="card">
+                        <img src="./${res[i].onPic}" class="img-fluid" alt="...">
+                        <div class="card-body">
+                        <h5 class="card-title"><strong>課程名稱：</strong>${res[i].onTitle}</h5>
+                             <p style="max-width:600px;max-height: 500px;" class="card-text" >
+                             ${res[i].onIndex}
+                             </p>
+                            <a href="./MyCoursePage.html" class="btn btn-primary">觀看課程</a>
+                        </div>
+                        </div>
+                        </li>
+                        `)
+                        if (i % 5 === 0) {
+                            $("div#listcontainer").append(`</ul>`);
+                        }
+                    }
+                }
+            })
+        })
 
 
     </script>

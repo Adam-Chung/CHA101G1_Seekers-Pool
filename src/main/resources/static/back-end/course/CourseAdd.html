@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Seeker's Pool</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link rel="icon" href="./img/handshake-regular.svg">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="./packageCSS/bootstrap.min.css" rel="stylesheet">
+    <link href="./packageCSS/bootstrap-icons.css" rel="stylesheet">
+    <link href="./packageCSS/boxicons.min.css" rel="stylesheet">
+    <link href="./packageCSS/quill.snow.css" rel="stylesheet">
+    <link href="./packageCSS/quill.bubble.css" rel="stylesheet">
+    <link href="./packageCSS/remixicon.css" rel="stylesheet">
+    <link href="./packageCSS/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="./css/Employee.css" rel="stylesheet">
+
+    <!-- Font Awesome-->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> -->
+    <script src="https://kit.fontawesome.com/244879c400.js" crossorigin="anonymous"></script>
+
+    <!-- =======================================================
+  * Template Name: NiceAdmin
+  * Updated: Mar 09 2023 with Bootstrap v5.2.3
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+</head>
+
+<body>
+
+<!-- ========================== Header ================================ -->
+<header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex flex-row align-items-center justify-content-between" style="margin-bottom: -10px;">
+        <a href="Employee.html" class="logo d-flex align-items-center">
+            <img src="../../common/img/handshake-regular.svg" alt="" style="margin-right: 10px;">
+            <span class="d-none d-lg-block">
+                <h5 style="margin-bottom: 0px;"><a href="Employee.html">Seeker's P<i
+                            class="fa-regular fa-face-smile"></i><i class="fa-regular fa-face-smile"></i>L
+                    </a></h5>
+            </span>
+        </a>
+        <img src="../../common/img/bars-solid.svg" class="toggle-sidebar-btn" alt="">
+    </div>
+    <!-- End Logo -->
+
+    <nav class="header-nav ms-auto">
+        <ul class="d-flex flex-row-reverse align-items-center">
+            <li class="nav-item pe-6">
+`				
+                <a class="profile-photo nav-profile d-flex align-items-center" href="#" style=" transform: translate(-100px, -15px);">
+<!--                     <img src="../../common/img/happy-quokka.jpg" alt="Profile" class="rounded-circle"> -->
+                    <span id="name"class="d-none d-md-block ps-2" style="transform:translateX(-20px);"></span>
+                </a>
+                
+                <!-- End 員工頭像 -->
+            </li>
+            <li>
+             <a id="out"class="dropdown-item d-flex p-6 align-items-center" href="#" style=" transform: translate(10px, -2px);">
+                     <img src="../../common/img/right-from-bracket-solid.svg" alt=""><span id="out">登出</span>
+                 </a>
+            </li>
+            <!-- End Profile Nav -->
+        </ul>
+    </nav>
+    <!-- End Icons Navigation -->
+</header>
+<!-- End Header -->
+<!-- ========================= Sidebar ============================== -->
+<aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+        <li class="nav-item">
+            <a class="nav-link " href="../administrator/administratorhome.html">
+                <img src="../../common/img/house-solid.svg" alt="">
+                <span>Home</span>
+            </a>
+        </li>
+        <!-- End Dashboard Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="../administrator/administrator.html">
+                <img src="../../common/img/user-regular.svg" alt=""><span>員工管理</span>
+<!--                 <img src="../../common/img/angle-down-solid.svg" -->
+<!--                     class="angle-down-solid ms-auto" alt=""> -->
+            </a>
+<!--             <ul id="administrator-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav"> -->
+<!--                 <li> -->
+<!--                     <a href="../administrator/administrator.html"> -->
+<!--                         <img src="../../common/img/circle-regular.svg" alt=""><span>員工資料管理</span> -->
+<!--                     </a> -->
+<!--                 </li> -->
+<!--                 <li> -->
+<!--                     <a href="../administrator/administratorauthority.html"> -->
+<!--                         <img src="../../common/img/circle-regular.svg" alt=""><span>員工權限管理</span> -->
+<!--                     </a> -->
+<!--                 </li> -->
+<!--                 <li> -->
+<!--                     <a href="./administratorlecturer.html"> -->
+<!--                         <img src="../../common/img/circle-regular.svg" alt=""><span>講師管理</span> -->
+<!--                     </a> -->
+<!--                 </li> -->
+<!--             </ul> -->
+        </li>
+        <!-- End 員工管理 Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="../companymember/allCompany.html">
+                <img src="../../common/img/address-card-regular.svg" alt=""><span>企業會員管理</span>
+<!--                 <img src="../../common/img/angle-down-solid.svg" -->
+<!--                     class="angle-down-solid ms-auto" alt=""> -->
+            </a>
+<!--             <ul id="member-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav"> -->
+<!--                 <li> -->
+<!--                     <a href="#"> -->
+<!--                         <img src="../../common/img/circle-regular.svg" alt=""><span>一般會員管理</span> -->
+<!--                     </a> -->
+<!--                 </li> -->
+<!--                 <li> -->
+<!--                     <a href="#"> -->
+<!--                         <img src="../../common/img/circle-regular.svg" alt=""><span>企業會員管理</span> -->
+<!--                     </a> -->
+<!--                 </li> -->
+<!--             </ul> -->
+        </li>
+        <!-- End 會員管理 Nav -->
+
+<!--         <li class="nav-item"> -->
+<!--             <a class="nav-link collapsed" data-bs-target="#lecturer-nav" data-bs-toggle="collapse" href="#"> -->
+<!--                 <img src="../../common/img/user-tie-solid.svg" alt=""><span>講師專區</span><img src="../../common/img/angle-down-solid.svg" -->
+<!--                     class="angle-down-solid ms-auto" alt=""> -->
+<!--             </a> -->
+<!--             <ul id="lecturer-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav"> -->
+<!--                 <li> -->
+<!--                     <a href="#"> -->
+<!--                         <img src="../../common/img/circle-regular.svg" alt=""><span>講師總覽</span> -->
+<!--                     </a> -->
+<!--                 </li> -->
+<!--                 <li> -->
+<!--                     <a href="#"> -->
+<!--                         <img src="../../common/img/circle-regular.svg" alt=""><span>留言區回覆</span> -->
+<!--                     </a> -->
+<!--                 </li> -->
+<!--             </ul> -->
+<!--         </li> -->
+        <!-- End 講師專區 Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#job-nav" data-bs-toggle="collapse" href="#">
+                <img src="../../common/img/briefcase-solid.svg" alt=""></i><span>職缺管理</span><img src="../../../common/img/angle-down-solid.svg"
+                    class="angle-down-solid ms-auto" alt="">
+            </a>
+            <ul id="job-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="../job/JobType.html">
+                        <img src="../../common/img/circle-regular.svg" alt=""><span>職務規格維護</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../job/JobSkill.html">
+                        <img src="../../common/img/circle-regular.svg" alt=""><span>技能規格維護</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../report/JobReportShow.html">
+                        <img src="../../common/img/circle-regular.svg" alt=""><span>審核管理</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <!-- End 職缺管理 Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#job-case-nav" data-bs-toggle="collapse" href="#">
+                <img src="../../common/img/rectangle-ad-solid.svg" alt=""><span>職缺刊登方案管理</span><img
+                    src="../../common/img/angle-down-solid.svg" class="angle-down-solid ms-auto" alt="">
+            </a>
+            <ul id="job-case-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="../jobcase/jobcase.html">
+                        <img src="../../common/img/circle-regular.svg" alt=""><span>職缺刊登方案</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../jobcase/jobcaseorder.html">
+                        <img src="../../common/img/circle-regular.svg" alt=""><span>職缺刊登訂單管理</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <!-- End 職缺刊登方案管理 Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#online-course-nav" data-bs-toggle="collapse" href="#">
+                <img src="../../common/img/circle-play-regular.svg" alt=""></i><span>線上訓練課程管理</span><img
+                    src="../../common/img/angle-down-solid.svg" class="angle-down-solid ms-auto" alt="">
+            </a>
+            <ul id="online-course-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="./CourseManagement.html">
+                        <img src="../../common/img/circle-regular.svg" alt=""><span>線上課程管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./CourseAdd.html">
+                        <img src="../../common/img/circle-regular.svg" alt=""><span>課程訂單管理</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <!-- End 線上訓練課程管理 Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#job-fair-nav" data-bs-toggle="collapse" href="#">
+                <img src="../../common/img/lightbulb-regular.svg" alt=""></i><span>徵才博覽會管理</span><img
+                    src="../../common/img/angle-down-solid.svg" class="angle-down-solid ms-auto" alt="">
+            </a>
+            <ul id="job-fair-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="../jobfair/jfback/job_fair.html">
+                        <img src="../../common/img/circle-regular.svg" alt=""><span>活動管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../jobfair/jfback/Exhibitor.html">
+                        <img src="../../common/img/circle-regular.svg" alt=""><span>參展企業管理</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <!-- End 徵才博覽會管理 Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="../jobfair/jfback/job_fair_article.html">
+                <img src="../../common/img/newspaper-regular.svg" alt=""><span>徵才活動文章</span>
+<!--                 <img src="../../common/img/angle-down-solid.svg" -->
+<!--                     class="angle-down-solid ms-auto" alt=""> -->
+            </a>
+<!--             <ul id="article-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav"> -->
+<!--                 <li> -->
+<!--                     <a href="#"> -->
+<!--                         <img src="../../common/img/circle-regular.svg" alt=""><span>徵才活動文章</span> -->
+<!--                     </a> -->
+<!--                 </li> -->
+<!--                 <li> -->
+<!--                     <a href="#"> -->
+<!--                         <img src="../../common/img/circle-regular.svg" alt=""><span>審核被檢舉文章</span> -->
+<!--                     </a> -->
+<!--                 </li> -->
+<!--             </ul> -->
+        </li>
+        <!-- End 文章專區管理 Nav -->
+
+<!--         <li class="nav-item"> -->
+<!--             <a class="nav-link collapsed" data-bs-target="#scheduler-nav" data-bs-toggle="collapse" href="#"> -->
+<!--                 <img src="../../common/img/calendar-days-regular.svg" alt=""><span>排程器管理</span><img -->
+<!--                     src="../../common/img/angle-down-solid.svg" class="angle-down-solid ms-auto" alt=""> -->
+<!--             </a> -->
+<!--             <ul id="scheduler-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav"> -->
+<!--                 <li> -->
+<!--                     <a href="#"> -->
+<!--                         <img src="../../common/img/circle-regular.svg" alt=""><span>熱門職務&技能</span> -->
+<!--                     </a> -->
+<!--                 </li> -->
+<!--             </ul> -->
+<!--         </li> -->
+        <!-- End 排程器管理 Nav -->
+
+<!--         <li class="nav-item"> -->
+<!--             <a class="nav-link collapsed" data-bs-target="#info-nav" data-bs-toggle="collapse" href="#"> -->
+<!--                 <img src="../../common/img/circle-question-regular.svg" alt=""></i><span>前台資訊管理</span><img -->
+<!--                     src="../../common/img/angle-down-solid.svg" class="angle-down-solid ms-auto" alt=""> -->
+<!--             </a> -->
+<!--             <ul id="info-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav"> -->
+<!--                 <li> -->
+<!--                     <a href="#"> -->
+<!--                         <img src="../../common/img/circle-regular.svg" alt=""><span>最新消息管理</span> -->
+<!--                     </a> -->
+<!--                 </li> -->
+<!--                 <li> -->
+<!--                     <a href="#"> -->
+<!--                         <img src="../../common/img/circle-regular.svg" alt=""><span>電子報管理</span> -->
+<!--                     </a> -->
+<!--                 </li> -->
+<!--                 <li> -->
+<!--                     <a href="#"> -->
+<!--                         <img src="../../common/img/circle-regular.svg" alt=""><span>FAQ管理</span> -->
+<!--                     </a> -->
+<!--                 </li> -->
+<!--             </ul> -->
+<!--         </li> -->
+        <!-- End 前台資訊管理 Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="../customer_service/customer-service-back.html">
+                <img src="../../common/img/headset-solid.svg" alt=""></i>
+                <span>線上客服管理</span>
+            </a>
+        </li>
+        <!-- End 線上客服管理 Nav -->
+    </ul>
+</aside>
+<!-- End Sidebar-->
+
+    <main id="main" class="main">
+
+        <!--職缺刊登方案新增頁面-->
+        <div class="pagetitle">
+            <h1>課程新增</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="Employee.html">Home</a></li>
+                    <li class="breadcrumb-item active">線上訓練課程管理</li>
+                    <li class="breadcrumb-item active">線上課程管理</li>
+                    <li class="breadcrumb-item active">課程新增</li>
+                </ol>
+            </nav>
+        </div>
+        <form id="uploadForm" method="POST" action="/SeekerPool/CourseAddServlet" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-lg-2 mb-3">
+                    <label for="onTitle" class="form-label">課程標題</label>
+                </div>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control" id="onTitle" name="onTitle">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-2 mb-3">
+                </div>
+                <div class="col-lg-4">
+                    <div id="preview" style="  
+                    width: 100%;
+                    height: 100%;
+                    margin-top: 20px;
+                    background-color: #f1f1f1;
+                    background-size: contain;
+                    background-position: center;">
+                        <span class="text">課程封面預覽</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-2 mb-3">
+                    <label for="onPic" class="form-label">課程封面上傳</label>
+                </div>
+                <div class="col-lg-4">
+                    <input type="file" class="form-control" id="onPic_file" name="onPic" accept=".jpg, .jpeg, .png">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-2 mb-3">
+                    <label for="onVideo" class="form-label">課程影片上傳</label>
+                </div>
+                <div class="col-lg-4">
+                    <input type="file" class="form-control" id="onVideo" name="onVideo" accept="video/mp4">
+                </div>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="col-lg-2 mb-3">
+                    <label for="onIndex" class="form-label">課程上架狀態</label>
+                </div>
+                <div class="col-lg-4">
+                    <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example" id="onStatus"
+                        name="onStatus">
+                        <option selected disabled hidden>請選擇上架狀態</option>
+                        <option value="0">未上架</option>
+                        <option value="1">上架</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="col-lg-2 mb-3">
+                    <label for="onIndex" class="form-label">課程簡介</label>
+                </div>
+                <div class="col-lg-4">
+                    <textarea class="form-control" style="width: 600px;" id="onIndex" name="onIndex"></textarea>
+                </div>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="mb-3 col-lg-4">
+                    <div class="input-group">
+                        <button type="submit" class="btn btn-primary" id="add_course"><strong>新增</strong></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </main>
+
+    <!-- 首頁sidebar下拉 -->
+    <script src="./packageJS/bootstrap.bundle.min.js"></script>
+
+
+    <!-- Template Main JS File -->
+    <script src="./js/Employee.js"></script>
+
+    <script src="./vendors/jquery/jquery-3.6.4.min.js"></script>
+
+    <!--fontawesome-->
+    <script src="https://kit.fontawesome.com/244879c400.js" crossorigin="anonymous"></script>
+
+    <!-- SweetAlert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</body>
+<script>
+    $.ajax({
+        url: "/SeekerPool/administrator.do",
+        method: 'POST',
+        datatype: "JSON",
+        data: { action: "getOne_For_Display3" },
+        success: function (res) {
+
+            $("span#name").text("Hi "+res.admName);
+            $("h6#name").text(res.admName);
+            $("input#schemeNumber2").val(res.admId);
+        }
+    })
+
+    $("a#out").on("click", function (e) {
+        e.preventDefault;
+    })
+    $("span#out").on("click", function () {
+        console.log("AAA");
+        if (confirm("確定要登出?")) {
+
+            $.ajax({
+                url: "/SeekerPool/administrator.do",
+                method: 'POST',
+                datatype: "JSON",
+                data: { action: "logout" },
+                success: function (res) {
+                    alert(res);
+                    window.location.replace('../jobfair/jfback/EmployeeLogin.html');
+                }
+            })
+        }
+    })
+
+</script>
+<script>
+    $("select#onStatus").on("change", function () {
+        console.log($("select#onStatus option:selected").val())
+    })
+
+    //取得input#onPic_file元素
+    var onPic_file_el = document.getElementById("onPic_file");
+    //取得span#preview元素做預覽圖處理
+    var preview_el = document.getElementById("preview");
+
+    // 宣告函式讀取上傳檔案並將二位元資料存入img標籤的src屬性
+    var preview_img = function (file) {
+
+        var reader = new FileReader();
+        //讀取檔案
+        reader.readAsDataURL(file);
+
+        reader.addEventListener("load", function () {
+            //將檔案讀取資源加入img標籤
+            let img_str = '<img src="' + reader.result + '" class="preview_img" style="width: 100%; height: 100%; object-fit: cover;">';
+
+            preview_el.innerHTML = img_str;
+        })
+    }
+
+    //若上傳圖片，則顯示預覽圖
+    onPic_file_el.addEventListener("change", function (e) {
+        if (this.files.length > 0) {
+            preview_img(this.files[0]);
+        } else {
+            preview_el.innerHTML = '<span class="text">課程封面預覽</span>';
+        }
+    });
+
+    document.getElementById("uploadForm").addEventListener("submit", function (e) {
+
+        // 檢查課程標題
+        var onTitle = $("#onTitle").val().trim();
+        if (onTitle === "") {
+            alert("請輸入課程標題!");
+            return;
+        }
+
+        // 檢查課程封面圖片
+        var onPic_file = $("#onPic_file").val().trim();
+        if (onPic_file === "") {
+            alert("請選擇上傳課程封面!");
+            return;
+        }
+
+        // // 檢查課程影片
+        var onVideo = $("#onVideo").val().trim();
+        if (onVideo === "") {
+            alert("請選擇上傳課程影片!");
+            return;
+        }
+
+        // 檢查課程簡介
+        var onIndex = $("#onIndex").val().trim();
+        if (onIndex === "") {
+            alert("請輸入課程簡介!");
+            return;
+        }
+
+    });
+
+</script>
+
+
+</html>

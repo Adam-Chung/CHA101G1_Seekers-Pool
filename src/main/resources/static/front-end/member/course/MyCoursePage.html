@@ -106,25 +106,27 @@
     //getall
     $(function () {
         $.ajax({
-            url: "/SeekerPool/GetAllCourseServlet",
+            url: "/SeekerPool/GetOneCourseServlet",
             method: "POST",
             dataType: "JSON",
+            data: { onNo: getParameter("onNo") },
             // async: false,//同步請求
             // cache: false,//不快取頁面
             success: function (res) {
+            	console.log(res);
 
                 $("div#videocontainer").append(`
                     <div id="instrucions">
                     <video id="my_video_1" class="video-js vjs-default-skin" width="640px" height="267px" controls
-                    preload="none" poster='${res[getParameter("onNo") - 1].onPic}'
+                    preload="none" poster='${res.onPic}'
                     data-setup='{ "aspectRatio":"640:267", "playbackRates": [1, 1.5, 2] }'>
-                    <source src=" ${res[getParameter("onNo") - 1].onVideo}" type='video/mp4' />
+                    <source src=" ${res.onVideo}" type='video/mp4' />
                     </video>
                     </div>
                     <div>
-                    <h2>${res[getParameter("onNo") - 1].onTitle}</h2>
+                    <h2>${res.onTitle}</h2>
                     <p style="max-width:600px;max-height: 800px;" class="card-text">
-                        ${res[getParameter("onNo") - 1].onIndex}
+                        ${res.onIndex}
                     </p>
                     </div >
                         `)

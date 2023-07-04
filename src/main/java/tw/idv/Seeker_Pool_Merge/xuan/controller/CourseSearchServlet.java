@@ -23,6 +23,7 @@ public class CourseSearchServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		System.out.println("i am coming --------");
 		resp.setCharacterEncoding("UTF-8");
 		
 		// 獲取使用者輸入的關鍵字
@@ -36,7 +37,7 @@ public class CourseSearchServlet extends HttpServlet {
 		resp.setContentType("application/json;charset=utf-8");
 
 		PrintWriter out = resp.getWriter();
-//		System.out.println(jsonString);
+		System.out.println(jsonString);
 
 		out.write(jsonString);
 		out.close();

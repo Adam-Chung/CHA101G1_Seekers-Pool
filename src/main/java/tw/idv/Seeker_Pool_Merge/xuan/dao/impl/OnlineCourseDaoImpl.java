@@ -17,8 +17,8 @@ import tw.idv.Seeker_Pool_Merge.xuan.dao.OnlineCourseDao;
 import tw.idv.Seeker_Pool_Merge.xuan.vo.OnlineCourseVo;
 
 public class OnlineCourseDaoImpl implements OnlineCourseDao {
-	private DataSource dataSource= HikariCPUtil.getDataSource();
- 
+//	private DataSource dataSource;
+//
 //	public OnlineCourseDaoImpl() {
 //		try {
 //			Context ctx = new InitialContext();
@@ -27,11 +27,17 @@ public class OnlineCourseDaoImpl implements OnlineCourseDao {
 //			e.printStackTrace();
 //		}
 //	}
+//	
+//	public void setDataSource(DataSource dataSource) {
+//        this.dataSource = dataSource;
+//    }
 	
-	public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
+	private DataSource dataSource = HikariCPUtil.getDataSource();
 	
+	
+	
+	
+	//	新增課程
 	@Override
 	public void createOnlineCourse(OnlineCourseVo onlineCourse) {
 		try (Connection conn = dataSource.getConnection();
@@ -50,6 +56,7 @@ public class OnlineCourseDaoImpl implements OnlineCourseDao {
 		}
 	}
 	
+	//	後台列表
 	@Override
 	public List<OnlineCourseVo> getAllOnlineCourses() {
 		List<OnlineCourseVo> courses = new ArrayList<>();
@@ -75,7 +82,63 @@ public class OnlineCourseDaoImpl implements OnlineCourseDao {
 
 	    return courses;
 	}
+	public OnlineCourseVo getOneOnlineCourses(String onNo) {
+//		OnlineCourseVo courses = new OnlineCourseVo();
+		OnlineCourseVo course = new OnlineCourseVo();
 
+	    try (		
+	    		Connection conn = dataSource.getConnection();
+	    		PreparedStatement stmt = conn.prepareStatement("SELECT * FROM online_course where on_no= ?;");	
+	         ) {
+	    	stmt.setString(1, onNo);
+	    	ResultSet rs = stmt.executeQuery();
+	    	System.out.println(rs);
+	    	
+
+	        while (rs.next()) {
+//	            OnlineCourseVo course = new OnlineCourseVo();
+	            course.setOnNo(rs.getInt("ON_NO"));
+				course.setOnTitle(rs.getString("ON_TITLE"));
+				course.setOnIndex(rs.getString("ON_INDEX"));
+				course.setOnStatus(rs.getInt("ON_STATUS"));
+				course.setOnPic(rs.getString("ON_PIC"));
+				course.setOnVideo(rs.getString("ON_VIDEO"));
+  
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    System.out.println(course);
+
+	    return course;
+	}
+	
+	//	上架列表
+	public List<OnlineCourseVo> getOnlineCourses() {
+	    List<OnlineCourseVo> courses = new ArrayList<>();
+
+	    try (Connection conn = dataSource.getConnection();
+	         PreparedStatement stmt = conn.prepareStatement("SELECT * FROM online_course WHERE ON_STATUS = 1");
+	         ResultSet rs = stmt.executeQuery()) {
+
+	        while (rs.next()) {
+	            OnlineCourseVo course = new OnlineCourseVo();
+	            course.setOnNo(rs.getInt("ON_NO"));
+	            course.setOnTitle(rs.getString("ON_TITLE"));
+	            course.setOnIndex(rs.getString("ON_INDEX"));
+	            course.setOnStatus(rs.getInt("ON_STATUS"));
+	            course.setOnPic(rs.getString("ON_PIC"));
+	            course.setOnVideo(rs.getString("ON_VIDEO"));
+
+	            courses.add(course);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return courses;
+	}
+	
 	@Override
 	public List<OnlineCourseVo> searchOnlineCoursesByTitle(String onTitle) {
 		List<OnlineCourseVo> courses = new ArrayList<>();
