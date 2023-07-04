@@ -350,12 +350,11 @@
                 var jcPrice = $row.find("input[name='edit_jcPrice']").val();
                 var jcStatus = $row.find("select[name='edit_jcStatus']").val(); // 取得選中的選項值
 
-//                 console.log("jcName" + jcName);
-//                 console.log("jcExpTime" + jcExpTime);
-//                 console.log("jcAvailableNum" + jcAvailableNum);
-//                 console.log("jcTop" + jcTop);
-//                 console.log("jcPrice" + jcPrice);
-//                 console.log("jcStatus" + jcStatus);
+             	// 檢查是否為空
+			  	if (jcNo === '' || jcName === '' || jcExpTime === '' || jcAvailableNum === '' || jcTop === '' || jcPrice === '' || jcStatus === '') {
+			      alert('漏寫了，請填寫完整!!!!!');
+			      return false; // 中止表單提交
+			  	}
 
 
                 $.ajax({
