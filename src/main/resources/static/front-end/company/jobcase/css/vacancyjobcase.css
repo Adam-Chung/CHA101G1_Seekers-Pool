@@ -235,7 +235,7 @@ menu ul li a:hover {
 .trHead {
     position: sticky;
     top: 0;
-    background-color: #94D2BD;
+    background-color: #858AE3;
     z-index: 999;
     /* 設置需要的背景顏色 */
 }

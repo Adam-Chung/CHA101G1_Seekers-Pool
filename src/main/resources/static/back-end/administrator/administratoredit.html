@@ -272,6 +272,13 @@
 // 				console.log("admPassword :" + admPassword);
 // 				console.log("admStatus :" + admStatus);
 // 				console.log("Photo :" + admPhoto);
+
+				// 檢查是否為空
+			  	if (admName === '' || admPosition === '' || admAccount === '' || admPassword === '' || admStatus === '' || admPhoto === '') {
+			      alert('請填寫完整!!!!!');
+			      return false; // 中止表單提交
+			  	}
+				
 				var formData = new FormData($("#editAdminForm")[0]);
 				formData.append("admId", parseInt(getParameter("id")));
 				$.ajax({
