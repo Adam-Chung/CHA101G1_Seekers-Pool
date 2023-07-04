@@ -211,6 +211,7 @@
             $("#btnJcNoSearch").click(function () {
                 var joNo = $("#inputJcNoSearch").val().trim();
 //                 console.log(joNo);
+			if (joNo !== "" && /^[0-9]+$/.test(joNo)) {
                 $.ajax({
                     url: "../../JobCaseQueryServlet",
                     method: 'POST',
@@ -225,6 +226,7 @@
 //                         console.log("resjoNo :" + res[0].joNo);
 //                         console.log("rescomName :" + res[0].comName);
 //                         console.log("resjcName :" + res[0].jcName);
+//                         console.log("jcDeadline :" + res[0].jcDeadline);
 //                         console.log("BBB");
                         if (res) {
                             let originalDate = new Date(res[0].jcDeadline);
@@ -265,6 +267,10 @@
                         }
                     }
                 });
+			} else {
+//					console.log("請輸入數字");
+				alert("錯誤! 訂單編號請輸入數字(ex: 1)");
+			}
             })
         });
 

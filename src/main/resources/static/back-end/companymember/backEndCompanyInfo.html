@@ -350,7 +350,7 @@
                 <div class="rg_form clearfix">
                     <div class="rg_form_left">
                         <!-- <p id="name" name="comName">TSMC</p> -->
-                        <img src="images/TSMC.png" id="logoImg" width="50%" alt="Company Logo.">
+                        <img src="" id="logoImg" width="50%" alt="Company Logo.">
                     </div>
 
                     <div class="rg_form_center">
@@ -371,7 +371,7 @@
                                         <label for="companyname">企業名稱</label>
                                     </td>
                                     <td class="td_right">
-                                        <input type="text" id="comName" name="comName" placeholder="台積電" disabled>
+                                        <input type="text" id="comName" name="comName" disabled>
                                     </td>
                                 </tr>
 
@@ -380,7 +380,7 @@
                                         <label for="username">帳號</label>
                                     </td>
                                     <td class="td_right">
-                                        <input type="text" id="account" name="comMemAccount" placeholder="aaa" disabled>
+                                        <input type="text" id="account" name="comMemAccount" disabled>
                                     </td>
                                 </tr>
 
@@ -389,8 +389,7 @@
                                         <label for="comEmail">公司信箱</label>
                                     </td>
                                     <td class="td_right">
-                                        <input type="text" id="comEmail" name="comEmail" placeholder="AAA@tsmc.com"
-                                            disabled>
+                                        <input type="text" id="comEmail" name="comEmail" disabled>
                                     </td>
                                 </tr>
 
@@ -399,7 +398,7 @@
                                         <label for="comTel">公司電話</label>
                                     </td>
                                     <td class="td_right">
-                                        <input type="text" id="comTel" name="comTel" placeholder="03-23452345" disabled>
+                                        <input type="text" id="comTel" name="comTel" disabled>
                                     </td>
                                 </tr>
 
@@ -408,8 +407,7 @@
                                         <label for="comAddress">公司地址</label>
                                     </td>
                                     <td class="td_right">
-                                        <input type="text" id="comAddress" name="comAddress" placeholder="新竹科學園區"
-                                            disabled>
+                                        <input type="text" id="comAddress" name="comAddress" disabled>
                                     </td>
                                 </tr>
 
@@ -437,8 +435,7 @@
                                         <label for="endSuspendedTime">企業停權結束時間</label>
                                     </td>
                                     <td class="td_right">
-                                        <input type="text" id="formattedTime" name="formattedTime"
-                                            placeholder="2023-05-30" disabled>
+                                        <input type="text" id="formattedTime" name="formattedTime" disabled>
                                     </td>
                                 </tr>
                                 <tr>
@@ -446,7 +443,7 @@
                                         <label for="comRepNum">被檢舉次數</label>
                                     </td>
                                     <td class="td_right">
-                                        <input type="text" id="comRepNum" name="comRepNum" placeholder="2" disabled>
+                                        <input type="text" id="comRepNum" name="comRepNum" disabled>
                                     </td>
                                 </tr>
 
@@ -481,39 +478,39 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="./js/backEndCompanyInfo.js"></script>
     <script>
-        $(function () {
-            $.ajax({
-                url: "/SeekerPool/administrator.do",
-                method: 'POST',
-                datatype: "JSON",
-                data: { action: "getOne_For_Display3" },
-                success: function (res) {
+        // ======== 權限設定 ===========
+        $.ajax({
+            url: "/SeekerPool/administrator.do",
+            method: 'POST',
+            datatype: "JSON",
+            data: { action: "getOne_For_Display3" },
+            success: function (res) {
 
-                    $("span#name").text(res.admName);
-                    $("h6#name").text(res.admName);
-                    $("input#schemeNumber2").val(res.admId);
-                }
-            })
-            $("a#out").on("click", function (e) {
-                e.preventDefault;
-            })
-            $("span#out").on("click", function () {
-                if (confirm("確定要登出?")) {
-
-                    $.ajax({
-                        url: "/Seeker_Pool_Mix/administrator.do",
-                        method: 'POST',
-                        datatype: "JSON",
-                        data: { action: "logout" },
-                        success: function (res) {
-                            alert(res);
-                            window.location.replace('../jobfair/EmployeeLogin.html');
-                        }
-                    })
-                }
-            })
+                $("span#name").text(res.admName);
+                $("h6#name").text(res.admName);
+                $("input#schemeNumber2").val(res.admId);
+            }
         })
 
+        $("a#out").on("click", function (e) {
+            e.preventDefault;
+        })
+        $("span#out").on("click", function () {
+            console.log("AAA");
+            if (confirm("確定要登出?")) {
+
+                $.ajax({
+                    url: "/SeekerPool/administrator.do",
+                    method: 'POST',
+                    datatype: "JSON",
+                    data: { action: "logout" },
+                    success: function (res) {
+                        alert(res);
+                        window.location.replace('../jobfair/jfback/EmployeeLogin.html');
+                    }
+                })
+            }
+        })
     </script>
 </body>
 

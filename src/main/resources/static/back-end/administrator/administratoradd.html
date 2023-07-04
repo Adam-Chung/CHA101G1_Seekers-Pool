@@ -259,6 +259,19 @@
 
 			// ======== AJAX ===========
 			$("#addAdminForm").submit(function () {
+				var admName = $("input#admName").val();
+				var admPosition = $("input#admPosition").val();
+				var admAccount = $("input#admAccount").val();
+				var admPassword = $("input#admPassword").val();
+				var admStatus = $("input#admStatus").val();
+				var admPhoto = $("input#admPhoto").val();
+				
+				// 檢查是否為空
+			  	if (admName === '' || admPosition === '' || admAccount === '' || admPassword === '' || admStatus === '' || admPhoto === '') {
+			      alert('請填寫完整!!!!!');
+			      return false; // 中止表單提交
+			  	}
+				
 				var formData = new FormData($("#addAdminForm")[0]);
 				$.ajax({
 					url: "../../AdministratorServlet",
