@@ -61,7 +61,6 @@ const submitForm = () => {
 
                 resetForm();
             } else {
-                // alert('更新失敗: ' + resultInfo.errorMsg);
                 swal("更新失敗", `${data.errorMsg}`, "error");
             }
         })
