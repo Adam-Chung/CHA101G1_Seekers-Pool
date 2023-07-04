@@ -54,10 +54,6 @@ public class CourseAddServlet extends HttpServlet {
 		File f2 = new File(fsaveDirectory, videoFileName);  //真實路徑(阿飄路徑)(連動端，實際運作取用) 
 		filePart2.write(f2.toString()); 
 		
-//		// 將檔案儲存到指定路徑
-//		filePart.write(imgPath);
-//		filePart2.write(videoPath);
-
 		// 建立 OnlineCourseVo 物件
 		OnlineCourseVo onlineCourse = new OnlineCourseVo();
 		onlineCourse.setOnTitle(onTitle);
@@ -70,7 +66,7 @@ public class CourseAddServlet extends HttpServlet {
 		onlineCourseDaoImpl.createOnlineCourse(onlineCourse);
 		
 		System.out.println("upload success");
-
+		resp.sendRedirect(req.getContextPath() + "/back-end/course/CourseAdd.html");
 	}
 
 		//隨機生成檔名

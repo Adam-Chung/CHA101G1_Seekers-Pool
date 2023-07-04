@@ -106,12 +106,12 @@
         <!-- 分頁 -->
         <span>
             <ul class="pagination pagination-sm mb-0 justify-content-center">
-                <li class="page-item"><a class="page-link" aria-label="Previous" href="#"><span
+                <li id="prev" class="page-item"><a id="c" class="page-link" aria-label="Previous" href="#"><span
                             aria-hidden="true">«</span></a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span
+                <li class="page-item"><a id="c" class="page-link" href="#">1</a></li>
+                <li class="page-item"><a id="c" class="page-link" href="#">2</a></li>
+
+                <li id="next" class="page-item"><a id="c" class="page-link" aria-label="Next" href="#"><span
                             aria-hidden="true">»</span></a></li>
             </ul>
         </span>
@@ -129,19 +129,29 @@
     <!-- ajax -->
 
     <script>
-        // getall
-        $(function () {
+        var a = 0;
+        $("a#c").on("click", function (e) {
+            e.preventDefault();
+
+        })
+
+        $("li#prev").on("click", function () {
             $.ajax({
-                url: "/SeekerPool/GetAllCourseServlet",
+                url: "/SeekerPool/GetAllCourseOnStatusServlet",
                 method: "POST",
                 dataType: "JSON",
                 success: function (res) {
+                    a -= 5;
+                    if (a < 0) {
+                        alert("已到第一頁");
+                        a = 0;
+                        return;
+                    } else {
+                        $("div#listcontainer").empty();
+                        $("div#listcontainer").append(`<ul class="list-group list-group-horizontal" id="courselist"> `);
 
-                    for (var i = 0; i < res.length; i++) {
-                        if (res[i].onStatus === 1) { // 只顯示上架的課程
-                            if (i % 5 === 0) {
-                                $("div#listcontainer").append(`<ul class="list-group list-group-horizontal" id="courselist"> `);
-                            }
+                        for (var i = a; i < 5 + a; i++) {
+                            console.log(res[i]);
 
                             var onNo = res[i].onNo;  // 取得 onNo 值
 
@@ -162,12 +172,99 @@
                             </div>
                             </li>
                             `)
-                            if (i % 5 === 0) {
-                                $("div#listcontainer").append(`</ul>`);
-                            }
-
                         }
+                        $("div#listcontainer").append(`</ul>`);
+
                     }
+                }
+            });
+
+
+        })
+
+        $("li#next").on("click", function () {
+
+            $.ajax({
+                url: "/SeekerPool/GetAllCourseOnStatusServlet",
+                method: "POST",
+                dataType: "JSON",
+                success: function (res) {
+                    a += 5;
+                    if (a > res.length) {
+                        alert("最後一頁啦~");
+                  
+                        a -= 5;
+                   
+                        return;
+                    } else {
+                        $("div#listcontainer").empty();
+                        $("div#listcontainer").append(`<ul class="list-group list-group-horizontal" id="courselist"> `);
+
+                        for (var i = 0+a; i < 5 + a; i++) {
+                            console.log(res[i]);
+
+                            var onNo = res[i].onNo;  // 取得 onNo 值
+
+                            // 將 onNo 值進行 URL 編碼，並添加到 href 屬性中
+                            var href = `./MyCoursePage.html?onNo=${encodeURIComponent(onNo)}`;
+
+                            $("ul#courselist").append(`
+                            <li class="list-group-item">
+                            <div class="card">
+                            <img src="${res[i].onPic}" class="img-fluid" style="height: 220px;margin: 0%;" alt="...">
+                            <div class="card-body">
+                            <h5 class="card-title"><strong>課程名稱：</strong>${res[i].onTitle}</h5>
+                            <p style="max-width:600px;max-height: 500px;" class="card-text" >
+                             ${res[i].onIndex}
+                            </p>
+                            <a href="${href}" class="btn btn-primary">觀看課程</a>
+                            </div>
+                            </div>
+                            </li>
+                            `)
+                        }
+                        $("div#listcontainer").append(`</ul>`);
+
+                    }
+                }
+            });
+
+        })
+        // getall
+        $(function () {
+            $.ajax({
+                url: "/SeekerPool/GetAllCourseOnStatusServlet",
+                method: "POST",
+                dataType: "JSON",
+                success: function (res) {
+                    console.log("gg");
+                    $("div#listcontainer").append(`<ul class="list-group list-group-horizontal" id="courselist"> `);
+
+                    for (var i = 0; i < 5; i++) {
+                        console.log(res[i]);
+
+                        var onNo = res[i].onNo;  // 取得 onNo 值
+
+                        // 將 onNo 值進行 URL 編碼，並添加到 href 屬性中
+                        var href = `./MyCoursePage.html?onNo=${encodeURIComponent(onNo)}`;
+
+                        $("ul#courselist").append(`
+                            <li class="list-group-item">
+                            <div class="card">
+                            <img src="${res[i].onPic}" class="img-fluid" style="height: 220px;margin: 0%;" alt="...">
+                            <div class="card-body">
+                            <h5 class="card-title"><strong>課程名稱：</strong>${res[i].onTitle}</h5>
+                            <p style="max-width:600px;max-height: 500px;" class="card-text" >
+                             ${res[i].onIndex}
+                            </p>
+                            <a href="${href}" class="btn btn-primary">觀看課程</a>
+                            </div>
+                            </div>
+                            </li>
+                            `)
+                    }
+                    $("div#listcontainer").append(`</ul>`);
+
                 }
             });
 
@@ -181,7 +278,7 @@
 
             $("div#listcontainer").empty();
             $.ajax({
-                url: "/SeekerPool/CourseSearchServlet",
+                url: "/SeekerPool/testServlet",
                 method: "POST",
                 dataType: "JSON",
                 async: false,//同步請求
