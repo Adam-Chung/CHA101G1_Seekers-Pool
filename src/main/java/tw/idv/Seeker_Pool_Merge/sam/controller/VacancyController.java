@@ -8,6 +8,7 @@ import tw.idv.Seeker_Pool_Merge.sam.entity.PageBean;
 import tw.idv.Seeker_Pool_Merge.sam.entity.Result;
 import tw.idv.Seeker_Pool_Merge.sam.service.VacancyService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -19,9 +20,11 @@ public class VacancyController {
 
 //    新增職缺
     @PostMapping
-    public Result save(@RequestBody Job job){
+    public Result save(HttpServletRequest request, @RequestBody Job job){
 //        log.info("新增職缺, {}", job);
-        vacancyService.save(job);
+        int comId = (int) request.getSession().getAttribute("companyMember");
+        System.out.println("comid: " + comId);
+        vacancyService.save(comId,job);
         return Result.success();
     }
 
@@ -59,12 +62,22 @@ public class VacancyController {
     }
 
 //  分頁功能
+//    @GetMapping("/page")
+//    public Result page(@RequestParam(defaultValue = "1") Integer page,
+//                       @RequestParam(defaultValue = "10") Integer pageSize){
+////        log.info("分頁查詢, 參數: {}, {}", page, pageSize);
+//        //調用service分頁查詢
+//        PageBean pageBean = vacancyService.page(page,pageSize);
+//        return Result.success(pageBean);
+//    }
+
     @GetMapping("/page")
-    public Result page(@RequestParam(defaultValue = "1") Integer page,
-                       @RequestParam(defaultValue = "10") Integer pageSize){
-//        log.info("分頁查詢, 參數: {}, {}", page, pageSize);
-        //調用service分頁查詢
-        PageBean pageBean = vacancyService.page(page,pageSize);
+    public Result page(HttpServletRequest request, @RequestParam(defaultValue = "1") Integer page,
+                       @RequestParam(defaultValue = "10") Integer pageSize) {
+        int comMemId = (int) request.getSession().getAttribute("companyMember");
+        // 调用service分页查询
+        PageBean pageBean = vacancyService.page(comMemId, page, pageSize);
         return Result.success(pageBean);
     }
+
 }
