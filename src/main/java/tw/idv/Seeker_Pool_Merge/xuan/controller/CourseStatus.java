@@ -1,8 +1,6 @@
 package tw.idv.Seeker_Pool_Merge.xuan.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,34 +8,33 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-
 import tw.idv.Seeker_Pool_Merge.xuan.dao.impl.OnlineCourseDaoImpl;
 import tw.idv.Seeker_Pool_Merge.xuan.vo.OnlineCourseVo;
 
-@WebServlet("/GetAllCourseServlet")
-public class GetAllCourseServlet extends HttpServlet {
-
+@WebServlet("/CourseStatus")
+public class CourseStatus extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private OnlineCourseDaoImpl onlineCourseDaoImpl = new OnlineCourseDaoImpl();
 
-	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setCharacterEncoding("UTF-8");
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		List<OnlineCourseVo> courses = onlineCourseDaoImpl.getAllOnlineCourses();
-		Gson gson = new Gson();
-		String jsonString = gson.toJson(courses);
-		resp.setContentType("application/json;charset=utf-8");
-
-		PrintWriter out = resp.getWriter();
-		System.out.println(jsonString);
-
-		out.write(jsonString);
-		out.close();
 	}
 
-	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		doPost(req, res);
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		resp.setCharacterEncoding("UTF-8");
+		
+		int onNo = Integer.parseInt(req.getParameter("onNo"));
+		int onStatus = Integer.parseInt(req.getParameter("onStatus"));
+
+		OnlineCourseVo onlineCourse = new OnlineCourseVo();
+		onlineCourse.setOnNo(onNo);
+		onlineCourse.setOnStatus(onStatus);
+
+		onlineCourseDaoImpl.updateOnlineCourse(onlineCourse);
+
+		// 回傳成功訊息
+		resp.getWriter().print("success");
 	}
 
 }

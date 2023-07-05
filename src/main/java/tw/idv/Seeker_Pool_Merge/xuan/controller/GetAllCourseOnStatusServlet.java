@@ -15,8 +15,8 @@ import com.google.gson.Gson;
 import tw.idv.Seeker_Pool_Merge.xuan.dao.impl.OnlineCourseDaoImpl;
 import tw.idv.Seeker_Pool_Merge.xuan.vo.OnlineCourseVo;
 
-@WebServlet("/GetAllCourseServlet")
-public class GetAllCourseServlet extends HttpServlet {
+@WebServlet("/GetAllCourseOnStatusServlet")
+public class GetAllCourseOnStatusServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private OnlineCourseDaoImpl onlineCourseDaoImpl = new OnlineCourseDaoImpl();
@@ -24,7 +24,7 @@ public class GetAllCourseServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setCharacterEncoding("UTF-8");
 
-		List<OnlineCourseVo> courses = onlineCourseDaoImpl.getAllOnlineCourses();
+		List<OnlineCourseVo> courses = onlineCourseDaoImpl.getAllOnlineCoursesOnStatus();
 		Gson gson = new Gson();
 		String jsonString = gson.toJson(courses);
 		resp.setContentType("application/json;charset=utf-8");
