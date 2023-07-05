@@ -85,7 +85,6 @@
 
     <main class="main">
         <!--引入QandTop按鈕-->
-        <div id="QandTop"></div>
 
         <section>
             <form>
@@ -108,8 +107,6 @@
             <ul class="pagination pagination-sm mb-0 justify-content-center">
                 <li id="prev" class="page-item"><a id="c" class="page-link" aria-label="Previous" href="#"><span
                             aria-hidden="true">«</span></a></li>
-                <li class="page-item"><a id="c" class="page-link" href="#">1</a></li>
-                <li class="page-item"><a id="c" class="page-link" href="#">2</a></li>
 
                 <li id="next" class="page-item"><a id="c" class="page-link" aria-label="Next" href="#"><span
                             aria-hidden="true">»</span></a></li>
@@ -163,7 +160,7 @@
                             <div class="card">
                             <img src="${res[i].onPic}" class="img-fluid" style="height: 220px;margin: 0%;" alt="...">
                             <div class="card-body">
-                            <h5 class="card-title"><strong>課程名稱：</strong>${res[i].onTitle}</h5>
+                            <h6 class="card-title"><strong>課程名稱：</strong>${res[i].onTitle}</h5>
                             <p style="max-width:600px;max-height: 500px;" class="card-text" >
                              ${res[i].onIndex}
                             </p>
@@ -192,15 +189,15 @@
                     a += 5;
                     if (a > res.length) {
                         alert("最後一頁啦~");
-                  
+
                         a -= 5;
-                   
+
                         return;
                     } else {
                         $("div#listcontainer").empty();
                         $("div#listcontainer").append(`<ul class="list-group list-group-horizontal" id="courselist"> `);
 
-                        for (var i = 0+a; i < 5 + a; i++) {
+                        for (var i = 0 + a; i < 5 + a; i++) {
                             console.log(res[i]);
 
                             var onNo = res[i].onNo;  // 取得 onNo 值
@@ -213,7 +210,7 @@
                             <div class="card">
                             <img src="${res[i].onPic}" class="img-fluid" style="height: 220px;margin: 0%;" alt="...">
                             <div class="card-body">
-                            <h5 class="card-title"><strong>課程名稱：</strong>${res[i].onTitle}</h5>
+                            <h6 class="card-title"><strong>課程名稱：</strong>${res[i].onTitle}</h5>
                             <p style="max-width:600px;max-height: 500px;" class="card-text" >
                              ${res[i].onIndex}
                             </p>
@@ -230,7 +227,7 @@
             });
 
         })
-        // getall
+        // GetAllCourseOnStatus
         $(function () {
             $.ajax({
                 url: "/SeekerPool/GetAllCourseOnStatusServlet",
@@ -253,7 +250,7 @@
                             <div class="card">
                             <img src="${res[i].onPic}" class="img-fluid" style="height: 220px;margin: 0%;" alt="...">
                             <div class="card-body">
-                            <h5 class="card-title"><strong>課程名稱：</strong>${res[i].onTitle}</h5>
+                            <h6 class="card-title"><strong>課程名稱：</strong>${res[i].onTitle}</h5>
                             <p style="max-width:600px;max-height: 500px;" class="card-text" >
                              ${res[i].onIndex}
                             </p>
@@ -272,10 +269,8 @@
 
 
         // search by title
-
         $("button#search").on("click", function (e) {
             e.preventDefault();
-
             $("div#listcontainer").empty();
             $.ajax({
                 url: "/SeekerPool/testServlet",
@@ -285,29 +280,29 @@
                 cache: false,//不快取頁面
                 data: { keyword: $("input#keyword").val() },
                 success: function (res) {
+                    $("div#listcontainer").append(`<ul class="list-group list-group-horizontal" id="courselist"> `);
                     for (let i = 0; i < res.length; i++) {
                         console.log(res[i]);
-                        if (i % 5 === 0) {
-                            $("div#listcontainer").append(`<ul class="list-group list-group-horizontal" id="courselist"> `);
-                        }
-                        $("div#listcontainer").append(`
+                        var onNo = res[i].onNo;  // 取得 onNo 值
+
+                        // 將 onNo 值進行 URL 編碼，並添加到 href 屬性中
+                        var href = `./MyCoursePage.html?onNo=${encodeURIComponent(onNo)}`;
+                        $("ul#courselist").append(`
                         <li class="list-group-item">
                         <div class="card">
-                        <img src="./${res[i].onPic}" class="img-fluid" alt="...">
+                        <img src="${res[i].onPic}" class="img-fluid" style="height: 220px;margin: 0% alt="...">
                         <div class="card-body">
-                        <h5 class="card-title"><strong>課程名稱：</strong>${res[i].onTitle}</h5>
+                        <h6 class="card-title"><strong>課程名稱：</strong>${res[i].onTitle}</h5>
                              <p style="max-width:600px;max-height: 500px;" class="card-text" >
                              ${res[i].onIndex}
                              </p>
-                            <a href="./MyCoursePage.html" class="btn btn-primary">觀看課程</a>
+                            <a href="${href}" class="btn btn-primary">觀看課程</a>
                         </div>
                         </div>
                         </li>
                         `)
-                        if (i % 5 === 0) {
-                            $("div#listcontainer").append(`</ul>`);
-                        }
                     }
+                    $("div#listcontainer").append(`</ul>`);
                 }
             })
         })

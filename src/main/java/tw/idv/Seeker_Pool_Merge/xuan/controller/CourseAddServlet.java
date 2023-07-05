@@ -66,6 +66,12 @@ public class CourseAddServlet extends HttpServlet {
 		onlineCourseDaoImpl.createOnlineCourse(onlineCourse);
 		
 		System.out.println("upload success");
+		
+		try {
+	        Thread.sleep(1500); // 延遲5秒後
+	    } catch (InterruptedException e) {
+	        e.printStackTrace();
+	    }
 		resp.sendRedirect(req.getContextPath() + "/back-end/course/CourseAdd.html");
 	}
 

@@ -554,7 +554,7 @@
         // 檢查課程標題
         var onTitle = $("#onTitle").val().trim();
         if (onTitle === "") {
-            swal("Oops", "請輸入課程標題!!", "error")
+            swal("Oops", "請輸入課程標題!", "error");
             $("#onTitle").focus();
             e.preventDefault();
             return false;
@@ -563,7 +563,7 @@
         // 檢查課程封面圖片
         var onPic_file = $("#onPic_file").val().trim();
         if (onPic_file === "") {
-            alert("請選擇上傳課程封面!");
+            swal("Oops", "請選擇上傳課程封面!", "error");
             $("#onTitle").focus();
             e.preventDefault();
             return false;
@@ -572,7 +572,7 @@
         // // 檢查課程影片
         var onVideo = $("#onVideo").val().trim();
         if (onVideo === "") {
-            alert("請選擇上傳課程影片!");
+            swal("Oops", "請選擇上傳課程影片!", "error");
             $("#onVideo").focus();
             e.preventDefault();
             return false;
@@ -581,14 +581,14 @@
         // 檢查課程簡介
         var onIndex = $("#onIndex").val().trim();
         if (onIndex === "") {
-            alert("請輸入課程簡介!");
+            swal("Oops", "請輸入課程簡介!", "error");
             $("#onIndex").focus();
             e.preventDefault();
             return false;
         }
 
         // 提交表單成功後重設表單
-        alert("表單提交成功");
+        swal("Good", "表單提交成功!", "success");
     });
 
 </script>
