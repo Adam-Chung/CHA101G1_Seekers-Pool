@@ -23,7 +23,7 @@ public class JobDaoImpl implements JobDao {
 
 	@Override
 	public List<JobVo> findByPage(int memId, int start, int pageSize) {
-		String sql = "select JOB.JOB_NO, JOB_NAME, JOB_CONTENT, c.COLLECT_DATE from JOB, COLLECT_JOB c where JOB.JOB_NO = c.JOB_NO AND MEM_ID = ? limit ? , ? ;"
+		String sql = "select JOB.COM_MEM_ID, JOB.JOB_NO, JOB_NAME, JOB_CONTENT, c.COLLECT_DATE from JOB, COLLECT_JOB c where JOB.JOB_NO = c.JOB_NO AND MEM_ID = ? limit ? , ? ;"
 				+ " ";
 		return template.query(sql, new BeanPropertyRowMapper<JobVo>(JobVo.class), memId, start, pageSize);
 	}
