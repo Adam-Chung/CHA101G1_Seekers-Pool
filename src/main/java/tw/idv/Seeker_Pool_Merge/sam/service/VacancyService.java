@@ -9,9 +9,11 @@ public interface VacancyService {
 
     /**
      * 新增職缺
+     *
+     * @param comId
      * @param job
      */
-    void save(Job job);
+    void save(Integer comId, Job job);
 
 //    查詢全部職缺
     List<Job> list();
@@ -30,5 +32,5 @@ public interface VacancyService {
     void update(Job job);
 
 //    分頁功能
-    PageBean page(Integer page, Integer pageSize);
+    PageBean page(Integer comMemId, Integer page, Integer pageSize);
 }

@@ -20,8 +20,8 @@ public interface VacancyMapper {
     void update(Job job);
 
 //    查詢全部職缺(有包含了分頁查詢)
-    @Select("select * from seeker_pool_schemas.job")
-    List<Job> list();
+    @Select("select * from seeker_pool_schemas.job where COM_MEM_ID = #{comMemId}")
+    List<Job> list(Integer comMemId);
 
 //    查詢單筆職缺明細來編輯
     @Select("select * from seeker_pool_schemas.job where JOB_NO = #{id}")

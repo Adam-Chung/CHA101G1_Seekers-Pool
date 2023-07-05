@@ -21,21 +21,25 @@ public class VacancyServiceImpl implements VacancyService {
     /**
      * 新增職缺
      *
+     * @param comId
      * @param job
      */
     @Override
-    public void save(Job job) {
-        if(job.getComMemId()== null){
-            job.setComMemId(3); // 要討論 暫定的
-        }
+    public void save(Integer comId, Job job) {
+        job.setComMemId(comId);
         vacancyMapper.insert(job);
     }
 
-//    查詢職缺
     @Override
     public List<Job> list() {
-        return vacancyMapper.list();
+        return null;
     }
+
+//    查詢職缺
+//    @Override
+//    public List<Job> list() {
+//        return vacancyMapper.list();
+//    }
 
     @Override
     public List<Job> list(Integer id) {
@@ -67,12 +71,12 @@ public class VacancyServiceImpl implements VacancyService {
 
 //    分頁功能
     @Override
-    public PageBean page(Integer page, Integer pageSize) {
+    public PageBean page(Integer comMemId, Integer page, Integer pageSize) {
         //1. 設置分頁參數
         PageHelper.startPage(page, pageSize);
 
         //2. 執行查詢
-        List<Job> vacancyList = vacancyMapper.list();
+        List<Job> vacancyList = vacancyMapper.list(comMemId);
         Page<Job> p = (Page<Job>) vacancyList;
 
         //3. 封裝PageBean對象
