@@ -7,12 +7,19 @@ public class ApplyRecordShowVo implements java.io.Serializable{
 	
 	private String comName;
 	private Integer jobNo;
+	private Integer comMemId;
 	private String jobName;
 	private Date applyDate;
 	private String interDate;
 	private String hireStatus;
 	
 	
+	public Integer getComMemId() {
+		return comMemId;
+	}
+	public void setComMemId(Integer comMemId) {
+		this.comMemId = comMemId;
+	}
 	public Integer getJobNo() {
 		return jobNo;
 	}

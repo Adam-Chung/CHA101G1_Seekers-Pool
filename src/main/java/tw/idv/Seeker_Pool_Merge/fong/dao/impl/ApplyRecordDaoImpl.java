@@ -43,7 +43,7 @@ public class ApplyRecordDaoImpl implements ApplyRecordDao {
 	@Override
 	public List<ApplyRecordShowVo> findByPage(int memId, int start, int pageSize, String keyWord, int filterNum) {
 		String sql = """
-				select C.COM_NAME, J.JOB_NO, J.JOB_NAME, A.APPLY_DATE, A.INTER_DATE, A.HIRE_STATUS
+				select C.COM_MEM_ID, C.COM_NAME, J.JOB_NO, J.JOB_NAME, A.APPLY_DATE, A.INTER_DATE, A.HIRE_STATUS
 				from JOB J, company_member C , apply_record A
 				where J.JOB_NO = A.JOB_NO AND C.COM_MEM_ID = A.COM_MEM_ID AND MEM_ID = ?
 				and( J.JOB_NAME like ? or C.COM_NAME like ? )
@@ -82,6 +82,7 @@ public class ApplyRecordDaoImpl implements ApplyRecordDao {
 			while (rs.next()) {
 				ApplyRecordShowVo applyRecord = new ApplyRecordShowVo();
 				applyRecord.setComName(rs.getString("COM_NAME"));
+				applyRecord.setComMemId(rs.getInt("COM_MEM_ID"));
 				applyRecord.setJobNo(rs.getInt("JOB_No"));
 				applyRecord.setJobName(rs.getString("JOB_NAME"));
 				applyRecord.setApplyDate(rs.getDate("APPLY_DATE"));
